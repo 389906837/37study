@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.act.ac.dao.DiscountDetailDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.ac.DiscountDetail">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FCASH_BACK_MONEY" property="fcashBackMoney" jdbcType="NUMERIC"/>
+        <result column="FDISCOUNT" property="fdiscount" jdbcType="NUMERIC"/>
+        <result column="FDISCOUNT_LIMIT" property="fdiscountLimit" jdbcType="NUMERIC"/>
+        <result column="FDISCOUNT_MONEY" property="fdiscountMoney" jdbcType="NUMERIC"/>
+        <result column="FTARGET_MONEY" property="ftargetMoney" jdbcType="NUMERIC"/>
+        <result column="FTARGET_NUM" property="ftargetNum" jdbcType="NUMERIC"/>
+        <result column="IDISCOUNT_TYPE" property="idiscountType" jdbcType="NUMERIC"/>
+        <result column="ISORT" property="isort" jdbcType="NUMERIC"/>
+        <result column="SAC_CODE" property="sacCode" jdbcType="VARCHAR"/>
+        <result column="SAC_ID" property="sacId" jdbcType="VARCHAR"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SUPATE_USER" property="supateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,FCASH_BACK_MONEY,FDISCOUNT,FDISCOUNT_LIMIT,FDISCOUNT_MONEY,FTARGET_MONEY,FTARGET_NUM,IDISCOUNT_TYPE,ISORT,SAC_CODE,SAC_ID,SADD_USER,SUPATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="fcashBackMoney != null  ">
+                    and FCASH_BACK_MONEY=#{fcashBackMoney,jdbcType=NUMERIC}
+                </if>
+                <if test="fdiscount != null  ">
+                    and FDISCOUNT=#{fdiscount,jdbcType=NUMERIC}
+                </if>
+                <if test="fdiscountLimit != null  ">
+                    and FDISCOUNT_LIMIT=#{fdiscountLimit,jdbcType=NUMERIC}
+                </if>
+                <if test="fdiscountMoney != null  ">
+                    and FDISCOUNT_MONEY=#{fdiscountMoney,jdbcType=NUMERIC}
+                </if>
+                <if test="ftargetMoney != null  ">
+                    and FTARGET_MONEY=#{ftargetMoney,jdbcType=NUMERIC}
+                </if>
+                <if test="ftargetNum != null  ">
+                    and FTARGET_NUM=#{ftargetNum,jdbcType=NUMERIC}
+                </if>
+                <if test="idiscountType != null  ">
+                    and IDISCOUNT_TYPE=#{idiscountType,jdbcType=NUMERIC}
+                </if>
+                <if test="isort != null  ">
+                    and ISORT=#{isort,jdbcType=NUMERIC}
+                </if>
+                <if test="sacCode != null and  sacCode != ''  ">
+                    and SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sacId != null and  sacId != ''  ">
+                    and SAC_ID=#{sacId,jdbcType=VARCHAR}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="supateUser != null and  supateUser != ''  ">
+                    and SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from AC_DISCOUNT_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.ac.DiscountDetail">
+        select
+        <include refid="column_List"/>
+        from AC_DISCOUNT_DETAIL
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from AC_DISCOUNT_DETAIL
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from AC_DISCOUNT_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM AC_DISCOUNT_DETAIL where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.ac.DiscountDetail">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into AC_DISCOUNT_DETAIL (ID,FCASH_BACK_MONEY,FDISCOUNT,FDISCOUNT_LIMIT,FDISCOUNT_MONEY,FTARGET_MONEY,FTARGET_NUM,IDISCOUNT_TYPE,ISORT,SAC_CODE,SAC_ID,SADD_USER,SUPATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{fcashBackMoney,jdbcType=NUMERIC},#{fdiscount,jdbcType=NUMERIC},#{fdiscountLimit,jdbcType=NUMERIC},#{fdiscountMoney,jdbcType=NUMERIC},#{ftargetMoney,jdbcType=NUMERIC},#{ftargetNum,jdbcType=NUMERIC},#{idiscountType,jdbcType=NUMERIC},#{isort,jdbcType=NUMERIC},#{sacCode,jdbcType=VARCHAR},#{sacId,jdbcType=VARCHAR},#{saddUser,jdbcType=VARCHAR},#{supateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.ac.DiscountDetail">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into AC_DISCOUNT_DETAIL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="fcashBackMoney">
+                FCASH_BACK_MONEY,
+            </if>
+            <if test="fdiscount">
+                FDISCOUNT,
+            </if>
+            <if test="fdiscountLimit">
+                FDISCOUNT_LIMIT,
+            </if>
+            <if test="fdiscountMoney">
+                FDISCOUNT_MONEY,
+            </if>
+            <if test="ftargetMoney">
+                FTARGET_MONEY,
+            </if>
+            <if test="ftargetNum">
+                FTARGET_NUM,
+            </if>
+            <if test="idiscountType">
+                IDISCOUNT_TYPE,
+            </if>
+            <if test="isort">
+                ISORT,
+            </if>
+            <if test="sacCode">
+                SAC_CODE,
+            </if>
+            <if test="sacId">
+                SAC_ID,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="supateUser">
+                SUPATE_USER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="fcashBackMoney != null  ">
+                #{fcashBackMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscount != null  ">
+                #{fdiscount,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscountLimit != null  ">
+                #{fdiscountLimit,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscountMoney != null  ">
+                #{fdiscountMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="ftargetMoney != null  ">
+                #{ftargetMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="ftargetNum != null  ">
+                #{ftargetNum,jdbcType=NUMERIC},
+            </if>
+            <if test="idiscountType != null  ">
+                #{idiscountType,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="sacCode != null and  sacCode != ''  ">
+                #{sacCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sacId != null and  sacId != ''  ">
+                #{sacId,jdbcType=VARCHAR},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="supateUser != null and  supateUser != ''  ">
+                #{supateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.ac.DiscountDetail">
+        update AC_DISCOUNT_DETAIL
+        <set>
+            <if test="fcashBackMoney != null  ">
+                FCASH_BACK_MONEY=#{fcashBackMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscount != null  ">
+                FDISCOUNT=#{fdiscount,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscountLimit != null  ">
+                FDISCOUNT_LIMIT=#{fdiscountLimit,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscountMoney != null  ">
+                FDISCOUNT_MONEY=#{fdiscountMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="ftargetMoney != null  ">
+                FTARGET_MONEY=#{ftargetMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="ftargetNum != null  ">
+                FTARGET_NUM=#{ftargetNum,jdbcType=NUMERIC},
+            </if>
+            <if test="idiscountType != null  ">
+                IDISCOUNT_TYPE=#{idiscountType,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="sacCode != null and  sacCode != ''  ">
+                SAC_CODE=#{sacCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sacId != null and  sacId != ''  ">
+                SAC_ID=#{sacId,jdbcType=VARCHAR},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="supateUser != null and  supateUser != ''  ">
+                SUPATE_USER=#{supateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.ac.DiscountDetail">
+        update AC_DISCOUNT_DETAIL
+        set
+        FCASH_BACK_MONEY=#{fcashBackMoney,jdbcType=NUMERIC}
+        ,FDISCOUNT=#{fdiscount,jdbcType=NUMERIC}
+        ,FDISCOUNT_LIMIT=#{fdiscountLimit,jdbcType=NUMERIC}
+        ,FDISCOUNT_MONEY=#{fdiscountMoney,jdbcType=NUMERIC}
+        ,FTARGET_MONEY=#{ftargetMoney,jdbcType=NUMERIC}
+        ,FTARGET_NUM=#{ftargetNum,jdbcType=NUMERIC}
+        ,IDISCOUNT_TYPE=#{idiscountType,jdbcType=NUMERIC}
+        ,ISORT=#{isort,jdbcType=NUMERIC}
+        ,SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+        ,SAC_ID=#{sacId,jdbcType=VARCHAR}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FCASH_BACK_MONEY=#{fcashBackMoney,jdbcType=NUMERIC}
+	FDISCOUNT=#{fdiscount,jdbcType=NUMERIC}
+	FDISCOUNT_LIMIT=#{fdiscountLimit,jdbcType=NUMERIC}
+	FDISCOUNT_MONEY=#{fdiscountMoney,jdbcType=NUMERIC}
+	FTARGET_MONEY=#{ftargetMoney,jdbcType=NUMERIC}
+	FTARGET_NUM=#{ftargetNum,jdbcType=NUMERIC}
+	IDISCOUNT_TYPE=#{idiscountType,jdbcType=NUMERIC}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+	SAC_ID=#{sacId,jdbcType=VARCHAR}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="selectBySacCode" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from AC_DISCOUNT_DETAIL
+        where SAC_CODE = #{sacCode,jdbcType=VARCHAR}
+    </select>
+</mapper>

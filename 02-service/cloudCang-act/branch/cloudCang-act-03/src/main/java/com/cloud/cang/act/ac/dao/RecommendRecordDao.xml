@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.act.ac.dao.RecommendRecordDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.ac.RecommendRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="SORDER_ACTUAL_MONEY" property="sorderActualMoney" jdbcType="NUMERIC" />
+		<result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR" />
+		<result column="SORDER_ID" property="sorderId" jdbcType="VARCHAR" />
+		<result column="SORDER_MONEY" property="sorderMoney" jdbcType="NUMERIC" />
+		<result column="SPRESENTEE_CODE" property="spresenteeCode" jdbcType="VARCHAR" />
+		<result column="SPRESENTEE_ID" property="spresenteeId" jdbcType="VARCHAR" />
+		<result column="SPRESENTEE_NAME" property="spresenteeName" jdbcType="VARCHAR" />
+		<result column="SREFERRER_CODE" property="sreferrerCode" jdbcType="VARCHAR" />
+		<result column="SREFERRER_ID" property="sreferrerId" jdbcType="VARCHAR" />
+		<result column="SREFERRER_NAME" property="sreferrerName" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SREWARD_INSTRUCTION" property="srewardInstruction" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TORDER_DATETIME" property="torderDatetime" jdbcType="TIMESTAMP" />
+		<result column="TREG_DATETIME" property="tregDatetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,SORDER_ACTUAL_MONEY,SORDER_CODE,SORDER_ID,SORDER_MONEY,SPRESENTEE_CODE,SPRESENTEE_ID,SPRESENTEE_NAME,SREFERRER_CODE,SREFERRER_ID,SREFERRER_NAME,SREMARK,SREWARD_INSTRUCTION,TADD_TIME,TORDER_DATETIME,TREG_DATETIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="sorderActualMoney != null  ">
+               and  SORDER_ACTUAL_MONEY=#{sorderActualMoney,jdbcType=NUMERIC}
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+               and  SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+               and  SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sorderMoney != null  ">
+               and  SORDER_MONEY=#{sorderMoney,jdbcType=NUMERIC}
+           	</if>
+			<if test="spresenteeCode != null and  spresenteeCode != ''  ">
+               and  SPRESENTEE_CODE=#{spresenteeCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="spresenteeId != null and  spresenteeId != ''  ">
+               and  SPRESENTEE_ID=#{spresenteeId,jdbcType=VARCHAR}
+           	</if>
+			<if test="spresenteeName != null and  spresenteeName != ''  ">
+               and  SPRESENTEE_NAME=#{spresenteeName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreferrerCode != null and  sreferrerCode != ''  ">
+               and  SREFERRER_CODE=#{sreferrerCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreferrerId != null and  sreferrerId != ''  ">
+               and  SREFERRER_ID=#{sreferrerId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreferrerName != null and  sreferrerName != ''  ">
+               and  SREFERRER_NAME=#{sreferrerName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="srewardInstruction != null and  srewardInstruction != ''  ">
+               and  SREWARD_INSTRUCTION=#{srewardInstruction,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="torderDatetime != null  ">
+               and  TORDER_DATETIME=#{torderDatetime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tregDatetime != null  ">
+               and  TREG_DATETIME=#{tregDatetime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from AC_RECOMMEND_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.ac.RecommendRecord">
+        select
+        <include refid="column_List" />
+        from AC_RECOMMEND_RECORD
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from AC_RECOMMEND_RECORD
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+	<select id="selectRecommendRecordBySpresenteeId" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from AC_RECOMMEND_RECORD
+		where  SPRESENTEE_ID=#{userId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="countRecommendRecordBySpresenteeId" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select
+		count(1)
+		from AC_RECOMMEND_RECORD
+		where  SPRESENTEE_ID=#{userId,jdbcType=VARCHAR}
+	</select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from AC_RECOMMEND_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM AC_RECOMMEND_RECORD where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.ac.RecommendRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into AC_RECOMMEND_RECORD (ID,SORDER_ACTUAL_MONEY,SORDER_CODE,SORDER_ID,SORDER_MONEY,SPRESENTEE_CODE,SPRESENTEE_ID,SPRESENTEE_NAME,SREFERRER_CODE,SREFERRER_ID,SREFERRER_NAME,SREMARK,SREWARD_INSTRUCTION,TADD_TIME,TORDER_DATETIME,TREG_DATETIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{sorderActualMoney,jdbcType=NUMERIC},#{sorderCode,jdbcType=VARCHAR},#{sorderId,jdbcType=VARCHAR},#{sorderMoney,jdbcType=NUMERIC},#{spresenteeCode,jdbcType=VARCHAR},#{spresenteeId,jdbcType=VARCHAR},#{spresenteeName,jdbcType=VARCHAR},#{sreferrerCode,jdbcType=VARCHAR},#{sreferrerId,jdbcType=VARCHAR},#{sreferrerName,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{srewardInstruction,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{torderDatetime,jdbcType=TIMESTAMP},#{tregDatetime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.ac.RecommendRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into AC_RECOMMEND_RECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="sorderActualMoney">
+               SORDER_ACTUAL_MONEY,
+           	</if>
+			<if test="sorderCode">
+               SORDER_CODE,
+           	</if>
+			<if test="sorderId">
+               SORDER_ID,
+           	</if>
+			<if test="sorderMoney">
+               SORDER_MONEY,
+           	</if>
+			<if test="spresenteeCode">
+               SPRESENTEE_CODE,
+           	</if>
+			<if test="spresenteeId">
+               SPRESENTEE_ID,
+           	</if>
+			<if test="spresenteeName">
+               SPRESENTEE_NAME,
+           	</if>
+			<if test="sreferrerCode">
+               SREFERRER_CODE,
+           	</if>
+			<if test="sreferrerId">
+               SREFERRER_ID,
+           	</if>
+			<if test="sreferrerName">
+               SREFERRER_NAME,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="srewardInstruction">
+               SREWARD_INSTRUCTION,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="torderDatetime">
+               TORDER_DATETIME,
+           	</if>
+			<if test="tregDatetime">
+               TREG_DATETIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="sorderActualMoney != null  ">
+                #{sorderActualMoney,jdbcType=NUMERIC},
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+                #{sorderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+                #{sorderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderMoney != null  ">
+                #{sorderMoney,jdbcType=NUMERIC},
+           	</if>
+			<if test="spresenteeCode != null and  spresenteeCode != ''  ">
+                #{spresenteeCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="spresenteeId != null and  spresenteeId != ''  ">
+                #{spresenteeId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spresenteeName != null and  spresenteeName != ''  ">
+                #{spresenteeName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreferrerCode != null and  sreferrerCode != ''  ">
+                #{sreferrerCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreferrerId != null and  sreferrerId != ''  ">
+                #{sreferrerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreferrerName != null and  sreferrerName != ''  ">
+                #{sreferrerName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="srewardInstruction != null and  srewardInstruction != ''  ">
+                #{srewardInstruction,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="torderDatetime != null  ">
+                #{torderDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tregDatetime != null  ">
+                #{tregDatetime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.ac.RecommendRecord">
+        update AC_RECOMMEND_RECORD
+        <set>
+			<if test="sorderActualMoney != null  ">
+                SORDER_ACTUAL_MONEY=#{sorderActualMoney,jdbcType=NUMERIC},
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+                SORDER_CODE=#{sorderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+                SORDER_ID=#{sorderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderMoney != null  ">
+                SORDER_MONEY=#{sorderMoney,jdbcType=NUMERIC},
+           	</if>
+			<if test="spresenteeCode != null and  spresenteeCode != ''  ">
+                SPRESENTEE_CODE=#{spresenteeCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="spresenteeId != null and  spresenteeId != ''  ">
+                SPRESENTEE_ID=#{spresenteeId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spresenteeName != null and  spresenteeName != ''  ">
+                SPRESENTEE_NAME=#{spresenteeName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreferrerCode != null and  sreferrerCode != ''  ">
+                SREFERRER_CODE=#{sreferrerCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreferrerId != null and  sreferrerId != ''  ">
+                SREFERRER_ID=#{sreferrerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreferrerName != null and  sreferrerName != ''  ">
+                SREFERRER_NAME=#{sreferrerName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="srewardInstruction != null and  srewardInstruction != ''  ">
+                SREWARD_INSTRUCTION=#{srewardInstruction,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="torderDatetime != null  ">
+                TORDER_DATETIME=#{torderDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tregDatetime != null  ">
+                TREG_DATETIME=#{tregDatetime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.ac.RecommendRecord">
+        update AC_RECOMMEND_RECORD
+        set 
+        		SORDER_ACTUAL_MONEY=#{sorderActualMoney,jdbcType=NUMERIC}
+        		,SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+        		,SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+        		,SORDER_MONEY=#{sorderMoney,jdbcType=NUMERIC}
+        		,SPRESENTEE_CODE=#{spresenteeCode,jdbcType=VARCHAR}
+        		,SPRESENTEE_ID=#{spresenteeId,jdbcType=VARCHAR}
+        		,SPRESENTEE_NAME=#{spresenteeName,jdbcType=VARCHAR}
+        		,SREFERRER_CODE=#{sreferrerCode,jdbcType=VARCHAR}
+        		,SREFERRER_ID=#{sreferrerId,jdbcType=VARCHAR}
+        		,SREFERRER_NAME=#{sreferrerName,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SREWARD_INSTRUCTION=#{srewardInstruction,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TORDER_DATETIME=#{torderDatetime,jdbcType=TIMESTAMP}
+        		,TREG_DATETIME=#{tregDatetime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SORDER_ACTUAL_MONEY=#{sorderActualMoney,jdbcType=NUMERIC}
+	SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+	SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+	SORDER_MONEY=#{sorderMoney,jdbcType=NUMERIC}
+	SPRESENTEE_CODE=#{spresenteeCode,jdbcType=VARCHAR}
+	SPRESENTEE_ID=#{spresenteeId,jdbcType=VARCHAR}
+	SPRESENTEE_NAME=#{spresenteeName,jdbcType=VARCHAR}
+	SREFERRER_CODE=#{sreferrerCode,jdbcType=VARCHAR}
+	SREFERRER_ID=#{sreferrerId,jdbcType=VARCHAR}
+	SREFERRER_NAME=#{sreferrerName,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SREWARD_INSTRUCTION=#{srewardInstruction,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TORDER_DATETIME=#{torderDatetime,jdbcType=TIMESTAMP}
+	TREG_DATETIME=#{tregDatetime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

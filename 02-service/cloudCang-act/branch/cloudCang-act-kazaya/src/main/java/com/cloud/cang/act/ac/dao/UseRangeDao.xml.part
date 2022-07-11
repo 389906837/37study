@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.act.ac.dao.UseRangeDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.ac.UseRange">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IRANGE_TYPE" property="irangeType" jdbcType="NUMERIC"/>
+        <result column="SAC_CODE" property="sacCode" jdbcType="VARCHAR"/>
+        <result column="SAC_ID" property="sacId" jdbcType="VARCHAR"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR"/>
+        <result column="SUPATE_USER" property="supateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,IRANGE_TYPE,SAC_CODE,SAC_ID,SADD_USER,SCOMMODITY_CODE,SCOMMODITY_ID,SDEVICE_CODE,SDEVICE_ID,SUPATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="irangeType != null  ">
+                    and IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC}
+                </if>
+                <if test="sacCode != null and  sacCode != ''  ">
+                    and SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sacId != null and  sacId != ''  ">
+                    and SAC_ID=#{sacId,jdbcType=VARCHAR}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="scommodityCode != null and  scommodityCode != ''  ">
+                    and SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+                </if>
+                <if test="scommodityId != null and  scommodityId != ''  ">
+                    and SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                    and SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceId != null and  sdeviceId != ''  ">
+                    and SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+                </if>
+                <if test="supateUser != null and  supateUser != ''  ">
+                    and SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from AC_USE_RANGE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.ac.UseRange">
+        select
+        <include refid="column_List"/>
+        from AC_USE_RANGE
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from AC_USE_RANGE
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from AC_USE_RANGE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM AC_USE_RANGE where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.ac.UseRange">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into AC_USE_RANGE (ID,IRANGE_TYPE,SAC_CODE,SAC_ID,SADD_USER,SCOMMODITY_CODE,SCOMMODITY_ID,SDEVICE_CODE,SDEVICE_ID,SUPATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{irangeType,jdbcType=NUMERIC},#{sacCode,jdbcType=VARCHAR},#{sacId,jdbcType=VARCHAR},#{saddUser,jdbcType=VARCHAR},#{scommodityCode,jdbcType=VARCHAR},#{scommodityId,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{supateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.ac.UseRange">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into AC_USE_RANGE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="irangeType">
+                IRANGE_TYPE,
+            </if>
+            <if test="sacCode">
+                SAC_CODE,
+            </if>
+            <if test="sacId">
+                SAC_ID,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="scommodityCode">
+                SCOMMODITY_CODE,
+            </if>
+            <if test="scommodityId">
+                SCOMMODITY_ID,
+            </if>
+            <if test="sdeviceCode">
+                SDEVICE_CODE,
+            </if>
+            <if test="sdeviceId">
+                SDEVICE_ID,
+            </if>
+            <if test="supateUser">
+                SUPATE_USER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="irangeType != null  ">
+                #{irangeType,jdbcType=NUMERIC},
+            </if>
+            <if test="sacCode != null and  sacCode != ''  ">
+                #{sacCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sacId != null and  sacId != ''  ">
+                #{sacId,jdbcType=VARCHAR},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityCode != null and  scommodityCode != ''  ">
+                #{scommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityId != null and  scommodityId != ''  ">
+                #{scommodityId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="supateUser != null and  supateUser != ''  ">
+                #{supateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.ac.UseRange">
+        update AC_USE_RANGE
+        <set>
+            <if test="irangeType != null  ">
+                IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC},
+            </if>
+            <if test="sacCode != null and  sacCode != ''  ">
+                SAC_CODE=#{sacCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sacId != null and  sacId != ''  ">
+                SAC_ID=#{sacId,jdbcType=VARCHAR},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityCode != null and  scommodityCode != ''  ">
+                SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityId != null and  scommodityId != ''  ">
+                SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="supateUser != null and  supateUser != ''  ">
+                SUPATE_USER=#{supateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.ac.UseRange">
+        update AC_USE_RANGE
+        set
+        IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC}
+        ,SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+        ,SAC_ID=#{sacId,jdbcType=VARCHAR}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+        ,SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+        ,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        ,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        ,SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC}
+	SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+	SAC_ID=#{sacId,jdbcType=VARCHAR}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+	SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="selectByAcId" parameterType="java.lang.String" resultMap="resultEntity">
+        select
+        <include refid="column_List"/>
+        from AC_USE_RANGE
+        WHERE SAC_ID=#{acId,jdbcType=VARCHAR}
+    </select>
+</mapper>
