@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rmp.rm.dao.ReplenishmentRecordDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.rm.ReplenishmentRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IACTUAL_SHELVES" property="iactualShelves" jdbcType="NUMERIC" />
+		<result column="IACTUAL_SHELVES_AMOUNT" property="iactualShelvesAmount" jdbcType="NUMERIC" />
+		<result column="IACTUAL_UNDER" property="iactualUnder" jdbcType="NUMERIC" />
+		<result column="IACTUAL_UNDER_AMOUNT" property="iactualUnderAmount" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="ISOURCE_CLIENT_TYPE" property="isourceClientType" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="IVERSION" property="iversion" jdbcType="NUMERIC" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SREADER_SERIAL_NUMBER" property="sreaderSerialNumber" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SRENEWAL_ID" property="srenewalId" jdbcType="VARCHAR" />
+		<result column="SRENEWAL_MOBILE" property="srenewalMobile" jdbcType="VARCHAR" />
+		<result column="SRENEWAL_NAME" property="srenewalName" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TREPLENISHMENT_TIME" property="treplenishmentTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IACTUAL_SHELVES,IACTUAL_SHELVES_AMOUNT,IACTUAL_UNDER,IACTUAL_UNDER_AMOUNT,IDEL_FLAG,ISOURCE_CLIENT_TYPE,ISTATUS,ITYPE,IVERSION,SCODE,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SMERCHANT_CODE,SMERCHANT_ID,SREADER_SERIAL_NUMBER,SREMARK,SRENEWAL_ID,SRENEWAL_MOBILE,SRENEWAL_NAME,TADD_TIME,TREPLENISHMENT_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="iactualShelves != null  ">
+               and  IACTUAL_SHELVES=#{iactualShelves,jdbcType=NUMERIC}
+           	</if>
+			<if test="iactualShelvesAmount != null  ">
+               and  IACTUAL_SHELVES_AMOUNT=#{iactualShelvesAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="iactualUnder != null  ">
+               and  IACTUAL_UNDER=#{iactualUnder,jdbcType=NUMERIC}
+           	</if>
+			<if test="iactualUnderAmount != null  ">
+               and  IACTUAL_UNDER_AMOUNT=#{iactualUnderAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="isourceClientType != null  ">
+               and  ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="iversion != null  ">
+               and  IVERSION=#{iversion,jdbcType=NUMERIC}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+               and  SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+               and  SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="srenewalId != null and  srenewalId != ''  ">
+               and  SRENEWAL_ID=#{srenewalId,jdbcType=VARCHAR}
+           	</if>
+			<if test="srenewalMobile != null and  srenewalMobile != ''  ">
+               and  SRENEWAL_MOBILE=#{srenewalMobile,jdbcType=VARCHAR}
+           	</if>
+			<if test="srenewalName != null and  srenewalName != ''  ">
+               and  SRENEWAL_NAME=#{srenewalName,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="treplenishmentTime != null  ">
+               and  TREPLENISHMENT_TIME=#{treplenishmentTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from RM_REPLENISHMENT_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.rm.ReplenishmentRecord">
+        select
+        <include refid="column_List" />
+        from RM_REPLENISHMENT_RECORD
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from RM_REPLENISHMENT_RECORD
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from RM_REPLENISHMENT_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM RM_REPLENISHMENT_RECORD where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.rm.ReplenishmentRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into RM_REPLENISHMENT_RECORD (ID,IACTUAL_SHELVES,IACTUAL_SHELVES_AMOUNT,IACTUAL_UNDER,IACTUAL_UNDER_AMOUNT,IDEL_FLAG,ISOURCE_CLIENT_TYPE,ISTATUS,ITYPE,IVERSION,SCODE,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SMERCHANT_CODE,SMERCHANT_ID,SREADER_SERIAL_NUMBER,SREMARK,SRENEWAL_ID,SRENEWAL_MOBILE,SRENEWAL_NAME,TADD_TIME,TREPLENISHMENT_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iactualShelves,jdbcType=NUMERIC},#{iactualShelvesAmount,jdbcType=NUMERIC},#{iactualUnder,jdbcType=NUMERIC},#{iactualUnderAmount,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{isourceClientType,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{iversion,jdbcType=NUMERIC},#{scode,jdbcType=VARCHAR},#{sdeviceAddress,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sreaderSerialNumber,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{srenewalId,jdbcType=VARCHAR},#{srenewalMobile,jdbcType=VARCHAR},#{srenewalName,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{treplenishmentTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.rm.ReplenishmentRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into RM_REPLENISHMENT_RECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="iactualShelves">
+               IACTUAL_SHELVES,
+           	</if>
+			<if test="iactualShelvesAmount">
+               IACTUAL_SHELVES_AMOUNT,
+           	</if>
+			<if test="iactualUnder">
+               IACTUAL_UNDER,
+           	</if>
+			<if test="iactualUnderAmount">
+               IACTUAL_UNDER_AMOUNT,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="isourceClientType">
+               ISOURCE_CLIENT_TYPE,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="iversion">
+               IVERSION,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sdeviceAddress">
+               SDEVICE_ADDRESS,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="sreaderSerialNumber">
+               SREADER_SERIAL_NUMBER,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="srenewalId">
+               SRENEWAL_ID,
+           	</if>
+			<if test="srenewalMobile">
+               SRENEWAL_MOBILE,
+           	</if>
+			<if test="srenewalName">
+               SRENEWAL_NAME,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="treplenishmentTime">
+               TREPLENISHMENT_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="iactualShelves != null  ">
+                #{iactualShelves,jdbcType=NUMERIC},
+           	</if>
+			<if test="iactualShelvesAmount != null  ">
+                #{iactualShelvesAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="iactualUnder != null  ">
+                #{iactualUnder,jdbcType=NUMERIC},
+           	</if>
+			<if test="iactualUnderAmount != null  ">
+                #{iactualUnderAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="isourceClientType != null  ">
+                #{isourceClientType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                #{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                #{sdeviceAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                #{sreaderSerialNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="srenewalId != null and  srenewalId != ''  ">
+                #{srenewalId,jdbcType=VARCHAR},
+           	</if>
+			<if test="srenewalMobile != null and  srenewalMobile != ''  ">
+                #{srenewalMobile,jdbcType=VARCHAR},
+           	</if>
+			<if test="srenewalName != null and  srenewalName != ''  ">
+                #{srenewalName,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="treplenishmentTime != null  ">
+                #{treplenishmentTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.rm.ReplenishmentRecord">
+        update RM_REPLENISHMENT_RECORD
+        <set>
+			<if test="iactualShelves != null  ">
+                IACTUAL_SHELVES=#{iactualShelves,jdbcType=NUMERIC},
+           	</if>
+			<if test="iactualShelvesAmount != null  ">
+                IACTUAL_SHELVES_AMOUNT=#{iactualShelvesAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="iactualUnder != null  ">
+                IACTUAL_UNDER=#{iactualUnder,jdbcType=NUMERIC},
+           	</if>
+			<if test="iactualUnderAmount != null  ">
+                IACTUAL_UNDER_AMOUNT=#{iactualUnderAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="isourceClientType != null  ">
+                ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                IVERSION=#{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="srenewalId != null and  srenewalId != ''  ">
+                SRENEWAL_ID=#{srenewalId,jdbcType=VARCHAR},
+           	</if>
+			<if test="srenewalMobile != null and  srenewalMobile != ''  ">
+                SRENEWAL_MOBILE=#{srenewalMobile,jdbcType=VARCHAR},
+           	</if>
+			<if test="srenewalName != null and  srenewalName != ''  ">
+                SRENEWAL_NAME=#{srenewalName,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="treplenishmentTime != null  ">
+                TREPLENISHMENT_TIME=#{treplenishmentTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.rm.ReplenishmentRecord">
+        update RM_REPLENISHMENT_RECORD
+        set 
+        		IACTUAL_SHELVES=#{iactualShelves,jdbcType=NUMERIC}
+        		,IACTUAL_SHELVES_AMOUNT=#{iactualShelvesAmount,jdbcType=NUMERIC}
+        		,IACTUAL_UNDER=#{iactualUnder,jdbcType=NUMERIC}
+        		,IACTUAL_UNDER_AMOUNT=#{iactualUnderAmount,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,IVERSION=#{iversion,jdbcType=NUMERIC}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SRENEWAL_ID=#{srenewalId,jdbcType=VARCHAR}
+        		,SRENEWAL_MOBILE=#{srenewalMobile,jdbcType=VARCHAR}
+        		,SRENEWAL_NAME=#{srenewalName,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TREPLENISHMENT_TIME=#{treplenishmentTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+	<!--根据设备ID查询商品补货表-->
+	<select id="selectBySdeviceId" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from RM_REPLENISHMENT_RECORD
+		where SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	</select>
+
+
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IACTUAL_SHELVES=#{iactualShelves,jdbcType=NUMERIC}
+	IACTUAL_SHELVES_AMOUNT=#{iactualShelvesAmount,jdbcType=NUMERIC}
+	IACTUAL_UNDER=#{iactualUnder,jdbcType=NUMERIC}
+	IACTUAL_UNDER_AMOUNT=#{iactualUnderAmount,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	IVERSION=#{iversion,jdbcType=NUMERIC}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SRENEWAL_ID=#{srenewalId,jdbcType=VARCHAR}
+	SRENEWAL_MOBILE=#{srenewalMobile,jdbcType=VARCHAR}
+	SRENEWAL_NAME=#{srenewalName,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TREPLENISHMENT_TIME=#{treplenishmentTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

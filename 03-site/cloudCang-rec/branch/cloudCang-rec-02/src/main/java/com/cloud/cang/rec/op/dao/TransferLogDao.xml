@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rec.op.dao.TransferLogDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.op.TransferLog">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IOPER_TYPE" property="ioperType" jdbcType="VARCHAR"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="SAPP_CODE" property="sappCode" jdbcType="VARCHAR"/>
+        <result column="SAPP_ID" property="sappId" jdbcType="VARCHAR"/>
+        <result column="SBUSINESS_CODE" property="sbusinessCode" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SCONTENT" property="scontent" jdbcType="VARCHAR"/>
+        <result column="SINTERFACE_CODE" property="sinterfaceCode" jdbcType="VARCHAR"/>
+        <result column="SOPER_IP" property="soperIp" jdbcType="VARCHAR"/>
+        <result column="SUSER_CODE" property="suserCode" jdbcType="VARCHAR"/>
+        <result column="SUSER_ID" property="suserId" jdbcType="VARCHAR"/>
+        <result column="TOPER_TIME" property="toperTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,IDEL_FLAG,IOPER_TYPE,ITYPE,SAPP_CODE,SAPP_ID,SBUSINESS_CODE,SCODE,SCONTENT,SINTERFACE_CODE,SOPER_IP,SUSER_CODE,SUSER_ID,TOPER_TIME
+        ]]>
+    </sql>
+    <sql id="column_List_Vo">
+        <![CDATA[
+        OTL.ID,OTL.IDEL_FLAG,OTL.IOPER_TYPE,OTL.ITYPE,OTL.SAPP_CODE,OTL.SAPP_ID,OTL.SBUSINESS_CODE,OTL.SCODE,OTL.SCONTENT,
+        OTL.SINTERFACE_CODE,OTL.SOPER_IP,OTL.SUSER_CODE,OTL.SUSER_ID,OTL.TOPER_TIME,
+        OUI.SNICK_NAME USER_NAME,OII.SNAME INTERFACE_NAME,OAM.SNAME APP_NAME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="ioperType != null and  ioperType != ''  ">
+                    and IOPER_TYPE=#{ioperType,jdbcType=VARCHAR}
+                </if>
+                <if test="itype != null  ">
+                    and ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="sappCode != null and  sappCode != ''  ">
+                    and SAPP_CODE=#{sappCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sappId != null and  sappId != ''  ">
+                    and SAPP_ID=#{sappId,jdbcType=VARCHAR}
+                </if>
+                <if test="sbusinessCode != null and  sbusinessCode != ''  ">
+                    and SBUSINESS_CODE=#{sbusinessCode,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="scontent != null and  scontent != ''  ">
+                    and SCONTENT=#{scontent,jdbcType=VARCHAR}
+                </if>
+                <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                    and SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="soperIp != null and  soperIp != ''  ">
+                    and SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+                </if>
+                <if test="suserCode != null and  suserCode != ''  ">
+                    and SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+                </if>
+                <if test="suserId != null and  suserId != ''  ">
+                    and SUSER_ID=#{suserId,jdbcType=VARCHAR}
+                </if>
+                <if test="toperTime != null  ">
+                    and TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and OTL.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="idelFlag != null  ">
+                    and OTL.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="ioperType != null and  ioperType != ''  ">
+                    and OTL.IOPER_TYPE=#{ioperType,jdbcType=VARCHAR}
+                </if>
+                <if test="itype != null  ">
+                    and OTL.ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="sappCode != null and  sappCode != ''  ">
+                    and OTL.SAPP_CODE=#{sappCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sappId != null and  sappId != ''  ">
+                    and OTL.SAPP_ID=#{sappId,jdbcType=VARCHAR}
+                </if>
+                <if test="sbusinessCode != null and  sbusinessCode != ''  ">
+                    and OTL.SBUSINESS_CODE LIKE CONCAT('%',#{sbusinessCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and OTL.SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="scontent != null and  scontent != ''  ">
+                    and OTL.SCONTENT LIKE CONCAT('%',#{scontent,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                    and OTL.SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="soperIp != null and  soperIp != ''  ">
+                    and OTL.SOPER_IP LIKE CONCAT('%',#{soperIp,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="suserCode != null and  suserCode != ''  ">
+                    and OTL.SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+                </if>
+                <if test="suserId != null and  suserId != ''  ">
+                    and OTL.SUSER_ID=#{suserId,jdbcType=VARCHAR}
+                </if>
+                <if test="toperTime != null  ">
+                    and OTL.TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="userName != null and  userName !='' ">
+                    and OUI.SNICK_NAME LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="appName != null and  appName !='' ">
+                    and OAM.SNAME LIKE CONCAT('%',#{appName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="interfaceName != null and  interfaceName !='' ">
+                    and OII.SNAME LIKE CONCAT('%',#{interfaceName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="operateStarDate != null ">
+                    and OTL.TOPER_TIME&gt;=#{operateStarDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="operateEndDate != null ">
+                    and OTL.TOPER_TIME&lt;date_add(#{operateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from OP_TRANSFER_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.op.TransferLog">
+        select
+        <include refid="column_List"/>
+        from OP_TRANSFER_LOG
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from OP_TRANSFER_LOG
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from OP_TRANSFER_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM OP_TRANSFER_LOG where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.op.TransferLog">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into OP_TRANSFER_LOG (ID,IDEL_FLAG,IOPER_TYPE,ITYPE,SAPP_CODE,SAPP_ID,SBUSINESS_CODE,SCODE,SCONTENT,SINTERFACE_CODE,SOPER_IP,SUSER_CODE,SUSER_ID,TOPER_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{ioperType,jdbcType=VARCHAR},#{itype,jdbcType=NUMERIC},#{sappCode,jdbcType=VARCHAR},#{sappId,jdbcType=VARCHAR},#{sbusinessCode,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{scontent,jdbcType=VARCHAR},#{sinterfaceCode,jdbcType=VARCHAR},#{soperIp,jdbcType=VARCHAR},#{suserCode,jdbcType=VARCHAR},#{suserId,jdbcType=VARCHAR},#{toperTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.op.TransferLog">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into OP_TRANSFER_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="ioperType">
+                IOPER_TYPE,
+            </if>
+            <if test="itype">
+                ITYPE,
+            </if>
+            <if test="sappCode">
+                SAPP_CODE,
+            </if>
+            <if test="sappId">
+                SAPP_ID,
+            </if>
+            <if test="sbusinessCode">
+                SBUSINESS_CODE,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="scontent">
+                SCONTENT,
+            </if>
+            <if test="sinterfaceCode">
+                SINTERFACE_CODE,
+            </if>
+            <if test="soperIp">
+                SOPER_IP,
+            </if>
+            <if test="suserCode">
+                SUSER_CODE,
+            </if>
+            <if test="suserId">
+                SUSER_ID,
+            </if>
+            <if test="toperTime">
+                TOPER_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="ioperType != null and  ioperType != ''  ">
+                #{ioperType,jdbcType=VARCHAR},
+            </if>
+            <if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="sappCode != null and  sappCode != ''  ">
+                #{sappCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sappId != null and  sappId != ''  ">
+                #{sappId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbusinessCode != null and  sbusinessCode != ''  ">
+                #{sbusinessCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scontent != null and  scontent != ''  ">
+                #{scontent,jdbcType=VARCHAR},
+            </if>
+            <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                #{sinterfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="soperIp != null and  soperIp != ''  ">
+                #{soperIp,jdbcType=VARCHAR},
+            </if>
+            <if test="suserCode != null and  suserCode != ''  ">
+                #{suserCode,jdbcType=VARCHAR},
+            </if>
+            <if test="suserId != null and  suserId != ''  ">
+                #{suserId,jdbcType=VARCHAR},
+            </if>
+            <if test="toperTime != null  ">
+                #{toperTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.op.TransferLog">
+        update OP_TRANSFER_LOG
+        <set>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="ioperType != null and  ioperType != ''  ">
+                IOPER_TYPE=#{ioperType,jdbcType=VARCHAR},
+            </if>
+            <if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="sappCode != null and  sappCode != ''  ">
+                SAPP_CODE=#{sappCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sappId != null and  sappId != ''  ">
+                SAPP_ID=#{sappId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbusinessCode != null and  sbusinessCode != ''  ">
+                SBUSINESS_CODE=#{sbusinessCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scontent != null and  scontent != ''  ">
+                SCONTENT=#{scontent,jdbcType=VARCHAR},
+            </if>
+            <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="soperIp != null and  soperIp != ''  ">
+                SOPER_IP=#{soperIp,jdbcType=VARCHAR},
+            </if>
+            <if test="suserCode != null and  suserCode != ''  ">
+                SUSER_CODE=#{suserCode,jdbcType=VARCHAR},
+            </if>
+            <if test="suserId != null and  suserId != ''  ">
+                SUSER_ID=#{suserId,jdbcType=VARCHAR},
+            </if>
+            <if test="toperTime != null  ">
+                TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.op.TransferLog">
+        update OP_TRANSFER_LOG
+        set
+        IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IOPER_TYPE=#{ioperType,jdbcType=VARCHAR}
+        ,ITYPE=#{itype,jdbcType=NUMERIC}
+        ,SAPP_CODE=#{sappCode,jdbcType=VARCHAR}
+        ,SAPP_ID=#{sappId,jdbcType=VARCHAR}
+        ,SBUSINESS_CODE=#{sbusinessCode,jdbcType=VARCHAR}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SCONTENT=#{scontent,jdbcType=VARCHAR}
+        ,SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+        ,SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+        ,SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+        ,SUSER_ID=#{suserId,jdbcType=VARCHAR}
+        ,TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IOPER_TYPE=#{ioperType,jdbcType=VARCHAR}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SAPP_CODE=#{sappCode,jdbcType=VARCHAR}
+	SAPP_ID=#{sappId,jdbcType=VARCHAR}
+	SBUSINESS_CODE=#{sbusinessCode,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SCONTENT=#{scontent,jdbcType=VARCHAR}
+	SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+	SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+	SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+	SUSER_ID=#{suserId,jdbcType=VARCHAR}
+	TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="queryTransferLog" parameterType="com.cloud.cang.rec.op.domain.TransferLogDomain"
+            resultType="com.cloud.cang.rec.op.vo.TransferLogVo">
+        select
+        <include refid="column_List_Vo"/>
+        from OP_TRANSFER_LOG OTL
+        LEFT JOIN OP_USER_INFO OUI ON OTL.SUSER_ID = OUI.ID
+        LEFT JOIN OP_INTERFACE_INFO OII ON OTL.SINTERFACE_CODE = OII.SCODE
+        LEFT JOIN OP_APP_MANAGE OAM ON OTL.SAPP_CODE = OAM.SCODE
+        <include refid="Entity_Where_Clause_Like"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        OTL.id
+    </select>
+</mapper>

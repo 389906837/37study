@@ -1,0 +1,21 @@
+
+@charset "utf-8";
+
+body{font-size:12px;font-family:"微软雅黑";padding:0;margin:0;}
+h1,h2,h3,h4,h5,h6,p,ul,li,img,table,td,tr,button,form,input,a,dl,dt,dd,iframe{margin:0;padding:0}
+iframe{border:none;}
+ul{list-style:none}
+a{text-decoration:none}
+a {outline: none;}
+a:active {star:expression(this.onFocus=this.blur());}
+a:focus {outline:0;}
+img{border:0;margin:0;padding:0}
+.clear{clear:both}
+i,em{font-style:normal}
+.wd1024{min-width:1024px;margin:0 auto;width:100%;}
+input{font-family:"微软雅黑";border:none;background:none}
+input,button,select,textarea{outline:none;font-family:"微软雅黑";vertical-align:middle}
+.content{overflow:hidden;padding-left:1%}
+.wd100{width:100%;}
+.overflow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/*    */

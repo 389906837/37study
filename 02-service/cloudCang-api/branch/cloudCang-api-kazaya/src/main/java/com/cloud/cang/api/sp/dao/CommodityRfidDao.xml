@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.api.sp.dao.CommodityRfidDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sp.CommodityRfid">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="rfid" property="rfid" jdbcType="VARCHAR" />
+		<result column="scommodity_code" property="scommodityCode" jdbcType="VARCHAR" />
+		<result column="scommodity_name" property="scommodityName" jdbcType="VARCHAR" />
+		<result column="smerchant_id" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="soperator_id" property="soperatorId" jdbcType="VARCHAR" />
+		<result column="tadd_time" property="taddTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        id,rfid,scommodity_code,scommodity_name,smerchant_id,soperator_id,tadd_time
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and id=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="rfid != null and  rfid != ''  ">
+               and  rfid=#{rfid,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+               and  scommodity_code=#{scommodityCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+               and  scommodity_name=#{scommodityName,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  smerchant_id=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="soperatorId != null and  soperatorId != ''  ">
+               and  soperator_id=#{soperatorId,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  tadd_time=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SP_COMMODITY_RFID
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sp.CommodityRfid">
+        select
+        <include refid="column_List" />
+        from SP_COMMODITY_RFID
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SP_COMMODITY_RFID
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SP_COMMODITY_RFID
+        where id = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SP_COMMODITY_RFID where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sp.CommodityRfid">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SP_COMMODITY_RFID (id,rfid,scommodity_code,scommodity_name,smerchant_id,soperator_id,tadd_time)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{rfid,jdbcType=VARCHAR},#{scommodityCode,jdbcType=VARCHAR},#{scommodityName,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{soperatorId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sp.CommodityRfid">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SP_COMMODITY_RFID
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                id,
+            </if>
+			<if test="rfid">
+               rfid,
+           	</if>
+			<if test="scommodityCode">
+               scommodity_code,
+           	</if>
+			<if test="scommodityName">
+               scommodity_name,
+           	</if>
+			<if test="smerchantId">
+               smerchant_id,
+           	</if>
+			<if test="soperatorId">
+               soperator_id,
+           	</if>
+			<if test="taddTime">
+               tadd_time,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="rfid != null and  rfid != ''  ">
+                #{rfid,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                #{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+                #{scommodityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperatorId != null and  soperatorId != ''  ">
+                #{soperatorId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sp.CommodityRfid">
+        update SP_COMMODITY_RFID
+        <set>
+			<if test="rfid != null and  rfid != ''  ">
+                rfid=#{rfid,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                scommodity_code=#{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+                scommodity_name=#{scommodityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                smerchant_id=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperatorId != null and  soperatorId != ''  ">
+                soperator_id=#{soperatorId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                tadd_time=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  id= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sp.CommodityRfid">
+        update SP_COMMODITY_RFID
+        set 
+        		rfid=#{rfid,jdbcType=VARCHAR}
+        		,scommodity_code=#{scommodityCode,jdbcType=VARCHAR}
+        		,scommodity_name=#{scommodityName,jdbcType=VARCHAR}
+        		,smerchant_id=#{smerchantId,jdbcType=VARCHAR}
+        		,soperator_id=#{soperatorId,jdbcType=VARCHAR}
+        		,tadd_time=#{taddTime,jdbcType=TIMESTAMP}
+        where  id= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    id= #{id,jdbcType=VARCHAR}
+	rfid=#{rfid,jdbcType=VARCHAR}
+	scommodity_code=#{scommodityCode,jdbcType=VARCHAR}
+	scommodity_name=#{scommodityName,jdbcType=VARCHAR}
+	smerchant_id=#{smerchantId,jdbcType=VARCHAR}
+	soperator_id=#{soperatorId,jdbcType=VARCHAR}
+	tadd_time=#{taddTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="commdityRfidList" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from sp_commodity_rfid
+        where 1=1
+        and smerchant_id = #{smerchantId}
+        and rfid in
+        <foreach collection="rfids" item="rfid" open="(" separator="," close=")">
+            #{rfid}
+        </foreach>
+    </select>
+    <delete id="batchDeleteByRfids" parameterType="java.util.List">
+        delete FROM sp_commodity_rfid where rfid in
+        <foreach item="rfid" collection="rfids" open="(" separator="," close=")">
+            #{rfid}
+        </foreach>
+    </delete>
+</mapper>

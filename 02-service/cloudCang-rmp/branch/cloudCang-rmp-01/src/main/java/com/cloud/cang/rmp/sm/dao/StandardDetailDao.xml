@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rmp.sm.dao.StandardDetailDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sm.StandardDetail">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ILAYER_NUM" property="ilayerNum" jdbcType="NUMERIC" />
+		<result column="IMIN_SILL_VALUE" property="iminSillValue" jdbcType="NUMERIC" />
+		<result column="ISTANDARD_STOCK" property="istandardStock" jdbcType="NUMERIC" />
+		<result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="resultEntityVo" type="com.cloud.cang.rmp.sm.vo.StandardStockVo">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="ILAYER_NUM" property="ilayerNum" jdbcType="NUMERIC" />
+        <result column="IMIN_SILL_VALUE" property="iminSillValue" jdbcType="NUMERIC" />
+        <result column="ISTANDARD_STOCK" property="istandardStock" jdbcType="NUMERIC" />
+        <result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR" />
+        <result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR" />
+        <result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+        <result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+        <result column="ISTOCK" property="istock" jdbcType="NUMERIC" />
+        <result column="FSALE_PRICE" property="fsalePrice" jdbcType="NUMERIC" />
+        <result column="SNAME" property="sname" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ILAYER_NUM,IMIN_SILL_VALUE,ISTANDARD_STOCK,SCOMMODITY_CODE,SCOMMODITY_ID,SDEVICE_CODE,SDEVICE_ID
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="ilayerNum != null  ">
+               and  ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="iminSillValue != null  ">
+               and  IMIN_SILL_VALUE=#{iminSillValue,jdbcType=NUMERIC}
+           	</if>
+			<if test="istandardStock != null  ">
+               and  ISTANDARD_STOCK=#{istandardStock,jdbcType=NUMERIC}
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+               and  SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+               and  SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SM_STANDARD_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sm.StandardDetail">
+        select
+        <include refid="column_List" />
+        from SM_STANDARD_DETAIL
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SM_STANDARD_DETAIL
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SM_STANDARD_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SM_STANDARD_DETAIL where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sm.StandardDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SM_STANDARD_DETAIL (ID,ILAYER_NUM,IMIN_SILL_VALUE,ISTANDARD_STOCK,SCOMMODITY_CODE,SCOMMODITY_ID,SDEVICE_CODE,SDEVICE_ID)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{ilayerNum,jdbcType=NUMERIC},#{iminSillValue,jdbcType=NUMERIC},#{istandardStock,jdbcType=NUMERIC},#{scommodityCode,jdbcType=VARCHAR},#{scommodityId,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sm.StandardDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SM_STANDARD_DETAIL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="ilayerNum">
+               ILAYER_NUM,
+           	</if>
+			<if test="iminSillValue">
+               IMIN_SILL_VALUE,
+           	</if>
+			<if test="istandardStock">
+               ISTANDARD_STOCK,
+           	</if>
+			<if test="scommodityCode">
+               SCOMMODITY_CODE,
+           	</if>
+			<if test="scommodityId">
+               SCOMMODITY_ID,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="ilayerNum != null  ">
+                #{ilayerNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iminSillValue != null  ">
+                #{iminSillValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="istandardStock != null  ">
+                #{istandardStock,jdbcType=NUMERIC},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                #{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                #{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sm.StandardDetail">
+        update SM_STANDARD_DETAIL
+        <set>
+			<if test="ilayerNum != null  ">
+                ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iminSillValue != null  ">
+                IMIN_SILL_VALUE=#{iminSillValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="istandardStock != null  ">
+                ISTANDARD_STOCK=#{istandardStock,jdbcType=NUMERIC},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sm.StandardDetail">
+        update SM_STANDARD_DETAIL
+        set 
+        		ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC}
+        		,IMIN_SILL_VALUE=#{iminSillValue,jdbcType=NUMERIC}
+        		,ISTANDARD_STOCK=#{istandardStock,jdbcType=NUMERIC}
+        		,SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+        		,SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--根据设备ID查询-->
+    <select id="selectByStandardId" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SM_STANDARD_DETAIL
+        where SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR} ORDER BY ILAYER_NUM
+    </select>
+
+
+    <select id="selectStandardStockByDeviceId" resultMap="resultEntityVo" parameterType="java.lang.String">
+        select
+         a.ID,a.ILAYER_NUM,a.IMIN_SILL_VALUE,a.ISTANDARD_STOCK,a.SCOMMODITY_CODE,
+         a.SCOMMODITY_ID,a.SDEVICE_CODE,a.SDEVICE_ID,IFNULL(b.ISTOCK,0) ISTOCK,c.SNAME as SNAME,c.FSALE_PRICE as FSALE_PRICE
+        from SM_STANDARD_DETAIL a INNER JOIN sp_commodity_info c on a.SCOMMODITY_ID = c.ID and c.istatus=10 and c.IDEL_FLAG=0
+        LEFT JOIN sm_device_stock b on a.SDEVICE_ID=b.SDEVICE_ID and a.SCOMMODITY_ID = b.SCOMMODITY_ID
+        where a.SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR} ORDER BY a.ILAYER_NUM
+    </select>
+
+
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC}
+	IMIN_SILL_VALUE=#{iminSillValue,jdbcType=NUMERIC}
+	ISTANDARD_STOCK=#{istandardStock,jdbcType=NUMERIC}
+	SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+	SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

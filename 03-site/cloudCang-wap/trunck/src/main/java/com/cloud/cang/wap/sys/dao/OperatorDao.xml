@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.wap.sys.dao.OperatorDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.Operator">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="BIS_ADMIN" property="bisAdmin" jdbcType="NUMERIC" />
+		<result column="BIS_DELETE" property="bisDelete" jdbcType="NUMERIC" />
+		<result column="BIS_FREEZE" property="bisFreeze" jdbcType="NUMERIC" />
+		<result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP" />
+		<result column="DFIRST_LOGIN_TIME" property="dfirstLoginTime" jdbcType="TIMESTAMP" />
+		<result column="DLAST_LOGIN_TIME" property="dlastLoginTime" jdbcType="TIMESTAMP" />
+		<result column="DMODIFY_DATE" property="dmodifyDate" jdbcType="TIMESTAMP" />
+		<result column="IDEV_TYPE" property="idevType" jdbcType="NUMERIC" />
+		<result column="IIS_BD" property="iisBd" jdbcType="NUMERIC" />
+		<result column="IMER_TYPE" property="imerType" jdbcType="NUMERIC" />
+		<result column="SADD_OPERATOR" property="saddOperator" jdbcType="VARCHAR" />
+		<result column="SDEPARTMENT_CODE" property="sdepartmentCode" jdbcType="VARCHAR" />
+		<result column="SDEPARTMENT_NAME" property="sdepartmentName" jdbcType="VARCHAR" />
+		<result column="SGROUP_DEC_LIST" property="sgroupDecList" jdbcType="VARCHAR" />
+		<result column="SMAIL" property="smail" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SMER_LIST" property="smerList" jdbcType="VARCHAR" />
+		<result column="SMOBILE" property="smobile" jdbcType="VARCHAR" />
+		<result column="SMODIFY_OPERATOR" property="smodifyOperator" jdbcType="VARCHAR" />
+		<result column="SOPERATOR_NO" property="soperatorNo" jdbcType="VARCHAR" />
+		<result column="SPASSWORD" property="spassword" jdbcType="VARCHAR" />
+		<result column="SREAL_NAME" property="srealName" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUSER_NAME" property="suserName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,BIS_ADMIN,BIS_DELETE,BIS_FREEZE,DADD_DATE,DFIRST_LOGIN_TIME,DLAST_LOGIN_TIME,DMODIFY_DATE,IDEV_TYPE,IIS_BD,IMER_TYPE,SADD_OPERATOR,SDEPARTMENT_CODE,SDEPARTMENT_NAME,SGROUP_DEC_LIST,SMAIL,SMERCHANT_CODE,SMERCHANT_ID,SMER_LIST,SMOBILE,SMODIFY_OPERATOR,SOPERATOR_NO,SPASSWORD,SREAL_NAME,SREMARK,SUSER_NAME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="bisAdmin != null  ">
+               and  BIS_ADMIN=#{bisAdmin,jdbcType=NUMERIC}
+           	</if>
+			<if test="bisDelete != null  ">
+               and  BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+           	</if>
+			<if test="bisFreeze != null  ">
+               and  BIS_FREEZE=#{bisFreeze,jdbcType=NUMERIC}
+           	</if>
+			<if test="daddDate != null  ">
+               and  DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="dfirstLoginTime != null  ">
+               and  DFIRST_LOGIN_TIME=#{dfirstLoginTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="dlastLoginTime != null  ">
+               and  DLAST_LOGIN_TIME=#{dlastLoginTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="dmodifyDate != null  ">
+               and  DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="idevType != null  ">
+               and  IDEV_TYPE=#{idevType,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisBd != null  ">
+               and  IIS_BD=#{iisBd,jdbcType=NUMERIC}
+           	</if>
+			<if test="imerType != null  ">
+               and  IMER_TYPE=#{imerType,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+               and  SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdepartmentCode != null and  sdepartmentCode != ''  ">
+               and  SDEPARTMENT_CODE=#{sdepartmentCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdepartmentName != null and  sdepartmentName != ''  ">
+               and  SDEPARTMENT_NAME=#{sdepartmentName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sgroupDecList != null and  sgroupDecList != ''  ">
+               and  SGROUP_DEC_LIST=#{sgroupDecList,jdbcType=VARCHAR}
+           	</if>
+			<if test="smail != null and  smail != ''  ">
+               and  SMAIL=#{smail,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerList != null and  smerList != ''  ">
+               and  SMER_LIST=#{smerList,jdbcType=VARCHAR}
+           	</if>
+			<if test="smobile != null and  smobile != ''  ">
+               and  SMOBILE=#{smobile,jdbcType=VARCHAR}
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+               and  SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+           	</if>
+			<if test="soperatorNo != null and  soperatorNo != ''  ">
+               and  SOPERATOR_NO=#{soperatorNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="spassword != null and  spassword != ''  ">
+               and  SPASSWORD=#{spassword,jdbcType=VARCHAR}
+           	</if>
+			<if test="srealName != null and  srealName != ''  ">
+               and  SREAL_NAME=#{srealName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="suserName != null and  suserName != ''  ">
+               and  SUSER_NAME=#{suserName,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_OPERATOR
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.Operator">
+        select
+        <include refid="column_List" />
+        from SYS_OPERATOR
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_OPERATOR
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_OPERATOR
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_OPERATOR where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.Operator">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SYS_OPERATOR (ID,BIS_ADMIN,BIS_DELETE,BIS_FREEZE,DADD_DATE,DFIRST_LOGIN_TIME,DLAST_LOGIN_TIME,DMODIFY_DATE,IDEV_TYPE,IIS_BD,IMER_TYPE,SADD_OPERATOR,SDEPARTMENT_CODE,SDEPARTMENT_NAME,SGROUP_DEC_LIST,SMAIL,SMERCHANT_CODE,SMERCHANT_ID,SMER_LIST,SMOBILE,SMODIFY_OPERATOR,SOPERATOR_NO,SPASSWORD,SREAL_NAME,SREMARK,SUSER_NAME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{bisAdmin,jdbcType=NUMERIC},#{bisDelete,jdbcType=NUMERIC},#{bisFreeze,jdbcType=NUMERIC},#{daddDate,jdbcType=TIMESTAMP},#{dfirstLoginTime,jdbcType=TIMESTAMP},#{dlastLoginTime,jdbcType=TIMESTAMP},#{dmodifyDate,jdbcType=TIMESTAMP},#{idevType,jdbcType=NUMERIC},#{iisBd,jdbcType=NUMERIC},#{imerType,jdbcType=NUMERIC},#{saddOperator,jdbcType=VARCHAR},#{sdepartmentCode,jdbcType=VARCHAR},#{sdepartmentName,jdbcType=VARCHAR},#{sgroupDecList,jdbcType=VARCHAR},#{smail,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{smerList,jdbcType=VARCHAR},#{smobile,jdbcType=VARCHAR},#{smodifyOperator,jdbcType=VARCHAR},#{soperatorNo,jdbcType=VARCHAR},#{spassword,jdbcType=VARCHAR},#{srealName,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{suserName,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.Operator">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_OPERATOR
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="bisAdmin">
+               BIS_ADMIN,
+           	</if>
+			<if test="bisDelete">
+               BIS_DELETE,
+           	</if>
+			<if test="bisFreeze">
+               BIS_FREEZE,
+           	</if>
+			<if test="daddDate">
+               DADD_DATE,
+           	</if>
+			<if test="dfirstLoginTime">
+               DFIRST_LOGIN_TIME,
+           	</if>
+			<if test="dlastLoginTime">
+               DLAST_LOGIN_TIME,
+           	</if>
+			<if test="dmodifyDate">
+               DMODIFY_DATE,
+           	</if>
+			<if test="idevType">
+               IDEV_TYPE,
+           	</if>
+			<if test="iisBd">
+               IIS_BD,
+           	</if>
+			<if test="imerType">
+               IMER_TYPE,
+           	</if>
+			<if test="saddOperator">
+               SADD_OPERATOR,
+           	</if>
+			<if test="sdepartmentCode">
+               SDEPARTMENT_CODE,
+           	</if>
+			<if test="sdepartmentName">
+               SDEPARTMENT_NAME,
+           	</if>
+			<if test="sgroupDecList">
+               SGROUP_DEC_LIST,
+           	</if>
+			<if test="smail">
+               SMAIL,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="smerList">
+               SMER_LIST,
+           	</if>
+			<if test="smobile">
+               SMOBILE,
+           	</if>
+			<if test="smodifyOperator">
+               SMODIFY_OPERATOR,
+           	</if>
+			<if test="soperatorNo">
+               SOPERATOR_NO,
+           	</if>
+			<if test="spassword">
+               SPASSWORD,
+           	</if>
+			<if test="srealName">
+               SREAL_NAME,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="suserName">
+               SUSER_NAME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="bisAdmin != null  ">
+                #{bisAdmin,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisDelete != null  ">
+                #{bisDelete,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisFreeze != null  ">
+                #{bisFreeze,jdbcType=NUMERIC},
+           	</if>
+			<if test="daddDate != null  ">
+                #{daddDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dfirstLoginTime != null  ">
+                #{dfirstLoginTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dlastLoginTime != null  ">
+                #{dlastLoginTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dmodifyDate != null  ">
+                #{dmodifyDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="idevType != null  ">
+                #{idevType,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisBd != null  ">
+                #{iisBd,jdbcType=NUMERIC},
+           	</if>
+			<if test="imerType != null  ">
+                #{imerType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+                #{saddOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdepartmentCode != null and  sdepartmentCode != ''  ">
+                #{sdepartmentCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdepartmentName != null and  sdepartmentName != ''  ">
+                #{sdepartmentName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sgroupDecList != null and  sgroupDecList != ''  ">
+                #{sgroupDecList,jdbcType=VARCHAR},
+           	</if>
+			<if test="smail != null and  smail != ''  ">
+                #{smail,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerList != null and  smerList != ''  ">
+                #{smerList,jdbcType=VARCHAR},
+           	</if>
+			<if test="smobile != null and  smobile != ''  ">
+                #{smobile,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                #{smodifyOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperatorNo != null and  soperatorNo != ''  ">
+                #{soperatorNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="spassword != null and  spassword != ''  ">
+                #{spassword,jdbcType=VARCHAR},
+           	</if>
+			<if test="srealName != null and  srealName != ''  ">
+                #{srealName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserName != null and  suserName != ''  ">
+                #{suserName,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.Operator">
+        update SYS_OPERATOR
+        <set>
+			<if test="bisAdmin != null  ">
+                BIS_ADMIN=#{bisAdmin,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisDelete != null  ">
+                BIS_DELETE=#{bisDelete,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisFreeze != null  ">
+                BIS_FREEZE=#{bisFreeze,jdbcType=NUMERIC},
+           	</if>
+			<if test="daddDate != null  ">
+                DADD_DATE=#{daddDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dfirstLoginTime != null  ">
+                DFIRST_LOGIN_TIME=#{dfirstLoginTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dlastLoginTime != null  ">
+                DLAST_LOGIN_TIME=#{dlastLoginTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dmodifyDate != null  ">
+                DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="idevType != null  ">
+                IDEV_TYPE=#{idevType,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisBd != null  ">
+                IIS_BD=#{iisBd,jdbcType=NUMERIC},
+           	</if>
+			<if test="imerType != null  ">
+                IMER_TYPE=#{imerType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+                SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdepartmentCode != null and  sdepartmentCode != ''  ">
+                SDEPARTMENT_CODE=#{sdepartmentCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdepartmentName != null and  sdepartmentName != ''  ">
+                SDEPARTMENT_NAME=#{sdepartmentName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sgroupDecList != null and  sgroupDecList != ''  ">
+                SGROUP_DEC_LIST=#{sgroupDecList,jdbcType=VARCHAR},
+           	</if>
+			<if test="smail != null and  smail != ''  ">
+                SMAIL=#{smail,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerList != null and  smerList != ''  ">
+                SMER_LIST=#{smerList,jdbcType=VARCHAR},
+           	</if>
+			<if test="smobile != null and  smobile != ''  ">
+                SMOBILE=#{smobile,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperatorNo != null and  soperatorNo != ''  ">
+                SOPERATOR_NO=#{soperatorNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="spassword != null and  spassword != ''  ">
+                SPASSWORD=#{spassword,jdbcType=VARCHAR},
+           	</if>
+			<if test="srealName != null and  srealName != ''  ">
+                SREAL_NAME=#{srealName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserName != null and  suserName != ''  ">
+                SUSER_NAME=#{suserName,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.Operator">
+        update SYS_OPERATOR
+        set 
+        		BIS_ADMIN=#{bisAdmin,jdbcType=NUMERIC}
+        		,BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+        		,BIS_FREEZE=#{bisFreeze,jdbcType=NUMERIC}
+        		,DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+        		,DFIRST_LOGIN_TIME=#{dfirstLoginTime,jdbcType=TIMESTAMP}
+        		,DLAST_LOGIN_TIME=#{dlastLoginTime,jdbcType=TIMESTAMP}
+        		,DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+        		,IDEV_TYPE=#{idevType,jdbcType=NUMERIC}
+        		,IIS_BD=#{iisBd,jdbcType=NUMERIC}
+        		,IMER_TYPE=#{imerType,jdbcType=NUMERIC}
+        		,SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+        		,SDEPARTMENT_CODE=#{sdepartmentCode,jdbcType=VARCHAR}
+        		,SDEPARTMENT_NAME=#{sdepartmentName,jdbcType=VARCHAR}
+        		,SGROUP_DEC_LIST=#{sgroupDecList,jdbcType=VARCHAR}
+        		,SMAIL=#{smail,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SMER_LIST=#{smerList,jdbcType=VARCHAR}
+        		,SMOBILE=#{smobile,jdbcType=VARCHAR}
+        		,SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+        		,SOPERATOR_NO=#{soperatorNo,jdbcType=VARCHAR}
+        		,SPASSWORD=#{spassword,jdbcType=VARCHAR}
+        		,SREAL_NAME=#{srealName,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUSER_NAME=#{suserName,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+	<select id="selectByMemberName" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from sys_operator
+		where smobile = #{userName,jdbcType=VARCHAR} and bis_freeze=1
+		and bis_delete=0 and smerchant_code=#{merchantCode,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByMap" resultMap="resultEntity" parameterType="java.util.Map">
+		select A.* from sys_operator A INNER JOIN  HY_MEMBER_INFO B ON A.smobile = B.SMEMBER_NAME and A.smerchant_code=B.smerchant_code
+		where A.smobile = #{userName,jdbcType=VARCHAR} and A.bis_freeze=1
+		and A.bis_delete=0 and A.smerchant_code=#{merchantCode,jdbcType=VARCHAR} and B.IIS_REPLENISHMENT=1
+		and ((A.IDEV_TYPE = 0) or (A.IDEV_TYPE != 0 and A.SGROUP_DEC_LIST like CONCAT('%',#{deviceCode},'%')))
+	</select>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	BIS_ADMIN=#{bisAdmin,jdbcType=NUMERIC}
+	BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+	BIS_FREEZE=#{bisFreeze,jdbcType=NUMERIC}
+	DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+	DFIRST_LOGIN_TIME=#{dfirstLoginTime,jdbcType=TIMESTAMP}
+	DLAST_LOGIN_TIME=#{dlastLoginTime,jdbcType=TIMESTAMP}
+	DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+	IDEV_TYPE=#{idevType,jdbcType=NUMERIC}
+	IIS_BD=#{iisBd,jdbcType=NUMERIC}
+	IMER_TYPE=#{imerType,jdbcType=NUMERIC}
+	SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+	SDEPARTMENT_CODE=#{sdepartmentCode,jdbcType=VARCHAR}
+	SDEPARTMENT_NAME=#{sdepartmentName,jdbcType=VARCHAR}
+	SGROUP_DEC_LIST=#{sgroupDecList,jdbcType=VARCHAR}
+	SMAIL=#{smail,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SMER_LIST=#{smerList,jdbcType=VARCHAR}
+	SMOBILE=#{smobile,jdbcType=VARCHAR}
+	SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+	SOPERATOR_NO=#{soperatorNo,jdbcType=VARCHAR}
+	SPASSWORD=#{spassword,jdbcType=VARCHAR}
+	SREAL_NAME=#{srealName,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUSER_NAME=#{suserName,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

@@ -1,0 +1,20 @@
+.pagination {font-size:16px;color:#454545;width:100%;margin-top:0px;text-align:right;padding-bottom:25px;text-align: center;}     
+.pagination a {text-decoration:none;border:solid 1px #dedcdd;color:#454545;}
+.pagination a, .pagination span {border-radius:4px;padding:0px 15px;height:33px;line-height:33px;display:inline-block;margin-right:7px;margin-bottom: 5px;}
+.pagination a{padding:0px 15px;}
+.pagination .current {padding:0px 15px;background:#2dadf4;color:#fff;border:solid 1px #2dadf4;}
+.pagination .current.prev, .pagination .current.next{font-weight:normal;color:#454545;border-color:#999;background:#fff;*padding-bottom:1px;}
+.pagination .current.prev{background:#e4e4e4;border:1px solid #dedcdd;color:#454545;font-weight:normal;}
+input.current{height:22px !important;;line-height:19px !important;padding:0 !important;}
+#tiaozhuan{border:1px solid #dddbdc;text-align:center;height:20px !important;;line-height:20px !important;padding:0;}
+.supermarket-more{position:relative;margin-top:10px;}
+.supermarket-content{width:550px;}
+.supermarket_right{ width:359px; height:auto; position:absolute; right:0; top:10px;}
+.supermarket_sea{width:357px; height:124px; border:1px solid #d16010;background:#ff863d;margin-bottom:10px;}
+.supermarket_sea textarea {padding:10px;background:#fff;color: #000;font-size: 12px;position: absolute;left:7px;top:7px;border:1px solid #d16010;resize: none;width: 154px;height: 91px;border: none;}
+.supermarket-help {position:absolute;top:7px;left:190px;}
+.supermarket_sea .supermarket-help li{width:154px;height: 30px;border:1px solid #d16010;margin-bottom:8px;overflow:hidden;}
+.supermarket-help li input {padding:0;height:30px;line-height:30px;width:154px;padding-left:5px;position:absolute;}
+.supermarket-help li label {position:absolute;height:30px;line-height:30px;left: 5px;top: 0px;color: #999999;cursor: text;z-index:100;}
+.supermarket_sea .supermarket-help .help_sea{background:#e81e1c;border:1px solid #c00018;margin-bottom:0px;}
+.supermarket_sea .supermarket-help .help_sea input{padding-left:5px;width:167px;height:34px;background:#e81e1c;color:#fff;text-align:center;position:absolute;top:-2px;left:-4px;}

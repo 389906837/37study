@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rec.cr.dao.OpenGpuServerDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.cr.OpenGpuServer">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="SGPU_ID" property="sgpuId" jdbcType="VARCHAR" />
+		<result column="SOPEN_SERVER_ID" property="sopenServerId" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,SGPU_ID,SOPEN_SERVER_ID
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="sgpuId != null and  sgpuId != ''  ">
+               and  SGPU_ID=#{sgpuId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sopenServerId != null and  sopenServerId != ''  ">
+               and  SOPEN_SERVER_ID=#{sopenServerId,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from CR_OPEN_GPU_SERVER
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.cr.OpenGpuServer">
+        select
+        <include refid="column_List" />
+        from CR_OPEN_GPU_SERVER
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from CR_OPEN_GPU_SERVER
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from CR_OPEN_GPU_SERVER
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM CR_OPEN_GPU_SERVER where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.cr.OpenGpuServer">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into CR_OPEN_GPU_SERVER (ID,SGPU_ID,SOPEN_SERVER_ID)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{sgpuId,jdbcType=VARCHAR},#{sopenServerId,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.cr.OpenGpuServer">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into CR_OPEN_GPU_SERVER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="sgpuId">
+               SGPU_ID,
+           	</if>
+			<if test="sopenServerId">
+               SOPEN_SERVER_ID,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="sgpuId != null and  sgpuId != ''  ">
+                #{sgpuId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenServerId != null and  sopenServerId != ''  ">
+                #{sopenServerId,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.cr.OpenGpuServer">
+        update CR_OPEN_GPU_SERVER
+        <set>
+			<if test="sgpuId != null and  sgpuId != ''  ">
+                SGPU_ID=#{sgpuId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenServerId != null and  sopenServerId != ''  ">
+                SOPEN_SERVER_ID=#{sopenServerId,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.cr.OpenGpuServer">
+        update CR_OPEN_GPU_SERVER
+        set 
+        		SGPU_ID=#{sgpuId,jdbcType=VARCHAR}
+        		,SOPEN_SERVER_ID=#{sopenServerId,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SGPU_ID=#{sgpuId,jdbcType=VARCHAR}
+	SOPEN_SERVER_ID=#{sopenServerId,jdbcType=VARCHAR}
+     -->
+
+    <delete id="deleteByOpenServerId" parameterType="java.lang.String">
+        <![CDATA[
+        delete from CR_OPEN_GPU_SERVER
+        where SOPEN_SERVER_ID = #{openServerId,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+     
+</mapper>

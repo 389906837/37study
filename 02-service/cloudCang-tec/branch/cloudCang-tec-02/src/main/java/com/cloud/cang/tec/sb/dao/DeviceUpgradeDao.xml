@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.tec.sb.dao.DeviceUpgradeDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sb.DeviceUpgrade">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IACTION_TYPE" property="iactionType" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IDEVICE_NUM" property="ideviceNum" jdbcType="NUMERIC" />
+		<result column="IDEVICE_TYPE" property="ideviceType" jdbcType="NUMERIC" />
+		<result column="INOTICE_NUM" property="inoticeNum" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="IUPGRADE_FAIL_NUM" property="iupgradeFailNum" jdbcType="NUMERIC" />
+		<result column="IUPGRADE_SUCCESS_NUM" property="iupgradeSuccessNum" jdbcType="NUMERIC" />
+		<result column="IVERSION" property="iversion" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SDEALWITH_MAN" property="sdealwithMan" jdbcType="VARCHAR" />
+		<result column="SDEALWITH_TIME" property="sdealwithTime" jdbcType="TIMESTAMP" />
+		<result column="SEXECUTION_TIME" property="sexecutionTime" jdbcType="TIMESTAMP" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SRESOURCES_URL" property="sresourcesUrl" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IACTION_TYPE,IDEL_FLAG,IDEVICE_NUM,IDEVICE_TYPE,INOTICE_NUM,ISTATUS,ITYPE,IUPGRADE_FAIL_NUM,IUPGRADE_SUCCESS_NUM,IVERSION,SADD_USER,SDEALWITH_MAN,SDEALWITH_TIME,SEXECUTION_TIME,SREMARK,SRESOURCES_URL,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="iactionType != null  ">
+               and  IACTION_TYPE=#{iactionType,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="ideviceNum != null  ">
+               and  IDEVICE_NUM=#{ideviceNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="ideviceType != null  ">
+               and  IDEVICE_TYPE=#{ideviceType,jdbcType=NUMERIC}
+           	</if>
+			<if test="inoticeNum != null  ">
+               and  INOTICE_NUM=#{inoticeNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="iupgradeFailNum != null  ">
+               and  IUPGRADE_FAIL_NUM=#{iupgradeFailNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="iupgradeSuccessNum != null  ">
+               and  IUPGRADE_SUCCESS_NUM=#{iupgradeSuccessNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="iversion != null  ">
+               and  IVERSION=#{iversion,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+               and  SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdealwithTime != null  ">
+               and  SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="sexecutionTime != null  ">
+               and  SEXECUTION_TIME=#{sexecutionTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="sresourcesUrl != null and  sresourcesUrl != ''  ">
+               and  SRESOURCES_URL=#{sresourcesUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_UPGRADE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sb.DeviceUpgrade">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_UPGRADE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_UPGRADE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SB_DEVICE_UPGRADE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SB_DEVICE_UPGRADE where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sb.DeviceUpgrade">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SB_DEVICE_UPGRADE (ID,IACTION_TYPE,IDEL_FLAG,IDEVICE_NUM,IDEVICE_TYPE,INOTICE_NUM,ISTATUS,ITYPE,IUPGRADE_FAIL_NUM,IUPGRADE_SUCCESS_NUM,IVERSION,SADD_USER,SDEALWITH_MAN,SDEALWITH_TIME,SEXECUTION_TIME,SREMARK,SRESOURCES_URL,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iactionType,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{ideviceNum,jdbcType=NUMERIC},#{ideviceType,jdbcType=NUMERIC},#{inoticeNum,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{iupgradeFailNum,jdbcType=NUMERIC},#{iupgradeSuccessNum,jdbcType=NUMERIC},#{iversion,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sdealwithMan,jdbcType=VARCHAR},#{sdealwithTime,jdbcType=TIMESTAMP},#{sexecutionTime,jdbcType=TIMESTAMP},#{sremark,jdbcType=VARCHAR},#{sresourcesUrl,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sb.DeviceUpgrade">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SB_DEVICE_UPGRADE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="iactionType">
+               IACTION_TYPE,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="ideviceNum">
+               IDEVICE_NUM,
+           	</if>
+			<if test="ideviceType">
+               IDEVICE_TYPE,
+           	</if>
+			<if test="inoticeNum">
+               INOTICE_NUM,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="iupgradeFailNum">
+               IUPGRADE_FAIL_NUM,
+           	</if>
+			<if test="iupgradeSuccessNum">
+               IUPGRADE_SUCCESS_NUM,
+           	</if>
+			<if test="iversion">
+               IVERSION,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="sdealwithMan">
+               SDEALWITH_MAN,
+           	</if>
+			<if test="sdealwithTime">
+               SDEALWITH_TIME,
+           	</if>
+			<if test="sexecutionTime">
+               SEXECUTION_TIME,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="sresourcesUrl">
+               SRESOURCES_URL,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="iactionType != null  ">
+                #{iactionType,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="ideviceNum != null  ">
+                #{ideviceNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ideviceType != null  ">
+                #{ideviceType,jdbcType=NUMERIC},
+           	</if>
+			<if test="inoticeNum != null  ">
+                #{inoticeNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="iupgradeFailNum != null  ">
+                #{iupgradeFailNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iupgradeSuccessNum != null  ">
+                #{iupgradeSuccessNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                #{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+                #{sdealwithMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithTime != null  ">
+                #{sdealwithTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sexecutionTime != null  ">
+                #{sexecutionTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresourcesUrl != null and  sresourcesUrl != ''  ">
+                #{sresourcesUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sb.DeviceUpgrade">
+        update SB_DEVICE_UPGRADE
+        <set>
+			<if test="iactionType != null  ">
+                IACTION_TYPE=#{iactionType,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="ideviceNum != null  ">
+                IDEVICE_NUM=#{ideviceNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ideviceType != null  ">
+                IDEVICE_TYPE=#{ideviceType,jdbcType=NUMERIC},
+           	</if>
+			<if test="inoticeNum != null  ">
+                INOTICE_NUM=#{inoticeNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="iupgradeFailNum != null  ">
+                IUPGRADE_FAIL_NUM=#{iupgradeFailNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iupgradeSuccessNum != null  ">
+                IUPGRADE_SUCCESS_NUM=#{iupgradeSuccessNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                IVERSION=#{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+                SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithTime != null  ">
+                SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sexecutionTime != null  ">
+                SEXECUTION_TIME=#{sexecutionTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresourcesUrl != null and  sresourcesUrl != ''  ">
+                SRESOURCES_URL=#{sresourcesUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sb.DeviceUpgrade">
+        update SB_DEVICE_UPGRADE
+        set 
+        		IACTION_TYPE=#{iactionType,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IDEVICE_NUM=#{ideviceNum,jdbcType=NUMERIC}
+        		,IDEVICE_TYPE=#{ideviceType,jdbcType=NUMERIC}
+        		,INOTICE_NUM=#{inoticeNum,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,IUPGRADE_FAIL_NUM=#{iupgradeFailNum,jdbcType=NUMERIC}
+        		,IUPGRADE_SUCCESS_NUM=#{iupgradeSuccessNum,jdbcType=NUMERIC}
+        		,IVERSION=#{iversion,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+        		,SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP}
+        		,SEXECUTION_TIME=#{sexecutionTime,jdbcType=TIMESTAMP}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SRESOURCES_URL=#{sresourcesUrl,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IACTION_TYPE=#{iactionType,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IDEVICE_NUM=#{ideviceNum,jdbcType=NUMERIC}
+	IDEVICE_TYPE=#{ideviceType,jdbcType=NUMERIC}
+	INOTICE_NUM=#{inoticeNum,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	IUPGRADE_FAIL_NUM=#{iupgradeFailNum,jdbcType=NUMERIC}
+	IUPGRADE_SUCCESS_NUM=#{iupgradeSuccessNum,jdbcType=NUMERIC}
+	IVERSION=#{iversion,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+	SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP}
+	SEXECUTION_TIME=#{sexecutionTime,jdbcType=TIMESTAMP}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SRESOURCES_URL=#{sresourcesUrl,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

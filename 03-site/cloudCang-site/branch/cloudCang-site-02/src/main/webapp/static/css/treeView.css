@@ -1,0 +1,31 @@
+.node {
+	FONT-SIZE: 12px; WIDTH: 1px; COLOR: #000000; FONT-FAMILY: Verdana
+}
+.node A {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.node A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+SPAN {
+	CURSOR: hand; HEIGHT: 15px
+}
+.highlight {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; COLOR: #ffffff; BORDER-BOTTOM: #000000 1px solid; BACKGROUND-COLOR: activecaption
+}
+.highlight A {
+	COLOR: #ffffff
+}
+IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+BODY{	
+   scrollbar-face-color:#b7b7b7;
+   scrollbar-highlight-color:#c9c9c9;
+   scrollbar-shadow-color:#c9c9c9;
+   scrollbar-arrow-color:#383838;
+   scrollbar-base-color:#c9c9c9; 
+   scrollbar-darkshadow-color:#c9c9c9; 
+   scrollbar-track-color:#dbdbdb;
+   scrollbar-3dlight-color:#c9c9c9;
+}

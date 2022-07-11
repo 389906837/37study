@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/data/mongo   
+    http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd   
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+    
+   <bean id="context" class="com.cang.os.common.utils.SpringContext" lazy-init="false" />
+	<!-- 注解支持 -->
+	<context:annotation-config />
+	<!-- 自动扫描包 ,将带有注解的类 纳入spring容器管理 -->
+	<context:component-scan base-package="com.cang">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+	<bean  id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+	        <property name="locations">  
+	           <list>  
+	             <value>classpath:properties/application.properties</value>  
+	             <value>classpath:properties/mongodb.properties</value>  
+	            </list>  
+	        </property>  
+	        <property name="nullValue" value="@null"></property>
+	</bean>
+		<!-- 实体映射 -->
+	<bean id="packagesToScan" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<value>com.cang.os.bean</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="userCredentials" class="org.springframework.data.authentication.UserCredentials">
+		  <constructor-arg   name="username" value="${mongo.username}" /> 
+		  <constructor-arg   name="password" value="${mongo.password}" /> 
+   </bean>
+
+	<!-- 注解式事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+	</bean>
+	
+	<mongo:mongo id="mongo" replica-set="${mongo.hostport}">
+		<!-- 一些连接属性的设置 -->
+		<mongo:options 
+		 connections-per-host="${mongo.connectionsPerHost}" 
+		 threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
+		 connect-timeout="${mongo.connectTimeout}" 
+		 max-wait-time="${mongo.maxWaitTime}" 
+		 auto-connect-retry="${mongo.autoConnectRetry}" 
+		 socket-keep-alive="${mongo.socketKeepAlive}" 
+		 socket-timeout="${mongo.socketTimeout}" 
+		 slave-ok="${mongo.slaveOk}" 
+		 write-number="1" 
+		 write-timeout="0" 
+		 write-fsync="true" />
+	</mongo:mongo>
+	<mongo:db-factory dbname="database" mongo-ref="mongo" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="${mongo.databaseName}" />
+		<constructor-arg ref="userCredentials"/> <!--身份认证-->
+	</bean>
+	
+</beans>

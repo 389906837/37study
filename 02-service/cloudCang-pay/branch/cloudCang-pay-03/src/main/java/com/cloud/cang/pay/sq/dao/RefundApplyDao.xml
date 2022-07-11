@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.pay.sq.dao.RefundApplyDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sq.RefundApply">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FACTUAL_REFUND_AMOUT" property="factualRefundAmout" jdbcType="NUMERIC" />
+		<result column="FREFUND_AMOUNT" property="frefundAmount" jdbcType="NUMERIC" />
+		<result column="FTOTAL_AMOUNT" property="ftotalAmount" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="IVERSION" property="iversion" jdbcType="NUMERIC" />
+		<result column="SADDUSER_ID" property="sadduserId" jdbcType="VARCHAR" />
+		<result column="SAUDIT_ORDER_CODE" property="sauditOrderCode" jdbcType="VARCHAR" />
+		<result column="SAUDIT_ORDER_ID" property="sauditOrderId" jdbcType="VARCHAR" />
+		<result column="SCURRENCY" property="scurrency" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NO" property="smemberNo" jdbcType="VARCHAR" />
+		<result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR" />
+		<result column="SORDER_ID" property="sorderId" jdbcType="VARCHAR" />
+		<result column="SPAY_SERIAL_NUMBER" property="spaySerialNumber" jdbcType="VARCHAR" />
+		<result column="SREFUND_NO" property="srefundNo" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="STRANSACTION_ID" property="stransactionId" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TFINISH_DATETIME" property="tfinishDatetime" jdbcType="TIMESTAMP" />
+		<result column="TORDERTIME" property="tordertime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,FACTUAL_REFUND_AMOUT,FREFUND_AMOUNT,FTOTAL_AMOUNT,ISTATUS,IVERSION,SADDUSER_ID,SAUDIT_ORDER_CODE,SAUDIT_ORDER_ID,SCURRENCY,SMEMBER_ID,SMEMBER_NAME,SMEMBER_NO,SORDER_CODE,SORDER_ID,SPAY_SERIAL_NUMBER,SREFUND_NO,SREMARK,STRANSACTION_ID,TADD_TIME,TFINISH_DATETIME,TORDERTIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="factualRefundAmout != null  ">
+               and  FACTUAL_REFUND_AMOUT=#{factualRefundAmout,jdbcType=NUMERIC}
+           	</if>
+			<if test="frefundAmount != null  ">
+               and  FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="ftotalAmount != null  ">
+               and  FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="iversion != null  ">
+               and  IVERSION=#{iversion,jdbcType=NUMERIC}
+           	</if>
+			<if test="sadduserId != null and  sadduserId != ''  ">
+               and  SADDUSER_ID=#{sadduserId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sauditOrderCode != null and  sauditOrderCode != ''  ">
+               and  SAUDIT_ORDER_CODE=#{sauditOrderCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sauditOrderId != null and  sauditOrderId != ''  ">
+               and  SAUDIT_ORDER_ID=#{sauditOrderId,jdbcType=VARCHAR}
+           	</if>
+			<if test="scurrency != null and  scurrency != ''  ">
+               and  SCURRENCY=#{scurrency,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+               and  SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+               and  SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+               and  SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+           	</if>
+			<if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+               and  SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+           	</if>
+			<if test="srefundNo != null and  srefundNo != ''  ">
+               and  SREFUND_NO=#{srefundNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="stransactionId != null and  stransactionId != ''  ">
+               and  STRANSACTION_ID=#{stransactionId,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tfinishDatetime != null  ">
+               and  TFINISH_DATETIME=#{tfinishDatetime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tordertime != null  ">
+               and  TORDERTIME=#{tordertime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SQ_REFUND_APPLY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sq.RefundApply">
+        select
+        <include refid="column_List" />
+        from SQ_REFUND_APPLY
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SQ_REFUND_APPLY
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SQ_REFUND_APPLY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SQ_REFUND_APPLY where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sq.RefundApply">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SQ_REFUND_APPLY (ID,FACTUAL_REFUND_AMOUT,FREFUND_AMOUNT,FTOTAL_AMOUNT,ISTATUS,IVERSION,SADDUSER_ID,SAUDIT_ORDER_CODE,SAUDIT_ORDER_ID,SCURRENCY,SMEMBER_ID,SMEMBER_NAME,SMEMBER_NO,SORDER_CODE,SORDER_ID,SPAY_SERIAL_NUMBER,SREFUND_NO,SREMARK,STRANSACTION_ID,TADD_TIME,TFINISH_DATETIME,TORDERTIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{factualRefundAmout,jdbcType=NUMERIC},#{frefundAmount,jdbcType=NUMERIC},#{ftotalAmount,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{iversion,jdbcType=NUMERIC},#{sadduserId,jdbcType=VARCHAR},#{sauditOrderCode,jdbcType=VARCHAR},#{sauditOrderId,jdbcType=VARCHAR},#{scurrency,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{smemberNo,jdbcType=VARCHAR},#{sorderCode,jdbcType=VARCHAR},#{sorderId,jdbcType=VARCHAR},#{spaySerialNumber,jdbcType=VARCHAR},#{srefundNo,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{stransactionId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tfinishDatetime,jdbcType=TIMESTAMP},#{tordertime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sq.RefundApply">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SQ_REFUND_APPLY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="factualRefundAmout">
+               FACTUAL_REFUND_AMOUT,
+           	</if>
+			<if test="frefundAmount">
+               FREFUND_AMOUNT,
+           	</if>
+			<if test="ftotalAmount">
+               FTOTAL_AMOUNT,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="iversion">
+               IVERSION,
+           	</if>
+			<if test="sadduserId">
+               SADDUSER_ID,
+           	</if>
+			<if test="sauditOrderCode">
+               SAUDIT_ORDER_CODE,
+           	</if>
+			<if test="sauditOrderId">
+               SAUDIT_ORDER_ID,
+           	</if>
+			<if test="scurrency">
+               SCURRENCY,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="smemberNo">
+               SMEMBER_NO,
+           	</if>
+			<if test="sorderCode">
+               SORDER_CODE,
+           	</if>
+			<if test="sorderId">
+               SORDER_ID,
+           	</if>
+			<if test="spaySerialNumber">
+               SPAY_SERIAL_NUMBER,
+           	</if>
+			<if test="srefundNo">
+               SREFUND_NO,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="stransactionId">
+               STRANSACTION_ID,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tfinishDatetime">
+               TFINISH_DATETIME,
+           	</if>
+			<if test="tordertime">
+               TORDERTIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="factualRefundAmout != null  ">
+                #{factualRefundAmout,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundAmount != null  ">
+                #{frefundAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="ftotalAmount != null  ">
+                #{ftotalAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                #{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="sadduserId != null and  sadduserId != ''  ">
+                #{sadduserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOrderCode != null and  sauditOrderCode != ''  ">
+                #{sauditOrderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOrderId != null and  sauditOrderId != ''  ">
+                #{sauditOrderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scurrency != null and  scurrency != ''  ">
+                #{scurrency,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+                #{smemberNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+                #{sorderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+                #{sorderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                #{spaySerialNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="srefundNo != null and  srefundNo != ''  ">
+                #{srefundNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="stransactionId != null and  stransactionId != ''  ">
+                #{stransactionId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tfinishDatetime != null  ">
+                #{tfinishDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tordertime != null  ">
+                #{tordertime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sq.RefundApply">
+        update SQ_REFUND_APPLY
+        <set>
+			<if test="factualRefundAmout != null  ">
+                FACTUAL_REFUND_AMOUT=#{factualRefundAmout,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundAmount != null  ">
+                FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="ftotalAmount != null  ">
+                FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                IVERSION=#{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="sadduserId != null and  sadduserId != ''  ">
+                SADDUSER_ID=#{sadduserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOrderCode != null and  sauditOrderCode != ''  ">
+                SAUDIT_ORDER_CODE=#{sauditOrderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOrderId != null and  sauditOrderId != ''  ">
+                SAUDIT_ORDER_ID=#{sauditOrderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scurrency != null and  scurrency != ''  ">
+                SCURRENCY=#{scurrency,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+                SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+                SORDER_CODE=#{sorderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+                SORDER_ID=#{sorderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="srefundNo != null and  srefundNo != ''  ">
+                SREFUND_NO=#{srefundNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="stransactionId != null and  stransactionId != ''  ">
+                STRANSACTION_ID=#{stransactionId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tfinishDatetime != null  ">
+                TFINISH_DATETIME=#{tfinishDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tordertime != null  ">
+                TORDERTIME=#{tordertime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sq.RefundApply">
+        update SQ_REFUND_APPLY
+        set 
+        		FACTUAL_REFUND_AMOUT=#{factualRefundAmout,jdbcType=NUMERIC}
+        		,FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC}
+        		,FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,IVERSION=#{iversion,jdbcType=NUMERIC}
+        		,SADDUSER_ID=#{sadduserId,jdbcType=VARCHAR}
+        		,SAUDIT_ORDER_CODE=#{sauditOrderCode,jdbcType=VARCHAR}
+        		,SAUDIT_ORDER_ID=#{sauditOrderId,jdbcType=VARCHAR}
+        		,SCURRENCY=#{scurrency,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+        		,SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+        		,SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+        		,SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+        		,SREFUND_NO=#{srefundNo,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,STRANSACTION_ID=#{stransactionId,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TFINISH_DATETIME=#{tfinishDatetime,jdbcType=TIMESTAMP}
+        		,TORDERTIME=#{tordertime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FACTUAL_REFUND_AMOUT=#{factualRefundAmout,jdbcType=NUMERIC}
+	FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC}
+	FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	IVERSION=#{iversion,jdbcType=NUMERIC}
+	SADDUSER_ID=#{sadduserId,jdbcType=VARCHAR}
+	SAUDIT_ORDER_CODE=#{sauditOrderCode,jdbcType=VARCHAR}
+	SAUDIT_ORDER_ID=#{sauditOrderId,jdbcType=VARCHAR}
+	SCURRENCY=#{scurrency,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+	SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+	SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+	SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+	SREFUND_NO=#{srefundNo,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	STRANSACTION_ID=#{stransactionId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TFINISH_DATETIME=#{tfinishDatetime,jdbcType=TIMESTAMP}
+	TORDERTIME=#{tordertime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

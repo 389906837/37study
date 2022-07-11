@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.open.api.op.dao.InterfaceInfoDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.op.InterfaceInfo">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ADD_TIME" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="ADD_USER" property="addUser" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IMAX_CALLBACK_NUM" property="imaxCallbackNum" jdbcType="NUMERIC" />
+		<result column="IPAY_TYPE" property="ipayType" jdbcType="NUMERIC" />
+		<result column="IPAY_WAY" property="ipayWay" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SACTION" property="saction" jdbcType="VARCHAR" />
+		<result column="SADDRESS" property="saddress" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SDESC" property="sdesc" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SNOTICE_PARAM" property="snoticeParam" jdbcType="VARCHAR" />
+		<result column="SPAY_DESC" property="spayDesc" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SREQUEST_EXAMPLE" property="srequestExample" jdbcType="VARCHAR" />
+		<result column="SREQUEST_FORMAT" property="srequestFormat" jdbcType="VARCHAR" />
+		<result column="SREQUEST_LIMIT" property="srequestLimit" jdbcType="VARCHAR" />
+		<result column="SREQUEST_PARAM" property="srequestParam" jdbcType="VARCHAR" />
+		<result column="SRESPONSE_DESC" property="sresponseDesc" jdbcType="VARCHAR" />
+		<result column="SRESPONSE_EXAMPLE" property="sresponseExample" jdbcType="VARCHAR" />
+		<result column="SRESPONSE_FORMAT" property="sresponseFormat" jdbcType="VARCHAR" />
+		<result column="SRESPONSE_PARAM" property="sresponseParam" jdbcType="VARCHAR" />
+		<result column="STRANSFER_WAY" property="stransferWay" jdbcType="VARCHAR" />
+		<result column="TONLINE_TIME" property="tonlineTime" jdbcType="TIMESTAMP" />
+		<result column="UPATE_USER" property="upateUser" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ADD_TIME,ADD_USER,IDEL_FLAG,IMAX_CALLBACK_NUM,IPAY_TYPE,IPAY_WAY,ISTATUS,ITYPE,SACTION,SADDRESS,SCODE,SDESC,SNAME,SNOTICE_PARAM,SPAY_DESC,SREMARK,SREQUEST_EXAMPLE,SREQUEST_FORMAT,SREQUEST_LIMIT,SREQUEST_PARAM,SRESPONSE_DESC,SRESPONSE_EXAMPLE,SRESPONSE_FORMAT,SRESPONSE_PARAM,STRANSFER_WAY,TONLINE_TIME,UPATE_USER,UPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="addTime != null  ">
+               and  ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="addUser != null and  addUser != ''  ">
+               and  ADD_USER=#{addUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="imaxCallbackNum != null  ">
+               and  IMAX_CALLBACK_NUM=#{imaxCallbackNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="ipayType != null  ">
+               and  IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+           	</if>
+			<if test="ipayWay != null  ">
+               and  IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="saction != null and  saction != ''  ">
+               and  SACTION=#{saction,jdbcType=VARCHAR}
+           	</if>
+			<if test="saddress != null and  saddress != ''  ">
+               and  SADDRESS=#{saddress,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdesc != null and  sdesc != ''  ">
+               and  SDESC=#{sdesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+               and  SNAME=#{sname,jdbcType=VARCHAR}
+           	</if>
+			<if test="snoticeParam != null and  snoticeParam != ''  ">
+               and  SNOTICE_PARAM=#{snoticeParam,jdbcType=VARCHAR}
+           	</if>
+			<if test="spayDesc != null and  spayDesc != ''  ">
+               and  SPAY_DESC=#{spayDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="srequestExample != null and  srequestExample != ''  ">
+               and  SREQUEST_EXAMPLE=#{srequestExample,jdbcType=VARCHAR}
+           	</if>
+			<if test="srequestFormat != null and  srequestFormat != ''  ">
+               and  SREQUEST_FORMAT=#{srequestFormat,jdbcType=VARCHAR}
+           	</if>
+			<if test="srequestLimit != null and  srequestLimit != ''  ">
+               and  SREQUEST_LIMIT=#{srequestLimit,jdbcType=VARCHAR}
+           	</if>
+			<if test="srequestParam != null and  srequestParam != ''  ">
+               and  SREQUEST_PARAM=#{srequestParam,jdbcType=VARCHAR}
+           	</if>
+			<if test="sresponseDesc != null and  sresponseDesc != ''  ">
+               and  SRESPONSE_DESC=#{sresponseDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="sresponseExample != null and  sresponseExample != ''  ">
+               and  SRESPONSE_EXAMPLE=#{sresponseExample,jdbcType=VARCHAR}
+           	</if>
+			<if test="sresponseFormat != null and  sresponseFormat != ''  ">
+               and  SRESPONSE_FORMAT=#{sresponseFormat,jdbcType=VARCHAR}
+           	</if>
+			<if test="sresponseParam != null and  sresponseParam != ''  ">
+               and  SRESPONSE_PARAM=#{sresponseParam,jdbcType=VARCHAR}
+           	</if>
+			<if test="stransferWay != null and  stransferWay != ''  ">
+               and  STRANSFER_WAY=#{stransferWay,jdbcType=VARCHAR}
+           	</if>
+			<if test="tonlineTime != null  ">
+               and  TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="upateUser != null and  upateUser != ''  ">
+               and  UPATE_USER=#{upateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="updateTime != null  ">
+               and  UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from OP_INTERFACE_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.op.InterfaceInfo">
+        select
+        <include refid="column_List" />
+        from OP_INTERFACE_INFO
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from OP_INTERFACE_INFO
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from OP_INTERFACE_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM OP_INTERFACE_INFO where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.op.InterfaceInfo">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into OP_INTERFACE_INFO (ID,ADD_TIME,ADD_USER,IDEL_FLAG,IMAX_CALLBACK_NUM,IPAY_TYPE,IPAY_WAY,ISTATUS,ITYPE,SACTION,SADDRESS,SCODE,SDESC,SNAME,SNOTICE_PARAM,SPAY_DESC,SREMARK,SREQUEST_EXAMPLE,SREQUEST_FORMAT,SREQUEST_LIMIT,SREQUEST_PARAM,SRESPONSE_DESC,SRESPONSE_EXAMPLE,SRESPONSE_FORMAT,SRESPONSE_PARAM,STRANSFER_WAY,TONLINE_TIME,UPATE_USER,UPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{addTime,jdbcType=TIMESTAMP},#{addUser,jdbcType=VARCHAR},#{idelFlag,jdbcType=NUMERIC},#{imaxCallbackNum,jdbcType=NUMERIC},#{ipayType,jdbcType=NUMERIC},#{ipayWay,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{saction,jdbcType=VARCHAR},#{saddress,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sdesc,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{snoticeParam,jdbcType=VARCHAR},#{spayDesc,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{srequestExample,jdbcType=VARCHAR},#{srequestFormat,jdbcType=VARCHAR},#{srequestLimit,jdbcType=VARCHAR},#{srequestParam,jdbcType=VARCHAR},#{sresponseDesc,jdbcType=VARCHAR},#{sresponseExample,jdbcType=VARCHAR},#{sresponseFormat,jdbcType=VARCHAR},#{sresponseParam,jdbcType=VARCHAR},#{stransferWay,jdbcType=VARCHAR},#{tonlineTime,jdbcType=TIMESTAMP},#{upateUser,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.op.InterfaceInfo">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into OP_INTERFACE_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="addTime">
+               ADD_TIME,
+           	</if>
+			<if test="addUser">
+               ADD_USER,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="imaxCallbackNum">
+               IMAX_CALLBACK_NUM,
+           	</if>
+			<if test="ipayType">
+               IPAY_TYPE,
+           	</if>
+			<if test="ipayWay">
+               IPAY_WAY,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="saction">
+               SACTION,
+           	</if>
+			<if test="saddress">
+               SADDRESS,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sdesc">
+               SDESC,
+           	</if>
+			<if test="sname">
+               SNAME,
+           	</if>
+			<if test="snoticeParam">
+               SNOTICE_PARAM,
+           	</if>
+			<if test="spayDesc">
+               SPAY_DESC,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="srequestExample">
+               SREQUEST_EXAMPLE,
+           	</if>
+			<if test="srequestFormat">
+               SREQUEST_FORMAT,
+           	</if>
+			<if test="srequestLimit">
+               SREQUEST_LIMIT,
+           	</if>
+			<if test="srequestParam">
+               SREQUEST_PARAM,
+           	</if>
+			<if test="sresponseDesc">
+               SRESPONSE_DESC,
+           	</if>
+			<if test="sresponseExample">
+               SRESPONSE_EXAMPLE,
+           	</if>
+			<if test="sresponseFormat">
+               SRESPONSE_FORMAT,
+           	</if>
+			<if test="sresponseParam">
+               SRESPONSE_PARAM,
+           	</if>
+			<if test="stransferWay">
+               STRANSFER_WAY,
+           	</if>
+			<if test="tonlineTime">
+               TONLINE_TIME,
+           	</if>
+			<if test="upateUser">
+               UPATE_USER,
+           	</if>
+			<if test="updateTime">
+               UPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="addTime != null  ">
+                #{addTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="addUser != null and  addUser != ''  ">
+                #{addUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="imaxCallbackNum != null  ">
+                #{imaxCallbackNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ipayType != null  ">
+                #{ipayType,jdbcType=NUMERIC},
+           	</if>
+			<if test="ipayWay != null  ">
+                #{ipayWay,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="saction != null and  saction != ''  ">
+                #{saction,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddress != null and  saddress != ''  ">
+                #{saddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdesc != null and  sdesc != ''  ">
+                #{sdesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="snoticeParam != null and  snoticeParam != ''  ">
+                #{snoticeParam,jdbcType=VARCHAR},
+           	</if>
+			<if test="spayDesc != null and  spayDesc != ''  ">
+                #{spayDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestExample != null and  srequestExample != ''  ">
+                #{srequestExample,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestFormat != null and  srequestFormat != ''  ">
+                #{srequestFormat,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestLimit != null and  srequestLimit != ''  ">
+                #{srequestLimit,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestParam != null and  srequestParam != ''  ">
+                #{srequestParam,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseDesc != null and  sresponseDesc != ''  ">
+                #{sresponseDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseExample != null and  sresponseExample != ''  ">
+                #{sresponseExample,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseFormat != null and  sresponseFormat != ''  ">
+                #{sresponseFormat,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseParam != null and  sresponseParam != ''  ">
+                #{sresponseParam,jdbcType=VARCHAR},
+           	</if>
+			<if test="stransferWay != null and  stransferWay != ''  ">
+                #{stransferWay,jdbcType=VARCHAR},
+           	</if>
+			<if test="tonlineTime != null  ">
+                #{tonlineTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="upateUser != null and  upateUser != ''  ">
+                #{upateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="updateTime != null  ">
+                #{updateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.op.InterfaceInfo">
+        update OP_INTERFACE_INFO
+        <set>
+			<if test="addTime != null  ">
+                ADD_TIME=#{addTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="addUser != null and  addUser != ''  ">
+                ADD_USER=#{addUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="imaxCallbackNum != null  ">
+                IMAX_CALLBACK_NUM=#{imaxCallbackNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ipayType != null  ">
+                IPAY_TYPE=#{ipayType,jdbcType=NUMERIC},
+           	</if>
+			<if test="ipayWay != null  ">
+                IPAY_WAY=#{ipayWay,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="saction != null and  saction != ''  ">
+                SACTION=#{saction,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddress != null and  saddress != ''  ">
+                SADDRESS=#{saddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdesc != null and  sdesc != ''  ">
+                SDESC=#{sdesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="snoticeParam != null and  snoticeParam != ''  ">
+                SNOTICE_PARAM=#{snoticeParam,jdbcType=VARCHAR},
+           	</if>
+			<if test="spayDesc != null and  spayDesc != ''  ">
+                SPAY_DESC=#{spayDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestExample != null and  srequestExample != ''  ">
+                SREQUEST_EXAMPLE=#{srequestExample,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestFormat != null and  srequestFormat != ''  ">
+                SREQUEST_FORMAT=#{srequestFormat,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestLimit != null and  srequestLimit != ''  ">
+                SREQUEST_LIMIT=#{srequestLimit,jdbcType=VARCHAR},
+           	</if>
+			<if test="srequestParam != null and  srequestParam != ''  ">
+                SREQUEST_PARAM=#{srequestParam,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseDesc != null and  sresponseDesc != ''  ">
+                SRESPONSE_DESC=#{sresponseDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseExample != null and  sresponseExample != ''  ">
+                SRESPONSE_EXAMPLE=#{sresponseExample,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseFormat != null and  sresponseFormat != ''  ">
+                SRESPONSE_FORMAT=#{sresponseFormat,jdbcType=VARCHAR},
+           	</if>
+			<if test="sresponseParam != null and  sresponseParam != ''  ">
+                SRESPONSE_PARAM=#{sresponseParam,jdbcType=VARCHAR},
+           	</if>
+			<if test="stransferWay != null and  stransferWay != ''  ">
+                STRANSFER_WAY=#{stransferWay,jdbcType=VARCHAR},
+           	</if>
+			<if test="tonlineTime != null  ">
+                TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="upateUser != null and  upateUser != ''  ">
+                UPATE_USER=#{upateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="updateTime != null  ">
+                UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.op.InterfaceInfo">
+        update OP_INTERFACE_INFO
+        set 
+        		ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+        		,ADD_USER=#{addUser,jdbcType=VARCHAR}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IMAX_CALLBACK_NUM=#{imaxCallbackNum,jdbcType=NUMERIC}
+        		,IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+        		,IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SACTION=#{saction,jdbcType=VARCHAR}
+        		,SADDRESS=#{saddress,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SDESC=#{sdesc,jdbcType=VARCHAR}
+        		,SNAME=#{sname,jdbcType=VARCHAR}
+        		,SNOTICE_PARAM=#{snoticeParam,jdbcType=VARCHAR}
+        		,SPAY_DESC=#{spayDesc,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SREQUEST_EXAMPLE=#{srequestExample,jdbcType=VARCHAR}
+        		,SREQUEST_FORMAT=#{srequestFormat,jdbcType=VARCHAR}
+        		,SREQUEST_LIMIT=#{srequestLimit,jdbcType=VARCHAR}
+        		,SREQUEST_PARAM=#{srequestParam,jdbcType=VARCHAR}
+        		,SRESPONSE_DESC=#{sresponseDesc,jdbcType=VARCHAR}
+        		,SRESPONSE_EXAMPLE=#{sresponseExample,jdbcType=VARCHAR}
+        		,SRESPONSE_FORMAT=#{sresponseFormat,jdbcType=VARCHAR}
+        		,SRESPONSE_PARAM=#{sresponseParam,jdbcType=VARCHAR}
+        		,STRANSFER_WAY=#{stransferWay,jdbcType=VARCHAR}
+        		,TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP}
+        		,UPATE_USER=#{upateUser,jdbcType=VARCHAR}
+        		,UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+	<select id="selectByMap" resultMap="resultEntity" parameterType="java.util.Map">
+		select A.* from OP_INTERFACE_INFO A
+		LEFT JOIN OP_USER_INTERFACE_AUTH B  ON A.SCODE = B.SINTERFACE_CODE
+		LEFT JOIN OP_USER_INFO C ON B.SUSER_ID = C.ID
+		where A.SACTION=#{methodName,jdbcType=VARCHAR} and ((A.IPAY_WAY = 10) or (B.SUSER_ID=#{userId,jdbcType=VARCHAR}
+		AND C.ISTATUS=1 and C.IDEL_FLAG=0 and B.IDEL_FLAG=0))
+	</select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+	ADD_USER=#{addUser,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IMAX_CALLBACK_NUM=#{imaxCallbackNum,jdbcType=NUMERIC}
+	IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+	IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SACTION=#{saction,jdbcType=VARCHAR}
+	SADDRESS=#{saddress,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SDESC=#{sdesc,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SNOTICE_PARAM=#{snoticeParam,jdbcType=VARCHAR}
+	SPAY_DESC=#{spayDesc,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SREQUEST_EXAMPLE=#{srequestExample,jdbcType=VARCHAR}
+	SREQUEST_FORMAT=#{srequestFormat,jdbcType=VARCHAR}
+	SREQUEST_LIMIT=#{srequestLimit,jdbcType=VARCHAR}
+	SREQUEST_PARAM=#{srequestParam,jdbcType=VARCHAR}
+	SRESPONSE_DESC=#{sresponseDesc,jdbcType=VARCHAR}
+	SRESPONSE_EXAMPLE=#{sresponseExample,jdbcType=VARCHAR}
+	SRESPONSE_FORMAT=#{sresponseFormat,jdbcType=VARCHAR}
+	SRESPONSE_PARAM=#{sresponseParam,jdbcType=VARCHAR}
+	STRANSFER_WAY=#{stransferWay,jdbcType=VARCHAR}
+	TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP}
+	UPATE_USER=#{upateUser,jdbcType=VARCHAR}
+	UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

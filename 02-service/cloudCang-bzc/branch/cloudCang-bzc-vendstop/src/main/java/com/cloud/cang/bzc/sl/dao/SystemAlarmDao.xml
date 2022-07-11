@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.bzc.sl.dao.SystemAlarmDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sl.SystemAlarm">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IIS_DEALWITH" property="iisDealwith" jdbcType="NUMERIC" />
+		<result column="IPROBLEM_TYPE" property="iproblemType" jdbcType="NUMERIC" />
+		<result column="ISYSTEM_TYPE" property="isystemType" jdbcType="VARCHAR" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SDEALWITH_MAN" property="sdealwithMan" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SOPER_IP" property="soperIp" jdbcType="VARCHAR" />
+		<result column="SPROBLEM_DESC" property="sproblemDesc" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TALARM_TIME" property="talarmTime" jdbcType="TIMESTAMP" />
+		<result column="TDEALWITH_TIME" property="tdealwithTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IIS_DEALWITH,IPROBLEM_TYPE,ISYSTEM_TYPE,ITYPE,SDEALWITH_MAN,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPER_IP,SPROBLEM_DESC,SREMARK,TADD_TIME,TALARM_TIME,TDEALWITH_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="iisDealwith != null  ">
+               and  IIS_DEALWITH=#{iisDealwith,jdbcType=NUMERIC}
+           	</if>
+			<if test="iproblemType != null  ">
+               and  IPROBLEM_TYPE=#{iproblemType,jdbcType=NUMERIC}
+           	</if>
+			<if test="isystemType != null and  isystemType != ''  ">
+               and  ISYSTEM_TYPE=#{isystemType,jdbcType=VARCHAR}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+               and  SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+               and  SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+           	</if>
+			<if test="soperIp != null and  soperIp != ''  ">
+               and  SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+           	</if>
+			<if test="sproblemDesc != null and  sproblemDesc != ''  ">
+               and  SPROBLEM_DESC=#{sproblemDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="talarmTime != null  ">
+               and  TALARM_TIME=#{talarmTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tdealwithTime != null  ">
+               and  TDEALWITH_TIME=#{tdealwithTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SL_SYSTEM_ALARM
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sl.SystemAlarm">
+        select
+        <include refid="column_List" />
+        from SL_SYSTEM_ALARM
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SL_SYSTEM_ALARM
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SL_SYSTEM_ALARM
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SL_SYSTEM_ALARM where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sl.SystemAlarm">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SL_SYSTEM_ALARM (ID,IIS_DEALWITH,IPROBLEM_TYPE,ISYSTEM_TYPE,ITYPE,SDEALWITH_MAN,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPER_IP,SPROBLEM_DESC,SREMARK,TADD_TIME,TALARM_TIME,TDEALWITH_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iisDealwith,jdbcType=NUMERIC},#{iproblemType,jdbcType=NUMERIC},#{isystemType,jdbcType=VARCHAR},#{itype,jdbcType=NUMERIC},#{sdealwithMan,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{soperIp,jdbcType=VARCHAR},#{sproblemDesc,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{talarmTime,jdbcType=TIMESTAMP},#{tdealwithTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sl.SystemAlarm">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SL_SYSTEM_ALARM
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="iisDealwith">
+               IIS_DEALWITH,
+           	</if>
+			<if test="iproblemType">
+               IPROBLEM_TYPE,
+           	</if>
+			<if test="isystemType">
+               ISYSTEM_TYPE,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="sdealwithMan">
+               SDEALWITH_MAN,
+           	</if>
+			<if test="smemberCode">
+               SMEMBER_CODE,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="soperIp">
+               SOPER_IP,
+           	</if>
+			<if test="sproblemDesc">
+               SPROBLEM_DESC,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="talarmTime">
+               TALARM_TIME,
+           	</if>
+			<if test="tdealwithTime">
+               TDEALWITH_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="iisDealwith != null  ">
+                #{iisDealwith,jdbcType=NUMERIC},
+           	</if>
+			<if test="iproblemType != null  ">
+                #{iproblemType,jdbcType=NUMERIC},
+           	</if>
+			<if test="isystemType != null and  isystemType != ''  ">
+                #{isystemType,jdbcType=VARCHAR},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+                #{sdealwithMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperIp != null and  soperIp != ''  ">
+                #{soperIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproblemDesc != null and  sproblemDesc != ''  ">
+                #{sproblemDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="talarmTime != null  ">
+                #{talarmTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tdealwithTime != null  ">
+                #{tdealwithTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sl.SystemAlarm">
+        update SL_SYSTEM_ALARM
+        <set>
+			<if test="iisDealwith != null  ">
+                IIS_DEALWITH=#{iisDealwith,jdbcType=NUMERIC},
+           	</if>
+			<if test="iproblemType != null  ">
+                IPROBLEM_TYPE=#{iproblemType,jdbcType=NUMERIC},
+           	</if>
+			<if test="isystemType != null and  isystemType != ''  ">
+                ISYSTEM_TYPE=#{isystemType,jdbcType=VARCHAR},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+                SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperIp != null and  soperIp != ''  ">
+                SOPER_IP=#{soperIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproblemDesc != null and  sproblemDesc != ''  ">
+                SPROBLEM_DESC=#{sproblemDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="talarmTime != null  ">
+                TALARM_TIME=#{talarmTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tdealwithTime != null  ">
+                TDEALWITH_TIME=#{tdealwithTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sl.SystemAlarm">
+        update SL_SYSTEM_ALARM
+        set 
+        		IIS_DEALWITH=#{iisDealwith,jdbcType=NUMERIC}
+        		,IPROBLEM_TYPE=#{iproblemType,jdbcType=NUMERIC}
+        		,ISYSTEM_TYPE=#{isystemType,jdbcType=VARCHAR}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+        		,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+        		,SPROBLEM_DESC=#{sproblemDesc,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TALARM_TIME=#{talarmTime,jdbcType=TIMESTAMP}
+        		,TDEALWITH_TIME=#{tdealwithTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IIS_DEALWITH=#{iisDealwith,jdbcType=NUMERIC}
+	IPROBLEM_TYPE=#{iproblemType,jdbcType=NUMERIC}
+	ISYSTEM_TYPE=#{isystemType,jdbcType=VARCHAR}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+	SPROBLEM_DESC=#{sproblemDesc,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TALARM_TIME=#{talarmTime,jdbcType=TIMESTAMP}
+	TDEALWITH_TIME=#{tdealwithTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

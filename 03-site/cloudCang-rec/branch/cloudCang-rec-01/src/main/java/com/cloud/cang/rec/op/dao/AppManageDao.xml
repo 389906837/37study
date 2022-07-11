@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rec.op.dao.AppManageDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.op.AppManage">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IAUDIT_STATUS" property="iauditStatus" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="SAPP_ID" property="sappId" jdbcType="VARCHAR"/>
+        <result column="SAPP_PRIVATE_KEY" property="sappPrivateKey" jdbcType="VARCHAR"/>
+        <result column="SAPP_PUBLIC_KEY" property="sappPublicKey" jdbcType="VARCHAR"/>
+        <result column="SAPP_SECRET_KEY" property="sappSecretKey" jdbcType="VARCHAR"/>
+        <result column="SAUDIT_OPER_NAME" property="sauditOperName" jdbcType="VARCHAR"/>
+        <result column="SAUDIT_REASON" property="sauditReason" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SENCRYP_TYPE" property="sencrypType" jdbcType="VARCHAR"/>
+        <result column="SNAME" property="sname" jdbcType="VARCHAR"/>
+        <result column="SNOTICE_ADDRESS" property="snoticeAddress" jdbcType="VARCHAR"/>
+        <result column="SPLATFORM_KEY" property="splatformKey" jdbcType="VARCHAR"/>
+        <result column="SPLATFORM_PUBLIC_KEY" property="splatformPublicKey" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SSYSTEM_TYPE" property="ssystemType" jdbcType="VARCHAR"/>
+        <result column="STOLL_TYPE" property="stollType" jdbcType="VARCHAR"/>
+        <result column="STYPE" property="stype" jdbcType="VARCHAR"/>
+        <result column="SUSER_CODE" property="suserCode" jdbcType="VARCHAR"/>
+        <result column="SUSER_ID" property="suserId" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TAUDIT_TIME" property="tauditTime" jdbcType="TIMESTAMP"/>
+        <result column="TCREATE_TIME" property="tcreateTime" jdbcType="TIMESTAMP"/>
+        <result column="TONLINE_TIME" property="tonlineTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,IAUDIT_STATUS,IDEL_FLAG,ISTATUS,SAPP_ID,SAPP_PRIVATE_KEY,SAPP_PUBLIC_KEY,SAPP_SECRET_KEY,SAUDIT_OPER_NAME,SAUDIT_REASON,SCODE,SENCRYP_TYPE,SNAME,SNOTICE_ADDRESS,SPLATFORM_KEY,SPLATFORM_PUBLIC_KEY,SREMARK,SSYSTEM_TYPE,STOLL_TYPE,STYPE,SUSER_CODE,SUSER_ID,TADD_TIME,TAUDIT_TIME,TCREATE_TIME,TONLINE_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="column_List_Vo">
+        <![CDATA[
+        OAM.ID,OAM.IAUDIT_STATUS,OAM.IDEL_FLAG,OAM.ISTATUS,OAM.SAPP_ID,OAM.SAPP_PRIVATE_KEY,OAM.SAPP_PUBLIC_KEY,
+        OAM.SAPP_SECRET_KEY,OAM.SAUDIT_OPER_NAME,OAM.SAUDIT_REASON,OAM.SCODE,OAM.SENCRYP_TYPE,
+        OAM.SNAME,OAM.SNOTICE_ADDRESS,OAM.SPLATFORM_KEY,OAM.SPLATFORM_PUBLIC_KEY,OAM.SREMARK,OAM.SSYSTEM_TYPE,
+        OAM.STOLL_TYPE,OAM.STYPE,OAM.SUSER_CODE,OAM.SUSER_ID,OAM.TADD_TIME,OAM.TAUDIT_TIME,OAM.TCREATE_TIME,OAM.TONLINE_TIME,
+        OAM.TUPDATE_TIME,OUI.SNICK_NAME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="iauditStatus != null  ">
+                    and IAUDIT_STATUS=#{iauditStatus,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="sappId != null and  sappId != ''  ">
+                    and SAPP_ID=#{sappId,jdbcType=VARCHAR}
+                </if>
+                <if test="sappPrivateKey != null and  sappPrivateKey != ''  ">
+                    and SAPP_PRIVATE_KEY=#{sappPrivateKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                    and SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sappSecretKey != null and  sappSecretKey != ''  ">
+                    and SAPP_SECRET_KEY=#{sappSecretKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sauditOperName != null and  sauditOperName != ''  ">
+                    and SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR}
+                </if>
+                <if test="sauditReason != null and  sauditReason != ''  ">
+                    and SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="sencrypType != null and  sencrypType != ''  ">
+                    and SENCRYP_TYPE=#{sencrypType,jdbcType=VARCHAR}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                    and SNAME=#{sname,jdbcType=VARCHAR}
+                </if>
+                <if test="snoticeAddress != null and  snoticeAddress != ''  ">
+                    and SNOTICE_ADDRESS=#{snoticeAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="splatformKey != null and  splatformKey != ''  ">
+                    and SPLATFORM_KEY=#{splatformKey,jdbcType=VARCHAR}
+                </if>
+                <if test="splatformPublicKey != null and  splatformPublicKey != ''  ">
+                    and SPLATFORM_PUBLIC_KEY=#{splatformPublicKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="ssystemType != null and  ssystemType != ''  ">
+                    and SSYSTEM_TYPE=#{ssystemType,jdbcType=VARCHAR}
+                </if>
+                <if test="stollType != null and  stollType != ''  ">
+                    and STOLL_TYPE=#{stollType,jdbcType=VARCHAR}
+                </if>
+                <if test="stype != null and  stype != ''  ">
+                    and STYPE=#{stype,jdbcType=VARCHAR}
+                </if>
+                <if test="suserCode != null and  suserCode != ''  ">
+                    and SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+                </if>
+                <if test="suserId != null and  suserId != ''  ">
+                    and SUSER_ID=#{suserId,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tauditTime != null  ">
+                    and TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tcreateTime != null  ">
+                    and TCREATE_TIME=#{tcreateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tonlineTime != null  ">
+                    and TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="iauditStatus != null  ">
+                    and IAUDIT_STATUS=#{iauditStatus,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="sappId != null and  sappId != ''  ">
+                    <!-- and SAPP_ID=#{sappId,jdbcType=VARCHAR}-->
+                    and SAPP_ID LIKE CONCAT('%',#{sappId,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sappPrivateKey != null and  sappPrivateKey != ''  ">
+                    and SAPP_PRIVATE_KEY=#{sappPrivateKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                    and SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sappSecretKey != null and  sappSecretKey != ''  ">
+                    <!--  and SAPP_SECRET_KEY=#{sappSecretKey,jdbcType=VARCHAR}-->
+                    and SAPP_SECRET_KEY LIKE CONCAT('%',#{sappSecretKey,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sauditOperName != null and  sauditOperName != ''  ">
+                    and SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR}
+                </if>
+                <if test="sauditReason != null and  sauditReason != ''  ">
+                    and SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE LIKE CONCAT('%',#{scode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sencrypType != null and  sencrypType != ''  ">
+                    and SENCRYP_TYPE=#{sencrypType,jdbcType=VARCHAR}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                    and SNAME LIKE CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="snoticeAddress != null and  snoticeAddress != ''  ">
+                    and SNOTICE_ADDRESS=#{snoticeAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="splatformKey != null and  splatformKey != ''  ">
+                    and SPLATFORM_KEY=#{splatformKey,jdbcType=VARCHAR}
+                </if>
+                <if test="splatformPublicKey != null and  splatformPublicKey != ''  ">
+                    and SPLATFORM_PUBLIC_KEY=#{splatformPublicKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="ssystemType != null and  ssystemType != ''  ">
+                    and SSYSTEM_TYPE=#{ssystemType,jdbcType=VARCHAR}
+                </if>
+                <if test="stollType != null and  stollType != ''  ">
+                    and STOLL_TYPE=#{stollType,jdbcType=VARCHAR}
+                </if>
+                <if test="stype != null and  stype != ''  ">
+                    and STYPE=#{stype,jdbcType=VARCHAR}
+                </if>
+                <if test="suserCode != null and  suserCode != ''  ">
+                    and SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+                </if>
+                <if test="suserId != null and  suserId != ''  ">
+                    and SUSER_ID=#{suserId,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tauditTime != null  ">
+                    and TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tcreateTime != null  ">
+                    and TCREATE_TIME=#{tcreateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tonlineTime != null  ">
+                    and TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from OP_APP_MANAGE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.op.AppManage">
+        select
+        <include refid="column_List"/>
+        from OP_APP_MANAGE
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from OP_APP_MANAGE
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from OP_APP_MANAGE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM OP_APP_MANAGE where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.op.AppManage">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into OP_APP_MANAGE (ID,IAUDIT_STATUS,IDEL_FLAG,ISTATUS,SAPP_ID,SAPP_PRIVATE_KEY,SAPP_PUBLIC_KEY,SAPP_SECRET_KEY,SAUDIT_OPER_NAME,SAUDIT_REASON,SCODE,SENCRYP_TYPE,SNAME,SNOTICE_ADDRESS,SPLATFORM_KEY,SPLATFORM_PUBLIC_KEY,SREMARK,SSYSTEM_TYPE,STOLL_TYPE,STYPE,SUSER_CODE,SUSER_ID,TADD_TIME,TAUDIT_TIME,TCREATE_TIME,TONLINE_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iauditStatus,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{sappId,jdbcType=VARCHAR},#{sappPrivateKey,jdbcType=VARCHAR},#{sappPublicKey,jdbcType=VARCHAR},#{sappSecretKey,jdbcType=VARCHAR},#{sauditOperName,jdbcType=VARCHAR},#{sauditReason,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sencrypType,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{snoticeAddress,jdbcType=VARCHAR},#{splatformKey,jdbcType=VARCHAR},#{splatformPublicKey,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{ssystemType,jdbcType=VARCHAR},#{stollType,jdbcType=VARCHAR},#{stype,jdbcType=VARCHAR},#{suserCode,jdbcType=VARCHAR},#{suserId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tauditTime,jdbcType=TIMESTAMP},#{tcreateTime,jdbcType=TIMESTAMP},#{tonlineTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.op.AppManage">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into OP_APP_MANAGE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="iauditStatus">
+                IAUDIT_STATUS,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="sappId">
+                SAPP_ID,
+            </if>
+            <if test="sappPrivateKey">
+                SAPP_PRIVATE_KEY,
+            </if>
+            <if test="sappPublicKey">
+                SAPP_PUBLIC_KEY,
+            </if>
+            <if test="sappSecretKey">
+                SAPP_SECRET_KEY,
+            </if>
+            <if test="sauditOperName">
+                SAUDIT_OPER_NAME,
+            </if>
+            <if test="sauditReason">
+                SAUDIT_REASON,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="sencrypType">
+                SENCRYP_TYPE,
+            </if>
+            <if test="sname">
+                SNAME,
+            </if>
+            <if test="snoticeAddress">
+                SNOTICE_ADDRESS,
+            </if>
+            <if test="splatformKey">
+                SPLATFORM_KEY,
+            </if>
+            <if test="splatformPublicKey">
+                SPLATFORM_PUBLIC_KEY,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="ssystemType">
+                SSYSTEM_TYPE,
+            </if>
+            <if test="stollType">
+                STOLL_TYPE,
+            </if>
+            <if test="stype">
+                STYPE,
+            </if>
+            <if test="suserCode">
+                SUSER_CODE,
+            </if>
+            <if test="suserId">
+                SUSER_ID,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tauditTime">
+                TAUDIT_TIME,
+            </if>
+            <if test="tcreateTime">
+                TCREATE_TIME,
+            </if>
+            <if test="tonlineTime">
+                TONLINE_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="iauditStatus != null  ">
+                #{iauditStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="sappId != null and  sappId != ''  ">
+                #{sappId,jdbcType=VARCHAR},
+            </if>
+            <if test="sappPrivateKey != null and  sappPrivateKey != ''  ">
+                #{sappPrivateKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                #{sappPublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sappSecretKey != null and  sappSecretKey != ''  ">
+                #{sappSecretKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sauditOperName != null and  sauditOperName != ''  ">
+                #{sauditOperName,jdbcType=VARCHAR},
+            </if>
+            <if test="sauditReason != null and  sauditReason != ''  ">
+                #{sauditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="sencrypType != null and  sencrypType != ''  ">
+                #{sencrypType,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="snoticeAddress != null and  snoticeAddress != ''  ">
+                #{snoticeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="splatformKey != null and  splatformKey != ''  ">
+                #{splatformKey,jdbcType=VARCHAR},
+            </if>
+            <if test="splatformPublicKey != null and  splatformPublicKey != ''  ">
+                #{splatformPublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="ssystemType != null and  ssystemType != ''  ">
+                #{ssystemType,jdbcType=VARCHAR},
+            </if>
+            <if test="stollType != null and  stollType != ''  ">
+                #{stollType,jdbcType=VARCHAR},
+            </if>
+            <if test="stype != null and  stype != ''  ">
+                #{stype,jdbcType=VARCHAR},
+            </if>
+            <if test="suserCode != null and  suserCode != ''  ">
+                #{suserCode,jdbcType=VARCHAR},
+            </if>
+            <if test="suserId != null and  suserId != ''  ">
+                #{suserId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tauditTime != null  ">
+                #{tauditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tcreateTime != null  ">
+                #{tcreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tonlineTime != null  ">
+                #{tonlineTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.op.AppManage">
+        update OP_APP_MANAGE
+        <set>
+            <if test="iauditStatus != null  ">
+                IAUDIT_STATUS=#{iauditStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="sappId != null and  sappId != ''  ">
+                SAPP_ID=#{sappId,jdbcType=VARCHAR},
+            </if>
+            <if test="sappPrivateKey != null and  sappPrivateKey != ''  ">
+                SAPP_PRIVATE_KEY=#{sappPrivateKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sappSecretKey != null and  sappSecretKey != ''  ">
+                SAPP_SECRET_KEY=#{sappSecretKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sauditOperName != null and  sauditOperName != ''  ">
+                SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR},
+            </if>
+            <if test="sauditReason != null and  sauditReason != ''  ">
+                SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="sencrypType != null and  sencrypType != ''  ">
+                SENCRYP_TYPE=#{sencrypType,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="snoticeAddress != null">
+                SNOTICE_ADDRESS=#{snoticeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="splatformKey != null and  splatformKey != ''  ">
+                SPLATFORM_KEY=#{splatformKey,jdbcType=VARCHAR},
+            </if>
+            <if test="splatformPublicKey != null and  splatformPublicKey != ''  ">
+                SPLATFORM_PUBLIC_KEY=#{splatformPublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="ssystemType != null and  ssystemType != ''  ">
+                SSYSTEM_TYPE=#{ssystemType,jdbcType=VARCHAR},
+            </if>
+            <if test="stollType != null and  stollType != ''  ">
+                STOLL_TYPE=#{stollType,jdbcType=VARCHAR},
+            </if>
+            <if test="stype != null and  stype != ''  ">
+                STYPE=#{stype,jdbcType=VARCHAR},
+            </if>
+            <if test="suserCode != null and  suserCode != ''  ">
+                SUSER_CODE=#{suserCode,jdbcType=VARCHAR},
+            </if>
+            <if test="suserId != null and  suserId != ''  ">
+                SUSER_ID=#{suserId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tauditTime != null  ">
+                TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tcreateTime != null  ">
+                TCREATE_TIME=#{tcreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tonlineTime != null  ">
+                TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.op.AppManage">
+        update OP_APP_MANAGE
+        set
+        IAUDIT_STATUS=#{iauditStatus,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,SAPP_ID=#{sappId,jdbcType=VARCHAR}
+        ,SAPP_PRIVATE_KEY=#{sappPrivateKey,jdbcType=VARCHAR}
+        ,SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR}
+        ,SAPP_SECRET_KEY=#{sappSecretKey,jdbcType=VARCHAR}
+        ,SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR}
+        ,SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SENCRYP_TYPE=#{sencrypType,jdbcType=VARCHAR}
+        ,SNAME=#{sname,jdbcType=VARCHAR}
+        ,SNOTICE_ADDRESS=#{snoticeAddress,jdbcType=VARCHAR}
+        ,SPLATFORM_KEY=#{splatformKey,jdbcType=VARCHAR}
+        ,SPLATFORM_PUBLIC_KEY=#{splatformPublicKey,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SSYSTEM_TYPE=#{ssystemType,jdbcType=VARCHAR}
+        ,STOLL_TYPE=#{stollType,jdbcType=VARCHAR}
+        ,STYPE=#{stype,jdbcType=VARCHAR}
+        ,SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+        ,SUSER_ID=#{suserId,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+        ,TCREATE_TIME=#{tcreateTime,jdbcType=TIMESTAMP}
+        ,TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IAUDIT_STATUS=#{iauditStatus,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	SAPP_ID=#{sappId,jdbcType=VARCHAR}
+	SAPP_PRIVATE_KEY=#{sappPrivateKey,jdbcType=VARCHAR}
+	SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR}
+	SAPP_SECRET_KEY=#{sappSecretKey,jdbcType=VARCHAR}
+	SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR}
+	SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SENCRYP_TYPE=#{sencrypType,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SNOTICE_ADDRESS=#{snoticeAddress,jdbcType=VARCHAR}
+	SPLATFORM_KEY=#{splatformKey,jdbcType=VARCHAR}
+	SPLATFORM_PUBLIC_KEY=#{splatformPublicKey,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSYSTEM_TYPE=#{ssystemType,jdbcType=VARCHAR}
+	STOLL_TYPE=#{stollType,jdbcType=VARCHAR}
+	STYPE=#{stype,jdbcType=VARCHAR}
+	SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+	SUSER_ID=#{suserId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+	TCREATE_TIME=#{tcreateTime,jdbcType=TIMESTAMP}
+	TONLINE_TIME=#{tonlineTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+    <select id="selectPageByDomainWhere" parameterType="com.cloud.cang.rec.op.domain.AppManageDomain"
+            resultMap="resultEntity">
+        select
+        <include refid="column_List"/>
+        from OP_APP_MANAGE
+        <include refid="Entity_Where_Clause_Like"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        id
+    </select>
+
+    <select id="selectVoById" parameterType="java.lang.String" resultType="com.cloud.cang.rec.op.vo.AppManageVo">
+        Select
+        <include refid="column_List_Vo"/>
+        from OP_APP_MANAGE OAM
+        LEFT JOIN OP_USER_INFO OUI ON OAM.SUSER_ID =OUI.ID
+        WHERE OAM.ID= #{id,jdbcType=VARCHAR}
+    </select>
+</mapper>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rec.sys.dao.RoleDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.Role">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SROLE_NAME" property="sroleName" jdbcType="VARCHAR"/>
+        <result column="SSYSTEM_SOURCE" property="ssystemSource" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="resultVo" type="com.cloud.cang.rec.sys.vo.RoleVo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SROLE_NAME" property="sroleName" jdbcType="VARCHAR"/>
+        <result column="SNAME" property="merchantName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Entity_Where_Clause_Purview">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and a.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="daddDate != null  ">
+                    and a.DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="iisMerchantUsed != null  ">
+                    and a.IIS_MERCHANT_USED=#{iisMerchantUsed,jdbcType=NUMERIC}
+                </if>
+                <if test="sdescription != null and  sdescription != ''  ">
+                    and a.SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+                </if>
+                <if test="sjpName != null and  sjpName != ''  ">
+                    and a.SJP_NAME=#{sjpName,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentId != null and  sparentId != ''  ">
+                    and a.SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentName != null and  sparentName != ''  ">
+                    and a.SPARENT_NAME=#{sparentName,jdbcType=VARCHAR}
+                </if>
+                <if test="spurCode != null and  spurCode != ''  ">
+                    and a.SPUR_CODE=#{spurCode,jdbcType=VARCHAR}
+                </if>
+                <if test="spurName != null and  spurName != ''  ">
+                    and a.SPUR_NAME=#{spurName,jdbcType=VARCHAR}
+                </if>
+                <if test="spurNo != null and  spurNo != ''  ">
+                    and a.SPUR_NO=#{spurNo,jdbcType=VARCHAR}
+                </if>
+                <if test="spyName != null and  spyName != ''  ">
+                    and a.SPY_NAME=#{spyName,jdbcType=VARCHAR}
+                </if>
+                <if test="ssystemCode != null and  ssystemCode != ''  ">
+                    and a.SSYSTEM_CODE=#{ssystemCode,jdbcType=VARCHAR}
+                </if>
+                <if test="surlPath != null and  surlPath != ''  ">
+                    and a.SURL_PATH=#{surlPath,jdbcType=VARCHAR}
+                </if>
+                and b.SSYSTEM_SOURCE in('40','30')
+            </trim>
+        </where>
+    </sql>
+    <sql id="column_List">
+        <![CDATA[
+        ID,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SROLE_NAME,SSYSTEM_SOURCE
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="sroleName != null and  sroleName != ''  ">
+                    and SROLE_NAME=#{sroleName,jdbcType=VARCHAR}
+                </if>
+                <if test="ssystemSource != null and  ssystemSource != ''  ">
+                    and SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SYS_ROLE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.Role">
+        select
+        <include refid="column_List"/>
+        from SYS_ROLE
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SYS_ROLE
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SYS_ROLE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SYS_ROLE where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.Role">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SYS_ROLE (ID,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SROLE_NAME,SSYSTEM_SOURCE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{sroleName,jdbcType=VARCHAR},#{ssystemSource,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.Role">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SYS_ROLE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="sroleName">
+                SROLE_NAME,
+            </if>
+            <if test="ssystemSource">
+                SSYSTEM_SOURCE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="sroleName != null and  sroleName != ''  ">
+                #{sroleName,jdbcType=VARCHAR},
+            </if>
+            <if test="ssystemSource != null and  ssystemSource != ''  ">
+                #{ssystemSource,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.Role">
+        update SYS_ROLE
+        <set>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="sroleName != null and  sroleName != ''  ">
+                SROLE_NAME=#{sroleName,jdbcType=VARCHAR},
+            </if>
+            <if test="ssystemSource != null and  ssystemSource != ''  ">
+                SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.Role">
+        update SYS_ROLE
+        set
+        SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SROLE_NAME=#{sroleName,jdbcType=VARCHAR}
+        ,SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByUserId" resultMap="resultEntity" parameterType="java.lang.String">
+        <![CDATA[
+         select r.* from sys_operatorrole orl,sys_role r where orl.srole_id=r.ID and orl.soperator_id=#{userId,jdbcType=VARCHAR}
+        ]]>
+    </select>
+    <select id="selectOperatorNoCheckRole" resultMap="resultEntity" parameterType="java.lang.String">
+        SELECT
+        <include refid="column_List"/>
+        FROM sys_role where ID not in (select SROLE_ID from SYS_OPERATORROLE WHERE SOPERATOR_ID = #{userId} )
+    </select>
+
+    <select id="selectByDomainWhere" resultMap="resultVo" parameterType="com.cloud.cang.rec.sys.domain.RoleDomain">
+        SELECT A.* from(
+        SELECT sr.SSYSTEM_SOURCE,sr.id,sr.SMERCHANT_CODE,sr.SMERCHANT_ID,sr.SREMARK,sr.SROLE_NAME,smi.SNAME from
+        sys_role sr LEFT JOIN
+        sh_merchant_info smi
+        on sr.SMERCHANT_ID = SMI.id )as A
+        <include refid="Entity_Where_ClauseLike"/>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.SMERCHANT_ID
+    </select>
+    <select id="selectAllRole" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.Operator">
+        select
+        <include refid="column_List"/>
+        from sys_role
+        where
+        SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+    </select>
+    <!-- 查询用户角色-->
+    <select id="selectOperatorRole" resultType="com.cloud.cang.rec.sys.vo.RoleVo"
+            parameterType="com.cloud.cang.model.sys.Operator">
+        select b.* from(
+        select a.*, (case when so.id is not null then 1 else 0 end) isSelect
+        from (
+        select sr.*,sor.SOPERATOR_ID from sys_role sr
+        LEFT JOIN sys_operatorrole sor on sr.ID=sor.SROLE_ID and sr.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        and sor.SOPERATOR_ID=#{id,jdbcType=VARCHAR}
+        ) a LEFT JOIN sys_operator so on a.SOPERATOR_ID = so.ID) b
+        where b.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        and b.SSYSTEM_SOURCE ='40'
+        <!-- and b.SSYSTEM_SOURCE in('20','30')
+        select sr.SROLE_NAME,SR.SREMARK,SR.SMERCHANT_ID,SR.SMERCHANT_CODE,sor.SOPERATOR_ID,(case when so.id is not null then 1 else 0 end) isSelect
+             from sys_role sr
+             LEFT JOIN sys_operatorrole sor on sr.ID=sor.SROLE_ID and sr.SMERCHANT_ID=SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+             and sor.SOPERATOR_ID='390e177a0fd711e8a4fa000c2937a246'
+             LEFT JOIN sys_operator so on SOR.SOPERATOR_ID =#{id,jdbcType=VARCHAR}
+             WHERE sr.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}-->
+    </select>
+    <sql id="Entity_Where_ClauseLike">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    <!--                    and  ID like CONCAT('%',#{id,jdbcType=VARCHAR},'%')-->
+                    and A.ID= #{id,jdbcType=VARCHAR}
+                </if>
+                <if test="sroleName != null and  sroleName != '' ">
+                    and A.srole_name like CONCAT('%',#{sroleName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and A.SREMARK like CONCAT('%',#{sremark,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantId != null and  smerchantId != '' ">
+                    <!--   and  SMERCHANT_ID like CONCAT('%',#{smerchantId,jdbcType=VARCHAR},'%')-->
+                    and A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != '' ">
+                    <!--   and A.SMERCHANT_code=#{smerchantCode,jdbcType=VARCHAR}  -->
+                    and A.SMERCHANT_code like CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="merchantName != null and  merchantName != '' ">
+                    and A.sname like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+                </if>
+                and A.SSYSTEM_SOURCE  ='40'
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectPurviewByMerchant" resultType="com.cloud.cang.rec.sys.domain.PurviewDomain"
+            parameterType="java.util.Map">
+        select y.id as id,
+        y.spurName as spurName,
+        y.menuId AS menuId,
+        y.menuName AS menuName,
+        y.menuParentName AS menuParentName,
+        y.menuParentId as menuParentId,
+        y.isSelect as isSelect,
+        (case when z.sparent_id='0' then 1 else 0 end) as isRoot
+        from (
+        SELECT
+        a.id as id,
+        a.spur_name as spurName,
+        a.sparent_id as menuId,
+        a.sparent_name as menuParentName,
+        b.sparent_id as menuParentId,
+        b.sname as menuName,
+        (case when d.id is null then 0 else 1 end) as isSelect
+        FROM sys_purview a
+        LEFT JOIN sys_menu b on a.sparent_id = b.id and b.bis_display=1
+        LEFT JOIN sys_rolepurview c on a.id = c.spurview_id and c.srole_id = #{roleId,jdbcType=VARCHAR}
+        LEFT JOIN sys_role d on c.srole_id= d.id and d.id = #{roleId,jdbcType=VARCHAR}
+        <include refid="Entity_Where_Clause_Purview"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        ) y
+        left join sys_menu z on z.id=y.menuId
+        order by y.menuParentId asc, z.isort ASC,y.id asc
+    </select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SROLE_NAME=#{sroleName,jdbcType=VARCHAR}
+	SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR}
+     -->
+
+</mapper>

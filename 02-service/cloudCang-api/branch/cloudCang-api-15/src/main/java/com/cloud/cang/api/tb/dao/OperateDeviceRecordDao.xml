@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.api.tb.dao.OperateDeviceRecordDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.tb.OperateDeviceRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FADD_TOTAL_AMOUNT" property="faddTotalAmount" jdbcType="NUMERIC" />
+		<result column="FADD_TOTAL_NUM" property="faddTotalNum" jdbcType="NUMERIC" />
+		<result column="FSUB_TOTAL_AMOUNT" property="fsubTotalAmount" jdbcType="NUMERIC" />
+		<result column="FSUB_TOTAL_NUM" property="fsubTotalNum" jdbcType="NUMERIC" />
+		<result column="IORDER_TYPE" property="iorderType" jdbcType="NUMERIC" />
+		<result column="IUSER_TYPE" property="iuserType" jdbcType="NUMERIC" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUSER_ID" property="suserId" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TORDER_TIME" property="torderTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,FADD_TOTAL_AMOUNT,FADD_TOTAL_NUM,FSUB_TOTAL_AMOUNT,FSUB_TOTAL_NUM,IORDER_TYPE,IUSER_TYPE,SCODE,SDEVICE_CODE,SDEVICE_ID,SREMARK,SUSER_ID,TADD_TIME,TORDER_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="faddTotalAmount != null  ">
+               and  FADD_TOTAL_AMOUNT=#{faddTotalAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="faddTotalNum != null  ">
+               and  FADD_TOTAL_NUM=#{faddTotalNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="fsubTotalAmount != null  ">
+               and  FSUB_TOTAL_AMOUNT=#{fsubTotalAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fsubTotalNum != null  ">
+               and  FSUB_TOTAL_NUM=#{fsubTotalNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="iorderType != null  ">
+               and  IORDER_TYPE=#{iorderType,jdbcType=NUMERIC}
+           	</if>
+			<if test="iuserType != null  ">
+               and  IUSER_TYPE=#{iuserType,jdbcType=NUMERIC}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+               and  SUSER_ID=#{suserId,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="torderTime != null  ">
+               and  TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from TB_OPERATE_DEVICE_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.tb.OperateDeviceRecord">
+        select
+        <include refid="column_List" />
+        from TB_OPERATE_DEVICE_RECORD
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from TB_OPERATE_DEVICE_RECORD
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from TB_OPERATE_DEVICE_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM TB_OPERATE_DEVICE_RECORD where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.tb.OperateDeviceRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into TB_OPERATE_DEVICE_RECORD (ID,FADD_TOTAL_AMOUNT,FADD_TOTAL_NUM,FSUB_TOTAL_AMOUNT,FSUB_TOTAL_NUM,IORDER_TYPE,IUSER_TYPE,SCODE,SDEVICE_CODE,SDEVICE_ID,SREMARK,SUSER_ID,TADD_TIME,TORDER_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{faddTotalAmount,jdbcType=NUMERIC},#{faddTotalNum,jdbcType=NUMERIC},#{fsubTotalAmount,jdbcType=NUMERIC},#{fsubTotalNum,jdbcType=NUMERIC},#{iorderType,jdbcType=NUMERIC},#{iuserType,jdbcType=NUMERIC},#{scode,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{suserId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{torderTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.tb.OperateDeviceRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into TB_OPERATE_DEVICE_RECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="faddTotalAmount">
+               FADD_TOTAL_AMOUNT,
+           	</if>
+			<if test="faddTotalNum">
+               FADD_TOTAL_NUM,
+           	</if>
+			<if test="fsubTotalAmount">
+               FSUB_TOTAL_AMOUNT,
+           	</if>
+			<if test="fsubTotalNum">
+               FSUB_TOTAL_NUM,
+           	</if>
+			<if test="iorderType">
+               IORDER_TYPE,
+           	</if>
+			<if test="iuserType">
+               IUSER_TYPE,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="suserId">
+               SUSER_ID,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="torderTime">
+               TORDER_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="faddTotalAmount != null  ">
+                #{faddTotalAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="faddTotalNum != null  ">
+                #{faddTotalNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="fsubTotalAmount != null  ">
+                #{fsubTotalAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fsubTotalNum != null  ">
+                #{fsubTotalNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iorderType != null  ">
+                #{iorderType,jdbcType=NUMERIC},
+           	</if>
+			<if test="iuserType != null  ">
+                #{iuserType,jdbcType=NUMERIC},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+                #{suserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="torderTime != null  ">
+                #{torderTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.tb.OperateDeviceRecord">
+        update TB_OPERATE_DEVICE_RECORD
+        <set>
+			<if test="faddTotalAmount != null  ">
+                FADD_TOTAL_AMOUNT=#{faddTotalAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="faddTotalNum != null  ">
+                FADD_TOTAL_NUM=#{faddTotalNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="fsubTotalAmount != null  ">
+                FSUB_TOTAL_AMOUNT=#{fsubTotalAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fsubTotalNum != null  ">
+                FSUB_TOTAL_NUM=#{fsubTotalNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iorderType != null  ">
+                IORDER_TYPE=#{iorderType,jdbcType=NUMERIC},
+           	</if>
+			<if test="iuserType != null  ">
+                IUSER_TYPE=#{iuserType,jdbcType=NUMERIC},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+                SUSER_ID=#{suserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="torderTime != null  ">
+                TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.tb.OperateDeviceRecord">
+        update TB_OPERATE_DEVICE_RECORD
+        set 
+        		FADD_TOTAL_AMOUNT=#{faddTotalAmount,jdbcType=NUMERIC}
+        		,FADD_TOTAL_NUM=#{faddTotalNum,jdbcType=NUMERIC}
+        		,FSUB_TOTAL_AMOUNT=#{fsubTotalAmount,jdbcType=NUMERIC}
+        		,FSUB_TOTAL_NUM=#{fsubTotalNum,jdbcType=NUMERIC}
+        		,IORDER_TYPE=#{iorderType,jdbcType=NUMERIC}
+        		,IUSER_TYPE=#{iuserType,jdbcType=NUMERIC}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUSER_ID=#{suserId,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FADD_TOTAL_AMOUNT=#{faddTotalAmount,jdbcType=NUMERIC}
+	FADD_TOTAL_NUM=#{faddTotalNum,jdbcType=NUMERIC}
+	FSUB_TOTAL_AMOUNT=#{fsubTotalAmount,jdbcType=NUMERIC}
+	FSUB_TOTAL_NUM=#{fsubTotalNum,jdbcType=NUMERIC}
+	IORDER_TYPE=#{iorderType,jdbcType=NUMERIC}
+	IUSER_TYPE=#{iuserType,jdbcType=NUMERIC}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUSER_ID=#{suserId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.wap.hy.dao.ThirdAuthoriseDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.hy.ThirdAuthorise">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITHIRD_TYPE" property="ithirdType" jdbcType="NUMERIC" />
+		<result column="SACCESS_TOKEN" property="saccessToken" jdbcType="VARCHAR" />
+		<result column="SCITY" property="scity" jdbcType="CHAR" />
+		<result column="SIS_CERTIFIED" property="sisCertified" jdbcType="CHAR" />
+		<result column="SIS_STUDENT_CERTIFIED" property="sisStudentCertified" jdbcType="CHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SOPEN_ID" property="sopenId" jdbcType="VARCHAR" />
+		<result column="SOTHER_IMG" property="sotherImg" jdbcType="VARCHAR" />
+		<result column="SOTHER_NICKNAME" property="sotherNickname" jdbcType="VARCHAR" />
+		<result column="SPROVINCE" property="sprovince" jdbcType="CHAR" />
+		<result column="SREFUSE_TOKEN" property="srefuseToken" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="STHIRD_USERID" property="sthirdUserid" jdbcType="VARCHAR" />
+		<result column="SUSER_STATUS" property="suserStatus" jdbcType="CHAR" />
+		<result column="SUSER_TYPE" property="suserType" jdbcType="CHAR" />
+		<result column="TAUTHORISE_TIME" property="tauthoriseTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ISTATUS,ITHIRD_TYPE,SACCESS_TOKEN,SCITY,SIS_CERTIFIED,SIS_STUDENT_CERTIFIED,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPEN_ID,SOTHER_IMG,SOTHER_NICKNAME,SPROVINCE,SREFUSE_TOKEN,SREMARK,STHIRD_USERID,SUSER_STATUS,SUSER_TYPE,TAUTHORISE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="ithirdType != null  ">
+               and  ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC}
+           	</if>
+			<if test="saccessToken != null and  saccessToken != ''  ">
+               and  SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR}
+           	</if>
+			<if test="scity != null and  scity != ''  ">
+               and  SCITY=#{scity,jdbcType=CHAR}
+           	</if>
+			<if test="sisCertified != null and  sisCertified != ''  ">
+               and  SIS_CERTIFIED=#{sisCertified,jdbcType=CHAR}
+           	</if>
+			<if test="sisStudentCertified != null and  sisStudentCertified != ''  ">
+               and  SIS_STUDENT_CERTIFIED=#{sisStudentCertified,jdbcType=CHAR}
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+               and  SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sopenId != null and  sopenId != ''  ">
+               and  SOPEN_ID=#{sopenId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sotherImg != null and  sotherImg != ''  ">
+               and  SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR}
+           	</if>
+			<if test="sotherNickname != null and  sotherNickname != ''  ">
+               and  SOTHER_NICKNAME=#{sotherNickname,jdbcType=VARCHAR}
+           	</if>
+			<if test="sprovince != null and  sprovince != ''  ">
+               and  SPROVINCE=#{sprovince,jdbcType=CHAR}
+           	</if>
+			<if test="srefuseToken != null and  srefuseToken != ''  ">
+               and  SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="sthirdUserid != null and  sthirdUserid != ''  ">
+               and  STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR}
+           	</if>
+			<if test="suserStatus != null and  suserStatus != ''  ">
+               and  SUSER_STATUS=#{suserStatus,jdbcType=CHAR}
+           	</if>
+			<if test="suserType != null and  suserType != ''  ">
+               and  SUSER_TYPE=#{suserType,jdbcType=CHAR}
+           	</if>
+			<if test="tauthoriseTime != null  ">
+               and  TAUTHORISE_TIME=#{tauthoriseTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from HY_THIRD_AUTHORISE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+        select
+        <include refid="column_List" />
+        from HY_THIRD_AUTHORISE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from HY_THIRD_AUTHORISE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from HY_THIRD_AUTHORISE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM HY_THIRD_AUTHORISE where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into HY_THIRD_AUTHORISE (ID,ISTATUS,ITHIRD_TYPE,SACCESS_TOKEN,SCITY,SIS_CERTIFIED,SIS_STUDENT_CERTIFIED,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPEN_ID,SOTHER_IMG,SOTHER_NICKNAME,SPROVINCE,SREFUSE_TOKEN,SREMARK,STHIRD_USERID,SUSER_STATUS,SUSER_TYPE,TAUTHORISE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{istatus,jdbcType=NUMERIC},#{ithirdType,jdbcType=NUMERIC},#{saccessToken,jdbcType=VARCHAR},#{scity,jdbcType=CHAR},#{sisCertified,jdbcType=CHAR},#{sisStudentCertified,jdbcType=CHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{sopenId,jdbcType=VARCHAR},#{sotherImg,jdbcType=VARCHAR},#{sotherNickname,jdbcType=VARCHAR},#{sprovince,jdbcType=CHAR},#{srefuseToken,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{sthirdUserid,jdbcType=VARCHAR},#{suserStatus,jdbcType=CHAR},#{suserType,jdbcType=CHAR},#{tauthoriseTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into HY_THIRD_AUTHORISE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="ithirdType">
+               ITHIRD_TYPE,
+           	</if>
+			<if test="saccessToken">
+               SACCESS_TOKEN,
+           	</if>
+			<if test="scity">
+               SCITY,
+           	</if>
+			<if test="sisCertified">
+               SIS_CERTIFIED,
+           	</if>
+			<if test="sisStudentCertified">
+               SIS_STUDENT_CERTIFIED,
+           	</if>
+			<if test="smemberCode">
+               SMEMBER_CODE,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="sopenId">
+               SOPEN_ID,
+           	</if>
+			<if test="sotherImg">
+               SOTHER_IMG,
+           	</if>
+			<if test="sotherNickname">
+               SOTHER_NICKNAME,
+           	</if>
+			<if test="sprovince">
+               SPROVINCE,
+           	</if>
+			<if test="srefuseToken">
+               SREFUSE_TOKEN,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="sthirdUserid">
+               STHIRD_USERID,
+           	</if>
+			<if test="suserStatus">
+               SUSER_STATUS,
+           	</if>
+			<if test="suserType">
+               SUSER_TYPE,
+           	</if>
+			<if test="tauthoriseTime">
+               TAUTHORISE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="ithirdType != null  ">
+                #{ithirdType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saccessToken != null and  saccessToken != ''  ">
+                #{saccessToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="scity != null and  scity != ''  ">
+                #{scity,jdbcType=CHAR},
+           	</if>
+			<if test="sisCertified != null and  sisCertified != ''  ">
+                #{sisCertified,jdbcType=CHAR},
+           	</if>
+			<if test="sisStudentCertified != null and  sisStudentCertified != ''  ">
+                #{sisStudentCertified,jdbcType=CHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenId != null and  sopenId != ''  ">
+                #{sopenId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherImg != null and  sotherImg != ''  ">
+                #{sotherImg,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherNickname != null and  sotherNickname != ''  ">
+                #{sotherNickname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sprovince != null and  sprovince != ''  ">
+                #{sprovince,jdbcType=CHAR},
+           	</if>
+			<if test="srefuseToken != null and  srefuseToken != ''  ">
+                #{srefuseToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sthirdUserid != null and  sthirdUserid != ''  ">
+                #{sthirdUserid,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserStatus != null and  suserStatus != ''  ">
+                #{suserStatus,jdbcType=CHAR},
+           	</if>
+			<if test="suserType != null and  suserType != ''  ">
+                #{suserType,jdbcType=CHAR},
+           	</if>
+			<if test="tauthoriseTime != null  ">
+                #{tauthoriseTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+        update HY_THIRD_AUTHORISE
+        <set>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="ithirdType != null  ">
+                ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saccessToken != null and  saccessToken != ''  ">
+                SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="scity != null and  scity != ''  ">
+                SCITY=#{scity,jdbcType=CHAR},
+           	</if>
+			<if test="sisCertified != null and  sisCertified != ''  ">
+                SIS_CERTIFIED=#{sisCertified,jdbcType=CHAR},
+           	</if>
+			<if test="sisStudentCertified != null and  sisStudentCertified != ''  ">
+                SIS_STUDENT_CERTIFIED=#{sisStudentCertified,jdbcType=CHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenId != null and  sopenId != ''  ">
+                SOPEN_ID=#{sopenId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherImg != null and  sotherImg != ''  ">
+                SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherNickname != null and  sotherNickname != ''  ">
+                SOTHER_NICKNAME=#{sotherNickname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sprovince != null and  sprovince != ''  ">
+                SPROVINCE=#{sprovince,jdbcType=CHAR},
+           	</if>
+			<if test="srefuseToken != null and  srefuseToken != ''  ">
+                SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sthirdUserid != null and  sthirdUserid != ''  ">
+                STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserStatus != null and  suserStatus != ''  ">
+                SUSER_STATUS=#{suserStatus,jdbcType=CHAR},
+           	</if>
+			<if test="suserType != null and  suserType != ''  ">
+                SUSER_TYPE=#{suserType,jdbcType=CHAR},
+           	</if>
+			<if test="tauthoriseTime != null  ">
+                TAUTHORISE_TIME=#{tauthoriseTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+        update HY_THIRD_AUTHORISE
+        set 
+        		ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC}
+        		,SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR}
+        		,SCITY=#{scity,jdbcType=CHAR}
+        		,SIS_CERTIFIED=#{sisCertified,jdbcType=CHAR}
+        		,SIS_STUDENT_CERTIFIED=#{sisStudentCertified,jdbcType=CHAR}
+        		,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SOPEN_ID=#{sopenId,jdbcType=VARCHAR}
+        		,SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR}
+        		,SOTHER_NICKNAME=#{sotherNickname,jdbcType=VARCHAR}
+        		,SPROVINCE=#{sprovince,jdbcType=CHAR}
+        		,SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR}
+        		,SUSER_STATUS=#{suserStatus,jdbcType=CHAR}
+        		,SUSER_TYPE=#{suserType,jdbcType=CHAR}
+        		,TAUTHORISE_TIME=#{tauthoriseTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+	<select id="selectThirdAuthoriseByOpenId" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from hy_third_authorise
+		where sopen_id = #{openId,jdbcType=VARCHAR} and ithird_type=#{itype,jdbcType=NUMERIC}
+	</select>
+	<select id="selectThirdAuthoriseByMemberId" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from hy_third_authorise
+		where SMEMBER_ID = #{memberId,jdbcType=VARCHAR} and ithird_type=#{itype,jdbcType=NUMERIC}
+	</select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC}
+	SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR}
+	SCITY=#{scity,jdbcType=CHAR}
+	SIS_CERTIFIED=#{sisCertified,jdbcType=CHAR}
+	SIS_STUDENT_CERTIFIED=#{sisStudentCertified,jdbcType=CHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SOPEN_ID=#{sopenId,jdbcType=VARCHAR}
+	SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR}
+	SOTHER_NICKNAME=#{sotherNickname,jdbcType=VARCHAR}
+	SPROVINCE=#{sprovince,jdbcType=CHAR}
+	SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR}
+	SUSER_STATUS=#{suserStatus,jdbcType=CHAR}
+	SUSER_TYPE=#{suserType,jdbcType=CHAR}
+	TAUTHORISE_TIME=#{tauthoriseTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

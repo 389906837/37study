@@ -1,0 +1,47 @@
+@charset "utf-8";
+body{font-size:12px;font-family:"微软雅黑";padding:0;margin:0;}
+h1,h2,h3,h4,h5,h6,p,ul,li,img,table,td,tr,button,form,input,a,dl,dt,form{margin:0;padding:0}
+ul{list-style:none}
+a{text-decoration:none}
+a {outline: none;}
+a:active {star:expression(this.onFocus=this.blur());}
+a:focus { outline:0; }
+img{border:0;margin:0;padding:0}
+.clear{clear:both}
+i,em{font-style:normal}
+.wd{width:1170px;margin:auto;}
+input{font-family:"微软雅黑";}
+input,button,select,textarea{outline:none;font-family:"微软雅黑";vertical-align:middle}
+.wfcontainer{background:url(../images/loginbg.jpg) no-repeat center top;width:100%;min-height:900px;padding-top:80px}
+.wrap-content{width:740px;margin:auto}
+.wrap-content h2{color:#ffffff;font-size:50px;padding-bottom:55px;padding-top:55px;}
+.register-main{}
+.register-main{width:462px;height:441px;background:#fff;border-radius:5px;}
+.register-maintitle{height:45px;border-bottom:1px solid #ebebeb;margin:0 15px;text-align:center;position:relative;}
+.register-maintitle span{color:#4e4e4e;font-size:22px;padding:0 15px;background:#fff;position:absolute;bottom:-15px;left:157px;}
+.loginul{margin:auto;margin-top:38px;width:300px;}
+.loginul ul li{height:38px;line-height:38px;border:1px solid #e3e3e3;width:263px;padding-left:35px;position:relative;}
+.form-group{width:70%;margin:auto;margin-bottom:15px;position:relative}
+.form-group input{width:100%;height:38px;}
+.form-group img{position:absolute;right:0;top:0;height:38px;}
+.loginul ul li.error{height:16px;line-height:16px;border:none;}
+.loginul ul li label{color:#cbcbcb;font-size:16px;position:absolute;left:42px;top:0;}
+.loginul ul li s{display:block;background:url(../images/inputbg.png) no-repeat;width:20px;height:20px;left:12px;position:absolute;}
+.loginul ul li s.name{top:9px;}
+.loginul ul li s.password{top:9px;width:17px;height:19px;background-position:0 -58px;}
+.loginul ul li s.yzm{top:11px;width:21px;height:15px;background-position:0 -115px;}
+.loginul ul li s.dxm{top:12px;width:20px;height:14px;background-position:0 -171px;}
+.loginul ul li img{border:1px solid #e3e3e3;height:38px;position:absolute;right:-120px;top:0;width:108px;}
+.loginul ul li span{position:absolute;right:-120px;top:0;width:110px;background:#eeaa06;color:#fff;text-align:center;font-size:14px;cursor:pointer}
+.loginul ul li span.wfpassword-huoqu1{background:#bababa}
+.loginsubmit{width:300px;height:46px;line-height:46px;border-radius:25px;background:#2186de !important;border:none;color:#fffefe;font-size:20px;cursor:pointer;padding:0;margin:auto;margin-top:35px}
+a.loginsubmit:hover{background:#2186de;}
+.register-main p{width:300px;text-align:right;margin:auto;color:#9a9a9a;font-size:14px;padding-top:13px;}
+.loginul ul li.hover{border:1px solid #2186de;}
+.loginul ul li s.name1{background-position: -34px 0}
+.loginul ul li s.password1{background-position: -34px -58px;}
+.loginul ul li s.yzm1{background-position: -34px -115px;}
+.loginul ul li s.dxm1{background-position: -34px -171px;}
+
+
+

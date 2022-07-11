@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.wap.hy.dao.FreeDataDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.hy.FreeData">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="SAGREEMENT_NO" property="sagreementNo" jdbcType="VARCHAR" />
+		<result column="SALIPAY_LOGON_ID" property="salipayLogonId" jdbcType="VARCHAR" />
+		<result column="SALIPAY_USER_ID" property="salipayUserId" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SEXTERNAL_AGREEMENT_NO" property="sexternalAgreementNo" jdbcType="VARCHAR" />
+		<result column="SEXTERNAL_LOGON_ID" property="sexternalLogonId" jdbcType="VARCHAR" />
+		<result column="SFOREX_ELIGIBLE" property="sforexEligible" jdbcType="VARCHAR" />
+		<result column="SLOGIN_TOKEN" property="sloginToken" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NO" property="smemberNo" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SNOTIFY_TYPE" property="snotifyType" jdbcType="VARCHAR" />
+		<result column="SPAY_SERIAL_NUMBER" property="spaySerialNumber" jdbcType="VARCHAR" />
+		<result column="SPRODUCT_CODE" property="sproductCode" jdbcType="VARCHAR" />
+		<result column="SSIGN_SCENE" property="ssignScene" jdbcType="VARCHAR" />
+		<result column="SSTATUS" property="sstatus" jdbcType="VARCHAR" />
+		<result column="SZM_OPEN_ID" property="szmOpenId" jdbcType="VARCHAR" />
+		<result column="SZM_SCORE" property="szmScore" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TINVALID_TIME" property="tinvalidTime" jdbcType="TIMESTAMP" />
+		<result column="TSIGN_TIME" property="tsignTime" jdbcType="TIMESTAMP" />
+		<result column="TUNSIGN_TIME" property="tunsignTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+		<result column="TVALID_TIME" property="tvalidTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,SAGREEMENT_NO,SALIPAY_LOGON_ID,SALIPAY_USER_ID,SDEVICE_ID,SEXTERNAL_AGREEMENT_NO,SEXTERNAL_LOGON_ID,SFOREX_ELIGIBLE,SLOGIN_TOKEN,SMEMBER_ID,SMEMBER_NAME,SMEMBER_NO,SMERCHANT_CODE,SMERCHANT_ID,SNOTIFY_TYPE,SPAY_SERIAL_NUMBER,SPRODUCT_CODE,SSIGN_SCENE,SSTATUS,SZM_OPEN_ID,SZM_SCORE,TADD_TIME,TINVALID_TIME,TSIGN_TIME,TUNSIGN_TIME,TUPDATE_TIME,TVALID_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="sagreementNo != null and  sagreementNo != ''  ">
+               and  SAGREEMENT_NO=#{sagreementNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="salipayLogonId != null and  salipayLogonId != ''  ">
+               and  SALIPAY_LOGON_ID=#{salipayLogonId,jdbcType=VARCHAR}
+           	</if>
+			<if test="salipayUserId != null and  salipayUserId != ''  ">
+               and  SALIPAY_USER_ID=#{salipayUserId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sexternalAgreementNo != null and  sexternalAgreementNo != ''  ">
+               and  SEXTERNAL_AGREEMENT_NO=#{sexternalAgreementNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="sexternalLogonId != null and  sexternalLogonId != ''  ">
+               and  SEXTERNAL_LOGON_ID=#{sexternalLogonId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sforexEligible != null and  sforexEligible != ''  ">
+               and  SFOREX_ELIGIBLE=#{sforexEligible,jdbcType=VARCHAR}
+           	</if>
+			<if test="sloginToken != null and  sloginToken != ''  ">
+               and  SLOGIN_TOKEN=#{sloginToken,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+               and  SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="snotifyType != null and  snotifyType != ''  ">
+               and  SNOTIFY_TYPE=#{snotifyType,jdbcType=VARCHAR}
+           	</if>
+			<if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+               and  SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+           	</if>
+			<if test="sproductCode != null and  sproductCode != ''  ">
+               and  SPRODUCT_CODE=#{sproductCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssignScene != null and  ssignScene != ''  ">
+               and  SSIGN_SCENE=#{ssignScene,jdbcType=VARCHAR}
+           	</if>
+			<if test="sstatus != null and  sstatus != ''  ">
+               and  SSTATUS=#{sstatus,jdbcType=VARCHAR}
+           	</if>
+			<if test="szmOpenId != null and  szmOpenId != ''  ">
+               and  SZM_OPEN_ID=#{szmOpenId,jdbcType=VARCHAR}
+           	</if>
+			<if test="szmScore != null and  szmScore != ''  ">
+               and  SZM_SCORE=#{szmScore,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tinvalidTime != null  ">
+               and  TINVALID_TIME=#{tinvalidTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tsignTime != null  ">
+               and  TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tunsignTime != null  ">
+               and  TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tvalidTime != null  ">
+               and  TVALID_TIME=#{tvalidTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from HY_FREE_DATA
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.FreeData">
+        select
+        <include refid="column_List" />
+        from HY_FREE_DATA
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from HY_FREE_DATA
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from HY_FREE_DATA
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM HY_FREE_DATA where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.hy.FreeData">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into HY_FREE_DATA (ID,SAGREEMENT_NO,SALIPAY_LOGON_ID,SALIPAY_USER_ID,SDEVICE_ID,SEXTERNAL_AGREEMENT_NO,SEXTERNAL_LOGON_ID,SFOREX_ELIGIBLE,SLOGIN_TOKEN,SMEMBER_ID,SMEMBER_NAME,SMEMBER_NO,SMERCHANT_CODE,SMERCHANT_ID,SNOTIFY_TYPE,SPAY_SERIAL_NUMBER,SPRODUCT_CODE,SSIGN_SCENE,SSTATUS,SZM_OPEN_ID,SZM_SCORE,TADD_TIME,TINVALID_TIME,TSIGN_TIME,TUNSIGN_TIME,TUPDATE_TIME,TVALID_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{sagreementNo,jdbcType=VARCHAR},#{salipayLogonId,jdbcType=VARCHAR},#{salipayUserId,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{sexternalAgreementNo,jdbcType=VARCHAR},#{sexternalLogonId,jdbcType=VARCHAR},#{sforexEligible,jdbcType=VARCHAR},#{sloginToken,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{smemberNo,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{snotifyType,jdbcType=VARCHAR},#{spaySerialNumber,jdbcType=VARCHAR},#{sproductCode,jdbcType=VARCHAR},#{ssignScene,jdbcType=VARCHAR},#{sstatus,jdbcType=VARCHAR},#{szmOpenId,jdbcType=VARCHAR},#{szmScore,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tinvalidTime,jdbcType=TIMESTAMP},#{tsignTime,jdbcType=TIMESTAMP},#{tunsignTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP},#{tvalidTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.hy.FreeData">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into HY_FREE_DATA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="sagreementNo">
+               SAGREEMENT_NO,
+           	</if>
+			<if test="salipayLogonId">
+               SALIPAY_LOGON_ID,
+           	</if>
+			<if test="salipayUserId">
+               SALIPAY_USER_ID,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="sexternalAgreementNo">
+               SEXTERNAL_AGREEMENT_NO,
+           	</if>
+			<if test="sexternalLogonId">
+               SEXTERNAL_LOGON_ID,
+           	</if>
+			<if test="sforexEligible">
+               SFOREX_ELIGIBLE,
+           	</if>
+			<if test="sloginToken">
+               SLOGIN_TOKEN,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="smemberNo">
+               SMEMBER_NO,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="snotifyType">
+               SNOTIFY_TYPE,
+           	</if>
+			<if test="spaySerialNumber">
+               SPAY_SERIAL_NUMBER,
+           	</if>
+			<if test="sproductCode">
+               SPRODUCT_CODE,
+           	</if>
+			<if test="ssignScene">
+               SSIGN_SCENE,
+           	</if>
+			<if test="sstatus">
+               SSTATUS,
+           	</if>
+			<if test="szmOpenId">
+               SZM_OPEN_ID,
+           	</if>
+			<if test="szmScore">
+               SZM_SCORE,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tinvalidTime">
+               TINVALID_TIME,
+           	</if>
+			<if test="tsignTime">
+               TSIGN_TIME,
+           	</if>
+			<if test="tunsignTime">
+               TUNSIGN_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+			<if test="tvalidTime">
+               TVALID_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="sagreementNo != null and  sagreementNo != ''  ">
+                #{sagreementNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="salipayLogonId != null and  salipayLogonId != ''  ">
+                #{salipayLogonId,jdbcType=VARCHAR},
+           	</if>
+			<if test="salipayUserId != null and  salipayUserId != ''  ">
+                #{salipayUserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sexternalAgreementNo != null and  sexternalAgreementNo != ''  ">
+                #{sexternalAgreementNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sexternalLogonId != null and  sexternalLogonId != ''  ">
+                #{sexternalLogonId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sforexEligible != null and  sforexEligible != ''  ">
+                #{sforexEligible,jdbcType=VARCHAR},
+           	</if>
+			<if test="sloginToken != null and  sloginToken != ''  ">
+                #{sloginToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+                #{smemberNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="snotifyType != null and  snotifyType != ''  ">
+                #{snotifyType,jdbcType=VARCHAR},
+           	</if>
+			<if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                #{spaySerialNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproductCode != null and  sproductCode != ''  ">
+                #{sproductCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssignScene != null and  ssignScene != ''  ">
+                #{ssignScene,jdbcType=VARCHAR},
+           	</if>
+			<if test="sstatus != null and  sstatus != ''  ">
+                #{sstatus,jdbcType=VARCHAR},
+           	</if>
+			<if test="szmOpenId != null and  szmOpenId != ''  ">
+                #{szmOpenId,jdbcType=VARCHAR},
+           	</if>
+			<if test="szmScore != null and  szmScore != ''  ">
+                #{szmScore,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tinvalidTime != null  ">
+                #{tinvalidTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tsignTime != null  ">
+                #{tsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tunsignTime != null  ">
+                #{tunsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tvalidTime != null  ">
+                #{tvalidTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.hy.FreeData">
+        update HY_FREE_DATA
+        <set>
+			<if test="sagreementNo != null and  sagreementNo != ''  ">
+                SAGREEMENT_NO=#{sagreementNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="salipayLogonId != null and  salipayLogonId != ''  ">
+                SALIPAY_LOGON_ID=#{salipayLogonId,jdbcType=VARCHAR},
+           	</if>
+			<if test="salipayUserId != null and  salipayUserId != ''  ">
+                SALIPAY_USER_ID=#{salipayUserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sexternalAgreementNo != null and  sexternalAgreementNo != ''  ">
+                SEXTERNAL_AGREEMENT_NO=#{sexternalAgreementNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sexternalLogonId != null and  sexternalLogonId != ''  ">
+                SEXTERNAL_LOGON_ID=#{sexternalLogonId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sforexEligible != null and  sforexEligible != ''  ">
+                SFOREX_ELIGIBLE=#{sforexEligible,jdbcType=VARCHAR},
+           	</if>
+			<if test="sloginToken != null and  sloginToken != ''  ">
+                SLOGIN_TOKEN=#{sloginToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+                SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="snotifyType != null and  snotifyType != ''  ">
+                SNOTIFY_TYPE=#{snotifyType,jdbcType=VARCHAR},
+           	</if>
+			<if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproductCode != null and  sproductCode != ''  ">
+                SPRODUCT_CODE=#{sproductCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssignScene != null and  ssignScene != ''  ">
+                SSIGN_SCENE=#{ssignScene,jdbcType=VARCHAR},
+           	</if>
+			<if test="sstatus != null and  sstatus != ''  ">
+                SSTATUS=#{sstatus,jdbcType=VARCHAR},
+           	</if>
+			<if test="szmOpenId != null and  szmOpenId != ''  ">
+                SZM_OPEN_ID=#{szmOpenId,jdbcType=VARCHAR},
+           	</if>
+			<if test="szmScore != null and  szmScore != ''  ">
+                SZM_SCORE=#{szmScore,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tinvalidTime != null  ">
+                TINVALID_TIME=#{tinvalidTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tsignTime != null  ">
+                TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tunsignTime != null  ">
+                TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tvalidTime != null  ">
+                TVALID_TIME=#{tvalidTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.hy.FreeData">
+        update HY_FREE_DATA
+        set 
+        		SAGREEMENT_NO=#{sagreementNo,jdbcType=VARCHAR}
+        		,SALIPAY_LOGON_ID=#{salipayLogonId,jdbcType=VARCHAR}
+        		,SALIPAY_USER_ID=#{salipayUserId,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SEXTERNAL_AGREEMENT_NO=#{sexternalAgreementNo,jdbcType=VARCHAR}
+        		,SEXTERNAL_LOGON_ID=#{sexternalLogonId,jdbcType=VARCHAR}
+        		,SFOREX_ELIGIBLE=#{sforexEligible,jdbcType=VARCHAR}
+        		,SLOGIN_TOKEN=#{sloginToken,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SNOTIFY_TYPE=#{snotifyType,jdbcType=VARCHAR}
+        		,SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+        		,SPRODUCT_CODE=#{sproductCode,jdbcType=VARCHAR}
+        		,SSIGN_SCENE=#{ssignScene,jdbcType=VARCHAR}
+        		,SSTATUS=#{sstatus,jdbcType=VARCHAR}
+        		,SZM_OPEN_ID=#{szmOpenId,jdbcType=VARCHAR}
+        		,SZM_SCORE=#{szmScore,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TINVALID_TIME=#{tinvalidTime,jdbcType=TIMESTAMP}
+        		,TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP}
+        		,TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        		,TVALID_TIME=#{tvalidTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+	<select id="selectByMemberId" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from hy_free_data
+		where smember_id = #{memberId,jdbcType=VARCHAR}
+		<if test="merchantCode != null and  merchantCode != ''  ">
+			and smerchant_code = #{merchantCode,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="selectByExternalAgreementNo" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from hy_free_data
+		where sexternal_agreement_no = #{externalAgreementNo,jdbcType=VARCHAR}
+		<if test="merchantCode != null and  merchantCode != ''  ">
+			and smerchant_code = #{merchantCode,jdbcType=VARCHAR}
+		</if>
+	</select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SAGREEMENT_NO=#{sagreementNo,jdbcType=VARCHAR}
+	SALIPAY_LOGON_ID=#{salipayLogonId,jdbcType=VARCHAR}
+	SALIPAY_USER_ID=#{salipayUserId,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SEXTERNAL_AGREEMENT_NO=#{sexternalAgreementNo,jdbcType=VARCHAR}
+	SEXTERNAL_LOGON_ID=#{sexternalLogonId,jdbcType=VARCHAR}
+	SFOREX_ELIGIBLE=#{sforexEligible,jdbcType=VARCHAR}
+	SLOGIN_TOKEN=#{sloginToken,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SNOTIFY_TYPE=#{snotifyType,jdbcType=VARCHAR}
+	SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+	SPRODUCT_CODE=#{sproductCode,jdbcType=VARCHAR}
+	SSIGN_SCENE=#{ssignScene,jdbcType=VARCHAR}
+	SSTATUS=#{sstatus,jdbcType=VARCHAR}
+	SZM_OPEN_ID=#{szmOpenId,jdbcType=VARCHAR}
+	SZM_SCORE=#{szmScore,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TINVALID_TIME=#{tinvalidTime,jdbcType=TIMESTAMP}
+	TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP}
+	TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+	TVALID_TIME=#{tvalidTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

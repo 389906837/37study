@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.tec.monitor.dao.MonitorDao">
+   
+   
+  
+    <select id="executeSql" resultType="java.util.Map" parameterType="java.lang.String">
+        ${executeSql}
+    </select>
+    <select id="queryCountBySql" resultType="java.lang.Integer" parameterType="java.lang.String">
+        ${executeSql}
+    </select>
+     <select id="queryAmountBySql" resultType="java.math.BigDecimal" parameterType="java.lang.String">
+        ${executeSql}
+    </select>
+</mapper>

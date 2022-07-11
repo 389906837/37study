@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.bzc.sh.dao.MerchantClientConfDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sh.MerchantClientConf">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IIS_CONF_ALIPAY" property="iisConfAlipay" jdbcType="NUMERIC" />
+		<result column="IIS_CONF_ALIPAY_SHH" property="iisConfAlipayShh" jdbcType="NUMERIC" />
+		<result column="IIS_CONF_WECHAT" property="iisConfWechat" jdbcType="NUMERIC" />
+		<result column="IIS_CONF_WECHAT_GZH" property="iisConfWechatGzh" jdbcType="NUMERIC" />
+		<result column="ISUPPORT_PAY_WAY" property="isupportPayWay" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SCOLOR" property="scolor" jdbcType="VARCHAR" />
+		<result column="SCONTACT_MOBILE" property="scontactMobile" jdbcType="VARCHAR" />
+		<result column="SINDEX_BGURL" property="sindexBgurl" jdbcType="VARCHAR" />
+		<result column="SINDEX_HINT" property="sindexHint" jdbcType="VARCHAR" />
+		<result column="SLOGIN_LOGO" property="sloginLogo" jdbcType="VARCHAR" />
+		<result column="SLOGO" property="slogo" jdbcType="VARCHAR" />
+		<result column="SSHORT_NAME" property="sshortName" jdbcType="VARCHAR" />
+		<result column="SSUCCESS_BGURL" property="ssuccessBgurl" jdbcType="VARCHAR" />
+		<result column="SSUCCESS_HINT" property="ssuccessHint" jdbcType="VARCHAR" />
+		<result column="STITLE" property="stitle" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IDEL_FLAG,IIS_CONF_ALIPAY,IIS_CONF_ALIPAY_SHH,IIS_CONF_WECHAT,IIS_CONF_WECHAT_GZH,ISUPPORT_PAY_WAY,SADD_USER,SCODE,SCOLOR,SCONTACT_MOBILE,SINDEX_BGURL,SINDEX_HINT,SLOGIN_LOGO,SLOGO,SSHORT_NAME,SSUCCESS_BGURL,SSUCCESS_HINT,STITLE,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisConfAlipay != null  ">
+               and  IIS_CONF_ALIPAY=#{iisConfAlipay,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisConfAlipayShh != null  ">
+               and  IIS_CONF_ALIPAY_SHH=#{iisConfAlipayShh,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisConfWechat != null  ">
+               and  IIS_CONF_WECHAT=#{iisConfWechat,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisConfWechatGzh != null  ">
+               and  IIS_CONF_WECHAT_GZH=#{iisConfWechatGzh,jdbcType=NUMERIC}
+           	</if>
+			<if test="isupportPayWay != null  ">
+               and  ISUPPORT_PAY_WAY=#{isupportPayWay,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scolor != null and  scolor != ''  ">
+               and  SCOLOR=#{scolor,jdbcType=VARCHAR}
+           	</if>
+			<if test="scontactMobile != null and  scontactMobile != ''  ">
+               and  SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR}
+           	</if>
+			<if test="sindexBgurl != null and  sindexBgurl != ''  ">
+               and  SINDEX_BGURL=#{sindexBgurl,jdbcType=VARCHAR}
+           	</if>
+			<if test="sindexHint != null and  sindexHint != ''  ">
+               and  SINDEX_HINT=#{sindexHint,jdbcType=VARCHAR}
+           	</if>
+			<if test="sloginLogo != null and  sloginLogo != ''  ">
+               and  SLOGIN_LOGO=#{sloginLogo,jdbcType=VARCHAR}
+           	</if>
+			<if test="slogo != null and  slogo != ''  ">
+               and  SLOGO=#{slogo,jdbcType=VARCHAR}
+           	</if>
+			<if test="sshortName != null and  sshortName != ''  ">
+               and  SSHORT_NAME=#{sshortName,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssuccessBgurl != null and  ssuccessBgurl != ''  ">
+               and  SSUCCESS_BGURL=#{ssuccessBgurl,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssuccessHint != null and  ssuccessHint != ''  ">
+               and  SSUCCESS_HINT=#{ssuccessHint,jdbcType=VARCHAR}
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+               and  STITLE=#{stitle,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SH_MERCHANT_CLIENT_CONF
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sh.MerchantClientConf">
+        select
+        <include refid="column_List" />
+        from SH_MERCHANT_CLIENT_CONF
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SH_MERCHANT_CLIENT_CONF
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SH_MERCHANT_CLIENT_CONF
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SH_MERCHANT_CLIENT_CONF where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sh.MerchantClientConf">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SH_MERCHANT_CLIENT_CONF (ID,IDEL_FLAG,IIS_CONF_ALIPAY,IIS_CONF_ALIPAY_SHH,IIS_CONF_WECHAT,IIS_CONF_WECHAT_GZH,ISUPPORT_PAY_WAY,SADD_USER,SCODE,SCOLOR,SCONTACT_MOBILE,SINDEX_BGURL,SINDEX_HINT,SLOGIN_LOGO,SLOGO,SSHORT_NAME,SSUCCESS_BGURL,SSUCCESS_HINT,STITLE,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{iisConfAlipay,jdbcType=NUMERIC},#{iisConfAlipayShh,jdbcType=NUMERIC},#{iisConfWechat,jdbcType=NUMERIC},#{iisConfWechatGzh,jdbcType=NUMERIC},#{isupportPayWay,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{scolor,jdbcType=VARCHAR},#{scontactMobile,jdbcType=VARCHAR},#{sindexBgurl,jdbcType=VARCHAR},#{sindexHint,jdbcType=VARCHAR},#{sloginLogo,jdbcType=VARCHAR},#{slogo,jdbcType=VARCHAR},#{sshortName,jdbcType=VARCHAR},#{ssuccessBgurl,jdbcType=VARCHAR},#{ssuccessHint,jdbcType=VARCHAR},#{stitle,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sh.MerchantClientConf">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SH_MERCHANT_CLIENT_CONF
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="iisConfAlipay">
+               IIS_CONF_ALIPAY,
+           	</if>
+			<if test="iisConfAlipayShh">
+               IIS_CONF_ALIPAY_SHH,
+           	</if>
+			<if test="iisConfWechat">
+               IIS_CONF_WECHAT,
+           	</if>
+			<if test="iisConfWechatGzh">
+               IIS_CONF_WECHAT_GZH,
+           	</if>
+			<if test="isupportPayWay">
+               ISUPPORT_PAY_WAY,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="scolor">
+               SCOLOR,
+           	</if>
+			<if test="scontactMobile">
+               SCONTACT_MOBILE,
+           	</if>
+			<if test="sindexBgurl">
+               SINDEX_BGURL,
+           	</if>
+			<if test="sindexHint">
+               SINDEX_HINT,
+           	</if>
+			<if test="sloginLogo">
+               SLOGIN_LOGO,
+           	</if>
+			<if test="slogo">
+               SLOGO,
+           	</if>
+			<if test="sshortName">
+               SSHORT_NAME,
+           	</if>
+			<if test="ssuccessBgurl">
+               SSUCCESS_BGURL,
+           	</if>
+			<if test="ssuccessHint">
+               SSUCCESS_HINT,
+           	</if>
+			<if test="stitle">
+               STITLE,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfAlipay != null  ">
+                #{iisConfAlipay,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfAlipayShh != null  ">
+                #{iisConfAlipayShh,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfWechat != null  ">
+                #{iisConfWechat,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfWechatGzh != null  ">
+                #{iisConfWechatGzh,jdbcType=NUMERIC},
+           	</if>
+			<if test="isupportPayWay != null  ">
+                #{isupportPayWay,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scolor != null and  scolor != ''  ">
+                #{scolor,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontactMobile != null and  scontactMobile != ''  ">
+                #{scontactMobile,jdbcType=VARCHAR},
+           	</if>
+			<if test="sindexBgurl != null and  sindexBgurl != ''  ">
+                #{sindexBgurl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sindexHint != null and  sindexHint != ''  ">
+                #{sindexHint,jdbcType=VARCHAR},
+           	</if>
+			<if test="sloginLogo != null and  sloginLogo != ''  ">
+                #{sloginLogo,jdbcType=VARCHAR},
+           	</if>
+			<if test="slogo != null and  slogo != ''  ">
+                #{slogo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sshortName != null and  sshortName != ''  ">
+                #{sshortName,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssuccessBgurl != null and  ssuccessBgurl != ''  ">
+                #{ssuccessBgurl,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssuccessHint != null and  ssuccessHint != ''  ">
+                #{ssuccessHint,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                #{stitle,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sh.MerchantClientConf">
+        update SH_MERCHANT_CLIENT_CONF
+        <set>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfAlipay != null  ">
+                IIS_CONF_ALIPAY=#{iisConfAlipay,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfAlipayShh != null  ">
+                IIS_CONF_ALIPAY_SHH=#{iisConfAlipayShh,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfWechat != null  ">
+                IIS_CONF_WECHAT=#{iisConfWechat,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisConfWechatGzh != null  ">
+                IIS_CONF_WECHAT_GZH=#{iisConfWechatGzh,jdbcType=NUMERIC},
+           	</if>
+			<if test="isupportPayWay != null  ">
+                ISUPPORT_PAY_WAY=#{isupportPayWay,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scolor != null and  scolor != ''  ">
+                SCOLOR=#{scolor,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontactMobile != null and  scontactMobile != ''  ">
+                SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR},
+           	</if>
+			<if test="sindexBgurl != null and  sindexBgurl != ''  ">
+                SINDEX_BGURL=#{sindexBgurl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sindexHint != null and  sindexHint != ''  ">
+                SINDEX_HINT=#{sindexHint,jdbcType=VARCHAR},
+           	</if>
+			<if test="sloginLogo != null and  sloginLogo != ''  ">
+                SLOGIN_LOGO=#{sloginLogo,jdbcType=VARCHAR},
+           	</if>
+			<if test="slogo != null and  slogo != ''  ">
+                SLOGO=#{slogo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sshortName != null and  sshortName != ''  ">
+                SSHORT_NAME=#{sshortName,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssuccessBgurl != null and  ssuccessBgurl != ''  ">
+                SSUCCESS_BGURL=#{ssuccessBgurl,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssuccessHint != null and  ssuccessHint != ''  ">
+                SSUCCESS_HINT=#{ssuccessHint,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                STITLE=#{stitle,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sh.MerchantClientConf">
+        update SH_MERCHANT_CLIENT_CONF
+        set 
+        		IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IIS_CONF_ALIPAY=#{iisConfAlipay,jdbcType=NUMERIC}
+        		,IIS_CONF_ALIPAY_SHH=#{iisConfAlipayShh,jdbcType=NUMERIC}
+        		,IIS_CONF_WECHAT=#{iisConfWechat,jdbcType=NUMERIC}
+        		,IIS_CONF_WECHAT_GZH=#{iisConfWechatGzh,jdbcType=NUMERIC}
+        		,ISUPPORT_PAY_WAY=#{isupportPayWay,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SCOLOR=#{scolor,jdbcType=VARCHAR}
+        		,SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR}
+        		,SINDEX_BGURL=#{sindexBgurl,jdbcType=VARCHAR}
+        		,SINDEX_HINT=#{sindexHint,jdbcType=VARCHAR}
+        		,SLOGIN_LOGO=#{sloginLogo,jdbcType=VARCHAR}
+        		,SLOGO=#{slogo,jdbcType=VARCHAR}
+        		,SSHORT_NAME=#{sshortName,jdbcType=VARCHAR}
+        		,SSUCCESS_BGURL=#{ssuccessBgurl,jdbcType=VARCHAR}
+        		,SSUCCESS_HINT=#{ssuccessHint,jdbcType=VARCHAR}
+        		,STITLE=#{stitle,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_CONF_ALIPAY=#{iisConfAlipay,jdbcType=NUMERIC}
+	IIS_CONF_ALIPAY_SHH=#{iisConfAlipayShh,jdbcType=NUMERIC}
+	IIS_CONF_WECHAT=#{iisConfWechat,jdbcType=NUMERIC}
+	IIS_CONF_WECHAT_GZH=#{iisConfWechatGzh,jdbcType=NUMERIC}
+	ISUPPORT_PAY_WAY=#{isupportPayWay,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SCOLOR=#{scolor,jdbcType=VARCHAR}
+	SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR}
+	SINDEX_BGURL=#{sindexBgurl,jdbcType=VARCHAR}
+	SINDEX_HINT=#{sindexHint,jdbcType=VARCHAR}
+	SLOGIN_LOGO=#{sloginLogo,jdbcType=VARCHAR}
+	SLOGO=#{slogo,jdbcType=VARCHAR}
+	SSHORT_NAME=#{sshortName,jdbcType=VARCHAR}
+	SSUCCESS_BGURL=#{ssuccessBgurl,jdbcType=VARCHAR}
+	SSUCCESS_HINT=#{ssuccessHint,jdbcType=VARCHAR}
+	STITLE=#{stitle,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

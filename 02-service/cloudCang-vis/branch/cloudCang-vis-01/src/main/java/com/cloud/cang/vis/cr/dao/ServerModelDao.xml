@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.vis.cr.dao.ServerModelDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.cr.ServerModel">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FVIS_THRESH" property="fvisThresh" jdbcType="NUMERIC" />
+		<result column="ICATEGORY_NUM" property="icategoryNum" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IRANGE_TYPE" property="irangeType" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ISTINY" property="istiny" jdbcType="NUMERIC" />
+		<result column="SAUDIT_OPER_NAME" property="sauditOperName" jdbcType="VARCHAR" />
+		<result column="SAUDIT_REASON" property="sauditReason" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SFILE_SIZE" property="sfileSize" jdbcType="VARCHAR" />
+		<result column="SFILE_SIZE_UNIT" property="sfileSizeUnit" jdbcType="VARCHAR" />
+		<result column="SFILE_TYPE" property="sfileType" jdbcType="VARCHAR" />
+		<result column="SMODEL_ADDRESS" property="smodelAddress" jdbcType="VARCHAR" />
+		<result column="SRANGE_LIST" property="srangeList" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TADD_USER" property="taddUser" jdbcType="VARCHAR" />
+		<result column="TAUDIT_TIME" property="tauditTime" jdbcType="TIMESTAMP" />
+		<result column="TUPATE_USER" property="tupateUser" jdbcType="VARCHAR" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,FVIS_THRESH,ICATEGORY_NUM,IDEL_FLAG,IRANGE_TYPE,ISTATUS,ISTINY,SAUDIT_OPER_NAME,SAUDIT_REASON,SCODE,SFILE_SIZE,SFILE_SIZE_UNIT,SFILE_TYPE,SMODEL_ADDRESS,SRANGE_LIST,SREMARK,TADD_TIME,TADD_USER,TAUDIT_TIME,TUPATE_USER,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="fvisThresh != null  ">
+               and  FVIS_THRESH=#{fvisThresh,jdbcType=NUMERIC}
+           	</if>
+			<if test="icategoryNum != null  ">
+               and  ICATEGORY_NUM=#{icategoryNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="irangeType != null  ">
+               and  IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="istiny != null  ">
+               and  ISTINY=#{istiny,jdbcType=NUMERIC}
+           	</if>
+			<if test="sauditOperName != null and  sauditOperName != ''  ">
+               and  SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sauditReason != null and  sauditReason != ''  ">
+               and  SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sfileSize != null and  sfileSize != ''  ">
+               and  SFILE_SIZE=#{sfileSize,jdbcType=VARCHAR}
+           	</if>
+			<if test="sfileSizeUnit != null and  sfileSizeUnit != ''  ">
+               and  SFILE_SIZE_UNIT=#{sfileSizeUnit,jdbcType=VARCHAR}
+           	</if>
+			<if test="sfileType != null and  sfileType != ''  ">
+               and  SFILE_TYPE=#{sfileType,jdbcType=VARCHAR}
+           	</if>
+			<if test="smodelAddress != null and  smodelAddress != ''  ">
+               and  SMODEL_ADDRESS=#{smodelAddress,jdbcType=VARCHAR}
+           	</if>
+			<if test="srangeList != null and  srangeList != ''  ">
+               and  SRANGE_LIST=#{srangeList,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="taddUser != null and  taddUser != ''  ">
+               and  TADD_USER=#{taddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="tauditTime != null  ">
+               and  TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupateUser != null and  tupateUser != ''  ">
+               and  TUPATE_USER=#{tupateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from CR_SERVER_MODEL
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.cr.ServerModel">
+        select
+        <include refid="column_List" />
+        from CR_SERVER_MODEL
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from CR_SERVER_MODEL
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from CR_SERVER_MODEL
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM CR_SERVER_MODEL where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.cr.ServerModel">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into CR_SERVER_MODEL (ID,FVIS_THRESH,ICATEGORY_NUM,IDEL_FLAG,IRANGE_TYPE,ISTATUS,ISTINY,SAUDIT_OPER_NAME,SAUDIT_REASON,SCODE,SFILE_SIZE,SFILE_SIZE_UNIT,SFILE_TYPE,SMODEL_ADDRESS,SRANGE_LIST,SREMARK,TADD_TIME,TADD_USER,TAUDIT_TIME,TUPATE_USER,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{fvisThresh,jdbcType=NUMERIC},#{icategoryNum,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{irangeType,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{istiny,jdbcType=NUMERIC},#{sauditOperName,jdbcType=VARCHAR},#{sauditReason,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sfileSize,jdbcType=VARCHAR},#{sfileSizeUnit,jdbcType=VARCHAR},#{sfileType,jdbcType=VARCHAR},#{smodelAddress,jdbcType=VARCHAR},#{srangeList,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{taddUser,jdbcType=VARCHAR},#{tauditTime,jdbcType=TIMESTAMP},#{tupateUser,jdbcType=VARCHAR},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.cr.ServerModel">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into CR_SERVER_MODEL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="fvisThresh">
+               FVIS_THRESH,
+           	</if>
+			<if test="icategoryNum">
+               ICATEGORY_NUM,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="irangeType">
+               IRANGE_TYPE,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="istiny">
+               ISTINY,
+           	</if>
+			<if test="sauditOperName">
+               SAUDIT_OPER_NAME,
+           	</if>
+			<if test="sauditReason">
+               SAUDIT_REASON,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sfileSize">
+               SFILE_SIZE,
+           	</if>
+			<if test="sfileSizeUnit">
+               SFILE_SIZE_UNIT,
+           	</if>
+			<if test="sfileType">
+               SFILE_TYPE,
+           	</if>
+			<if test="smodelAddress">
+               SMODEL_ADDRESS,
+           	</if>
+			<if test="srangeList">
+               SRANGE_LIST,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="taddUser">
+               TADD_USER,
+           	</if>
+			<if test="tauditTime">
+               TAUDIT_TIME,
+           	</if>
+			<if test="tupateUser">
+               TUPATE_USER,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="fvisThresh != null  ">
+                #{fvisThresh,jdbcType=NUMERIC},
+           	</if>
+			<if test="icategoryNum != null  ">
+                #{icategoryNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="irangeType != null  ">
+                #{irangeType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="istiny != null  ">
+                #{istiny,jdbcType=NUMERIC},
+           	</if>
+			<if test="sauditOperName != null and  sauditOperName != ''  ">
+                #{sauditOperName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditReason != null and  sauditReason != ''  ">
+                #{sauditReason,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfileSize != null and  sfileSize != ''  ">
+                #{sfileSize,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfileSizeUnit != null and  sfileSizeUnit != ''  ">
+                #{sfileSizeUnit,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfileType != null and  sfileType != ''  ">
+                #{sfileType,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodelAddress != null and  smodelAddress != ''  ">
+                #{smodelAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="srangeList != null and  srangeList != ''  ">
+                #{srangeList,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="taddUser != null and  taddUser != ''  ">
+                #{taddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="tauditTime != null  ">
+                #{tauditTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupateUser != null and  tupateUser != ''  ">
+                #{tupateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.cr.ServerModel">
+        update CR_SERVER_MODEL
+        <set>
+			<if test="fvisThresh != null  ">
+                FVIS_THRESH=#{fvisThresh,jdbcType=NUMERIC},
+           	</if>
+			<if test="icategoryNum != null  ">
+                ICATEGORY_NUM=#{icategoryNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="irangeType != null  ">
+                IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="istiny != null  ">
+                ISTINY=#{istiny,jdbcType=NUMERIC},
+           	</if>
+			<if test="sauditOperName != null and  sauditOperName != ''  ">
+                SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditReason != null and  sauditReason != ''  ">
+                SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfileSize != null and  sfileSize != ''  ">
+                SFILE_SIZE=#{sfileSize,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfileSizeUnit != null and  sfileSizeUnit != ''  ">
+                SFILE_SIZE_UNIT=#{sfileSizeUnit,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfileType != null and  sfileType != ''  ">
+                SFILE_TYPE=#{sfileType,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodelAddress != null and  smodelAddress != ''  ">
+                SMODEL_ADDRESS=#{smodelAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="srangeList != null and  srangeList != ''  ">
+                SRANGE_LIST=#{srangeList,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="taddUser != null and  taddUser != ''  ">
+                TADD_USER=#{taddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="tauditTime != null  ">
+                TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupateUser != null and  tupateUser != ''  ">
+                TUPATE_USER=#{tupateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.cr.ServerModel">
+        update CR_SERVER_MODEL
+        set 
+        		FVIS_THRESH=#{fvisThresh,jdbcType=NUMERIC}
+        		,ICATEGORY_NUM=#{icategoryNum,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ISTINY=#{istiny,jdbcType=NUMERIC}
+        		,SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR}
+        		,SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SFILE_SIZE=#{sfileSize,jdbcType=VARCHAR}
+        		,SFILE_SIZE_UNIT=#{sfileSizeUnit,jdbcType=VARCHAR}
+        		,SFILE_TYPE=#{sfileType,jdbcType=VARCHAR}
+        		,SMODEL_ADDRESS=#{smodelAddress,jdbcType=VARCHAR}
+        		,SRANGE_LIST=#{srangeList,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TADD_USER=#{taddUser,jdbcType=VARCHAR}
+        		,TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+        		,TUPATE_USER=#{tupateUser,jdbcType=VARCHAR}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FVIS_THRESH=#{fvisThresh,jdbcType=NUMERIC}
+	ICATEGORY_NUM=#{icategoryNum,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IRANGE_TYPE=#{irangeType,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ISTINY=#{istiny,jdbcType=NUMERIC}
+	SAUDIT_OPER_NAME=#{sauditOperName,jdbcType=VARCHAR}
+	SAUDIT_REASON=#{sauditReason,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SFILE_SIZE=#{sfileSize,jdbcType=VARCHAR}
+	SFILE_SIZE_UNIT=#{sfileSizeUnit,jdbcType=VARCHAR}
+	SFILE_TYPE=#{sfileType,jdbcType=VARCHAR}
+	SMODEL_ADDRESS=#{smodelAddress,jdbcType=VARCHAR}
+	SRANGE_LIST=#{srangeList,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TADD_USER=#{taddUser,jdbcType=VARCHAR}
+	TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+	TUPATE_USER=#{tupateUser,jdbcType=VARCHAR}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

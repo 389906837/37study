@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.open.api.op.dao.InterfaceAccountDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.op.InterfaceAccount">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ADD_TIME" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="FBALANCE" property="fbalance" jdbcType="NUMERIC" />
+		<result column="IACCOUNT_TYPE" property="iaccountType" jdbcType="NUMERIC" />
+		<result column="IDEDUCTION_NUM" property="ideductionNum" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IFREEZE_NUM" property="ifreezeNum" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITRANSFER_NUM" property="itransferNum" jdbcType="NUMERIC" />
+		<result column="IVALIDITY_TYPE" property="ivalidityType" jdbcType="NUMERIC" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SINTERFACE_CODE" property="sinterfaceCode" jdbcType="VARCHAR" />
+		<result column="SINTERFACE_ID" property="sinterfaceId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUSER_CODE" property="suserCode" jdbcType="VARCHAR" />
+		<result column="SUSER_ID" property="suserId" jdbcType="VARCHAR" />
+		<result column="TEND_TIME" property="tendTime" jdbcType="TIMESTAMP" />
+		<result column="TOPEN_TIME" property="topenTime" jdbcType="TIMESTAMP" />
+		<result column="TSTART_TIME" property="tstartTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ADD_TIME,FBALANCE,IACCOUNT_TYPE,IDEDUCTION_NUM,IDEL_FLAG,IFREEZE_NUM,ISTATUS,ITRANSFER_NUM,IVALIDITY_TYPE,SCODE,SINTERFACE_CODE,SINTERFACE_ID,SREMARK,SUSER_CODE,SUSER_ID,TEND_TIME,TOPEN_TIME,TSTART_TIME,UPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="addTime != null  ">
+               and  ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="fbalance != null  ">
+               and  FBALANCE=#{fbalance,jdbcType=NUMERIC}
+           	</if>
+			<if test="iaccountType != null  ">
+               and  IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC}
+           	</if>
+			<if test="ideductionNum != null  ">
+               and  IDEDUCTION_NUM=#{ideductionNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="ifreezeNum != null  ">
+               and  IFREEZE_NUM=#{ifreezeNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="itransferNum != null  ">
+               and  ITRANSFER_NUM=#{itransferNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="ivalidityType != null  ">
+               and  IVALIDITY_TYPE=#{ivalidityType,jdbcType=NUMERIC}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+               and  SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sinterfaceId != null and  sinterfaceId != ''  ">
+               and  SINTERFACE_ID=#{sinterfaceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="suserCode != null and  suserCode != ''  ">
+               and  SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+               and  SUSER_ID=#{suserId,jdbcType=VARCHAR}
+           	</if>
+			<if test="tendTime != null  ">
+               and  TEND_TIME=#{tendTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="topenTime != null  ">
+               and  TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tstartTime != null  ">
+               and  TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="updateTime != null  ">
+               and  UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from OP_INTERFACE_ACCOUNT
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.op.InterfaceAccount">
+        select
+        <include refid="column_List" />
+        from OP_INTERFACE_ACCOUNT
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from OP_INTERFACE_ACCOUNT
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from OP_INTERFACE_ACCOUNT
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM OP_INTERFACE_ACCOUNT where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.op.InterfaceAccount">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into OP_INTERFACE_ACCOUNT (ID,ADD_TIME,FBALANCE,IACCOUNT_TYPE,IDEDUCTION_NUM,IDEL_FLAG,IFREEZE_NUM,ISTATUS,ITRANSFER_NUM,IVALIDITY_TYPE,SCODE,SINTERFACE_CODE,SINTERFACE_ID,SREMARK,SUSER_CODE,SUSER_ID,TEND_TIME,TOPEN_TIME,TSTART_TIME,UPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{addTime,jdbcType=TIMESTAMP},#{fbalance,jdbcType=NUMERIC},#{iaccountType,jdbcType=NUMERIC},#{ideductionNum,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{ifreezeNum,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{itransferNum,jdbcType=NUMERIC},#{ivalidityType,jdbcType=NUMERIC},#{scode,jdbcType=VARCHAR},#{sinterfaceCode,jdbcType=VARCHAR},#{sinterfaceId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{suserCode,jdbcType=VARCHAR},#{suserId,jdbcType=VARCHAR},#{tendTime,jdbcType=TIMESTAMP},#{topenTime,jdbcType=TIMESTAMP},#{tstartTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.op.InterfaceAccount">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into OP_INTERFACE_ACCOUNT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="addTime">
+               ADD_TIME,
+           	</if>
+			<if test="fbalance">
+               FBALANCE,
+           	</if>
+			<if test="iaccountType">
+               IACCOUNT_TYPE,
+           	</if>
+			<if test="ideductionNum">
+               IDEDUCTION_NUM,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="ifreezeNum">
+               IFREEZE_NUM,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="itransferNum">
+               ITRANSFER_NUM,
+           	</if>
+			<if test="ivalidityType">
+               IVALIDITY_TYPE,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sinterfaceCode">
+               SINTERFACE_CODE,
+           	</if>
+			<if test="sinterfaceId">
+               SINTERFACE_ID,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="suserCode">
+               SUSER_CODE,
+           	</if>
+			<if test="suserId">
+               SUSER_ID,
+           	</if>
+			<if test="tendTime">
+               TEND_TIME,
+           	</if>
+			<if test="topenTime">
+               TOPEN_TIME,
+           	</if>
+			<if test="tstartTime">
+               TSTART_TIME,
+           	</if>
+			<if test="updateTime">
+               UPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="addTime != null  ">
+                #{addTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="fbalance != null  ">
+                #{fbalance,jdbcType=NUMERIC},
+           	</if>
+			<if test="iaccountType != null  ">
+                #{iaccountType,jdbcType=NUMERIC},
+           	</if>
+			<if test="ideductionNum != null  ">
+                #{ideductionNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="ifreezeNum != null  ">
+                #{ifreezeNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itransferNum != null  ">
+                #{itransferNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ivalidityType != null  ">
+                #{ivalidityType,jdbcType=NUMERIC},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                #{sinterfaceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sinterfaceId != null and  sinterfaceId != ''  ">
+                #{sinterfaceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserCode != null and  suserCode != ''  ">
+                #{suserCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+                #{suserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="tendTime != null  ">
+                #{tendTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="topenTime != null  ">
+                #{topenTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tstartTime != null  ">
+                #{tstartTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="updateTime != null  ">
+                #{updateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.op.InterfaceAccount">
+        update OP_INTERFACE_ACCOUNT
+        <set>
+			<if test="addTime != null  ">
+                ADD_TIME=#{addTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="fbalance != null  ">
+                FBALANCE=#{fbalance,jdbcType=NUMERIC},
+           	</if>
+			<if test="iaccountType != null  ">
+                IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC},
+           	</if>
+			<if test="ideductionNum != null  ">
+                IDEDUCTION_NUM=#{ideductionNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="ifreezeNum != null  ">
+                IFREEZE_NUM=#{ifreezeNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itransferNum != null  ">
+                ITRANSFER_NUM=#{itransferNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ivalidityType != null  ">
+                IVALIDITY_TYPE=#{ivalidityType,jdbcType=NUMERIC},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sinterfaceId != null and  sinterfaceId != ''  ">
+                SINTERFACE_ID=#{sinterfaceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserCode != null and  suserCode != ''  ">
+                SUSER_CODE=#{suserCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+                SUSER_ID=#{suserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="tendTime != null  ">
+                TEND_TIME=#{tendTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="topenTime != null  ">
+                TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tstartTime != null  ">
+                TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="updateTime != null  ">
+                UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.op.InterfaceAccount">
+        update OP_INTERFACE_ACCOUNT
+        set 
+        		ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+        		,FBALANCE=#{fbalance,jdbcType=NUMERIC}
+        		,IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC}
+        		,IDEDUCTION_NUM=#{ideductionNum,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IFREEZE_NUM=#{ifreezeNum,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITRANSFER_NUM=#{itransferNum,jdbcType=NUMERIC}
+        		,IVALIDITY_TYPE=#{ivalidityType,jdbcType=NUMERIC}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+        		,SINTERFACE_ID=#{sinterfaceId,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+        		,SUSER_ID=#{suserId,jdbcType=VARCHAR}
+        		,TEND_TIME=#{tendTime,jdbcType=TIMESTAMP}
+        		,TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP}
+        		,TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP}
+        		,UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<select id="selectByMap" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from OP_INTERFACE_ACCOUNT
+		where SUSER_ID=#{userId,jdbcType=VARCHAR} and SINTERFACE_CODE=#{interfaceCode,jdbcType=VARCHAR}
+		and ISTATUS=10 and IDEL_FLAG=0
+	</select>
+	<select id="selectByPrimaryKeySync" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from OP_INTERFACE_ACCOUNT
+		where ID = #{id,jdbcType=VARCHAR} FOR UPDATE
+	</select>
+	<select id="selectByParamsMap" resultMap="resultEntity" parameterType="java.util.Map">
+		select A.*
+		from OP_INTERFACE_ACCOUNT A INNER JOIN OP_INTERFACE_INFO B
+		ON A.SINTERFACE_ID = B.ID
+		where A.SUSER_ID=#{userId,jdbcType=VARCHAR} and B.SACTION=#{interfaceAction,jdbcType=VARCHAR}
+		and A.ISTATUS=10 and A.IDEL_FLAG=0 and B.IDEL_FLAG=0 and B.ISTATUS=20
+	</select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+	FBALANCE=#{fbalance,jdbcType=NUMERIC}
+	IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC}
+	IDEDUCTION_NUM=#{ideductionNum,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IFREEZE_NUM=#{ifreezeNum,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITRANSFER_NUM=#{itransferNum,jdbcType=NUMERIC}
+	IVALIDITY_TYPE=#{ivalidityType,jdbcType=NUMERIC}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+	SINTERFACE_ID=#{sinterfaceId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+	SUSER_ID=#{suserId,jdbcType=VARCHAR}
+	TEND_TIME=#{tendTime,jdbcType=TIMESTAMP}
+	TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP}
+	TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP}
+	UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

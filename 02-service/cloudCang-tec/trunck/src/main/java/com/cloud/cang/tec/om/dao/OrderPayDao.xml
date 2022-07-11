@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.tec.om.dao.OrderPayDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.om.OrderPay">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IIS_WECHAT_PAY_POINT" property="iisWechatPayPoint" jdbcType="NUMERIC"/>
+        <result column="IPAY_TYPE" property="ipayType" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SERROR_CODE" property="serrorCode" jdbcType="VARCHAR"/>
+        <result column="SERROR_DESC" property="serrorDesc" jdbcType="VARCHAR"/>
+        <result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR"/>
+        <result column="SORDER_ID" property="sorderId" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TCOMPLETE_TIME" property="tcompleteTime" jdbcType="TIMESTAMP"/>
+        <result column="TRANSACTION_ID" property="transactionId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,IIS_WECHAT_PAY_POINT,IPAY_TYPE,ISTATUS,SCODE,SERROR_CODE,SERROR_DESC,SORDER_CODE,SORDER_ID,TADD_TIME,TCOMPLETE_TIME,TRANSACTION_ID
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="iisWechatPayPoint != null  ">
+                    and IIS_WECHAT_PAY_POINT=#{iisWechatPayPoint,jdbcType=NUMERIC}
+                </if>
+                <if test="ipayType != null  ">
+                    and IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="serrorCode != null and  serrorCode != ''  ">
+                    and SERROR_CODE=#{serrorCode,jdbcType=VARCHAR}
+                </if>
+                <if test="serrorDesc != null and  serrorDesc != ''  ">
+                    and SERROR_DESC=#{serrorDesc,jdbcType=VARCHAR}
+                </if>
+                <if test="sorderCode != null and  sorderCode != ''  ">
+                    and SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sorderId != null and  sorderId != ''  ">
+                    and SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tcompleteTime != null  ">
+                    and TCOMPLETE_TIME=#{tcompleteTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="transactionId != null and  transactionId != ''  ">
+                    and TRANSACTION_ID=#{transactionId,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_PAY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.om.OrderPay">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_PAY
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_PAY
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from OM_ORDER_PAY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM OM_ORDER_PAY where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.om.OrderPay">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into OM_ORDER_PAY (ID,IIS_WECHAT_PAY_POINT,IPAY_TYPE,ISTATUS,SCODE,SERROR_CODE,SERROR_DESC,SORDER_CODE,SORDER_ID,TADD_TIME,TCOMPLETE_TIME,TRANSACTION_ID)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iisWechatPayPoint,jdbcType=NUMERIC},#{ipayType,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{scode,jdbcType=VARCHAR},#{serrorCode,jdbcType=VARCHAR},#{serrorDesc,jdbcType=VARCHAR},#{sorderCode,jdbcType=VARCHAR},#{sorderId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tcompleteTime,jdbcType=TIMESTAMP},#{transactionId,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.om.OrderPay">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into OM_ORDER_PAY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="iisWechatPayPoint">
+                IIS_WECHAT_PAY_POINT,
+            </if>
+            <if test="ipayType">
+                IPAY_TYPE,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="serrorCode">
+                SERROR_CODE,
+            </if>
+            <if test="serrorDesc">
+                SERROR_DESC,
+            </if>
+            <if test="sorderCode">
+                SORDER_CODE,
+            </if>
+            <if test="sorderId">
+                SORDER_ID,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tcompleteTime">
+                TCOMPLETE_TIME,
+            </if>
+            <if test="transactionId">
+                TRANSACTION_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="iisWechatPayPoint != null  ">
+                #{iisWechatPayPoint,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayType != null  ">
+                #{ipayType,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="serrorCode != null and  serrorCode != ''  ">
+                #{serrorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="serrorDesc != null and  serrorDesc != ''  ">
+                #{serrorDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderCode != null and  sorderCode != ''  ">
+                #{sorderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderId != null and  sorderId != ''  ">
+                #{sorderId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tcompleteTime != null  ">
+                #{tcompleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transactionId != null and  transactionId != ''  ">
+                #{transactionId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.om.OrderPay">
+        update OM_ORDER_PAY
+        <set>
+            <if test="iisWechatPayPoint != null  ">
+                IIS_WECHAT_PAY_POINT=#{iisWechatPayPoint,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayType != null  ">
+                IPAY_TYPE=#{ipayType,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="serrorCode != null and  serrorCode != ''  ">
+                SERROR_CODE=#{serrorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="serrorDesc != null and  serrorDesc != ''  ">
+                SERROR_DESC=#{serrorDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderCode != null and  sorderCode != ''  ">
+                SORDER_CODE=#{sorderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderId != null and  sorderId != ''  ">
+                SORDER_ID=#{sorderId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tcompleteTime != null  ">
+                TCOMPLETE_TIME=#{tcompleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transactionId != null and  transactionId != ''  ">
+                TRANSACTION_ID=#{transactionId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.om.OrderPay">
+        update OM_ORDER_PAY
+        set
+        IIS_WECHAT_PAY_POINT=#{iisWechatPayPoint,jdbcType=NUMERIC}
+        ,IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SERROR_CODE=#{serrorCode,jdbcType=VARCHAR}
+        ,SERROR_DESC=#{serrorDesc,jdbcType=VARCHAR}
+        ,SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+        ,SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TCOMPLETE_TIME=#{tcompleteTime,jdbcType=TIMESTAMP}
+        ,TRANSACTION_ID=#{transactionId,jdbcType=VARCHAR}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IIS_WECHAT_PAY_POINT=#{iisWechatPayPoint,jdbcType=NUMERIC}
+	IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SERROR_CODE=#{serrorCode,jdbcType=VARCHAR}
+	SERROR_DESC=#{serrorDesc,jdbcType=VARCHAR}
+	SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+	SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TCOMPLETE_TIME=#{tcompleteTime,jdbcType=TIMESTAMP}
+	TRANSACTION_ID=#{transactionId,jdbcType=VARCHAR}
+     -->
+    <select id="selectOutTradeNoByOrderCode" resultType="java.lang.String" parameterType="java.lang.String">
+        select
+        SCODE
+        from OM_ORDER_PAY
+        where SORDER_CODE = #{orderCode,jdbcType=VARCHAR} and IIS_WECHAT_PAY_POINT = 1 order by TADD_TIME desc limit 1
+    </select>
+
+    <update id="updateDataByMap" parameterType="java.util.Map">
+        update OM_ORDER_PAY
+        <set>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="serrorCode != null and  serrorCode != ''  ">
+                SERROR_CODE=#{serrorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="serrorDesc != null and  serrorDesc != ''  ">
+                SERROR_DESC=#{serrorDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="tcompleteTime != null  ">
+                TCOMPLETE_TIME=#{tcompleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="transactionId != null and  transactionId != ''  ">
+                TRANSACTION_ID=#{transactionId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where SCODE = #{scode,jdbcType=VARCHAR} and SORDER_CODE= #{sorderCode,jdbcType=VARCHAR}
+    </update>
+</mapper>

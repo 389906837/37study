@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.api.wz.dao.AdvertisDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.wz.Advertis">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IADV_TYPE" property="iadvType" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IIS_DEFAULT" property="iisDefault" jdbcType="NUMERIC"/>
+        <result column="ILINK_TYPE" property="ilinkType" jdbcType="NUMERIC"/>
+        <result column="ISORT" property="isort" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SCONTACT_NAME" property="scontactName" jdbcType="VARCHAR"/>
+        <result column="SCONTENT_URL" property="scontentUrl" jdbcType="VARCHAR"/>
+        <result column="SHREF" property="shref" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SMOBILE" property="smobile" jdbcType="VARCHAR"/>
+        <result column="SREGION_ID" property="sregionId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SSOURCE_TITLE" property="ssourceTitle" jdbcType="VARCHAR"/>
+        <result column="STITLE" property="stitle" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TEND_DATE" property="tendDate" jdbcType="TIMESTAMP"/>
+        <result column="TSTART_DATE" property="tstartDate" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,IADV_TYPE,IDEL_FLAG,IIS_DEFAULT,ILINK_TYPE,ISORT,ISTATUS,SADD_USER,SCONTACT_NAME,SCONTENT_URL,SHREF,SMERCHANT_CODE,SMERCHANT_ID,SMOBILE,SREGION_ID,SREMARK,SSOURCE_TITLE,STITLE,SUPDATE_USER,TADD_TIME,TEND_DATE,TSTART_DATE,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="iadvType != null  ">
+                    and IADV_TYPE=#{iadvType,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisDefault != null  ">
+                    and IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+                </if>
+                <if test="ilinkType != null  ">
+                    and ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+                </if>
+                <if test="isort != null  ">
+                    and ISORT=#{isort,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactName != null and  scontactName != ''  ">
+                    and SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+                </if>
+                <if test="scontentUrl != null and  scontentUrl != ''  ">
+                    and SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR}
+                </if>
+                <if test="shref != null and  shref != ''  ">
+                    and SHREF=#{shref,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="smobile != null and  smobile != ''  ">
+                    and SMOBILE=#{smobile,jdbcType=VARCHAR}
+                </if>
+                <if test="sregionId != null and  sregionId != ''  ">
+                    and SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="ssourceTitle != null and  ssourceTitle != ''  ">
+                    and SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR}
+                </if>
+                <if test="stitle != null and  stitle != ''  ">
+                    and STITLE=#{stitle,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tendDate != null  ">
+                    and TEND_DATE=#{tendDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tstartDate != null  ">
+                    and TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.wz.Advertis">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from WZ_ADVERTIS
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM WZ_ADVERTIS where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.wz.Advertis">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into WZ_ADVERTIS (ID,IADV_TYPE,IDEL_FLAG,IIS_DEFAULT,ILINK_TYPE,ISORT,ISTATUS,SADD_USER,SCONTACT_NAME,SCONTENT_URL,SHREF,SMERCHANT_CODE,SMERCHANT_ID,SMOBILE,SREGION_ID,SREMARK,SSOURCE_TITLE,STITLE,SUPDATE_USER,TADD_TIME,TEND_DATE,TSTART_DATE,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iadvType,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{iisDefault,jdbcType=NUMERIC},#{ilinkType,jdbcType=NUMERIC},#{isort,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{scontactName,jdbcType=VARCHAR},#{scontentUrl,jdbcType=VARCHAR},#{shref,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{smobile,jdbcType=VARCHAR},#{sregionId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{ssourceTitle,jdbcType=VARCHAR},#{stitle,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tendDate,jdbcType=TIMESTAMP},#{tstartDate,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.wz.Advertis">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into WZ_ADVERTIS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="iadvType">
+                IADV_TYPE,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="iisDefault">
+                IIS_DEFAULT,
+            </if>
+            <if test="ilinkType">
+                ILINK_TYPE,
+            </if>
+            <if test="isort">
+                ISORT,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="scontactName">
+                SCONTACT_NAME,
+            </if>
+            <if test="scontentUrl">
+                SCONTENT_URL,
+            </if>
+            <if test="shref">
+                SHREF,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="smobile">
+                SMOBILE,
+            </if>
+            <if test="sregionId">
+                SREGION_ID,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="ssourceTitle">
+                SSOURCE_TITLE,
+            </if>
+            <if test="stitle">
+                STITLE,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tendDate">
+                TEND_DATE,
+            </if>
+            <if test="tstartDate">
+                TSTART_DATE,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="iadvType != null  ">
+                #{iadvType,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisDefault != null  ">
+                #{iisDefault,jdbcType=NUMERIC},
+            </if>
+            <if test="ilinkType != null  ">
+                #{ilinkType,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactName != null and  scontactName != ''  ">
+                #{scontactName,jdbcType=VARCHAR},
+            </if>
+            <if test="scontentUrl != null and  scontentUrl != ''  ">
+                #{scontentUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="shref != null and  shref != ''  ">
+                #{shref,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="smobile != null and  smobile != ''  ">
+                #{smobile,jdbcType=VARCHAR},
+            </if>
+            <if test="sregionId != null and  sregionId != ''  ">
+                #{sregionId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="ssourceTitle != null and  ssourceTitle != ''  ">
+                #{ssourceTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="stitle != null and  stitle != ''  ">
+                #{stitle,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tendDate != null  ">
+                #{tendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tstartDate != null  ">
+                #{tstartDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.wz.Advertis">
+        update WZ_ADVERTIS
+        <set>
+            <if test="iadvType != null  ">
+                IADV_TYPE=#{iadvType,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisDefault != null  ">
+                IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC},
+            </if>
+            <if test="ilinkType != null  ">
+                ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactName != null and  scontactName != ''  ">
+                SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR},
+            </if>
+            <if test="scontentUrl != null and  scontentUrl != ''  ">
+                SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="shref != null and  shref != ''  ">
+                SHREF=#{shref,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="smobile != null and  smobile != ''  ">
+                SMOBILE=#{smobile,jdbcType=VARCHAR},
+            </if>
+            <if test="sregionId != null and  sregionId != ''  ">
+                SREGION_ID=#{sregionId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="ssourceTitle != null and  ssourceTitle != ''  ">
+                SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="stitle != null and  stitle != ''  ">
+                STITLE=#{stitle,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tendDate != null  ">
+                TEND_DATE=#{tendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tstartDate != null  ">
+                TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.wz.Advertis">
+        update WZ_ADVERTIS
+        set
+        IADV_TYPE=#{iadvType,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+        ,ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+        ,ISORT=#{isort,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+        ,SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR}
+        ,SHREF=#{shref,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SMOBILE=#{smobile,jdbcType=VARCHAR}
+        ,SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR}
+        ,STITLE=#{stitle,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TEND_DATE=#{tendDate,jdbcType=TIMESTAMP}
+        ,TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 新增SQL开始 -->
+    <resultMap id="resultAdModelEntity" type="com.cloud.cang.model.AdModel">
+        <id column="ID" property="adId" jdbcType="VARCHAR"/>
+        <result column="IADV_TYPE" property="iadvType" jdbcType="NUMERIC"/>
+        <result column="ILINK_TYPE" property="ilinkType" jdbcType="NUMERIC"/>
+        <result column="SCONTENT_URL" property="scontentUrl" jdbcType="VARCHAR"/>
+        <result column="SHREF" property="shref" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 根据商户ID和运营区域ID查询对应的广告信息 -->
+    <select id="selectAdByMerchantId" resultMap="resultAdModelEntity" parameterType="java.util.Map">
+        select
+        ID,IADV_TYPE,ILINK_TYPE,SCONTENT_URL,SHREF
+        from WZ_ADVERTIS
+        where SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        and SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+        and TSTART_DATE &lt; now()
+        and TEND_DATE &gt; now()
+        and ISTATUS = 1
+        and IDEL_FLAG = 0
+    </select>
+    <!-- 新增SQL结束 -->
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IADV_TYPE=#{iadvType,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+	ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+	SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR}
+	SHREF=#{shref,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SMOBILE=#{smobile,jdbcType=VARCHAR}
+	SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR}
+	STITLE=#{stitle,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TEND_DATE=#{tendDate,jdbcType=TIMESTAMP}
+	TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="selectByDeviceCodeAndRegionCode" resultType="com.cloud.cang.model.AdvertisModel"
+            parameterType="java.util.Map">
+        <![CDATA[
+		select
+		a.id id,a.iadv_type iadvType,a.isort isort,a.sbg_img_url sbgImgUrl,
+		a.scontact_name scontactName,a.scontent_url scontentUrl,a.shref shref,
+		a.ssource_title ssourceTitle,a.stitle stitle,a.tend_date tendDate,a.tstart_date tstartDate
+		from wz_advertis a
+		inner join wz_device_news b on a.id = b.snews_id
+		inner join wz_region c on c.id = a.sregion_id
+		where (b.sdevice_code = #{scode,jdbcType=VARCHAR} or a.iuse_type =1) and b.idel_flag = 0 and a.idel_flag = 0
+		and a.sregion_code = #{sregionCode,jdbcType=VARCHAR} and a.istatus = 1
+		and a.tend_date >= now() order by a.isort asc ,a.id desc
+		 ]]>
+    </select>
+</mapper>

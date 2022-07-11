@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.tec.sys.dao.ScheduleConfDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.ScheduleConf">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+		<result column="CONCURRENT" property="concurrent" jdbcType="NUMERIC" />
+		<result column="CRON" property="cron" jdbcType="VARCHAR" />
+		<result column="INTERFACE_INFO" property="interfaceInfo" jdbcType="VARCHAR" />
+		<result column="METHOD_NAME" property="methodName" jdbcType="VARCHAR" />
+		<result column="MODULE_CODE" property="moduleCode" jdbcType="VARCHAR" />
+		<result column="MODULE_NAME" property="moduleName" jdbcType="VARCHAR" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="SPRING_ID" property="springId" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="NUMERIC" />
+		<result column="SYSTEM_CODE" property="systemCode" jdbcType="NUMERIC" />
+		<result column="SYSTEM_NAME" property="systemName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,CLASS_NAME,CONCURRENT,CRON,INTERFACE_INFO,METHOD_NAME,MODULE_CODE,MODULE_NAME,REMARK,SPRING_ID,STATUS,SYSTEM_CODE,SYSTEM_NAME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="className != null and  className != ''  ">
+               and  CLASS_NAME=#{className,jdbcType=VARCHAR}
+           	</if>
+			<if test="concurrent != null  ">
+               and  CONCURRENT=#{concurrent,jdbcType=NUMERIC}
+           	</if>
+			<if test="cron != null and  cron != ''  ">
+               and  CRON=#{cron,jdbcType=VARCHAR}
+           	</if>
+			<if test="interfaceInfo != null and  interfaceInfo != ''  ">
+               and  INTERFACE_INFO=#{interfaceInfo,jdbcType=VARCHAR}
+           	</if>
+			<if test="methodName != null and  methodName != ''  ">
+               and  METHOD_NAME=#{methodName,jdbcType=VARCHAR}
+           	</if>
+			<if test="moduleCode != null and  moduleCode != ''  ">
+               and  MODULE_CODE=#{moduleCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="moduleName != null and  moduleName != ''  ">
+               and  MODULE_NAME=#{moduleName,jdbcType=VARCHAR}
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+               and  REMARK=#{remark,jdbcType=VARCHAR}
+           	</if>
+			<if test="springId != null and  springId != ''  ">
+               and  SPRING_ID=#{springId,jdbcType=VARCHAR}
+           	</if>
+			<if test="status != null  ">
+               and  STATUS=#{status,jdbcType=NUMERIC}
+           	</if>
+			<if test="systemCode != null  ">
+               and  SYSTEM_CODE=#{systemCode,jdbcType=NUMERIC}
+           	</if>
+			<if test="systemName != null and  systemName != ''  ">
+               and  SYSTEM_NAME=#{systemName,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_SCHEDULE_CONF
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.ScheduleConf">
+        select
+        <include refid="column_List" />
+        from SYS_SCHEDULE_CONF
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectNotAddTrigByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.ScheduleConf">
+        select
+        <include refid="column_List" />
+        from SYS_SCHEDULE_CONF left join QRTZ_TRIGGERS on SYS_SCHEDULE_CONF.MODULE_CODE= QRTZ_TRIGGERS.JOB_NAME where QRTZ_TRIGGERS.JOB_NAME is null
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_SCHEDULE_CONF
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_SCHEDULE_CONF
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_SCHEDULE_CONF where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.ScheduleConf">
+        <![CDATA[
+        insert into SYS_SCHEDULE_CONF (ID,CLASS_NAME,CONCURRENT,CRON,INTERFACE_INFO,METHOD_NAME,MODULE_CODE,MODULE_NAME,REMARK,SPRING_ID,STATUS,SYSTEM_CODE,SYSTEM_NAME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{className,jdbcType=VARCHAR},#{concurrent,jdbcType=NUMERIC},#{cron,jdbcType=VARCHAR},#{interfaceInfo,jdbcType=VARCHAR},#{methodName,jdbcType=VARCHAR},#{moduleCode,jdbcType=VARCHAR},#{moduleName,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{springId,jdbcType=VARCHAR},#{status,jdbcType=NUMERIC},#{systemCode,jdbcType=NUMERIC},#{systemName,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.ScheduleConf">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_SCHEDULE_CONF
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="className">
+               CLASS_NAME,
+           	</if>
+			<if test="concurrent">
+               CONCURRENT,
+           	</if>
+			<if test="cron">
+               CRON,
+           	</if>
+			<if test="interfaceInfo">
+               INTERFACE_INFO,
+           	</if>
+			<if test="methodName">
+               METHOD_NAME,
+           	</if>
+			<if test="moduleCode">
+               MODULE_CODE,
+           	</if>
+			<if test="moduleName">
+               MODULE_NAME,
+           	</if>
+			<if test="remark">
+               REMARK,
+           	</if>
+			<if test="springId">
+               SPRING_ID,
+           	</if>
+			<if test="status">
+               STATUS,
+           	</if>
+			<if test="systemCode">
+               SYSTEM_CODE,
+           	</if>
+			<if test="systemName">
+               SYSTEM_NAME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="className != null and  className != ''  ">
+                #{className,jdbcType=VARCHAR},
+           	</if>
+			<if test="concurrent != null  ">
+                #{concurrent,jdbcType=NUMERIC},
+           	</if>
+			<if test="cron != null and  cron != ''  ">
+                #{cron,jdbcType=VARCHAR},
+           	</if>
+			<if test="interfaceInfo != null and  interfaceInfo != ''  ">
+                #{interfaceInfo,jdbcType=VARCHAR},
+           	</if>
+			<if test="methodName != null and  methodName != ''  ">
+                #{methodName,jdbcType=VARCHAR},
+           	</if>
+			<if test="moduleCode != null and  moduleCode != ''  ">
+                #{moduleCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="moduleName != null and  moduleName != ''  ">
+                #{moduleName,jdbcType=VARCHAR},
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+                #{remark,jdbcType=VARCHAR},
+           	</if>
+			<if test="springId != null and  springId != ''  ">
+                #{springId,jdbcType=VARCHAR},
+           	</if>
+			<if test="status != null  ">
+                #{status,jdbcType=NUMERIC},
+           	</if>
+			<if test="systemCode != null  ">
+                #{systemCode,jdbcType=NUMERIC},
+           	</if>
+			<if test="systemName != null and  systemName != ''  ">
+                #{systemName,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.ScheduleConf">
+        update SYS_SCHEDULE_CONF
+        <set>
+			<if test="className != null and  className != ''  ">
+                CLASS_NAME=#{className,jdbcType=VARCHAR},
+           	</if>
+			<if test="concurrent != null  ">
+                CONCURRENT=#{concurrent,jdbcType=NUMERIC},
+           	</if>
+			<if test="cron != null and  cron != ''  ">
+                CRON=#{cron,jdbcType=VARCHAR},
+           	</if>
+			<if test="interfaceInfo != null and  interfaceInfo != ''  ">
+                INTERFACE_INFO=#{interfaceInfo,jdbcType=VARCHAR},
+           	</if>
+			<if test="methodName != null and  methodName != ''  ">
+                METHOD_NAME=#{methodName,jdbcType=VARCHAR},
+           	</if>
+			<if test="moduleCode != null and  moduleCode != ''  ">
+                MODULE_CODE=#{moduleCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="moduleName != null and  moduleName != ''  ">
+                MODULE_NAME=#{moduleName,jdbcType=VARCHAR},
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+                REMARK=#{remark,jdbcType=VARCHAR},
+           	</if>
+			<if test="springId != null and  springId != ''  ">
+                SPRING_ID=#{springId,jdbcType=VARCHAR},
+           	</if>
+			<if test="status != null  ">
+                STATUS=#{status,jdbcType=NUMERIC},
+           	</if>
+			<if test="systemCode != null  ">
+                SYSTEM_CODE=#{systemCode,jdbcType=NUMERIC},
+           	</if>
+			<if test="systemName != null and  systemName != ''  ">
+                SYSTEM_NAME=#{systemName,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.ScheduleConf">
+        update SYS_SCHEDULE_CONF
+        set 
+        		CLASS_NAME=#{className,jdbcType=VARCHAR}
+        		,CONCURRENT=#{concurrent,jdbcType=NUMERIC}
+        		,CRON=#{cron,jdbcType=VARCHAR}
+        		,INTERFACE_INFO=#{interfaceInfo,jdbcType=VARCHAR}
+        		,METHOD_NAME=#{methodName,jdbcType=VARCHAR}
+        		,MODULE_CODE=#{moduleCode,jdbcType=VARCHAR}
+        		,MODULE_NAME=#{moduleName,jdbcType=VARCHAR}
+        		,REMARK=#{remark,jdbcType=VARCHAR}
+        		,SPRING_ID=#{springId,jdbcType=VARCHAR}
+        		,STATUS=#{status,jdbcType=NUMERIC}
+        		,SYSTEM_CODE=#{systemCode,jdbcType=NUMERIC}
+        		,SYSTEM_NAME=#{systemName,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	CLASS_NAME=#{className,jdbcType=VARCHAR}
+	CONCURRENT=#{concurrent,jdbcType=NUMERIC}
+	CRON=#{cron,jdbcType=VARCHAR}
+	INTERFACE_INFO=#{interfaceInfo,jdbcType=VARCHAR}
+	METHOD_NAME=#{methodName,jdbcType=VARCHAR}
+	MODULE_CODE=#{moduleCode,jdbcType=VARCHAR}
+	MODULE_NAME=#{moduleName,jdbcType=VARCHAR}
+	REMARK=#{remark,jdbcType=VARCHAR}
+	SPRING_ID=#{springId,jdbcType=VARCHAR}
+	STATUS=#{status,jdbcType=NUMERIC}
+	SYSTEM_CODE=#{systemCode,jdbcType=NUMERIC}
+	SYSTEM_NAME=#{systemName,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

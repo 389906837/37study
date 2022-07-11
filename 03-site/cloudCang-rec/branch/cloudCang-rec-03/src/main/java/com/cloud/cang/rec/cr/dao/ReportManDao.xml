@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rec.cr.dao.ReportManDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.cr.ReportMan">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="SCAMERA_CODE" property="scameraCode" jdbcType="VARCHAR" />
+		<result column="SCAMERA_MODEL" property="scameraModel" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SIDEN_RESULT" property="sidenResult" jdbcType="VARCHAR" />
+		<result column="SORIGINAL_PIC_URL" property="soriginalPicUrl" jdbcType="VARCHAR" />
+		<result column="SPROCESSED_PIC_URL" property="sprocessedPicUrl" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IDEL_FLAG,SCAMERA_CODE,SCAMERA_MODEL,SCODE,SIDEN_RESULT,SORIGINAL_PIC_URL,SPROCESSED_PIC_URL,TADD_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="scameraCode != null and  scameraCode != ''  ">
+               and  SCAMERA_CODE=#{scameraCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scameraModel != null and  scameraModel != ''  ">
+               and  SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sidenResult != null and  sidenResult != ''  ">
+               and  SIDEN_RESULT=#{sidenResult,jdbcType=VARCHAR}
+           	</if>
+			<if test="soriginalPicUrl != null and  soriginalPicUrl != ''  ">
+               and  SORIGINAL_PIC_URL=#{soriginalPicUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="sprocessedPicUrl != null and  sprocessedPicUrl != ''  ">
+               and  SPROCESSED_PIC_URL=#{sprocessedPicUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from CR_REPORT_MAN
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.cr.ReportMan">
+        select
+        <include refid="column_List" />
+        from CR_REPORT_MAN
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from CR_REPORT_MAN
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from CR_REPORT_MAN
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM CR_REPORT_MAN where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.cr.ReportMan">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into CR_REPORT_MAN (ID,IDEL_FLAG,SCAMERA_CODE,SCAMERA_MODEL,SCODE,SIDEN_RESULT,SORIGINAL_PIC_URL,SPROCESSED_PIC_URL,TADD_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{scameraCode,jdbcType=VARCHAR},#{scameraModel,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sidenResult,jdbcType=VARCHAR},#{soriginalPicUrl,jdbcType=VARCHAR},#{sprocessedPicUrl,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.cr.ReportMan">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into CR_REPORT_MAN
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="scameraCode">
+               SCAMERA_CODE,
+           	</if>
+			<if test="scameraModel">
+               SCAMERA_MODEL,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sidenResult">
+               SIDEN_RESULT,
+           	</if>
+			<if test="soriginalPicUrl">
+               SORIGINAL_PIC_URL,
+           	</if>
+			<if test="sprocessedPicUrl">
+               SPROCESSED_PIC_URL,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="scameraCode != null and  scameraCode != ''  ">
+                #{scameraCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraModel != null and  scameraModel != ''  ">
+                #{scameraModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sidenResult != null and  sidenResult != ''  ">
+                #{sidenResult,jdbcType=VARCHAR},
+           	</if>
+			<if test="soriginalPicUrl != null and  soriginalPicUrl != ''  ">
+                #{soriginalPicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sprocessedPicUrl != null and  sprocessedPicUrl != ''  ">
+                #{sprocessedPicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.cr.ReportMan">
+        update CR_REPORT_MAN
+        <set>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="scameraCode != null and  scameraCode != ''  ">
+                SCAMERA_CODE=#{scameraCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraModel != null and  scameraModel != ''  ">
+                SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sidenResult != null and  sidenResult != ''  ">
+                SIDEN_RESULT=#{sidenResult,jdbcType=VARCHAR},
+           	</if>
+			<if test="soriginalPicUrl != null and  soriginalPicUrl != ''  ">
+                SORIGINAL_PIC_URL=#{soriginalPicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sprocessedPicUrl != null and  sprocessedPicUrl != ''  ">
+                SPROCESSED_PIC_URL=#{sprocessedPicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.cr.ReportMan">
+        update CR_REPORT_MAN
+        set 
+        		IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,SCAMERA_CODE=#{scameraCode,jdbcType=VARCHAR}
+        		,SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SIDEN_RESULT=#{sidenResult,jdbcType=VARCHAR}
+        		,SORIGINAL_PIC_URL=#{soriginalPicUrl,jdbcType=VARCHAR}
+        		,SPROCESSED_PIC_URL=#{sprocessedPicUrl,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	SCAMERA_CODE=#{scameraCode,jdbcType=VARCHAR}
+	SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SIDEN_RESULT=#{sidenResult,jdbcType=VARCHAR}
+	SORIGINAL_PIC_URL=#{soriginalPicUrl,jdbcType=VARCHAR}
+	SPROCESSED_PIC_URL=#{sprocessedPicUrl,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

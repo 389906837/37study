@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.api.sb.dao.DeviceRegisterDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sb.DeviceRegister">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SAUDIT_USER" property="sauditUser" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SREG_IP" property="sregIp" jdbcType="VARCHAR" />
+		<result column="SREG_PORT" property="sregPort" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SSECURITY_KEY" property="ssecurityKey" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TAUDIT_TIME" property="tauditTime" jdbcType="TIMESTAMP" />
+		<result column="TREG_TIME" property="tregTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IDEL_FLAG,ISTATUS,SADD_USER,SAUDIT_USER,SDEVICE_CODE,SDEVICE_ID,SREG_IP,SREG_PORT,SREMARK,SSECURITY_KEY,SUPDATE_USER,TADD_TIME,TAUDIT_TIME,TREG_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sauditUser != null and  sauditUser != ''  ">
+               and  SAUDIT_USER=#{sauditUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sregIp != null and  sregIp != ''  ">
+               and  SREG_IP=#{sregIp,jdbcType=VARCHAR}
+           	</if>
+			<if test="sregPort != null and  sregPort != ''  ">
+               and  SREG_PORT=#{sregPort,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssecurityKey != null and  ssecurityKey != ''  ">
+               and  SSECURITY_KEY=#{ssecurityKey,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tauditTime != null  ">
+               and  TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tregTime != null  ">
+               and  TREG_TIME=#{tregTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_REGISTER
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sb.DeviceRegister">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_REGISTER
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_REGISTER
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SB_DEVICE_REGISTER
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SB_DEVICE_REGISTER where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sb.DeviceRegister">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SB_DEVICE_REGISTER (ID,IDEL_FLAG,ISTATUS,SADD_USER,SAUDIT_USER,SDEVICE_CODE,SDEVICE_ID,SREG_IP,SREG_PORT,SREMARK,SSECURITY_KEY,SUPDATE_USER,TADD_TIME,TAUDIT_TIME,TREG_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sauditUser,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{sregIp,jdbcType=VARCHAR},#{sregPort,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{ssecurityKey,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tauditTime,jdbcType=TIMESTAMP},#{tregTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sb.DeviceRegister">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SB_DEVICE_REGISTER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="sauditUser">
+               SAUDIT_USER,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="sregIp">
+               SREG_IP,
+           	</if>
+			<if test="sregPort">
+               SREG_PORT,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="ssecurityKey">
+               SSECURITY_KEY,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tauditTime">
+               TAUDIT_TIME,
+           	</if>
+			<if test="tregTime">
+               TREG_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditUser != null and  sauditUser != ''  ">
+                #{sauditUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sregIp != null and  sregIp != ''  ">
+                #{sregIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="sregPort != null and  sregPort != ''  ">
+                #{sregPort,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssecurityKey != null and  ssecurityKey != ''  ">
+                #{ssecurityKey,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tauditTime != null  ">
+                #{tauditTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tregTime != null  ">
+                #{tregTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sb.DeviceRegister">
+        update SB_DEVICE_REGISTER
+        <set>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditUser != null and  sauditUser != ''  ">
+                SAUDIT_USER=#{sauditUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sregIp != null and  sregIp != ''  ">
+                SREG_IP=#{sregIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="sregPort != null and  sregPort != ''  ">
+                SREG_PORT=#{sregPort,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssecurityKey != null and  ssecurityKey != ''  ">
+                SSECURITY_KEY=#{ssecurityKey,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tauditTime != null  ">
+                TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tregTime != null  ">
+                TREG_TIME=#{tregTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sb.DeviceRegister">
+        update SB_DEVICE_REGISTER
+        set 
+        		IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SAUDIT_USER=#{sauditUser,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SREG_IP=#{sregIp,jdbcType=VARCHAR}
+        		,SREG_PORT=#{sregPort,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SSECURITY_KEY=#{ssecurityKey,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+        		,TREG_TIME=#{tregTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--新增的SQL开始-->
+	<!--通过设备注册码，查询设备信息 ISTATUS in ("20","40") 审核通过-->
+	<select id="queryBySecurityKey" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from SB_DEVICE_REGISTER
+		where SSECURITY_KEY=#{ssecurityKey,jdbcType=VARCHAR}
+			AND SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+			AND ISTATUS IN ("20","40")
+			AND IDEL_FLAG=0
+	</select>
+	<!--查询所有注册设备token-->
+	<select id="selectAll" resultType="java.lang.String" >
+		select
+			SREG_IP
+		from SB_DEVICE_REGISTER
+		where ISTATUS="40"
+			AND IDEL_FLAG=0
+	</select>
+
+	<!--根据注册IP查询设备注册信息-->
+	<select id="selectByReqIp" resultMap="resultEntity" parameterType="java.lang.String" >
+		select
+		<include refid="column_List" />
+		from SB_DEVICE_REGISTER
+		where SREG_IP=#{sregIp,jdbcType=VARCHAR}
+		AND IDEL_FLAG=0
+	</select>
+
+
+
+	<!--新增的SQL开始-->
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SAUDIT_USER=#{sauditUser,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SREG_IP=#{sregIp,jdbcType=VARCHAR}
+	SREG_PORT=#{sregPort,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSECURITY_KEY=#{ssecurityKey,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TAUDIT_TIME=#{tauditTime,jdbcType=TIMESTAMP}
+	TREG_TIME=#{tregTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

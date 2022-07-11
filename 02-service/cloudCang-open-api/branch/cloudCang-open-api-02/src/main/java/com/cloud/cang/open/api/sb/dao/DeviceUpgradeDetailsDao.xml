@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.open.api.sb.dao.DeviceUpgradeDetailsDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sb.DeviceUpgradeDetails">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SEXCEPTION_DESC" property="sexceptionDesc" jdbcType="VARCHAR" />
+		<result column="SMAIN_ID" property="smainId" jdbcType="VARCHAR" />
+		<result column="TEND_TIME" property="tendTime" jdbcType="TIMESTAMP" />
+		<result column="TSTART_TIME" property="tstartTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ISTATUS,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SEXCEPTION_DESC,SMAIN_ID,TEND_TIME,TSTART_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+               and  SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sexceptionDesc != null and  sexceptionDesc != ''  ">
+               and  SEXCEPTION_DESC=#{sexceptionDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="smainId != null and  smainId != ''  ">
+               and  SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+           	</if>
+			<if test="tendTime != null  ">
+               and  TEND_TIME=#{tendTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tstartTime != null  ">
+               and  TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_UPGRADE_DETAILS
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sb.DeviceUpgradeDetails">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_UPGRADE_DETAILS
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_UPGRADE_DETAILS
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SB_DEVICE_UPGRADE_DETAILS
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SB_DEVICE_UPGRADE_DETAILS where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sb.DeviceUpgradeDetails">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SB_DEVICE_UPGRADE_DETAILS (ID,ISTATUS,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SEXCEPTION_DESC,SMAIN_ID,TEND_TIME,TSTART_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{istatus,jdbcType=NUMERIC},#{sdeviceAddress,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{sexceptionDesc,jdbcType=VARCHAR},#{smainId,jdbcType=VARCHAR},#{tendTime,jdbcType=TIMESTAMP},#{tstartTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sb.DeviceUpgradeDetails">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SB_DEVICE_UPGRADE_DETAILS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="sdeviceAddress">
+               SDEVICE_ADDRESS,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="sexceptionDesc">
+               SEXCEPTION_DESC,
+           	</if>
+			<if test="smainId">
+               SMAIN_ID,
+           	</if>
+			<if test="tendTime">
+               TEND_TIME,
+           	</if>
+			<if test="tstartTime">
+               TSTART_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                #{sdeviceAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sexceptionDesc != null and  sexceptionDesc != ''  ">
+                #{sexceptionDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="smainId != null and  smainId != ''  ">
+                #{smainId,jdbcType=VARCHAR},
+           	</if>
+			<if test="tendTime != null  ">
+                #{tendTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tstartTime != null  ">
+                #{tstartTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sb.DeviceUpgradeDetails">
+        update SB_DEVICE_UPGRADE_DETAILS
+        <set>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sexceptionDesc != null and  sexceptionDesc != ''  ">
+                SEXCEPTION_DESC=#{sexceptionDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="smainId != null and  smainId != ''  ">
+                SMAIN_ID=#{smainId,jdbcType=VARCHAR},
+           	</if>
+			<if test="tendTime != null  ">
+                TEND_TIME=#{tendTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tstartTime != null  ">
+                TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sb.DeviceUpgradeDetails">
+        update SB_DEVICE_UPGRADE_DETAILS
+        set 
+        		ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SEXCEPTION_DESC=#{sexceptionDesc,jdbcType=VARCHAR}
+        		,SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+        		,TEND_TIME=#{tendTime,jdbcType=TIMESTAMP}
+        		,TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByMap" parameterType="java.util.Map">
+        update SB_DEVICE_UPGRADE_DETAILS
+        set
+        ISTATUS=#{status,jdbcType=NUMERIC}
+        ,SEXCEPTION_DESC=#{errorMsg,jdbcType=VARCHAR}
+        ,TEND_TIME=#{tendTime,jdbcType=TIMESTAMP}
+        where SMAIN_ID= #{smainId,jdbcType=VARCHAR} AND SDEVICE_CODE =#{serverCode,jdbcType=VARCHAR} AND ISTATUS = 10
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SEXCEPTION_DESC=#{sexceptionDesc,jdbcType=VARCHAR}
+	SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+	TEND_TIME=#{tendTime,jdbcType=TIMESTAMP}
+	TSTART_TIME=#{tstartTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

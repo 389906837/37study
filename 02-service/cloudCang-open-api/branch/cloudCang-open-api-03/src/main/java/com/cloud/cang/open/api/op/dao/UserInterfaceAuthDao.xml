@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.open.api.op.dao.UserInterfaceAuthDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.op.UserInterfaceAuth">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ADD_TIME" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="IAUTH_STATUS" property="iauthStatus" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="ILAST_CLOSE_TIME" property="ilastCloseTime" jdbcType="TIMESTAMP" />
+		<result column="IOPEN_TIME" property="iopenTime" jdbcType="TIMESTAMP" />
+		<result column="SAPP_CODE" property="sappCode" jdbcType="VARCHAR" />
+		<result column="SAPP_ID" property="sappId" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SINTERFACE_CODE" property="sinterfaceCode" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUSER_CODE" property="suserCode" jdbcType="VARCHAR" />
+		<result column="SUSER_ID" property="suserId" jdbcType="VARCHAR" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ADD_TIME,IAUTH_STATUS,IDEL_FLAG,ILAST_CLOSE_TIME,IOPEN_TIME,SAPP_CODE,SAPP_ID,SCODE,SINTERFACE_CODE,SREMARK,SUSER_CODE,SUSER_ID,UPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="addTime != null  ">
+               and  ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="iauthStatus != null  ">
+               and  IAUTH_STATUS=#{iauthStatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="ilastCloseTime != null  ">
+               and  ILAST_CLOSE_TIME=#{ilastCloseTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="iopenTime != null  ">
+               and  IOPEN_TIME=#{iopenTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="sappCode != null and  sappCode != ''  ">
+               and  SAPP_CODE=#{sappCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sappId != null and  sappId != ''  ">
+               and  SAPP_ID=#{sappId,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+               and  SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="suserCode != null and  suserCode != ''  ">
+               and  SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+               and  SUSER_ID=#{suserId,jdbcType=VARCHAR}
+           	</if>
+			<if test="updateTime != null  ">
+               and  UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from OP_USER_INTERFACE_AUTH
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.op.UserInterfaceAuth">
+        select
+        <include refid="column_List" />
+        from OP_USER_INTERFACE_AUTH
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from OP_USER_INTERFACE_AUTH
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from OP_USER_INTERFACE_AUTH
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM OP_USER_INTERFACE_AUTH where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.op.UserInterfaceAuth">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into OP_USER_INTERFACE_AUTH (ID,ADD_TIME,IAUTH_STATUS,IDEL_FLAG,ILAST_CLOSE_TIME,IOPEN_TIME,SAPP_CODE,SAPP_ID,SCODE,SINTERFACE_CODE,SREMARK,SUSER_CODE,SUSER_ID,UPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{addTime,jdbcType=TIMESTAMP},#{iauthStatus,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{ilastCloseTime,jdbcType=TIMESTAMP},#{iopenTime,jdbcType=TIMESTAMP},#{sappCode,jdbcType=VARCHAR},#{sappId,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sinterfaceCode,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{suserCode,jdbcType=VARCHAR},#{suserId,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.op.UserInterfaceAuth">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into OP_USER_INTERFACE_AUTH
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="addTime">
+               ADD_TIME,
+           	</if>
+			<if test="iauthStatus">
+               IAUTH_STATUS,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="ilastCloseTime">
+               ILAST_CLOSE_TIME,
+           	</if>
+			<if test="iopenTime">
+               IOPEN_TIME,
+           	</if>
+			<if test="sappCode">
+               SAPP_CODE,
+           	</if>
+			<if test="sappId">
+               SAPP_ID,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sinterfaceCode">
+               SINTERFACE_CODE,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="suserCode">
+               SUSER_CODE,
+           	</if>
+			<if test="suserId">
+               SUSER_ID,
+           	</if>
+			<if test="updateTime">
+               UPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="addTime != null  ">
+                #{addTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="iauthStatus != null  ">
+                #{iauthStatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="ilastCloseTime != null  ">
+                #{ilastCloseTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="iopenTime != null  ">
+                #{iopenTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sappCode != null and  sappCode != ''  ">
+                #{sappCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sappId != null and  sappId != ''  ">
+                #{sappId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                #{sinterfaceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserCode != null and  suserCode != ''  ">
+                #{suserCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+                #{suserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="updateTime != null  ">
+                #{updateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.op.UserInterfaceAuth">
+        update OP_USER_INTERFACE_AUTH
+        <set>
+			<if test="addTime != null  ">
+                ADD_TIME=#{addTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="iauthStatus != null  ">
+                IAUTH_STATUS=#{iauthStatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="ilastCloseTime != null  ">
+                ILAST_CLOSE_TIME=#{ilastCloseTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="iopenTime != null  ">
+                IOPEN_TIME=#{iopenTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sappCode != null and  sappCode != ''  ">
+                SAPP_CODE=#{sappCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sappId != null and  sappId != ''  ">
+                SAPP_ID=#{sappId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserCode != null and  suserCode != ''  ">
+                SUSER_CODE=#{suserCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="suserId != null and  suserId != ''  ">
+                SUSER_ID=#{suserId,jdbcType=VARCHAR},
+           	</if>
+			<if test="updateTime != null  ">
+                UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.op.UserInterfaceAuth">
+        update OP_USER_INTERFACE_AUTH
+        set 
+        		ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+        		,IAUTH_STATUS=#{iauthStatus,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,ILAST_CLOSE_TIME=#{ilastCloseTime,jdbcType=TIMESTAMP}
+        		,IOPEN_TIME=#{iopenTime,jdbcType=TIMESTAMP}
+        		,SAPP_CODE=#{sappCode,jdbcType=VARCHAR}
+        		,SAPP_ID=#{sappId,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+        		,SUSER_ID=#{suserId,jdbcType=VARCHAR}
+        		,UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+	IAUTH_STATUS=#{iauthStatus,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ILAST_CLOSE_TIME=#{ilastCloseTime,jdbcType=TIMESTAMP}
+	IOPEN_TIME=#{iopenTime,jdbcType=TIMESTAMP}
+	SAPP_CODE=#{sappCode,jdbcType=VARCHAR}
+	SAPP_ID=#{sappId,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+	SUSER_ID=#{suserId,jdbcType=VARCHAR}
+	UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

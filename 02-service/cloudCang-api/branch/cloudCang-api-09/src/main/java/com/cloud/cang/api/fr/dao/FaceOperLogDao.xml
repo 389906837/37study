@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.api.fr.dao.FaceOperLogDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.fr.FaceOperLog">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IOPER_RESULT" property="ioperResult" jdbcType="NUMERIC" />
+		<result column="ISOURCE_TYPE" property="isourceType" jdbcType="NUMERIC" />
+		<result column="SAI_CODE" property="saiCode" jdbcType="VARCHAR" />
+		<result column="SFACE_IMG_URL" property="sfaceImgUrl" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SOPER_DESC" property="soperDesc" jdbcType="VARCHAR" />
+		<result column="SOPER_IP" property="soperIp" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TOPER_TIME" property="toperTime" jdbcType="TIMESTAMP" />
+		<result column="TYPE" property="type" jdbcType="NUMERIC" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IOPER_RESULT,ISOURCE_TYPE,SAI_CODE,SFACE_IMG_URL,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPER_DESC,SOPER_IP,TADD_TIME,TOPER_TIME,TYPE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="ioperResult != null  ">
+               and  IOPER_RESULT=#{ioperResult,jdbcType=NUMERIC}
+           	</if>
+			<if test="isourceType != null  ">
+               and  ISOURCE_TYPE=#{isourceType,jdbcType=NUMERIC}
+           	</if>
+			<if test="saiCode != null and  saiCode != ''  ">
+               and  SAI_CODE=#{saiCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sfaceImgUrl != null and  sfaceImgUrl != ''  ">
+               and  SFACE_IMG_URL=#{sfaceImgUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+               and  SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+           	</if>
+			<if test="soperDesc != null and  soperDesc != ''  ">
+               and  SOPER_DESC=#{soperDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="soperIp != null and  soperIp != ''  ">
+               and  SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="toperTime != null  ">
+               and  TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="type != null  ">
+               and  TYPE=#{type,jdbcType=NUMERIC}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from FR_FACE_OPER_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.fr.FaceOperLog">
+        select
+        <include refid="column_List" />
+        from FR_FACE_OPER_LOG
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from FR_FACE_OPER_LOG
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from FR_FACE_OPER_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM FR_FACE_OPER_LOG where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.fr.FaceOperLog">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into FR_FACE_OPER_LOG (ID,IOPER_RESULT,ISOURCE_TYPE,SAI_CODE,SFACE_IMG_URL,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPER_DESC,SOPER_IP,TADD_TIME,TOPER_TIME,TYPE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{ioperResult,jdbcType=NUMERIC},#{isourceType,jdbcType=NUMERIC},#{saiCode,jdbcType=VARCHAR},#{sfaceImgUrl,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{soperDesc,jdbcType=VARCHAR},#{soperIp,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{toperTime,jdbcType=TIMESTAMP},#{type,jdbcType=NUMERIC}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.fr.FaceOperLog">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into FR_FACE_OPER_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="ioperResult">
+               IOPER_RESULT,
+           	</if>
+			<if test="isourceType">
+               ISOURCE_TYPE,
+           	</if>
+			<if test="saiCode">
+               SAI_CODE,
+           	</if>
+			<if test="sfaceImgUrl">
+               SFACE_IMG_URL,
+           	</if>
+			<if test="smemberCode">
+               SMEMBER_CODE,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="soperDesc">
+               SOPER_DESC,
+           	</if>
+			<if test="soperIp">
+               SOPER_IP,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="toperTime">
+               TOPER_TIME,
+           	</if>
+			<if test="type">
+               TYPE,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="ioperResult != null  ">
+                #{ioperResult,jdbcType=NUMERIC},
+           	</if>
+			<if test="isourceType != null  ">
+                #{isourceType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saiCode != null and  saiCode != ''  ">
+                #{saiCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfaceImgUrl != null and  sfaceImgUrl != ''  ">
+                #{sfaceImgUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperDesc != null and  soperDesc != ''  ">
+                #{soperDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperIp != null and  soperIp != ''  ">
+                #{soperIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="toperTime != null  ">
+                #{toperTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="type != null  ">
+                #{type,jdbcType=NUMERIC},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.fr.FaceOperLog">
+        update FR_FACE_OPER_LOG
+        <set>
+			<if test="ioperResult != null  ">
+                IOPER_RESULT=#{ioperResult,jdbcType=NUMERIC},
+           	</if>
+			<if test="isourceType != null  ">
+                ISOURCE_TYPE=#{isourceType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saiCode != null and  saiCode != ''  ">
+                SAI_CODE=#{saiCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfaceImgUrl != null and  sfaceImgUrl != ''  ">
+                SFACE_IMG_URL=#{sfaceImgUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperDesc != null and  soperDesc != ''  ">
+                SOPER_DESC=#{soperDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="soperIp != null and  soperIp != ''  ">
+                SOPER_IP=#{soperIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="toperTime != null  ">
+                TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="type != null  ">
+                TYPE=#{type,jdbcType=NUMERIC},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.fr.FaceOperLog">
+        update FR_FACE_OPER_LOG
+        set 
+        		IOPER_RESULT=#{ioperResult,jdbcType=NUMERIC}
+        		,ISOURCE_TYPE=#{isourceType,jdbcType=NUMERIC}
+        		,SAI_CODE=#{saiCode,jdbcType=VARCHAR}
+        		,SFACE_IMG_URL=#{sfaceImgUrl,jdbcType=VARCHAR}
+        		,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SOPER_DESC=#{soperDesc,jdbcType=VARCHAR}
+        		,SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP}
+        		,TYPE=#{type,jdbcType=NUMERIC}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IOPER_RESULT=#{ioperResult,jdbcType=NUMERIC}
+	ISOURCE_TYPE=#{isourceType,jdbcType=NUMERIC}
+	SAI_CODE=#{saiCode,jdbcType=VARCHAR}
+	SFACE_IMG_URL=#{sfaceImgUrl,jdbcType=VARCHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SOPER_DESC=#{soperDesc,jdbcType=VARCHAR}
+	SOPER_IP=#{soperIp,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TOPER_TIME=#{toperTime,jdbcType=TIMESTAMP}
+	TYPE=#{type,jdbcType=NUMERIC}
+     -->
+     
+</mapper>

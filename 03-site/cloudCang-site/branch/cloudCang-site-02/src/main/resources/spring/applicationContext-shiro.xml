@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	
+    <description>apache shiro配置</description>
+    
+      <bean id="ehCacheManager"  
+        class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
+        <property name="configLocation" value="classpath:cache/ehcache.xml" />
+        <property name="shared" value="true"></property> <!-- 这里是关键！！！没有必错  -->  
+    </bean>  
+    <!-- end MyBatis使用ehcache缓存 -->  
+
+    <!--缓存管理器 使用Ehcache实现 -->  
+    <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">  
+        <property name="cacheManager" ref="ehCacheManager" />
+    </bean>  
+	    
+	<!--sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID -->
+	<bean id="sharesession" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<!-- cookie的name,对应的默认是 JSESSIONID -->
+		<constructor-arg name="name" value="SHAREJSESSIONID" />
+		<!-- jsessionId的path为 / 用于多个系统共享jsessionId -->
+		<property name="path" value="${shiro.cookie.path}" />
+		<!--<property name="domain" value="${shiro.cookie.domain}" />-->
+	</bean>
+	<!-- session管理器 -->
+	<bean id="sessionManager"
+		class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+		<!-- 超时时间 -->
+		<property name="globalSessionTimeout" value="1800000"/>
+		<!-- sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID -->
+		<property name="sessionIdCookie" ref="sharesession" />
+		<!-- 定时检查失效的session -->
+		<property name="sessionValidationSchedulerEnabled" value="false" />
+	</bean>
+	<!-- 默认过滤定义 -->
+	<bean id="chainDefinitionSectionMetaSource" class="com.cang.os.security.core.ChainDefinitionSectionMetaSource">
+	    <property name="filterChainDefinitions">
+	        <value>
+	        	/Kaptcha= anon
+	        	/resources/**= anon
+	        	/mgr/logout* = anon
+				/mgr/login = authc
+				/mgr/**=user
+	        </value>
+	    </property>
+	    <property name="alluserLogin">
+	        <value>false</value>
+	    </property>
+	</bean>
+	<!-- 并发登录控制 -->
+	<bean id="concurrentLoginControlFilter" class="com.cang.os.security.filter.ConcurrentLoginControlFilter">
+	     <property name="cacheManager" ref="shiroCacheManager" /> 
+		<property name="sessionManager" ref="sessionManager"/> 
+		<!-- 默认剔除前者 -->
+	    <property name="kickoutAfter" value="false"/> 
+	    <!-- 允许并发登录的数量 -->
+	    <property name="maxSession" value="1"/>
+	    <!-- 地址 -->
+	    <property name="kickoutUrl" value="${shiro.loginUrl}"/>  
+	</bean>
+	
+	<!-- 項目自定义的Realm -->
+	<bean id="shiroDbRealm" class="com.cang.os.security.realm.ShiroDbRealm">
+		<property name="credentialsMatcher" ref="hashedCredentialsMatcher" />
+		<property name="cacheManager"  ref="shiroCacheManager" ></property>
+	</bean>
+	
+	<bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">  
+        <property name="hashAlgorithmName" value="MD5" />  
+        <property name="storedCredentialsHexEncoded" value="true" />  
+        <property name="hashIterations" value="1" />  
+    </bean>  
+    
+	<bean id="modelAuthricator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+        <property name="authenticationListeners">
+           <list>
+             <bean class="com.cang.os.security.listener.LoginListener"></bean>
+           </list>
+        </property>
+         <property name="realms">
+           <list>
+             	<!-- 項目自定义的Realm -->
+				 <ref bean="shiroDbRealm" />
+           </list>
+        </property>
+    </bean>
+    <bean id="modelAuthorizer" class="org.apache.shiro.authz.ModularRealmAuthorizer">
+         <property name="realms">
+           <list>
+             <!-- 項目自定义的Realm -->
+				 <ref bean="shiroDbRealm" />
+           </list>
+        </property>
+    </bean>
+    <bean id="firstSuccess" class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy"/>
+    
+	<!-- 权限管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- session 管理器 -->
+		<property name="sessionManager" ref="sessionManager" />
+		<!-- 缓存管理器 -->
+		<property name="cacheManager" ref="shiroCacheManager" />
+		 <!-- 数据库认证的实现 org.springrain.mgr.shiro.ShiroDbRealm -->
+		<property name="authenticator" ref="modelAuthricator"/>
+		<!-- 数据库认证的实现 权限用的 -->
+		<property name="authorizer" ref="modelAuthorizer"/>
+		
+	</bean>
+
+	<bean id="myAuthenFilter" class="com.cang.os.security.filter.CaptchaFormAuthenticationFilter" />
+	<bean id="userFilter" class="com.cang.os.security.filter.UserFilter" />
+	<bean id="perms" class="com.cang.os.security.filter.PermissionsAuthorizationFilter"></bean>
+	<!-- Shiro Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="${shiro.loginUrl}" />
+		<property name="successUrl" value="${shiro.successUrl}" />
+		<property name="unauthorizedUrl" value="${shiro.unauthorizedUrl}"/>
+		<property name="filters">
+			<map>
+				<entry key="authc" value-ref="myAuthenFilter" />
+				<entry key="user" value-ref="userFilter" />
+				<entry key="perms" value-ref="perms" />
+				<entry key="concurrentlogin" value-ref="concurrentLoginControlFilter"/>
+			</map>
+		</property>
+		 <!-- shiro连接约束配置,在这里使用自定义的动态获取资源类 -->
+        <property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource" />
+	</bean>
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	<!-- AOP式方法级权限检查 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+</beans>

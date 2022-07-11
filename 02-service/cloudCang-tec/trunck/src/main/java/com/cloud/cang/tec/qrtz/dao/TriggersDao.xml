@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.tec.qrtz.dao.TriggersDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.qrtz.Triggers">
+        <id column="SCHED_NAME" property="schedName" jdbcType="VARCHAR" />
+		<result column="CALENDAR_NAME" property="calendarName" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="END_TIME" property="endTime" jdbcType="NUMERIC" />
+		<result column="JOB_DATA" property="jobData" jdbcType="BLOB" />
+		<result column="JOB_GROUP" property="jobGroup" jdbcType="VARCHAR" />
+		<result column="JOB_NAME" property="jobName" jdbcType="VARCHAR" />
+		<result column="MISFIRE_INSTR" property="misfireInstr" jdbcType="NUMERIC" />
+		<result column="NEXT_FIRE_TIME" property="nextFireTime" jdbcType="NUMERIC" />
+		<result column="PREV_FIRE_TIME" property="prevFireTime" jdbcType="NUMERIC" />
+		<result column="PRIORITY" property="priority" jdbcType="NUMERIC" />
+		<result column="START_TIME" property="startTime" jdbcType="NUMERIC" />
+		<result column="TRIGGER_GROUP" property="triggerGroup" jdbcType="VARCHAR" />
+		<result column="TRIGGER_NAME" property="triggerName" jdbcType="VARCHAR" />
+		<result column="TRIGGER_STATE" property="triggerState" jdbcType="VARCHAR" />
+		<result column="TRIGGER_TYPE" property="triggerType" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="resultEntityVo" type="com.cloud.cang.tec.quartz.vo.Triggers">
+        <id column="SCHED_NAME" property="schedName" jdbcType="VARCHAR" />
+		<result column="CALENDAR_NAME" property="calendarName" jdbcType="VARCHAR" />
+		<result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+		<result column="END_TIME" property="endTime" jdbcType="NUMERIC" />
+		<result column="JOB_DATA" property="jobData" jdbcType="BLOB" />
+		<result column="JOB_GROUP" property="jobGroup" jdbcType="VARCHAR" />
+		<result column="JOB_NAME" property="jobName" jdbcType="VARCHAR" />
+		<result column="MISFIRE_INSTR" property="misfireInstr" jdbcType="NUMERIC" />
+		<result column="NEXT_FIRE_TIME" property="nextFireTime" jdbcType="NUMERIC" />
+		<result column="PREV_FIRE_TIME" property="prevFireTime" jdbcType="NUMERIC" />
+		<result column="PRIORITY" property="priority" jdbcType="NUMERIC" />
+		<result column="START_TIME" property="startTime" jdbcType="NUMERIC" />
+		<result column="TRIGGER_GROUP" property="triggerGroup" jdbcType="VARCHAR" />
+		<result column="TRIGGER_NAME" property="triggerName" jdbcType="VARCHAR" />
+		<result column="TRIGGER_STATE" property="triggerState" jdbcType="VARCHAR" />
+		<result column="TRIGGER_TYPE" property="triggerType" jdbcType="VARCHAR" />
+		<result column="MODULE_NAME" property="moduleName" jdbcType="VARCHAR" />
+		<result column="CRON" property="cron" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        SCHED_NAME,CALENDAR_NAME,DESCRIPTION,END_TIME,JOB_DATA,JOB_GROUP,JOB_NAME,MISFIRE_INSTR,NEXT_FIRE_TIME,PREV_FIRE_TIME,PRIORITY,START_TIME,TRIGGER_GROUP,TRIGGER_NAME,TRIGGER_STATE,TRIGGER_TYPE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="schedName != null and  schedName != ''   ">
+                and SCHED_NAME=#{schedName,jdbcType=VARCHAR}
+            </if>
+			<if test="calendarName != null and  calendarName != ''  ">
+               and  CALENDAR_NAME=#{calendarName,jdbcType=VARCHAR}
+           	</if>
+			<if test="description != null and  description != ''  ">
+               and  DESCRIPTION=#{description,jdbcType=VARCHAR}
+           	</if>
+			<if test="endTime != null  ">
+               and  END_TIME=#{endTime,jdbcType=NUMERIC}
+           	</if>
+			<if test="jobData != null  ">
+               and  JOB_DATA=#{jobData,jdbcType=BLOB}
+           	</if>
+			<if test="jobGroup != null and  jobGroup != ''  ">
+               and  JOB_GROUP=#{jobGroup,jdbcType=VARCHAR}
+           	</if>
+			<if test="jobName != null and  jobName != ''  ">
+               and  JOB_NAME=#{jobName,jdbcType=VARCHAR}
+           	</if>
+			<if test="misfireInstr != null  ">
+               and  MISFIRE_INSTR=#{misfireInstr,jdbcType=NUMERIC}
+           	</if>
+			<if test="nextFireTime != null  ">
+               and  NEXT_FIRE_TIME=#{nextFireTime,jdbcType=NUMERIC}
+           	</if>
+			<if test="prevFireTime != null  ">
+               and  PREV_FIRE_TIME=#{prevFireTime,jdbcType=NUMERIC}
+           	</if>
+			<if test="priority != null  ">
+               and  PRIORITY=#{priority,jdbcType=NUMERIC}
+           	</if>
+			<if test="startTime != null  ">
+               and  START_TIME=#{startTime,jdbcType=NUMERIC}
+           	</if>
+			<if test="triggerGroup != null and  triggerGroup != ''  ">
+               and  TRIGGER_GROUP=#{triggerGroup,jdbcType=VARCHAR}
+           	</if>
+			<if test="triggerName != null and  triggerName != ''  ">
+               and  TRIGGER_NAME=#{triggerName,jdbcType=VARCHAR}
+           	</if>
+			<if test="triggerState != null and  triggerState != ''  ">
+               and  TRIGGER_STATE=#{triggerState,jdbcType=VARCHAR}
+           	</if>
+			<if test="triggerType != null and  triggerType != ''  ">
+               and  TRIGGER_TYPE=#{triggerType,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from QRTZ_TRIGGERS
+        where SCHED_NAME = #{schedName,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="selectVoByMapWhere" resultMap="resultEntityVo" parameterType="com.cloud.cang.model.qrtz.Triggers">
+        select
+        <include refid="column_List" />,MODULE_NAME,CRON
+        from QRTZ_TRIGGERS LEFT JOIN SYS_SCHEDULE_CONF ON  QRTZ_TRIGGERS.TRIGGER_NAME=SYS_SCHEDULE_CONF.MODULE_CODE
+        <include refid="Entity_Where_Clause" />
+        order by JOB_NAME
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.qrtz.Triggers">
+        select
+        <include refid="column_List" />
+        from QRTZ_TRIGGERS
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from QRTZ_TRIGGERS
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from QRTZ_TRIGGERS
+        where SCHED_NAME = #{schedName,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM QRTZ_TRIGGERS where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.qrtz.Triggers">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into QRTZ_TRIGGERS (SCHED_NAME,CALENDAR_NAME,DESCRIPTION,END_TIME,JOB_DATA,JOB_GROUP,JOB_NAME,MISFIRE_INSTR,NEXT_FIRE_TIME,PREV_FIRE_TIME,PRIORITY,START_TIME,TRIGGER_GROUP,TRIGGER_NAME,TRIGGER_STATE,TRIGGER_TYPE)
+        values (
+        	#{schedName,jdbcType=VARCHAR}
+        	,#{calendarName,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{endTime,jdbcType=NUMERIC},#{jobData,jdbcType=BLOB},#{jobGroup,jdbcType=VARCHAR},#{jobName,jdbcType=VARCHAR},#{misfireInstr,jdbcType=NUMERIC},#{nextFireTime,jdbcType=NUMERIC},#{prevFireTime,jdbcType=NUMERIC},#{priority,jdbcType=NUMERIC},#{startTime,jdbcType=NUMERIC},#{triggerGroup,jdbcType=VARCHAR},#{triggerName,jdbcType=VARCHAR},#{triggerState,jdbcType=VARCHAR},#{triggerType,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.qrtz.Triggers">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into QRTZ_TRIGGERS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="schedName != null and  schedName != ''   ">
+                SCHED_NAME,
+            </if>
+			<if test="calendarName">
+               CALENDAR_NAME,
+           	</if>
+			<if test="description">
+               DESCRIPTION,
+           	</if>
+			<if test="endTime">
+               END_TIME,
+           	</if>
+			<if test="jobData">
+               JOB_DATA,
+           	</if>
+			<if test="jobGroup">
+               JOB_GROUP,
+           	</if>
+			<if test="jobName">
+               JOB_NAME,
+           	</if>
+			<if test="misfireInstr">
+               MISFIRE_INSTR,
+           	</if>
+			<if test="nextFireTime">
+               NEXT_FIRE_TIME,
+           	</if>
+			<if test="prevFireTime">
+               PREV_FIRE_TIME,
+           	</if>
+			<if test="priority">
+               PRIORITY,
+           	</if>
+			<if test="startTime">
+               START_TIME,
+           	</if>
+			<if test="triggerGroup">
+               TRIGGER_GROUP,
+           	</if>
+			<if test="triggerName">
+               TRIGGER_NAME,
+           	</if>
+			<if test="triggerState">
+               TRIGGER_STATE,
+           	</if>
+			<if test="triggerType">
+               TRIGGER_TYPE,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="schedName != null and  schedName != ''  ">
+                #{schedName,jdbcType=VARCHAR},
+            </if>
+			<if test="calendarName != null and  calendarName != ''  ">
+                #{calendarName,jdbcType=VARCHAR},
+           	</if>
+			<if test="description != null and  description != ''  ">
+                #{description,jdbcType=VARCHAR},
+           	</if>
+			<if test="endTime != null  ">
+                #{endTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="jobData != null  ">
+                #{jobData,jdbcType=BLOB},
+           	</if>
+			<if test="jobGroup != null and  jobGroup != ''  ">
+                #{jobGroup,jdbcType=VARCHAR},
+           	</if>
+			<if test="jobName != null and  jobName != ''  ">
+                #{jobName,jdbcType=VARCHAR},
+           	</if>
+			<if test="misfireInstr != null  ">
+                #{misfireInstr,jdbcType=NUMERIC},
+           	</if>
+			<if test="nextFireTime != null  ">
+                #{nextFireTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="prevFireTime != null  ">
+                #{prevFireTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="priority != null  ">
+                #{priority,jdbcType=NUMERIC},
+           	</if>
+			<if test="startTime != null  ">
+                #{startTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="triggerGroup != null and  triggerGroup != ''  ">
+                #{triggerGroup,jdbcType=VARCHAR},
+           	</if>
+			<if test="triggerName != null and  triggerName != ''  ">
+                #{triggerName,jdbcType=VARCHAR},
+           	</if>
+			<if test="triggerState != null and  triggerState != ''  ">
+                #{triggerState,jdbcType=VARCHAR},
+           	</if>
+			<if test="triggerType != null and  triggerType != ''  ">
+                #{triggerType,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.qrtz.Triggers">
+        update QRTZ_TRIGGERS
+        <set>
+			<if test="calendarName != null and  calendarName != ''  ">
+                CALENDAR_NAME=#{calendarName,jdbcType=VARCHAR},
+           	</if>
+			<if test="description != null and  description != ''  ">
+                DESCRIPTION=#{description,jdbcType=VARCHAR},
+           	</if>
+			<if test="endTime != null  ">
+                END_TIME=#{endTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="jobData != null  ">
+                JOB_DATA=#{jobData,jdbcType=BLOB},
+           	</if>
+			<if test="jobGroup != null and  jobGroup != ''  ">
+                JOB_GROUP=#{jobGroup,jdbcType=VARCHAR},
+           	</if>
+			<if test="jobName != null and  jobName != ''  ">
+                JOB_NAME=#{jobName,jdbcType=VARCHAR},
+           	</if>
+			<if test="misfireInstr != null  ">
+                MISFIRE_INSTR=#{misfireInstr,jdbcType=NUMERIC},
+           	</if>
+			<if test="nextFireTime != null  ">
+                NEXT_FIRE_TIME=#{nextFireTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="prevFireTime != null  ">
+                PREV_FIRE_TIME=#{prevFireTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="priority != null  ">
+                PRIORITY=#{priority,jdbcType=NUMERIC},
+           	</if>
+			<if test="startTime != null  ">
+                START_TIME=#{startTime,jdbcType=NUMERIC},
+           	</if>
+			<if test="triggerGroup != null and  triggerGroup != ''  ">
+                TRIGGER_GROUP=#{triggerGroup,jdbcType=VARCHAR},
+           	</if>
+			<if test="triggerName != null and  triggerName != ''  ">
+                TRIGGER_NAME=#{triggerName,jdbcType=VARCHAR},
+           	</if>
+			<if test="triggerState != null and  triggerState != ''  ">
+                TRIGGER_STATE=#{triggerState,jdbcType=VARCHAR},
+           	</if>
+			<if test="triggerType != null and  triggerType != ''  ">
+                TRIGGER_TYPE=#{triggerType,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  SCHED_NAME= #{schedName,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.qrtz.Triggers">
+        update QRTZ_TRIGGERS
+        set 
+        		CALENDAR_NAME=#{calendarName,jdbcType=VARCHAR}
+        		,DESCRIPTION=#{description,jdbcType=VARCHAR}
+        		,END_TIME=#{endTime,jdbcType=NUMERIC}
+        		,JOB_DATA=#{jobData,jdbcType=BLOB}
+        		,JOB_GROUP=#{jobGroup,jdbcType=VARCHAR}
+        		,JOB_NAME=#{jobName,jdbcType=VARCHAR}
+        		,MISFIRE_INSTR=#{misfireInstr,jdbcType=NUMERIC}
+        		,NEXT_FIRE_TIME=#{nextFireTime,jdbcType=NUMERIC}
+        		,PREV_FIRE_TIME=#{prevFireTime,jdbcType=NUMERIC}
+        		,PRIORITY=#{priority,jdbcType=NUMERIC}
+        		,START_TIME=#{startTime,jdbcType=NUMERIC}
+        		,TRIGGER_GROUP=#{triggerGroup,jdbcType=VARCHAR}
+        		,TRIGGER_NAME=#{triggerName,jdbcType=VARCHAR}
+        		,TRIGGER_STATE=#{triggerState,jdbcType=VARCHAR}
+        		,TRIGGER_TYPE=#{triggerType,jdbcType=VARCHAR}
+        where  SCHED_NAME= #{schedName,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    SCHED_NAME= #{schedName,jdbcType=VARCHAR}
+	CALENDAR_NAME=#{calendarName,jdbcType=VARCHAR}
+	DESCRIPTION=#{description,jdbcType=VARCHAR}
+	END_TIME=#{endTime,jdbcType=NUMERIC}
+	JOB_DATA=#{jobData,jdbcType=BLOB}
+	JOB_GROUP=#{jobGroup,jdbcType=VARCHAR}
+	JOB_NAME=#{jobName,jdbcType=VARCHAR}
+	MISFIRE_INSTR=#{misfireInstr,jdbcType=NUMERIC}
+	NEXT_FIRE_TIME=#{nextFireTime,jdbcType=NUMERIC}
+	PREV_FIRE_TIME=#{prevFireTime,jdbcType=NUMERIC}
+	PRIORITY=#{priority,jdbcType=NUMERIC}
+	START_TIME=#{startTime,jdbcType=NUMERIC}
+	TRIGGER_GROUP=#{triggerGroup,jdbcType=VARCHAR}
+	TRIGGER_NAME=#{triggerName,jdbcType=VARCHAR}
+	TRIGGER_STATE=#{triggerState,jdbcType=VARCHAR}
+	TRIGGER_TYPE=#{triggerType,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	   xmlns:cache="http://www.springframework.org/schema/cache"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xsi:schemaLocation="
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/jdbc
+    http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+    http://www.springframework.org/schema/cache
+    http://www.springframework.org/schema/cache/spring-cache.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<bean id="context" class="com.cloud.cang.utils.SpringContext" lazy-init="false" />
+	<!--开启MQ -->
+	<bean class="com.cloud.cang.core.rmq.config.RmqEnable" p:enable="true"/>
+
+	<!-- 自动扫描包 ,将带有注解的类 纳入spring容器管理 -->
+	<context:component-scan base-package="com.cloud.cang">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+	<bean id="propertyConfigurer"
+		  class="com.cloud.cang.zookeeper.confclient.config.PropertiesConfigurationFactoryBean" depends-on="zkClient">
+		<constructor-arg name="zkclient" ref="zkClient"/>
+		<constructor-arg name="listener" ref="listenersNotice"/><!--  -->
+	</bean>
+	<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer" depends-on="propertyConfigurer">
+		<property name="properties" ref="propertyConfigurer" />
+		<property name="nullValue" value="@null"></property>
+	</bean>
+
+	<bean name="serviceCenter" class="com.cloud.cang.dispatcher.RegisterServiceCenter"
+		  init-method="init" depends-on="zkClient">
+		<property name="client" ref="zkClient"/>
+	</bean>
+	<bean name="serverRegister" class="com.cloud.cang.dispatcher.support.ServerRegisterSupportor"
+		  init-method="register">
+		<property name="server">
+			<bean name="server" class="com.cloud.cang.dispatcher.server.ServiceServer">
+				<property name="module">
+					<value>cloudCang-open-api</value>
+				</property>
+				<property name="enabled">
+					<value>true</value>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 连接配置管理中心 -->
+	<bean name="genericObjectPoolConfig" class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+		<property name="maxWaitMillis" value="-1" />
+		<property name="maxTotal" value="1000" />
+		<property name="minIdle" value="8" />
+		<property name="maxIdle" value="100" />
+	</bean>
+
+	<bean id="jedisCluster" class="com.cloud.cang.cache.redis.JedisClusterFactory">
+		<property name="connStr" value="${redis.server}" />
+		<property name="timeout" value="300000" />
+		<property name="maxRedirections" value="6" />
+		<property name="genericObjectPoolConfig" ref="genericObjectPoolConfig" />
+	</bean>
+
+	<bean id="cacheUtils" class="com.cloud.cang.cache.redis.RedisCachedImpl">
+		<property name="redisCli" ref="jedisCluster"></property>
+	</bean>
+
+	<!-- 配置自定义的监听，key为zookeeper节点的名，value为 服务类注册到spring中的id
+		程序中会根据id去找实现类-->
+	<bean id="listenersNotice" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="cache_data_dict"  value="dataDicServiceImpl"></entry>
+				<entry key="cache_bs_param"  value="businessParameterService"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<!--数据字典配置-->
+	<bean id="dataDicServiceImpl" class="com.cloud.cang.core.sys.service.impl.ParametergroupServiceImpl" lazy-init="false" />
+	<!-- 业务配置-->
+	<bean id="businessParameterService" class="com.cloud.cang.core.sys.service.impl.BusinessParameterServiceImpl" lazy-init="false" />
+
+
+	<!-- dataSource 配置 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		  init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${mysql.jdbc.url}" />
+		<property name="username" value="${mysql.jdbc.username}" />
+		<property name="password" value="${mysql.jdbc.password}" />
+		<property name="connectionProperties" value="${mysql.jdbc.driver}" />
+
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${ds.initialSize}" />
+		<property name="minIdle" value="${ds.minIdle}" />
+		<property name="maxActive" value="${ds.maxActive}" />
+		<property name="connectionInitSqls" value="set names utf8mb4;"/>
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${ds.maxWait}" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${ds.timeBetweenEvictionRunsMillis}" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${ds.minEvictableIdleTimeMillis}" />
+
+		<property name="validationQuery" value="SELECT 'x' " />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat" />
+	</bean>
+	<!-- mybatis文件配置，扫描所有mapper文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+		  p:dataSource-ref="dataSource" p:configLocation="classpath:mybatis/mybatis-config.xml"
+		  p:mapperLocations="classpath*:com/cloud/cang/**/**/dao/*Mapper.xml" />
+
+	<!-- spring与mybatis整合配置，扫描所有dao -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+		  p:basePackage="com.cloud.cang.**.**.dao"
+		  p:sqlSessionFactoryBeanName="sqlSessionFactory" />
+
+	<!-- 对dataSource 数据源进行事务管理 -->
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		  p:dataSource-ref="dataSource" />
+
+	<!-- 事务管理 通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!-- 对insert,update,delete 开头的方法进行事务管理,只要有异常就回滚 -->
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+			<tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+			<tx:method name="create*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+			<tx:method name="merge*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+			<tx:method name="remove*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+			<tx:method name="batch*" propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+			<!-- select,count开头的方法,开启只读,提高数据库访问性能 -->
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="load*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<tx:method name="is*" read-only="true" />
+			<!-- 对其他方法 使用默认的事务管理 -->
+			<tx:method name="*"  propagation="REQUIRED" rollback-for="java.lang.Throwable" />
+		</tx:attributes>
+	</tx:advice>
+
+
+	<!-- 事务 aop 配置 -->
+	<aop:config>
+		<aop:pointcut id="serviceMethods"
+					  expression="execution(* com.cloud.cang..*.service.impl.*Impl.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods" />
+	</aop:config>
+	<!-- 配置使Spring采用CGLIB代理-->
+	<aop:aspectj-autoproxy proxy-target-class="false" />
+	<!-- 启用对事务注解的支持 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+
+	<beans profile="dev">
+		<bean id="zkClient"
+			  class="com.cloud.cang.zookeeper.ZookeeperFactoryBean">
+			<property name="zkConnectionString" value="10.0.101.113:2182"/>
+			<property name="projectName" value="cloudCang-open-api"/>
+		</bean>
+	</beans>
+	<beans profile="test">
+		<bean id="zkClient"
+			  class="com.cloud.cang.zookeeper.ZookeeperFactoryBean">
+			<property name="zkConnectionString" value="10.0.101.113:2183"/>
+			<property name="projectName" value="cloudCang-open-api"/>
+		</bean>
+	</beans>
+	<beans profile="production">
+		<bean id="zkClient"
+			  class="com.cloud.cang.zookeeper.ZookeeperFactoryBean">
+			<property name="zkConnectionString" value="10.0.101.114:2182"/>
+			<property name="projectName" value="cloudCang-open-api"/>
+		</bean>
+	</beans>
+</beans>

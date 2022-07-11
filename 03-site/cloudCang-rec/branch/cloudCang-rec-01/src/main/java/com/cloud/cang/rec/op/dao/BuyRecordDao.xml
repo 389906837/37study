@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rec.op.dao.BuyRecordDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.op.BuyRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="ADD_TIME" property="addTime" jdbcType="TIMESTAMP"/>
+        <result column="FPAY_AMOUNT" property="fpayAmount" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IIS_ADMIN_ADD" property="iisAdminAdd" jdbcType="NUMERIC"/>
+        <result column="IPAY_WAY" property="ipayWay" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="SBUY_CONTENT" property="sbuyContent" jdbcType="VARCHAR"/>
+        <result column="SBUY_WAY" property="sbuyWay" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SINTERFACE_CODE" property="sinterfaceCode" jdbcType="VARCHAR"/>
+        <result column="SPAY_NUMBER" property="spayNumber" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SUSER_CODE" property="suserCode" jdbcType="VARCHAR"/>
+        <result column="SUSER_ID" property="suserId" jdbcType="VARCHAR"/>
+        <result column="TBUY_TIME" property="tbuyTime" jdbcType="TIMESTAMP"/>
+        <result column="TPAY_FINISH_TIME" property="tpayFinishTime" jdbcType="TIMESTAMP"/>
+        <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,ADD_TIME,FPAY_AMOUNT,IDEL_FLAG,IIS_ADMIN_ADD,IPAY_WAY,ISTATUS,SBUY_CONTENT,SBUY_WAY,SCODE,SINTERFACE_CODE,SPAY_NUMBER,SREMARK,SUSER_CODE,SUSER_ID,TBUY_TIME,TPAY_FINISH_TIME,UPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="addTime != null  ">
+                    and ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="fpayAmount != null  ">
+                    and FPAY_AMOUNT=#{fpayAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisAdminAdd != null  ">
+                    and IIS_ADMIN_ADD=#{iisAdminAdd,jdbcType=NUMERIC}
+                </if>
+                <if test="ipayWay != null  ">
+                    and IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="sbuyContent != null and  sbuyContent != ''  ">
+                    and SBUY_CONTENT=#{sbuyContent,jdbcType=VARCHAR}
+                </if>
+                <if test="sbuyWay != null and  sbuyWay != ''  ">
+                    and SBUY_WAY=#{sbuyWay,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                    and SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="spayNumber != null and  spayNumber != ''  ">
+                    and SPAY_NUMBER=#{spayNumber,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="suserCode != null and  suserCode != ''  ">
+                    and SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+                </if>
+                <if test="suserId != null and  suserId != ''  ">
+                    and SUSER_ID=#{suserId,jdbcType=VARCHAR}
+                </if>
+                <if test="tbuyTime != null  ">
+                    and TBUY_TIME=#{tbuyTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tpayFinishTime != null  ">
+                    and TPAY_FINISH_TIME=#{tpayFinishTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateTime != null  ">
+                    and UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and OBR.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="addTime != null  ">
+                    and OBR.ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="fpayAmount != null  ">
+                    and OBR.FPAY_AMOUNT=#{fpayAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and OBR.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisAdminAdd != null  ">
+                    and OBR.IIS_ADMIN_ADD=#{iisAdminAdd,jdbcType=NUMERIC}
+                </if>
+                <if test="ipayWay != null  ">
+                    and OBR.IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and OBR.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="sbuyContent != null and  sbuyContent != ''  ">
+                    and OBR.SBUY_CONTENT=#{sbuyContent,jdbcType=VARCHAR}
+                </if>
+                <if test="sbuyWay != null and  sbuyWay != ''  ">
+                    and OBR.SBUY_WAY=#{sbuyWay,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and OBR.SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                    and OBR.SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="spayNumber != null and  spayNumber != ''  ">
+                    and OBR.SPAY_NUMBER LIKE CONCAT('%',#{spayNumber,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and OBR.SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="suserCode != null and  suserCode != ''  ">
+                    and OBR.SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+                </if>
+                <if test="suserId != null and  suserId != ''  ">
+                    and OBR.SUSER_ID=#{suserId,jdbcType=VARCHAR}
+                </if>
+                <if test="tbuyTime != null  ">
+                    and OBR.TBUY_TIME=#{tbuyTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tpayFinishTime != null  ">
+                    and OBR.TPAY_FINISH_TIME=#{tpayFinishTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="updateTime != null  ">
+                    and OBR.UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="snickName != null and snickName != '' ">
+                    and OUI.SNICK_NAME  LIKE CONCAT('%',#{snickName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="interfaceName != null and interfaceName != '' ">
+                    and OII.SNAME  LIKE CONCAT('%',#{interfaceName,jdbcType=VARCHAR},'%')
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from OP_BUY_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.op.BuyRecord">
+        select
+        <include refid="column_List"/>
+        from OP_BUY_RECORD
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from OP_BUY_RECORD
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from OP_BUY_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM OP_BUY_RECORD where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.op.BuyRecord">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into OP_BUY_RECORD (ID,ADD_TIME,FPAY_AMOUNT,IDEL_FLAG,IIS_ADMIN_ADD,IPAY_WAY,ISTATUS,SBUY_CONTENT,SBUY_WAY,SCODE,SINTERFACE_CODE,SPAY_NUMBER,SREMARK,SUSER_CODE,SUSER_ID,TBUY_TIME,TPAY_FINISH_TIME,UPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{addTime,jdbcType=TIMESTAMP},#{fpayAmount,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{iisAdminAdd,jdbcType=NUMERIC},#{ipayWay,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{sbuyContent,jdbcType=VARCHAR},#{sbuyWay,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sinterfaceCode,jdbcType=VARCHAR},#{spayNumber,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{suserCode,jdbcType=VARCHAR},#{suserId,jdbcType=VARCHAR},#{tbuyTime,jdbcType=TIMESTAMP},#{tpayFinishTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.op.BuyRecord">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into OP_BUY_RECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="addTime">
+                ADD_TIME,
+            </if>
+            <if test="fpayAmount">
+                FPAY_AMOUNT,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="iisAdminAdd">
+                IIS_ADMIN_ADD,
+            </if>
+            <if test="ipayWay">
+                IPAY_WAY,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="sbuyContent">
+                SBUY_CONTENT,
+            </if>
+            <if test="sbuyWay">
+                SBUY_WAY,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="sinterfaceCode">
+                SINTERFACE_CODE,
+            </if>
+            <if test="spayNumber">
+                SPAY_NUMBER,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="suserCode">
+                SUSER_CODE,
+            </if>
+            <if test="suserId">
+                SUSER_ID,
+            </if>
+            <if test="tbuyTime">
+                TBUY_TIME,
+            </if>
+            <if test="tpayFinishTime">
+                TPAY_FINISH_TIME,
+            </if>
+            <if test="updateTime">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null  ">
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fpayAmount != null  ">
+                #{fpayAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisAdminAdd != null  ">
+                #{iisAdminAdd,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayWay != null  ">
+                #{ipayWay,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="sbuyContent != null and  sbuyContent != ''  ">
+                #{sbuyContent,jdbcType=VARCHAR},
+            </if>
+            <if test="sbuyWay != null and  sbuyWay != ''  ">
+                #{sbuyWay,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                #{sinterfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="spayNumber != null and  spayNumber != ''  ">
+                #{spayNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="suserCode != null and  suserCode != ''  ">
+                #{suserCode,jdbcType=VARCHAR},
+            </if>
+            <if test="suserId != null and  suserId != ''  ">
+                #{suserId,jdbcType=VARCHAR},
+            </if>
+            <if test="tbuyTime != null  ">
+                #{tbuyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tpayFinishTime != null  ">
+                #{tpayFinishTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null  ">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.op.BuyRecord">
+        update OP_BUY_RECORD
+        <set>
+            <if test="addTime != null  ">
+                ADD_TIME=#{addTime,jdbcType=TIMESTAMP},
+            </if>
+           <!-- <if test="fpayAmount != null  ">-->
+                FPAY_AMOUNT=#{fpayAmount,jdbcType=NUMERIC},
+         <!--   </if>-->
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisAdminAdd != null  ">
+                IIS_ADMIN_ADD=#{iisAdminAdd,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayWay != null  ">
+                IPAY_WAY=#{ipayWay,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="sbuyContent != null and  sbuyContent != ''  ">
+                SBUY_CONTENT=#{sbuyContent,jdbcType=VARCHAR},
+            </if>
+            <if test="sbuyWay != null and  sbuyWay != ''  ">
+                SBUY_WAY=#{sbuyWay,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="sinterfaceCode != null and  sinterfaceCode != ''  ">
+                SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="spayNumber != null">
+                SPAY_NUMBER=#{spayNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="suserCode != null">
+                SUSER_CODE=#{suserCode,jdbcType=VARCHAR},
+            </if>
+            <if test="suserId != null and  suserId != ''  ">
+                SUSER_ID=#{suserId,jdbcType=VARCHAR},
+            </if>
+    <!--        <if test="tbuyTime != null  ">-->
+                TBUY_TIME=#{tbuyTime,jdbcType=TIMESTAMP},
+           <!-- </if>-->
+           <!-- <if test="">-->
+                TPAY_FINISH_TIME=#{tpayFinishTime,jdbcType=TIMESTAMP},
+        <!--    </if>-->
+            <if test="updateTime != null  ">
+                UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.op.BuyRecord">
+        update OP_BUY_RECORD
+        set
+        ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+        ,FPAY_AMOUNT=#{fpayAmount,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IIS_ADMIN_ADD=#{iisAdminAdd,jdbcType=NUMERIC}
+        ,IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,SBUY_CONTENT=#{sbuyContent,jdbcType=VARCHAR}
+        ,SBUY_WAY=#{sbuyWay,jdbcType=VARCHAR}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+        ,SPAY_NUMBER=#{spayNumber,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+        ,SUSER_ID=#{suserId,jdbcType=VARCHAR}
+        ,TBUY_TIME=#{tbuyTime,jdbcType=TIMESTAMP}
+        ,TPAY_FINISH_TIME=#{tpayFinishTime,jdbcType=TIMESTAMP}
+        ,UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ADD_TIME=#{addTime,jdbcType=TIMESTAMP}
+	FPAY_AMOUNT=#{fpayAmount,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_ADMIN_ADD=#{iisAdminAdd,jdbcType=NUMERIC}
+	IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	SBUY_CONTENT=#{sbuyContent,jdbcType=VARCHAR}
+	SBUY_WAY=#{sbuyWay,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SINTERFACE_CODE=#{sinterfaceCode,jdbcType=VARCHAR}
+	SPAY_NUMBER=#{spayNumber,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUSER_CODE=#{suserCode,jdbcType=VARCHAR}
+	SUSER_ID=#{suserId,jdbcType=VARCHAR}
+	TBUY_TIME=#{tbuyTime,jdbcType=TIMESTAMP}
+	TPAY_FINISH_TIME=#{tpayFinishTime,jdbcType=TIMESTAMP}
+	UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP}
+     -->
+
+    <select id="selectPageByDomainWhere" parameterType="com.cloud.cang.rec.op.domain.BuyRecordDomain"
+            resultType="com.cloud.cang.rec.cr.vo.BuyRecordVo">
+        select
+        OBR.ID,OBR.ADD_TIME,OBR.FPAY_AMOUNT,OBR.IDEL_FLAG,OBR.IIS_ADMIN_ADD,OBR.IPAY_WAY,OBR.ISTATUS,OBR.SBUY_CONTENT,OBR.SBUY_WAY,OBR.SCODE,
+        OBR.SINTERFACE_CODE,OBR.SPAY_NUMBER,OBR.SREMARK,OBR.SUSER_CODE,OBR.SUSER_ID,OBR.TBUY_TIME,OBR.TPAY_FINISH_TIME,OBR.UPDATE_TIME,
+        OUI.SNICK_NAME,OII.SNAME INTERFACE_NAME
+        from OP_BUY_RECORD OBR
+        LEFT JOIN OP_USER_INFO OUI ON OBR.SUSER_ID = OUI.ID
+        LEFT JOIN OP_INTERFACE_INFO OII ON OBR.SINTERFACE_CODE = OII.SCODE
+        <include refid="Entity_Where_Clause_Like"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        OBR.id
+    </select>
+
+
+    <select id="selectDomainById" parameterType="java.lang.String"
+            resultType="com.cloud.cang.rec.op.domain.BuyRecordDomain">
+        select
+        OBR.ID,OBR.ADD_TIME,OBR.FPAY_AMOUNT,OBR.IDEL_FLAG,OBR.IIS_ADMIN_ADD,OBR.IPAY_WAY,
+        OBR.ISTATUS,OBR.SBUY_CONTENT,OBR.SBUY_WAY,OBR.SCODE,OBR.SINTERFACE_CODE,OBR.SPAY_NUMBER,
+        OBR.SREMARK,OBR.SUSER_CODE,OBR.SUSER_ID,OBR.TBUY_TIME,OBR.TPAY_FINISH_TIME,OBR.UPDATE_TIME,
+        OUI.SNICK_NAME,OII.SNAME interfaceName
+        from OP_BUY_RECORD OBR
+        LEFT JOIN OP_USER_INFO OUI ON OBR.SUSER_ID = OUI.ID
+        LEFT JOIN OP_INTERFACE_INFO OII ON OBR.SINTERFACE_CODE = OII.SCODE
+        WHERE OBR.ID=#{id,jdbcType=VARCHAR}
+    </select>
+</mapper>

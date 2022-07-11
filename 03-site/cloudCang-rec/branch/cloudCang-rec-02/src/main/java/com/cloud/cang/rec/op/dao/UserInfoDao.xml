@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.rec.op.dao.UserInfoDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.op.UserInfo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="DBIRTHDATE" property="dbirthdate" jdbcType="TIMESTAMP"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IIS_MERCHAANT" property="iisMerchaant" jdbcType="NUMERIC"/>
+        <result column="IMEMBER_TYPE" property="imemberType" jdbcType="NUMERIC"/>
+        <result column="ISEX" property="isex" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SEMAIL" property="semail" jdbcType="VARCHAR"/>
+        <result column="SHEAD_IMAGE" property="sheadImage" jdbcType="VARCHAR"/>
+        <result column="SLOGIN_PWD" property="sloginPwd" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SMOBILE" property="smobile" jdbcType="VARCHAR"/>
+        <result column="SNICK_NAME" property="snickName" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TREGISTER_TIME" property="tregisterTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPATE_USER" property="tupateUser" jdbcType="VARCHAR"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,DBIRTHDATE,IDEL_FLAG,IIS_MERCHAANT,IMEMBER_TYPE,ISEX,ISTATUS,SCODE,SEMAIL,SHEAD_IMAGE,SLOGIN_PWD,SMERCHANT_CODE,SMERCHANT_ID,SMOBILE,SNICK_NAME,TADD_TIME,TREGISTER_TIME,TUPATE_USER,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="column_List_Domain">
+        <![CDATA[
+        A.ID,A.DBIRTHDATE,A.IDEL_FLAG,A.IIS_MERCHAANT,A.IMEMBER_TYPE,A.ISEX,A.ISTATUS,A.SCODE,A.SEMAIL,A.SHEAD_IMAGE,
+        A.SLOGIN_PWD,A.SMERCHANT_CODE,A.SMERCHANT_ID,A.SMOBILE,A.SNICK_NAME,A.TADD_TIME,A.TREGISTER_TIME,A.TUPATE_USER,A.TUPDATE_TIME,
+		shi.SNAME merchantName]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="dbirthdate != null  ">
+                    and DBIRTHDATE=#{dbirthdate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisMerchaant != null  ">
+                    and IIS_MERCHAANT=#{iisMerchaant,jdbcType=NUMERIC}
+                </if>
+                <if test="imemberType != null  ">
+                    and IMEMBER_TYPE=#{imemberType,jdbcType=NUMERIC}
+                </if>
+                <if test="isex != null  ">
+                    and ISEX=#{isex,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="semail != null and  semail != ''  ">
+                    and SEMAIL=#{semail,jdbcType=VARCHAR}
+                </if>
+                <if test="sheadImage != null and  sheadImage != ''  ">
+                    and SHEAD_IMAGE=#{sheadImage,jdbcType=VARCHAR}
+                </if>
+                <if test="sloginPwd != null and  sloginPwd != ''  ">
+                    and SLOGIN_PWD=#{sloginPwd,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="smobile != null and  smobile != ''  ">
+                    and SMOBILE=#{smobile,jdbcType=VARCHAR}
+                </if>
+                <if test="snickName != null and  snickName != ''  ">
+                    and SNICK_NAME=#{snickName,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tregisterTime != null  ">
+                    and TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupateUser != null and  tupateUser != ''  ">
+                    and TUPATE_USER=#{tupateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and A.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="dbirthdate != null  ">
+                    and A.DBIRTHDATE=#{dbirthdate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="idelFlag != null  ">
+                    and A.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisMerchaant != null  ">
+                    and A.IIS_MERCHAANT=#{iisMerchaant,jdbcType=NUMERIC}
+                </if>
+                <if test="imemberType != null  ">
+                    and A.IMEMBER_TYPE=#{imemberType,jdbcType=NUMERIC}
+                </if>
+                <if test="isex != null  ">
+                    and A.ISEX=#{isex,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and A.SCODE like CONCAT('%',#{scode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="semail != null and  semail != ''  ">
+                    and A.SEMAIL like CONCAT('%',#{semail,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sheadImage != null and  sheadImage != ''  ">
+                    and A.SHEAD_IMAGE=#{sheadImage,jdbcType=VARCHAR}
+                </if>
+                <if test="sloginPwd != null and  sloginPwd != ''  ">
+                    and A.SLOGIN_PWD=#{sloginPwd,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and A.SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="smobile != null and  smobile != ''  ">
+                    and A.SMOBILE like CONCAT('%',#{smobile,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="snickName != null and  snickName != ''  ">
+                    and A.SNICK_NAME like CONCAT('%',#{snickName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="taddTime != null  ">
+                    and A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tregisterTime != null  ">
+                    and A.TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupateUser != null and  tupateUser != ''  ">
+                    and A.TUPATE_USER=#{tupateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="merchantName != null  and  merchantName != ''  ">
+                    and SMI.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="condition != null and condition != ''">
+                    and ${condition}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from OP_USER_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.op.UserInfo">
+        select
+        <include refid="column_List"/>
+        from OP_USER_INFO
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from OP_USER_INFO
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from OP_USER_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM OP_USER_INFO where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.op.UserInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into OP_USER_INFO (ID,DBIRTHDATE,IDEL_FLAG,IIS_MERCHAANT,IMEMBER_TYPE,ISEX,ISTATUS,SCODE,SEMAIL,SHEAD_IMAGE,SLOGIN_PWD,SMERCHANT_CODE,SMERCHANT_ID,SMOBILE,SNICK_NAME,TADD_TIME,TREGISTER_TIME,TUPATE_USER,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{dbirthdate,jdbcType=TIMESTAMP},#{idelFlag,jdbcType=NUMERIC},#{iisMerchaant,jdbcType=NUMERIC},#{imemberType,jdbcType=NUMERIC},#{isex,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{scode,jdbcType=VARCHAR},#{semail,jdbcType=VARCHAR},#{sheadImage,jdbcType=VARCHAR},#{sloginPwd,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{smobile,jdbcType=VARCHAR},#{snickName,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tregisterTime,jdbcType=TIMESTAMP},#{tupateUser,jdbcType=VARCHAR},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.op.UserInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into OP_USER_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="dbirthdate">
+                DBIRTHDATE,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="iisMerchaant">
+                IIS_MERCHAANT,
+            </if>
+            <if test="imemberType">
+                IMEMBER_TYPE,
+            </if>
+            <if test="isex">
+                ISEX,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="semail">
+                SEMAIL,
+            </if>
+            <if test="sheadImage">
+                SHEAD_IMAGE,
+            </if>
+            <if test="sloginPwd">
+                SLOGIN_PWD,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="smobile">
+                SMOBILE,
+            </if>
+            <if test="snickName">
+                SNICK_NAME,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tregisterTime">
+                TREGISTER_TIME,
+            </if>
+            <if test="tupateUser">
+                TUPATE_USER,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="dbirthdate != null  ">
+                #{dbirthdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisMerchaant != null  ">
+                #{iisMerchaant,jdbcType=NUMERIC},
+            </if>
+            <if test="imemberType != null  ">
+                #{imemberType,jdbcType=NUMERIC},
+            </if>
+            <if test="isex != null  ">
+                #{isex,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="semail != null and  semail != ''  ">
+                #{semail,jdbcType=VARCHAR},
+            </if>
+            <if test="sheadImage != null and  sheadImage != ''  ">
+                #{sheadImage,jdbcType=VARCHAR},
+            </if>
+            <if test="sloginPwd != null and  sloginPwd != ''  ">
+                #{sloginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="smobile != null and  smobile != ''  ">
+                #{smobile,jdbcType=VARCHAR},
+            </if>
+            <if test="snickName != null and  snickName != ''  ">
+                #{snickName,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tregisterTime != null  ">
+                #{tregisterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupateUser != null and  tupateUser != ''  ">
+                #{tupateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.op.UserInfo">
+        update OP_USER_INFO
+        <set>
+            <if test="dbirthdate != null  ">
+                DBIRTHDATE=#{dbirthdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisMerchaant != null  ">
+                IIS_MERCHAANT=#{iisMerchaant,jdbcType=NUMERIC},
+            </if>
+            <if test="imemberType != null  ">
+                IMEMBER_TYPE=#{imemberType,jdbcType=NUMERIC},
+            </if>
+            <if test="isex != null  ">
+                ISEX=#{isex,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="semail != null and  semail != ''  ">
+                SEMAIL=#{semail,jdbcType=VARCHAR},
+            </if>
+            <if test="sheadImage != null and  sheadImage != ''  ">
+                SHEAD_IMAGE=#{sheadImage,jdbcType=VARCHAR},
+            </if>
+            <if test="sloginPwd != null and  sloginPwd != ''  ">
+                SLOGIN_PWD=#{sloginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="smobile != null and  smobile != ''  ">
+                SMOBILE=#{smobile,jdbcType=VARCHAR},
+            </if>
+            <if test="snickName != null and  snickName != ''  ">
+                SNICK_NAME=#{snickName,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tregisterTime != null  ">
+                TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupateUser != null and  tupateUser != ''  ">
+                TUPATE_USER=#{tupateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.op.UserInfo">
+        update OP_USER_INFO
+        set
+        DBIRTHDATE=#{dbirthdate,jdbcType=TIMESTAMP}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IIS_MERCHAANT=#{iisMerchaant,jdbcType=NUMERIC}
+        ,IMEMBER_TYPE=#{imemberType,jdbcType=NUMERIC}
+        ,ISEX=#{isex,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SEMAIL=#{semail,jdbcType=VARCHAR}
+        ,SHEAD_IMAGE=#{sheadImage,jdbcType=VARCHAR}
+        ,SLOGIN_PWD=#{sloginPwd,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SMOBILE=#{smobile,jdbcType=VARCHAR}
+        ,SNICK_NAME=#{snickName,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+        ,TUPATE_USER=#{tupateUser,jdbcType=VARCHAR}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	DBIRTHDATE=#{dbirthdate,jdbcType=TIMESTAMP}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_MERCHAANT=#{iisMerchaant,jdbcType=NUMERIC}
+	IMEMBER_TYPE=#{imemberType,jdbcType=NUMERIC}
+	ISEX=#{isex,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SEMAIL=#{semail,jdbcType=VARCHAR}
+	SHEAD_IMAGE=#{sheadImage,jdbcType=VARCHAR}
+	SLOGIN_PWD=#{sloginPwd,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SMOBILE=#{smobile,jdbcType=VARCHAR}
+	SNICK_NAME=#{snickName,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+	TUPATE_USER=#{tupateUser,jdbcType=VARCHAR}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+    <select id="selectPageByDomainWhere" parameterType="com.cloud.cang.rec.op.domain.UserInfoDomain"
+            resultType="com.cloud.cang.rec.op.vo.UserInfoVo">
+        select
+        <!--<include refid="column_List_Domain" />-->
+        A.ID,A.DBIRTHDATE,A.IDEL_FLAG,A.IIS_MERCHAANT,A.IMEMBER_TYPE,A.ISEX,A.ISTATUS,A.SCODE,A.SEMAIL,A.SHEAD_IMAGE,
+        A.SLOGIN_PWD,A.SMERCHANT_CODE,A.SMERCHANT_ID,A.SMOBILE,A.SNICK_NAME,A.TADD_TIME,A.TREGISTER_TIME,A.TUPATE_USER,A.TUPDATE_TIME,
+        SMI.SNAME merchantName
+        from OP_USER_INFO A
+        LEFT JOIN SH_MERCHANT_INFO SMI ON A.SMERCHANT_ID = SMI.ID
+        <include refid="Entity_Where_Clause_Like"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.id
+    </select>
+
+    <select id="selectVoById" parameterType="java.lang.String" resultType="com.cloud.cang.rec.op.vo.UserInfoVo">
+        select
+        A.ID,A.DBIRTHDATE,A.IDEL_FLAG,A.IIS_MERCHAANT,A.IMEMBER_TYPE,A.ISEX,A.ISTATUS,A.SCODE,A.SEMAIL,A.SHEAD_IMAGE,
+        A.SLOGIN_PWD,A.SMERCHANT_CODE,A.SMERCHANT_ID,A.SMOBILE,A.SNICK_NAME,A.TADD_TIME,A.TREGISTER_TIME,A.TUPATE_USER,A.TUPDATE_TIME,
+        SMI.SNAME merchantName
+        from OP_USER_INFO A
+        LEFT JOIN SH_MERCHANT_INFO SMI ON A.SMERCHANT_ID = SMI.ID
+        WHERE A.ID= #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectUserInterfaceAuthVoList" parameterType="java.lang.String"
+            resultType="com.cloud.cang.rec.op.vo.UserInterfaceAuthVo">
+        select OAM.scode appManageScode,OAM.id appManageId,OII.id interfaceId,OAM.sname appManageName,OII.sname
+        interfaceName<!--,(case when OUIA.ID is null then 0 else 1 end) as isSelect--> from
+        OP_APP_MANAGE OAM
+        LEFT JOIN OP_INTERFACE_INFO OII ON OAM.SSYSTEM_TYPE = OII.SSYSTEM_TYPE
+        LEFT JOIN OP_USER_INTERFACE_AUTH OUIA ON OUIA.SAPP_CODE=OAM.SCODE AND OUIA.SINTERFACE_CODE = OII.SCODE AND
+        OUIA.SUSER_ID=#{sid,jdbcType=VARCHAR} AND OUIA.IDEL_FLAG = 0 AND OUIA.IAUTH_STATUS = 10
+        WHERE OAM.SUSER_ID =#{sid,jdbcType=VARCHAR}
+        AND OAM.IDEL_FLAG = 0
+        AND OAM.IAUDIT_STATUS = 20
+        AND OII.ISTATUS!=30
+        AND OII.IDEL_FLAG = 0
+        AND OII.IPAY_WAY !=10
+        <!--AND OUIA.IDEL_FLAG = 0
+        AND OUIA.IAUTH_STATUS = 10-->
+        AND OUIA.ID IS NULL
+    </select>
+</mapper>

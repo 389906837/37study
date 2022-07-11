@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.message.xx.dao.MsgTaskExtDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.xx.MsgTask">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+        <result column="IIS_BATCH_SEND" property="iisBatchSend" jdbcType="NUMERIC" />
+        <result column="IIS_REALTIME" property="iisRealtime" jdbcType="NUMERIC" />
+        <result column="IMSG_TYPE" property="imsgType" jdbcType="NUMERIC" />
+        <result column="ISENDER_TYPE" property="isenderType" jdbcType="NUMERIC" />
+        <result column="ISTATE" property="istate" jdbcType="NUMERIC" />
+        <result column="ITIMEOUT" property="itimeout" jdbcType="NUMERIC" />
+        <result column="IUSAGE" property="iusage" jdbcType="NUMERIC" />
+        <result column="SATTACH" property="sattach" jdbcType="VARCHAR" />
+        <result column="SCONTENT" property="scontent" jdbcType="VARCHAR" />
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+        <result column="SMSG_CC" property="smsgCc" jdbcType="VARCHAR" />
+        <result column="SMSG_DESC" property="smsgDesc" jdbcType="VARCHAR" />
+        <result column="SMSG_RECIPIENT" property="smsgRecipient" jdbcType="VARCHAR" />
+        <result column="SMSG_SOURCE_SYSTEM" property="smsgSourceSystem" jdbcType="VARCHAR" />
+        <result column="SSENDER_TEMPLATE_ID" property="ssenderTemplateId" jdbcType="VARCHAR" />
+        <result column="SSERIAN_NUM" property="sserianNum" jdbcType="VARCHAR" />
+        <result column="SSPARTNER_ID" property="sspartnerId" jdbcType="VARCHAR" />
+        <result column="SSUPPLIER_CODE" property="ssupplierCode" jdbcType="VARCHAR" />
+        <result column="STITLE" property="stitle" jdbcType="VARCHAR" />
+        <result column="TADDTIME" property="taddtime" jdbcType="TIMESTAMP" />
+        <result column="TBEGIN_SEND_DATETIME" property="tbeginSendDatetime" jdbcType="TIMESTAMP" />
+        <result column="TUPDATETIME" property="tupdatetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+
+    <select id="selectAvailSenderTask" resultMap="resultEntity"
+            parameterType="com.cloud.cang.message.xx.domain.SelectAvailSenderTaskDto">
+        <![CDATA[
+
+        
+        select B.*
+                 from xx_msg_task B
+                where IDEL_FLAG = 0
+                  and ISTATE = 1
+                  and IMSG_TYPE = #{msgType} 
+                  and TBEGIN_SEND_DATETIME < #{startTime,jdbcType=TIMESTAMP} limit 0,#{end}
+
+
+        ]]>
+    </select>
+
+    <resultMap id="sysUserInfos" type="com.cloud.cang.message.xx.domain.SysUseInfo">
+        <result column="sOperator_No" property="operatorNo" jdbcType="VARCHAR"/>
+        <result column="sMobile" property="smobile" jdbcType="VARCHAR"/>
+        <result column="sMail" property="email" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="selectSysInfosByPurCode" resultMap="sysUserInfos" parameterType="java.lang.String">
+        <![CDATA[
+
+           select distinct c.sOperator_No,c.sMobile,c.sMail from 
+           sys_purview d
+           left join sys_RolePurview a on d.id = a.sPurview_ID
+           left join sys_OperatorRole b  on  a.sRole_ID = b.sRole_ID
+           left join sys_operator c on  b.sOperator_ID = c.id
+           where d.sPur_Code = #{purCode,jdbcType=VARCHAR} and c.bIs_Freeze = 1 and c.bIs_Delete = 0
+
+        ]]>
+    </select>
+    <select id="selectSysInfosByPurCodeAndMerchantId" resultMap="sysUserInfos" parameterType="java.util.Map">
+        <![CDATA[
+
+           select distinct c.sOperator_No,c.sMobile,c.sMail from
+           sys_purview d
+           left join sys_RolePurview a on d.id = a.sPurview_ID
+           left join sys_OperatorRole b  on  a.sRole_ID = b.sRole_ID
+           left join sys_operator c on  b.sOperator_ID = c.id
+           where (d.sPur_Code = #{spurviewCode,jdbcType=VARCHAR} OR c.BIS_ADMIN =1) and c.bIs_Freeze = 1 and c.bIs_Delete = 0 and c.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+
+        ]]>
+    </select>
+
+</mapper>

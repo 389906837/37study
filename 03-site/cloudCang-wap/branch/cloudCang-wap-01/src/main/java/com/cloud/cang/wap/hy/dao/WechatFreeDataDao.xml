@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.wap.hy.dao.WechatFreeDataDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.hy.WechatFreeData">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IREQUEST_SERIAL" property="irequestSerial" jdbcType="NUMERIC" />
+		<result column="SCONTRACT_CODE" property="scontractCode" jdbcType="VARCHAR" />
+		<result column="SCONTRACT_ID" property="scontractId" jdbcType="VARCHAR" />
+		<result column="SMCH_ID" property="smchId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NO" property="smemberNo" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SOPENID" property="sopenid" jdbcType="VARCHAR" />
+		<result column="SPLAN_ID" property="splanId" jdbcType="VARCHAR" />
+		<result column="SSTATUS" property="sstatus" jdbcType="VARCHAR" />
+		<result column="SUNSIGN_REMARK" property="sunsignRemark" jdbcType="VARCHAR" />
+		<result column="SUNSIGN_WAY" property="sunsignWay" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TCONTRACT_EXPIRED_TIME" property="tcontractExpiredTime" jdbcType="TIMESTAMP" />
+		<result column="TSIGN_TIME" property="tsignTime" jdbcType="TIMESTAMP" />
+		<result column="TUNSIGN_TIME" property="tunsignTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IREQUEST_SERIAL,SCONTRACT_CODE,SCONTRACT_ID,SMCH_ID,SMEMBER_ID,SMEMBER_NAME,SMEMBER_NO,SMERCHANT_CODE,SMERCHANT_ID,SOPENID,SPLAN_ID,SSTATUS,SUNSIGN_REMARK,SUNSIGN_WAY,TADD_TIME,TCONTRACT_EXPIRED_TIME,TSIGN_TIME,TUNSIGN_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="irequestSerial != null  ">
+               and  IREQUEST_SERIAL=#{irequestSerial,jdbcType=NUMERIC}
+           	</if>
+			<if test="scontractCode != null and  scontractCode != ''  ">
+               and  SCONTRACT_CODE=#{scontractCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scontractId != null and  scontractId != ''  ">
+               and  SCONTRACT_ID=#{scontractId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smchId != null and  smchId != ''  ">
+               and  SMCH_ID=#{smchId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+               and  SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sopenid != null and  sopenid != ''  ">
+               and  SOPENID=#{sopenid,jdbcType=VARCHAR}
+           	</if>
+			<if test="splanId != null and  splanId != ''  ">
+               and  SPLAN_ID=#{splanId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sstatus != null and  sstatus != ''  ">
+               and  SSTATUS=#{sstatus,jdbcType=VARCHAR}
+           	</if>
+			<if test="sunsignRemark != null and  sunsignRemark != ''  ">
+               and  SUNSIGN_REMARK=#{sunsignRemark,jdbcType=VARCHAR}
+           	</if>
+			<if test="sunsignWay != null and  sunsignWay != ''  ">
+               and  SUNSIGN_WAY=#{sunsignWay,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tcontractExpiredTime != null  ">
+               and  TCONTRACT_EXPIRED_TIME=#{tcontractExpiredTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tsignTime != null  ">
+               and  TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tunsignTime != null  ">
+               and  TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from HY_WECHAT_FREE_DATA
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.WechatFreeData">
+        select
+        <include refid="column_List" />
+        from HY_WECHAT_FREE_DATA
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from HY_WECHAT_FREE_DATA
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from HY_WECHAT_FREE_DATA
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM HY_WECHAT_FREE_DATA where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.hy.WechatFreeData">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into HY_WECHAT_FREE_DATA (ID,IREQUEST_SERIAL,SCONTRACT_CODE,SCONTRACT_ID,SMCH_ID,SMEMBER_ID,SMEMBER_NAME,SMEMBER_NO,SMERCHANT_CODE,SMERCHANT_ID,SOPENID,SPLAN_ID,SSTATUS,SUNSIGN_REMARK,SUNSIGN_WAY,TADD_TIME,TCONTRACT_EXPIRED_TIME,TSIGN_TIME,TUNSIGN_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{irequestSerial,jdbcType=NUMERIC},#{scontractCode,jdbcType=VARCHAR},#{scontractId,jdbcType=VARCHAR},#{smchId,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{smemberNo,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sopenid,jdbcType=VARCHAR},#{splanId,jdbcType=VARCHAR},#{sstatus,jdbcType=VARCHAR},#{sunsignRemark,jdbcType=VARCHAR},#{sunsignWay,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tcontractExpiredTime,jdbcType=TIMESTAMP},#{tsignTime,jdbcType=TIMESTAMP},#{tunsignTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.hy.WechatFreeData">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into HY_WECHAT_FREE_DATA
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="irequestSerial">
+               IREQUEST_SERIAL,
+           	</if>
+			<if test="scontractCode">
+               SCONTRACT_CODE,
+           	</if>
+			<if test="scontractId">
+               SCONTRACT_ID,
+           	</if>
+			<if test="smchId">
+               SMCH_ID,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="smemberNo">
+               SMEMBER_NO,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="sopenid">
+               SOPENID,
+           	</if>
+			<if test="splanId">
+               SPLAN_ID,
+           	</if>
+			<if test="sstatus">
+               SSTATUS,
+           	</if>
+			<if test="sunsignRemark">
+               SUNSIGN_REMARK,
+           	</if>
+			<if test="sunsignWay">
+               SUNSIGN_WAY,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tcontractExpiredTime">
+               TCONTRACT_EXPIRED_TIME,
+           	</if>
+			<if test="tsignTime">
+               TSIGN_TIME,
+           	</if>
+			<if test="tunsignTime">
+               TUNSIGN_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="irequestSerial != null  ">
+                #{irequestSerial,jdbcType=NUMERIC},
+           	</if>
+			<if test="scontractCode != null and  scontractCode != ''  ">
+                #{scontractCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontractId != null and  scontractId != ''  ">
+                #{scontractId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smchId != null and  smchId != ''  ">
+                #{smchId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+                #{smemberNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenid != null and  sopenid != ''  ">
+                #{sopenid,jdbcType=VARCHAR},
+           	</if>
+			<if test="splanId != null and  splanId != ''  ">
+                #{splanId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sstatus != null and  sstatus != ''  ">
+                #{sstatus,jdbcType=VARCHAR},
+           	</if>
+			<if test="sunsignRemark != null and  sunsignRemark != ''  ">
+                #{sunsignRemark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sunsignWay != null and  sunsignWay != ''  ">
+                #{sunsignWay,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tcontractExpiredTime != null  ">
+                #{tcontractExpiredTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tsignTime != null  ">
+                #{tsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tunsignTime != null  ">
+                #{tunsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.hy.WechatFreeData">
+        update HY_WECHAT_FREE_DATA
+        <set>
+			<if test="irequestSerial != null  ">
+                IREQUEST_SERIAL=#{irequestSerial,jdbcType=NUMERIC},
+           	</if>
+			<if test="scontractCode != null and  scontractCode != ''  ">
+                SCONTRACT_CODE=#{scontractCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontractId != null and  scontractId != ''  ">
+                SCONTRACT_ID=#{scontractId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smchId != null and  smchId != ''  ">
+                SMCH_ID=#{smchId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberNo != null and  smemberNo != ''  ">
+                SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenid != null and  sopenid != ''  ">
+                SOPENID=#{sopenid,jdbcType=VARCHAR},
+           	</if>
+			<if test="splanId != null and  splanId != ''  ">
+                SPLAN_ID=#{splanId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sstatus != null and  sstatus != ''  ">
+                SSTATUS=#{sstatus,jdbcType=VARCHAR},
+           	</if>
+			<if test="sunsignRemark != null and  sunsignRemark != ''  ">
+                SUNSIGN_REMARK=#{sunsignRemark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sunsignWay != null and  sunsignWay != ''  ">
+                SUNSIGN_WAY=#{sunsignWay,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tcontractExpiredTime != null  ">
+                TCONTRACT_EXPIRED_TIME=#{tcontractExpiredTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tsignTime != null  ">
+                TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tunsignTime != null  ">
+                TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.hy.WechatFreeData">
+        update HY_WECHAT_FREE_DATA
+        set 
+        		IREQUEST_SERIAL=#{irequestSerial,jdbcType=NUMERIC}
+        		,SCONTRACT_CODE=#{scontractCode,jdbcType=VARCHAR}
+        		,SCONTRACT_ID=#{scontractId,jdbcType=VARCHAR}
+        		,SMCH_ID=#{smchId,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SOPENID=#{sopenid,jdbcType=VARCHAR}
+        		,SPLAN_ID=#{splanId,jdbcType=VARCHAR}
+        		,SSTATUS=#{sstatus,jdbcType=VARCHAR}
+        		,SUNSIGN_REMARK=#{sunsignRemark,jdbcType=VARCHAR}
+        		,SUNSIGN_WAY=#{sunsignWay,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TCONTRACT_EXPIRED_TIME=#{tcontractExpiredTime,jdbcType=TIMESTAMP}
+        		,TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP}
+        		,TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IREQUEST_SERIAL=#{irequestSerial,jdbcType=NUMERIC}
+	SCONTRACT_CODE=#{scontractCode,jdbcType=VARCHAR}
+	SCONTRACT_ID=#{scontractId,jdbcType=VARCHAR}
+	SMCH_ID=#{smchId,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SMEMBER_NO=#{smemberNo,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SOPENID=#{sopenid,jdbcType=VARCHAR}
+	SPLAN_ID=#{splanId,jdbcType=VARCHAR}
+	SSTATUS=#{sstatus,jdbcType=VARCHAR}
+	SUNSIGN_REMARK=#{sunsignRemark,jdbcType=VARCHAR}
+	SUNSIGN_WAY=#{sunsignWay,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TCONTRACT_EXPIRED_TIME=#{tcontractExpiredTime,jdbcType=TIMESTAMP}
+	TSIGN_TIME=#{tsignTime,jdbcType=TIMESTAMP}
+	TUNSIGN_TIME=#{tunsignTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>
