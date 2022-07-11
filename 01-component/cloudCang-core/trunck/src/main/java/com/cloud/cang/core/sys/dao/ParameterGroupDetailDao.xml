@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.sys.dao.ParameterGroupDetailDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.ParameterGroupDetail">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISORT" property="isort" jdbcType="NUMERIC" />
+		<result column="SGROUPID" property="sgroupid" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SVALUE" property="svalue" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ISORT,SGROUPID,SNAME,SREMARK,SVALUE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="isort != null  ">
+               and  ISORT=#{isort,jdbcType=NUMERIC}
+           	</if>
+			<if test="sgroupid != null and  sgroupid != ''  ">
+               and  SGROUPID=#{sgroupid,jdbcType=VARCHAR}
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+               and  SNAME=#{sname,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="svalue != null and  svalue != ''  ">
+               and  SVALUE=#{svalue,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+
+       <!-- 是否存在 -->
+      <select id="selectByExist" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.ParameterGroupDetail">
+         select
+        <include refid="column_List" />
+        from SYS_PARAMETER_GROUP_DETAIL t where
+        t.sgroupid=#{sgroupid,jdbcType=VARCHAR}
+        and t.sname=#{sname,jdbcType=VARCHAR}
+        <if test="id != null and  id != ''   ">
+        and t.id!=#{id,jdbcType=VARCHAR}
+        </if>
+        limit 1
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_PARAMETER_GROUP_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.ParameterGroupDetail">
+        select
+        <include refid="column_List" />
+        from SYS_PARAMETER_GROUP_DETAIL
+        <include refid="Entity_Where_Clause" />
+        ORDER BY ISORT
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_PARAMETER_GROUP_DETAIL
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_PARAMETER_GROUP_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_PARAMETER_GROUP_DETAIL where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.ParameterGroupDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SYS_PARAMETER_GROUP_DETAIL (ID,ISORT,SGROUPID,SNAME,SREMARK,SVALUE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{isort,jdbcType=NUMERIC},#{sgroupid,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{svalue,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.ParameterGroupDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_PARAMETER_GROUP_DETAIL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="isort">
+               ISORT,
+           	</if>
+			<if test="sgroupid">
+               SGROUPID,
+           	</if>
+			<if test="sname">
+               SNAME,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="svalue">
+               SVALUE,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="sgroupid != null and  sgroupid != ''  ">
+                #{sgroupid,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="svalue != null and  svalue != ''  ">
+                #{svalue,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.ParameterGroupDetail">
+        update SYS_PARAMETER_GROUP_DETAIL
+        <set>
+			<if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="sgroupid != null and  sgroupid != ''  ">
+                SGROUPID=#{sgroupid,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="svalue != null and  svalue != ''  ">
+                SVALUE=#{svalue,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.ParameterGroupDetail">
+        update SYS_PARAMETER_GROUP_DETAIL
+        set 
+        		ISORT=#{isort,jdbcType=NUMERIC}
+        		,SGROUPID=#{sgroupid,jdbcType=VARCHAR}
+        		,SNAME=#{sname,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SVALUE=#{svalue,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+    <select id="queryAllGroupNo" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_PARAMETER_GROUP_DETAIL
+        WHERE SGROUPID= 'd16046ba25ed11e89493000c2937a246'
+    </select>
+
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	SGROUPID=#{sgroupid,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SVALUE=#{svalue,jdbcType=VARCHAR}
+     -->
+     
+       <delete id="batchDeleteByGroupIds" parameterType="java.lang.String">
+		delete FROM SYS_PARAMETER_GROUP_DETAIL where SGROUPID in
+		<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+		</foreach>
+	</delete>
+
+       <select id="selectByQueryItems" resultMap="resultEntity" parameterType="java.util.Map">
+        SELECT
+         paramdetail.*
+        FROM sys_parameter_group_detail paramdetail
+        inner join sys_parametergroup param on paramdetail.sgroupid = param.id
+        where param.sgroup_no = #{sgroupNo,jdbcType=VARCHAR}
+        <if test="sname != null">
+            and   SNAME like   CONCAT('%',#{sname},'%')
+         </if>
+		<if test="svalue != null">
+              and SVALUE  like   CONCAT('%',#{svalue},'%')
+         </if>
+        <if test="sremark != null and  sremark != ''  ">
+               and  paramdetail.SREMARK   like   CONCAT('%',#{sremark},'%')
+        </if>
+         order by
+           <if test="orderStr != null and  orderStr != ''  ">
+               ${orderStr}
+           </if>
+           paramdetail.ISORT
+    </select>
+
+
+</mapper>

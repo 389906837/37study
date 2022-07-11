@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.sys.dao.BusinessParameterDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.BusinessParameter">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="SORT" property="sort" jdbcType="NUMERIC"/>
+        <result column="VALUE" property="value" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="resutlDomain" type="com.cloud.cang.core.sys.domain.BusinessParameterDomain">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+        <result column="SORT" property="sort" jdbcType="NUMERIC"/>
+        <result column="VALUE" property="value" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+      ID,NAME,REMARK,VALUE,SORT
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != '' ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="name != null and  name != '' ">
+                    and NAME=#{name,jdbcType=VARCHAR}
+                </if>
+                <if test="remark != null and  remark != '' ">
+                    and REMARK=#{remark,jdbcType=VARCHAR}
+                </if>
+                <if test="sort != null  ">
+                    and SORT=#{sort,jdbcType=NUMERIC}
+                </if>
+                <if test="value != null and  value != '' ">
+                    and VALUE=#{value,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <sql id="Domain_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="name != null and  name != ''  ">
+                    and NAME like CONCAT('%',#{name},'%')
+                </if>
+                <if test="remark != null and  remark != ''  ">
+                    and REMARK like CONCAT('%',#{remark},'%')
+                </if>
+                <if test="sort != null  ">
+                    and SORT=#{sort,jdbcType=NUMERIC}
+                </if>
+                <if test="value != null and  value != ''  ">
+                    and VALUE like CONCAT('%',#{value},'%')
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SYS_BUSINESS_PARAMETER
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity"
+            parameterType="com.cloud.cang.model.sys.BusinessParameter">
+        select
+        <include refid="column_List"/>
+        from SYS_BUSINESS_PARAMETER
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SYS_BUSINESS_PARAMETER
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SYS_BUSINESS_PARAMETER
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SYS_BUSINESS_PARAMETER where ID in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.BusinessParameter">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SYS_BUSINESS_PARAMETER (ID,NAME,REMARK,SORT,VALUE)
+        values (
+        	#{id,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},#{sort,jdbcType=NUMERIC},#{value,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.BusinessParameter">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SYS_BUSINESS_PARAMETER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="name">
+                NAME,
+            </if>
+            <if test="remark">
+                REMARK,
+            </if>
+            <if test="sort">
+                SORT,
+            </if>
+            <if test="value">
+                VALUE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null and  name != ''  ">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null and  remark != ''  ">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null  ">
+                #{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="value != null and  value != ''  ">
+                #{value,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.BusinessParameter">
+        update SYS_BUSINESS_PARAMETER
+        <set>
+            <if test="name != null and  name != ''  ">
+                NAME=#{name,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                REMARK=#{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null  ">
+                SORT=#{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="value != null and  value != ''  ">
+                VALUE=#{value,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.BusinessParameter">
+        update SYS_BUSINESS_PARAMETER
+        set
+        NAME=#{name,jdbcType=VARCHAR}
+        ,REMARK=#{remark,jdbcType=VARCHAR}
+        ,SORT=#{sort,jdbcType=NUMERIC}
+        ,VALUE=#{value,jdbcType=VARCHAR}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectAll" resultMap="resutlDomain">
+        select
+        <include refid="column_List"/>
+        from SYS_BUSINESS_PARAMETER
+    </select>
+    <!--
+        附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+    DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+    DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+    ICURENT_V=#{icurentV,jdbcType=NUMERIC}
+    ISYNCH_V=#{isynchV,jdbcType=NUMERIC}
+    NAME=#{name,jdbcType=VARCHAR}
+    REMARK=#{remark,jdbcType=VARCHAR}
+    REMARK=#{remark,jdbcType=VARCHAR}
+    SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+    SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+    SORT=#{sort,jdbcType=NUMERIC}
+    VALUE=#{value,jdbcType=VARCHAR}
+     -->
+    <select id="selectByVoWhere" resultMap="resultEntity"
+            parameterType="com.cloud.cang.core.sys.vo.BusinessParameterVo">
+        select
+        <include refid="column_List"/>
+        from SYS_BUSINESS_PARAMETER
+        <include refid="Domain_Where_Clause"/>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        name
+    </select>
+</mapper>

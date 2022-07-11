@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.mq.dao.MessageDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.mq.Message">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="istatus" property="istatus" jdbcType="NUMERIC" />
+		<result column="scontent" property="scontent" jdbcType="VARCHAR" />
+		<result column="sfrom_ip" property="sfromIp" jdbcType="VARCHAR" />
+		<result column="squeue_name" property="squeueName" jdbcType="VARCHAR" />
+		<result column="sremark" property="sremark" jdbcType="VARCHAR" />
+		<result column="sto_ip" property="stoIp" jdbcType="VARCHAR" />
+		<result column="tadd_time" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="tupdate_time" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        id,istatus,scontent,sfrom_ip,squeue_name,sremark,sto_ip,tadd_time,tupdate_time
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and id=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="istatus != null  ">
+               and  istatus=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+               and  scontent=#{scontent,jdbcType=VARCHAR}
+           	</if>
+			<if test="sfromIp != null and  sfromIp != ''  ">
+               and  sfrom_ip=#{sfromIp,jdbcType=VARCHAR}
+           	</if>
+			<if test="squeueName != null and  squeueName != ''  ">
+               and  squeue_name=#{squeueName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  sremark=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="stoIp != null and  stoIp != ''  ">
+               and  sto_ip=#{stoIp,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  tadd_time=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  tupdate_time=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from MQ_MESSAGE
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.mq.Message">
+        select
+        <include refid="column_List" />
+        from MQ_MESSAGE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from MQ_MESSAGE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from MQ_MESSAGE
+        where id = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM MQ_MESSAGE where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.mq.Message">
+    	<!--<selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>-->
+        <![CDATA[
+        insert into MQ_MESSAGE (id,istatus,scontent,sfrom_ip,squeue_name,sremark,sto_ip,tadd_time,tupdate_time)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{istatus,jdbcType=NUMERIC},#{scontent,jdbcType=VARCHAR},#{sfromIp,jdbcType=VARCHAR},#{squeueName,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{stoIp,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.mq.Message">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into MQ_MESSAGE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                id,
+            </if>
+			<if test="istatus">
+               istatus,
+           	</if>
+			<if test="scontent">
+               scontent,
+           	</if>
+			<if test="sfromIp">
+               sfrom_ip,
+           	</if>
+			<if test="squeueName">
+               squeue_name,
+           	</if>
+			<if test="sremark">
+               sremark,
+           	</if>
+			<if test="stoIp">
+               sto_ip,
+           	</if>
+			<if test="taddTime">
+               tadd_time,
+           	</if>
+			<if test="tupdateTime">
+               tupdate_time,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                #{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfromIp != null and  sfromIp != ''  ">
+                #{sfromIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="squeueName != null and  squeueName != ''  ">
+                #{squeueName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="stoIp != null and  stoIp != ''  ">
+                #{stoIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.mq.Message">
+        update MQ_MESSAGE
+        <set>
+			<if test="istatus != null  ">
+                istatus=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                scontent=#{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfromIp != null and  sfromIp != ''  ">
+                sfrom_ip=#{sfromIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="squeueName != null and  squeueName != ''  ">
+                squeue_name=#{squeueName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                sremark=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="stoIp != null and  stoIp != ''  ">
+                sto_ip=#{stoIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                tadd_time=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                tupdate_time=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  id= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.mq.Message">
+        update MQ_MESSAGE
+        set 
+        		istatus=#{istatus,jdbcType=NUMERIC}
+        		,scontent=#{scontent,jdbcType=VARCHAR}
+        		,sfrom_ip=#{sfromIp,jdbcType=VARCHAR}
+        		,squeue_name=#{squeueName,jdbcType=VARCHAR}
+        		,sremark=#{sremark,jdbcType=VARCHAR}
+        		,sto_ip=#{stoIp,jdbcType=VARCHAR}
+        		,tadd_time=#{taddTime,jdbcType=TIMESTAMP}
+        		,tupdate_time=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  id= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    id= #{id,jdbcType=VARCHAR}
+	istatus=#{istatus,jdbcType=NUMERIC}
+	scontent=#{scontent,jdbcType=VARCHAR}
+	sfrom_ip=#{sfromIp,jdbcType=VARCHAR}
+	squeue_name=#{squeueName,jdbcType=VARCHAR}
+	sremark=#{sremark,jdbcType=VARCHAR}
+	sto_ip=#{stoIp,jdbcType=VARCHAR}
+	tadd_time=#{taddTime,jdbcType=TIMESTAMP}
+	tupdate_time=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+	<update id="updateMessageStatus" parameterType="com.cloud.cang.model.mq.Message">
+        update MQ_MESSAGE
+        set
+			istatus = #{istatus,jdbcType=NUMERIC},
+			tupdate_time = #{tupdateTime,jdbcType=TIMESTAMP}
+        where  id= #{id,jdbcType=VARCHAR} and istatus = 10
+    </update>
+     
+</mapper>

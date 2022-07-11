@@ -1,0 +1,21 @@
+package com.cloud.cang.model;
+
+import com.cloud.cang.common.SuperDto;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Alex on 2018/4/2.
+ */
+public class StocktakingModel extends SuperDto {
+    private ArrayList<String> list;
+
+    public ArrayList<String> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<String> list) {
+        this.list = list;
+    }
+
+}

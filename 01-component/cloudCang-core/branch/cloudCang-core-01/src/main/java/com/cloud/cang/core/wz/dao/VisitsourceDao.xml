@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.wz.dao.VisitsourceDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.wz.Visitsource">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="SREFERER_PATH" property="srefererPath" jdbcType="VARCHAR" />
+		<result column="SRESERVE" property="sreserve" jdbcType="VARCHAR" />
+		<result column="SSYSTEM" property="ssystem" jdbcType="VARCHAR" />
+		<result column="SVISIT_IP" property="svisitIp" jdbcType="VARCHAR" />
+		<result column="SVISIT_PATH" property="svisitPath" jdbcType="VARCHAR" />
+		<result column="SVISIT_SOURCE" property="svisitSource" jdbcType="VARCHAR" />
+		<result column="SVISIT_TIME" property="svisitTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,SREFERER_PATH,SRESERVE,SSYSTEM,SVISIT_IP,SVISIT_PATH,SVISIT_SOURCE,SVISIT_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="srefererPath != null and  srefererPath != ''  ">
+               and  SREFERER_PATH=#{srefererPath,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreserve != null and  sreserve != ''  ">
+               and  SRESERVE=#{sreserve,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssystem != null and  ssystem != ''  ">
+               and  SSYSTEM=#{ssystem,jdbcType=VARCHAR}
+           	</if>
+			<if test="svisitIp != null and  svisitIp != ''  ">
+               and  SVISIT_IP=#{svisitIp,jdbcType=VARCHAR}
+           	</if>
+			<if test="svisitPath != null and  svisitPath != ''  ">
+               and  SVISIT_PATH=#{svisitPath,jdbcType=VARCHAR}
+           	</if>
+			<if test="svisitSource != null and  svisitSource != ''  ">
+               and  SVISIT_SOURCE=#{svisitSource,jdbcType=VARCHAR}
+           	</if>
+			<if test="svisitTime != null  ">
+               and  SVISIT_TIME=#{svisitTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from WZ_VISITSOURCE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.wz.Visitsource">
+        select
+        <include refid="column_List" />
+        from WZ_VISITSOURCE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from WZ_VISITSOURCE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from WZ_VISITSOURCE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM WZ_VISITSOURCE where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.wz.Visitsource">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into WZ_VISITSOURCE (ID,SREFERER_PATH,SRESERVE,SSYSTEM,SVISIT_IP,SVISIT_PATH,SVISIT_SOURCE,SVISIT_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{srefererPath,jdbcType=VARCHAR},#{sreserve,jdbcType=VARCHAR},#{ssystem,jdbcType=VARCHAR},#{svisitIp,jdbcType=VARCHAR},#{svisitPath,jdbcType=VARCHAR},#{svisitSource,jdbcType=VARCHAR},#{svisitTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.wz.Visitsource">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into WZ_VISITSOURCE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="srefererPath">
+               SREFERER_PATH,
+           	</if>
+			<if test="sreserve">
+               SRESERVE,
+           	</if>
+			<if test="ssystem">
+               SSYSTEM,
+           	</if>
+			<if test="svisitIp">
+               SVISIT_IP,
+           	</if>
+			<if test="svisitPath">
+               SVISIT_PATH,
+           	</if>
+			<if test="svisitSource">
+               SVISIT_SOURCE,
+           	</if>
+			<if test="svisitTime">
+               SVISIT_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="srefererPath != null and  srefererPath != ''  ">
+                #{srefererPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreserve != null and  sreserve != ''  ">
+                #{sreserve,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssystem != null and  ssystem != ''  ">
+                #{ssystem,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitIp != null and  svisitIp != ''  ">
+                #{svisitIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitPath != null and  svisitPath != ''  ">
+                #{svisitPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitSource != null and  svisitSource != ''  ">
+                #{svisitSource,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitTime != null  ">
+                #{svisitTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.wz.Visitsource">
+        update WZ_VISITSOURCE
+        <set>
+			<if test="srefererPath != null and  srefererPath != ''  ">
+                SREFERER_PATH=#{srefererPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreserve != null and  sreserve != ''  ">
+                SRESERVE=#{sreserve,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssystem != null and  ssystem != ''  ">
+                SSYSTEM=#{ssystem,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitIp != null and  svisitIp != ''  ">
+                SVISIT_IP=#{svisitIp,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitPath != null and  svisitPath != ''  ">
+                SVISIT_PATH=#{svisitPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitSource != null and  svisitSource != ''  ">
+                SVISIT_SOURCE=#{svisitSource,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisitTime != null  ">
+                SVISIT_TIME=#{svisitTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.wz.Visitsource">
+        update WZ_VISITSOURCE
+        set 
+        		SREFERER_PATH=#{srefererPath,jdbcType=VARCHAR}
+        		,SRESERVE=#{sreserve,jdbcType=VARCHAR}
+        		,SSYSTEM=#{ssystem,jdbcType=VARCHAR}
+        		,SVISIT_IP=#{svisitIp,jdbcType=VARCHAR}
+        		,SVISIT_PATH=#{svisitPath,jdbcType=VARCHAR}
+        		,SVISIT_SOURCE=#{svisitSource,jdbcType=VARCHAR}
+        		,SVISIT_TIME=#{svisitTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SREFERER_PATH=#{srefererPath,jdbcType=VARCHAR}
+	SRESERVE=#{sreserve,jdbcType=VARCHAR}
+	SSYSTEM=#{ssystem,jdbcType=VARCHAR}
+	SVISIT_IP=#{svisitIp,jdbcType=VARCHAR}
+	SVISIT_PATH=#{svisitPath,jdbcType=VARCHAR}
+	SVISIT_SOURCE=#{svisitSource,jdbcType=VARCHAR}
+	SVISIT_TIME=#{svisitTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

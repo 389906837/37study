@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.sys.dao.CityDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.City">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="BISCOMMON" property="biscommon" jdbcType="NUMERIC" />
+		<result column="BISPROVINCECITY" property="bisprovincecity" jdbcType="NUMERIC" />
+		<result column="ISORT" property="isort" jdbcType="NUMERIC" />
+		<result column="SAREACODE" property="sareacode" jdbcType="VARCHAR" />
+		<result column="SJPNAME" property="sjpname" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SPROVINCEID" property="sprovinceid" jdbcType="VARCHAR" />
+		<result column="SPYNAME" property="spyname" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,BISCOMMON,BISPROVINCECITY,ISORT,SAREACODE,SJPNAME,SNAME,SPROVINCEID,SPYNAME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="biscommon != null  ">
+               and  BISCOMMON=#{biscommon,jdbcType=NUMERIC}
+           	</if>
+			<if test="bisprovincecity != null  ">
+               and  BISPROVINCECITY=#{bisprovincecity,jdbcType=NUMERIC}
+           	</if>
+			<if test="isort != null  ">
+               and  ISORT=#{isort,jdbcType=NUMERIC}
+           	</if>
+			<if test="sareacode != null and  sareacode != ''  ">
+               and  SAREACODE=#{sareacode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sjpname != null and  sjpname != ''  ">
+               and  SJPNAME=#{sjpname,jdbcType=VARCHAR}
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+               and  SNAME=#{sname,jdbcType=VARCHAR}
+           	</if>
+			<if test="sprovinceid != null and  sprovinceid != ''  ">
+               and  SPROVINCEID=#{sprovinceid,jdbcType=VARCHAR}
+           	</if>
+			<if test="spyname != null and  spyname != ''  ">
+               and  SPYNAME=#{spyname,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_CITY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.City">
+        select
+        <include refid="column_List" />
+        from SYS_CITY
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_CITY
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_CITY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_CITY where ID in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.City">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SYS_CITY (ID,BISCOMMON,BISPROVINCECITY,ISORT,SAREACODE,SJPNAME,SNAME,SPROVINCEID,SPYNAME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{biscommon,jdbcType=NUMERIC},#{bisprovincecity,jdbcType=NUMERIC},#{isort,jdbcType=NUMERIC},#{sareacode,jdbcType=VARCHAR},#{sjpname,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sprovinceid,jdbcType=VARCHAR},#{spyname,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.City">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_CITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="biscommon">
+               BISCOMMON,
+           	</if>
+			<if test="bisprovincecity">
+               BISPROVINCECITY,
+           	</if>
+			<if test="isort">
+               ISORT,
+           	</if>
+			<if test="sareacode">
+               SAREACODE,
+           	</if>
+			<if test="sjpname">
+               SJPNAME,
+           	</if>
+			<if test="sname">
+               SNAME,
+           	</if>
+			<if test="sprovinceid">
+               SPROVINCEID,
+           	</if>
+			<if test="spyname">
+               SPYNAME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="biscommon != null  ">
+                #{biscommon,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisprovincecity != null  ">
+                #{bisprovincecity,jdbcType=NUMERIC},
+           	</if>
+			<if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="sareacode != null and  sareacode != ''  ">
+                #{sareacode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sjpname != null and  sjpname != ''  ">
+                #{sjpname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sprovinceid != null and  sprovinceid != ''  ">
+                #{sprovinceid,jdbcType=VARCHAR},
+           	</if>
+			<if test="spyname != null and  spyname != ''  ">
+                #{spyname,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.City">
+        update SYS_CITY
+        <set>
+			<if test="biscommon != null  ">
+                BISCOMMON=#{biscommon,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisprovincecity != null  ">
+                BISPROVINCECITY=#{bisprovincecity,jdbcType=NUMERIC},
+           	</if>
+			<if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="sareacode != null and  sareacode != ''  ">
+                SAREACODE=#{sareacode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sjpname != null and  sjpname != ''  ">
+                SJPNAME=#{sjpname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sprovinceid != null and  sprovinceid != ''  ">
+                SPROVINCEID=#{sprovinceid,jdbcType=VARCHAR},
+           	</if>
+			<if test="spyname != null and  spyname != ''  ">
+                SPYNAME=#{spyname,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.City">
+        update SYS_CITY
+        set 
+        		BISCOMMON=#{biscommon,jdbcType=NUMERIC}
+        		,BISPROVINCECITY=#{bisprovincecity,jdbcType=NUMERIC}
+        		,ISORT=#{isort,jdbcType=NUMERIC}
+        		,SAREACODE=#{sareacode,jdbcType=VARCHAR}
+        		,SJPNAME=#{sjpname,jdbcType=VARCHAR}
+        		,SNAME=#{sname,jdbcType=VARCHAR}
+        		,SPROVINCEID=#{sprovinceid,jdbcType=VARCHAR}
+        		,SPYNAME=#{spyname,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+	<resultMap id="AllCityInfoDomian" type="com.cloud.cang.core.sys.domain.CityInfoDomain">
+		<result column="s_name" property="sname" jdbcType="VARCHAR" />
+		<result column="s_jp" property="sjp" jdbcType="VARCHAR" />
+		<result column="s_pn" property="spn" jdbcType="VARCHAR" />
+		<result column="p_name" property="pname" jdbcType="VARCHAR" />
+		<result column="p_sort" property="psort" jdbcType="NUMERIC" />
+		<result column="p_jp" property="pjp" jdbcType="VARCHAR" />
+		<result column="p_pn" property="ppn" jdbcType="VARCHAR" />
+		<result column="c_name" property="cname" jdbcType="VARCHAR" />
+		<result column="c_sort" property="csort" jdbcType="NUMERIC" />
+		<result column="c_jp" property="cjp" jdbcType="VARCHAR" />
+		<result column="c_pn" property="cpn" jdbcType="VARCHAR" />
+		<result column="c_ispc" property="cispc" jdbcType="VARCHAR" />
+		<result column="c_acode" property="cacode" jdbcType="VARCHAR" />
+		<result column="proviceId" property="proviceId" jdbcType="VARCHAR" />
+		<result column="cityId" property="cityId" jdbcType="VARCHAR" />
+		<result column="townId" property="townId" jdbcType="VARCHAR" />
+		<result column="townName" property="townName" jdbcType="VARCHAR" />
+		<result column="tjp" property="tjp" jdbcType="VARCHAR" />
+		<result column="tpn" property="tpn" jdbcType="VARCHAR" />
+		<result column="tacode" property="tacode" jdbcType="VARCHAR" />
+		<result column="p_SIDCODE" property="pidcode" jdbcType="VARCHAR" />
+		<result column="c_SIDCODE" property="cidcode" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectAllCityInfo" resultMap="AllCityInfoDomian" >
+		<![CDATA[
+	     select a.sName     as s_name,
+         a.sJpName   as s_jp,
+         a.sPyName   as s_pn,
+         b.sName     as p_name,
+         b.iSort     as p_sort,
+         b.sJpName   as p_jp,
+         b.sPyName   as p_pn,
+         c.sName     as c_name,
+         c.iSort     as c_sort,
+         c.sJpName   as c_jp,
+         c.sPyName   as c_pn,
+         c.bIsProvinceCity as c_ispc,
+         c.sAreaCode as c_acode,
+         b.id    as proviceId,
+         c.id    as cityId,
+         b.sidcode     as p_SIDCODE,
+         c.sidcode   as c_SIDCODE,
+         d.id as townId,
+         d.SNAME as townName,
+         d.ISORT as tsort,
+         d.SJPNAME as tjp,
+         d.SPYNAME as tpn,
+         d.SIDCODE as tacode
+	    from sys_Country a
+	    left join sys_Province b
+	      on a.id = b.sCountryID and b.id not in(32,33,34)
+	    left join sys_City c
+	    on c.sProvinceID = b.id
+	    left join sys_town d
+	    on d.SCITYID = c.id
+	    order by b.sjpname,c.BISPROVINCECITY
+
+        ]]>
+	</select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	BISCOMMON=#{biscommon,jdbcType=NUMERIC}
+	BISPROVINCECITY=#{bisprovincecity,jdbcType=NUMERIC}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	SAREACODE=#{sareacode,jdbcType=VARCHAR}
+	SJPNAME=#{sjpname,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SPROVINCEID=#{sprovinceid,jdbcType=VARCHAR}
+	SPYNAME=#{spyname,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

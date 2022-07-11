@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.cloudCang.parent</groupId>
+		<artifactId>cloudCang-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<packaging>jar</packaging>
+	<groupId>com.cloudCang.common</groupId>
+	<artifactId>cloudCang-entity</artifactId>
+	<name>cloudCang-entity</name>
+	<version>0.0.1-SNAPSHOT</version>
+	<url>http://www.37cang.com</url>
+	<dependencies>	
+
+	<dependency>
+		<groupId>com.cloudCang.codegenMysql</groupId>
+		<artifactId>cloudCang-codeGenMysql</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>com.cloudCang.common</groupId>
+		<artifactId>cloudCang-common</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+	</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

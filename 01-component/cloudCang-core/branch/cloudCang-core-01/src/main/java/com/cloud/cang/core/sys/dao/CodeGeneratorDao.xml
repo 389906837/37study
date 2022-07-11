@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.sys.dao.CodeGeneratorDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.CodeGenerator">
+        <id column="ID" property="id" jdbcType="NUMERIC" />
+		<result column="BANEW_BEGIN" property="banewBegin" jdbcType="NUMERIC" />
+		<result column="DCURRENT_DATE" property="dcurrentDate" jdbcType="TIMESTAMP" />
+		<result column="ICODE_SIZE" property="icodeSize" jdbcType="NUMERIC" />
+		<result column="ICODE_START" property="icodeStart" jdbcType="NUMERIC" />
+		<result column="ICODE_STEP" property="icodeStep" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="SCODE_DATEFORMAT" property="scodeDateformat" jdbcType="VARCHAR" />
+		<result column="SCODE_PREFIX" property="scodePrefix" jdbcType="VARCHAR" />
+		<result column="SCODE_TYPE" property="scodeType" jdbcType="VARCHAR" />
+		<result column="SLAST_CODE_VALUE" property="slastCodeValue" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,BANEW_BEGIN,DCURRENT_DATE,ICODE_SIZE,ICODE_START,ICODE_STEP,IDEL_FLAG,SCODE_DATEFORMAT,SCODE_PREFIX,SCODE_TYPE,SLAST_CODE_VALUE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null   ">
+                and ID=#{id,jdbcType=NUMERIC}
+            </if>
+			<if test="banewBegin != null  ">
+               and  BANEW_BEGIN=#{banewBegin,jdbcType=NUMERIC}
+           	</if>
+			<if test="dcurrentDate != null  ">
+               and  DCURRENT_DATE=#{dcurrentDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="icodeSize != null  ">
+               and  ICODE_SIZE=#{icodeSize,jdbcType=NUMERIC}
+           	</if>
+			<if test="icodeStart != null  ">
+               and  ICODE_START=#{icodeStart,jdbcType=NUMERIC}
+           	</if>
+			<if test="icodeStep != null  ">
+               and  ICODE_STEP=#{icodeStep,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="scodeDateformat != null and  scodeDateformat != ''  ">
+               and  SCODE_DATEFORMAT=#{scodeDateformat,jdbcType=VARCHAR}
+           	</if>
+			<if test="scodePrefix != null and  scodePrefix != ''  ">
+               and  SCODE_PREFIX=#{scodePrefix,jdbcType=VARCHAR}
+           	</if>
+			<if test="scodeType != null and  scodeType != ''  ">
+               and  SCODE_TYPE=#{scodeType,jdbcType=VARCHAR}
+           	</if>
+			<if test="slastCodeValue != null and  slastCodeValue != ''  ">
+               and  SLAST_CODE_VALUE=#{slastCodeValue,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.Long">
+        select
+        <include refid="column_List" />
+        from SYS_CODE_GENERATOR
+        where ID = #{id,jdbcType=NUMERIC}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.CodeGenerator">
+        select
+        <include refid="column_List" />
+        from SYS_CODE_GENERATOR
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_CODE_GENERATOR
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_CODE_GENERATOR
+        where ID = #{id,jdbcType=NUMERIC}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_CODE_GENERATOR where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.CodeGenerator">
+		<![CDATA[
+        insert into SYS_CODE_GENERATOR (BANEW_BEGIN,DCURRENT_DATE,ICODE_SIZE,ICODE_START,ICODE_STEP,IDEL_FLAG,SCODE_DATEFORMAT,SCODE_PREFIX,SCODE_TYPE,SLAST_CODE_VALUE)
+        values (
+        	#{banewBegin,jdbcType=NUMERIC},#{dcurrentDate,jdbcType=TIMESTAMP},#{icodeSize,jdbcType=NUMERIC},#{icodeStart,jdbcType=NUMERIC},#{icodeStep,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{scodeDateformat,jdbcType=VARCHAR},#{scodePrefix,jdbcType=VARCHAR},#{scodeType,jdbcType=VARCHAR},#{slastCodeValue,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.CodeGenerator">
+		insert into SYS_CODE_GENERATOR
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null   ">
+				ID,
+			</if>
+			<if test="banewBegin">
+				BANEW_BEGIN,
+			</if>
+			<if test="dcurrentDate">
+				DCURRENT_DATE,
+			</if>
+			<if test="icodeSize">
+				ICODE_SIZE,
+			</if>
+			<if test="icodeStart">
+				ICODE_START,
+			</if>
+			<if test="icodeStep">
+				ICODE_STEP,
+			</if>
+			<if test="idelFlag">
+				IDEL_FLAG,
+			</if>
+			<if test="scodeDateformat">
+				SCODE_DATEFORMAT,
+			</if>
+			<if test="scodePrefix">
+				SCODE_PREFIX,
+			</if>
+			<if test="scodeType">
+				SCODE_TYPE,
+			</if>
+			<if test="slastCodeValue">
+				SLAST_CODE_VALUE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">
+				#{id,jdbcType=NUMERIC},
+			</if>
+			<if test="banewBegin != null  ">
+				#{banewBegin,jdbcType=NUMERIC},
+			</if>
+			<if test="dcurrentDate != null  ">
+				#{dcurrentDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="icodeSize != null  ">
+				#{icodeSize,jdbcType=NUMERIC},
+			</if>
+			<if test="icodeStart != null  ">
+				#{icodeStart,jdbcType=NUMERIC},
+			</if>
+			<if test="icodeStep != null  ">
+				#{icodeStep,jdbcType=NUMERIC},
+			</if>
+			<if test="idelFlag != null  ">
+				#{idelFlag,jdbcType=NUMERIC},
+			</if>
+			<if test="scodeDateformat != null and  scodeDateformat != ''  ">
+				#{scodeDateformat,jdbcType=VARCHAR},
+			</if>
+			<if test="scodePrefix != null and  scodePrefix != ''  ">
+				#{scodePrefix,jdbcType=VARCHAR},
+			</if>
+			<if test="scodeType != null and  scodeType != ''  ">
+				#{scodeType,jdbcType=VARCHAR},
+			</if>
+			<if test="slastCodeValue != null and  slastCodeValue != ''  ">
+				#{slastCodeValue,jdbcType=VARCHAR},
+			</if>
+		</trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.CodeGenerator">
+        update SYS_CODE_GENERATOR
+        <set>
+			<if test="banewBegin != null  ">
+                BANEW_BEGIN=#{banewBegin,jdbcType=NUMERIC},
+           	</if>
+			<if test="dcurrentDate != null  ">
+                DCURRENT_DATE=#{dcurrentDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="icodeSize != null  ">
+                ICODE_SIZE=#{icodeSize,jdbcType=NUMERIC},
+           	</if>
+			<if test="icodeStart != null  ">
+                ICODE_START=#{icodeStart,jdbcType=NUMERIC},
+           	</if>
+			<if test="icodeStep != null  ">
+                ICODE_STEP=#{icodeStep,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="scodeDateformat != null and  scodeDateformat != ''  ">
+                SCODE_DATEFORMAT=#{scodeDateformat,jdbcType=VARCHAR},
+           	</if>
+			<if test="scodePrefix != null and  scodePrefix != ''  ">
+                SCODE_PREFIX=#{scodePrefix,jdbcType=VARCHAR},
+           	</if>
+			<if test="scodeType != null and  scodeType != ''  ">
+                SCODE_TYPE=#{scodeType,jdbcType=VARCHAR},
+           	</if>
+			<if test="slastCodeValue != null and  slastCodeValue != ''  ">
+                SLAST_CODE_VALUE=#{slastCodeValue,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=NUMERIC}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.CodeGenerator">
+        update SYS_CODE_GENERATOR
+        set 
+        		BANEW_BEGIN=#{banewBegin,jdbcType=NUMERIC}
+        		,DCURRENT_DATE=#{dcurrentDate,jdbcType=TIMESTAMP}
+        		,ICODE_SIZE=#{icodeSize,jdbcType=NUMERIC}
+        		,ICODE_START=#{icodeStart,jdbcType=NUMERIC}
+        		,ICODE_STEP=#{icodeStep,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,SCODE_DATEFORMAT=#{scodeDateformat,jdbcType=VARCHAR}
+        		,SCODE_PREFIX=#{scodePrefix,jdbcType=VARCHAR}
+        		,SCODE_TYPE=#{scodeType,jdbcType=VARCHAR}
+        		,SLAST_CODE_VALUE=#{slastCodeValue,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=NUMERIC}
+    </update>
+	<select id="selectCodeByTypeLocked" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from sys_code_generator
+		where SCODE_TYPE = #{stype,jdbcType=VARCHAR} and IDEL_FLAG =0 for update
+	</select>
+
+	<select id="selectCodeByType" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from sys_code_generator
+		where SCODE_TYPE = #{stype,jdbcType=VARCHAR} and IDEL_FLAG =0
+	</select>
+
+	<update id="updateCodeByType" parameterType="java.lang.String">
+		update sys_code_generator  SET ICODE_START = 1,SLAST_CODE_VALUE = 1
+		where SCODE_TYPE = #{stype,jdbcType=VARCHAR} and IDEL_FLAG =0 and DATE_FORMAT(DCURRENT_DATE,'%Y-%m-%d') = DATE_FORMAT((date_add(now(), interval -1 day)),'%Y-%m-%d')
+	</update>
+
+	<update id="batchUpdateDelFlag" >
+		update sys_code_generator
+		set IDEL_FLAG=#{delFlag}
+		where ID in
+		<foreach item="idItem" collection="idItems" open="(" separator="," close=")">
+			#{idItem}
+		</foreach>
+	</update>
+	<select id="selectByCode" resultMap="resultEntity" parameterType="com.cloud.cang.core.sys.domain.CodeGeneratorDomain">
+		select
+		<include refid="column_List" />
+		from SYS_CODE_GENERATOR where IDEL_FLAG=0
+		<if test="scodeType != null and  scodeType != ''  ">
+			and  SCODE_TYPE like CONCAT('%',#{scodeType,jdbcType=VARCHAR},'%')
+		</if>
+		order by
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		id asc
+	</select>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=NUMERIC}
+	BANEW_BEGIN=#{banewBegin,jdbcType=NUMERIC}
+	DCURRENT_DATE=#{dcurrentDate,jdbcType=TIMESTAMP}
+	ICODE_SIZE=#{icodeSize,jdbcType=NUMERIC}
+	ICODE_START=#{icodeStart,jdbcType=NUMERIC}
+	ICODE_STEP=#{icodeStep,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	SCODE_DATEFORMAT=#{scodeDateformat,jdbcType=VARCHAR}
+	SCODE_PREFIX=#{scodePrefix,jdbcType=VARCHAR}
+	SCODE_TYPE=#{scodeType,jdbcType=VARCHAR}
+	SLAST_CODE_VALUE=#{slastCodeValue,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

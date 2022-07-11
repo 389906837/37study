@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.sys.dao.ParametergroupDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.Parametergroup">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="BIS_MODIFY" property="bisModify" jdbcType="NUMERIC" />
+		<result column="SGROUP_NAME" property="sgroupName" jdbcType="VARCHAR" />
+		<result column="SGROUP_NO" property="sgroupNo" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+    </resultMap>
+	<resultMap id="dataDicMaps" type="com.cloud.cang.core.sys.domain.SysParamDomain">
+		<result column="gid" property="gid" jdbcType="VARCHAR" />
+		<result column="sgroup_no" property="groupNo" jdbcType="VARCHAR" />
+		<result column="sgroup_name" property="groupName" jdbcType="VARCHAR" />
+		<result column="gremark" property="gremark" jdbcType="VARCHAR" />
+		<result column="did" property="did" jdbcType="VARCHAR" />
+		<result column="sname" property="sname" jdbcType="VARCHAR" />
+		<result column="svalue" property="svalue" jdbcType="VARCHAR" />
+		<result column="dremark" property="dremark" jdbcType="VARCHAR" />
+		<result column="isort" property="sort" jdbcType="NUMERIC" />
+		<result column="bis_modify" property="isModify" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,BIS_MODIFY,SGROUP_NAME,SGROUP_NO,SREMARK
+        ]]>
+    </sql>
+	<sql id="Entity_Where_Clause">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="bisModify != null  ">
+					and  BIS_MODIFY=#{bisModify,jdbcType=NUMERIC}
+				</if>
+				<if test="sgroupName != null and  sgroupName != ''  ">
+					and  SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR}
+				</if>
+				<if test="sgroupNo != null and  sgroupNo != ''  ">
+					and  SGROUP_NO=#{sgroupNo,jdbcType=VARCHAR}
+				</if>
+				<if test="sremark != null and  sremark != ''  ">
+					and  SREMARK=#{sremark,jdbcType=VARCHAR}
+				</if>
+			</trim>
+		</where>
+	</sql>
+	<sql id="Domain_Where_Clause">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and id != ''">
+					and ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="bisModify != null and bisModify != ''">
+					and  BIS_MODIFY like '%${bisModify}%'
+				</if>
+				<if test="sgroupName != null and sgroupName != ''">
+					and  SGROUP_NAME like '%${sgroupName}%'
+				</if>
+				<if test="sgroupNo != null and sgroupNo != ''">
+					and  SGROUP_NO like '%${sgroupNo}%'
+				</if>
+				<if test="sremark != null and sremark != ''">
+					and  SREMARK=#{sremark,jdbcType=VARCHAR}
+				</if>
+				<if test="bisModify != null  ">
+					and  BIS_MODIFY=#{bisModify,jdbcType=NUMERIC}
+				</if>
+			</trim>
+		</where>
+	</sql>
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_PARAMETERGROUP
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.Parametergroup">
+        select
+        <include refid="column_List" />
+        from SYS_PARAMETERGROUP
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_PARAMETERGROUP
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_PARAMETERGROUP
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_PARAMETERGROUP where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.Parametergroup">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SYS_PARAMETERGROUP (ID,BIS_MODIFY,SGROUP_NAME,SGROUP_NO,SREMARK)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{bisModify,jdbcType=NUMERIC},#{sgroupName,jdbcType=VARCHAR},#{sgroupNo,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.Parametergroup">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_PARAMETERGROUP
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="bisModify">
+               BIS_MODIFY,
+           	</if>
+			<if test="sgroupName">
+               SGROUP_NAME,
+           	</if>
+			<if test="sgroupNo">
+               SGROUP_NO,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="bisModify != null  ">
+                #{bisModify,jdbcType=NUMERIC},
+           	</if>
+			<if test="sgroupName != null and  sgroupName != ''  ">
+                #{sgroupName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sgroupNo != null and  sgroupNo != ''  ">
+                #{sgroupNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.Parametergroup">
+        update SYS_PARAMETERGROUP
+        <set>
+			<if test="bisModify != null  ">
+                BIS_MODIFY=#{bisModify,jdbcType=NUMERIC},
+           	</if>
+			<if test="sgroupName != null and  sgroupName != ''  ">
+                SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sgroupNo != null and  sgroupNo != ''  ">
+                SGROUP_NO=#{sgroupNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.Parametergroup">
+        update SYS_PARAMETERGROUP
+        set 
+        		BIS_MODIFY=#{bisModify,jdbcType=NUMERIC}
+        		,SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR}
+        		,SGROUP_NO=#{sgroupNo,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+	<!-- 获取字典项和字典详情 -->
+	<select id="selectParaGroupFetchDetails" resultMap="dataDicMaps">
+		<![CDATA[
+		select a.ID     as gid,
+		       a.sgroup_no,
+		       a.sgroup_name,
+		       a.sremark   as gremark,
+		       a.bis_modify,
+		       b.ID     as did,
+		       b.sname,
+		       b.svalue,
+		       b.sremark   as dremark,
+		       b.isort
+		  from sys_ParameterGroup a
+		  left join sys_Parameter_Group_Detail b
+		    on a.ID = b.sgroupid
+     ]]>
+	</select>
+	<!-- 根据字典编号获取字典 -->
+	<select id="selectByGroupNo" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from SYS_PARAMETERGROUP where  sGroup_No=#{sgroupNo,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByVoWhere" resultMap="resultEntity" parameterType="com.cloud.cang.core.sys.vo.ParametergroupVo">
+		select
+		<include refid="column_List" />
+		from SYS_PARAMETERGROUP
+		<include refid="Domain_Where_Clause" />
+		<if test="orderStr != null and  orderStr != ''  ">
+			ORDER BY ${orderStr}
+		</if>
+	</select>
+
+	<!--查询数据字典-->
+	<select id="queryAllData" resultMap="resultEntity">
+		select
+		<include refid="column_List" />
+		from SYS_PARAMETERGROUP
+	</select>
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	BIS_MODIFY=#{bisModify,jdbcType=NUMERIC}
+	SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR}
+	SGROUP_NO=#{sgroupNo,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

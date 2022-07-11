@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.wz.dao.KeyWordsDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.wz.KeyWords">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SDESCRIPTION" property="sdescription" jdbcType="VARCHAR" />
+		<result column="SKEY_WORD" property="skeyWord" jdbcType="VARCHAR" />
+		<result column="SPAGE_NAME" property="spageName" jdbcType="VARCHAR" />
+		<result column="SPAGE_NO" property="spageNo" jdbcType="VARCHAR" />
+		<result column="SPAGE_URL" property="spageUrl" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SRESERVE" property="sreserve" jdbcType="VARCHAR" />
+		<result column="STITLE" property="stitle" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IDEL_FLAG,SADD_USER,SDESCRIPTION,SKEY_WORD,SPAGE_NAME,SPAGE_NO,SPAGE_URL,SREMARK,SRESERVE,STITLE,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdescription != null and  sdescription != ''  ">
+               and  SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+           	</if>
+			<if test="skeyWord != null and  skeyWord != ''  ">
+               and  SKEY_WORD=#{skeyWord,jdbcType=VARCHAR}
+           	</if>
+			<if test="spageName != null and  spageName != ''  ">
+               and  SPAGE_NAME=#{spageName,jdbcType=VARCHAR}
+           	</if>
+			<if test="spageNo != null and  spageNo != ''  ">
+               and  SPAGE_NO=#{spageNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="spageUrl != null and  spageUrl != ''  ">
+               and  SPAGE_URL=#{spageUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreserve != null and  sreserve != ''  ">
+               and  SRESERVE=#{sreserve,jdbcType=VARCHAR}
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+               and  STITLE=#{stitle,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from WZ_KEY_WORDS
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.wz.KeyWords">
+        select
+        <include refid="column_List" />
+        from WZ_KEY_WORDS
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from WZ_KEY_WORDS
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from WZ_KEY_WORDS
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM WZ_KEY_WORDS where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.wz.KeyWords">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into WZ_KEY_WORDS (ID,IDEL_FLAG,SADD_USER,SDESCRIPTION,SKEY_WORD,SPAGE_NAME,SPAGE_NO,SPAGE_URL,SREMARK,SRESERVE,STITLE,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sdescription,jdbcType=VARCHAR},#{skeyWord,jdbcType=VARCHAR},#{spageName,jdbcType=VARCHAR},#{spageNo,jdbcType=VARCHAR},#{spageUrl,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{sreserve,jdbcType=VARCHAR},#{stitle,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.wz.KeyWords">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into WZ_KEY_WORDS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="sdescription">
+               SDESCRIPTION,
+           	</if>
+			<if test="skeyWord">
+               SKEY_WORD,
+           	</if>
+			<if test="spageName">
+               SPAGE_NAME,
+           	</if>
+			<if test="spageNo">
+               SPAGE_NO,
+           	</if>
+			<if test="spageUrl">
+               SPAGE_URL,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="sreserve">
+               SRESERVE,
+           	</if>
+			<if test="stitle">
+               STITLE,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdescription != null and  sdescription != ''  ">
+                #{sdescription,jdbcType=VARCHAR},
+           	</if>
+			<if test="skeyWord != null and  skeyWord != ''  ">
+                #{skeyWord,jdbcType=VARCHAR},
+           	</if>
+			<if test="spageName != null and  spageName != ''  ">
+                #{spageName,jdbcType=VARCHAR},
+           	</if>
+			<if test="spageNo != null and  spageNo != ''  ">
+                #{spageNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="spageUrl != null and  spageUrl != ''  ">
+                #{spageUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreserve != null and  sreserve != ''  ">
+                #{sreserve,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                #{stitle,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.wz.KeyWords">
+        update WZ_KEY_WORDS
+        <set>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdescription != null and  sdescription != ''  ">
+                SDESCRIPTION=#{sdescription,jdbcType=VARCHAR},
+           	</if>
+			<if test="skeyWord != null and  skeyWord != ''  ">
+                SKEY_WORD=#{skeyWord,jdbcType=VARCHAR},
+           	</if>
+			<if test="spageName != null and  spageName != ''  ">
+                SPAGE_NAME=#{spageName,jdbcType=VARCHAR},
+           	</if>
+			<if test="spageNo != null and  spageNo != ''  ">
+                SPAGE_NO=#{spageNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="spageUrl != null and  spageUrl != ''  ">
+                SPAGE_URL=#{spageUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreserve != null and  sreserve != ''  ">
+                SRESERVE=#{sreserve,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                STITLE=#{stitle,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.wz.KeyWords">
+        update WZ_KEY_WORDS
+        set 
+        		IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+        		,SKEY_WORD=#{skeyWord,jdbcType=VARCHAR}
+        		,SPAGE_NAME=#{spageName,jdbcType=VARCHAR}
+        		,SPAGE_NO=#{spageNo,jdbcType=VARCHAR}
+        		,SPAGE_URL=#{spageUrl,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SRESERVE=#{sreserve,jdbcType=VARCHAR}
+        		,STITLE=#{stitle,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+	SKEY_WORD=#{skeyWord,jdbcType=VARCHAR}
+	SPAGE_NAME=#{spageName,jdbcType=VARCHAR}
+	SPAGE_NO=#{spageNo,jdbcType=VARCHAR}
+	SPAGE_URL=#{spageUrl,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SRESERVE=#{sreserve,jdbcType=VARCHAR}
+	STITLE=#{stitle,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

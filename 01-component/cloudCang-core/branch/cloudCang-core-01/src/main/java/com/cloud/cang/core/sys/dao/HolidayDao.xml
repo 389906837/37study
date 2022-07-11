@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.sys.dao.HolidayDao">
+	 <select id="selectListString" resultType="java.lang.String">
+		<![CDATA[ 
+			select to_char(dTradeDate,'YYYY-MM-DD') tradeDate from cs_currenttradedate where dTradeDate between date_format(now(),'%Y') and (date_add(date_format(now(),'%Y'),interval 24 month)-1) and bIsWorkDate = 0 order by  dTradeDate
+		 ]]>
+	 </select>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    SGUID= #{id,jdbcType=VARCHAR}
+	BISWORKDATE=#{bisworkdate,jdbcType=NUMERIC}
+	DADDDATE=#{dadddate,jdbcType=TIMESTAMP}
+	DTRADEDATE=#{dtradedate,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

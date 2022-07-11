@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.core.sys.dao.RemindMessageDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.RemindMessage">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SORT" property="sort" jdbcType="NUMERIC" />
+		<result column="SVALUE" property="svalue" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ITYPE,REMARK,SCODE,SNAME,SORT,SVALUE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+               and  REMARK=#{remark,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+               and  SNAME=#{sname,jdbcType=VARCHAR}
+           	</if>
+			<if test="sort != null  ">
+               and  SORT=#{sort,jdbcType=NUMERIC}
+           	</if>
+			<if test="svalue != null and  svalue != ''  ">
+               and  SVALUE=#{svalue,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+    <sql id="Entity_Where_ClauseLike">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="itype != null  ">
+                    and  ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="remark != null and  remark != ''  ">
+                    and  REMARK=#{remark,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and  SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                 <!--   and  SNAME=#{sname,jdbcType=VARCHAR}-->
+                    and  SNAME like CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sort != null  ">
+                    and  SORT=#{sort,jdbcType=NUMERIC}
+                </if>
+                <if test="svalue != null and  svalue != ''  ">
+                    and  SVALUE=#{svalue,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_REMIND_MESSAGE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.RemindMessage">
+        select
+        <include refid="column_List" />
+        from SYS_REMIND_MESSAGE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_REMIND_MESSAGE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <!--查看消息列表 -->
+    <select id="selectPageByDomainWhere" parameterType="com.cloud.cang.core.sys.domain.RemindMessageDomain" resultMap="resultEntity">
+        select
+        <include refid="column_List" />
+        from SYS_REMIND_MESSAGE
+        <include refid="Entity_Where_ClauseLike" />
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        sort desc
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_REMIND_MESSAGE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_REMIND_MESSAGE where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.RemindMessage">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SYS_REMIND_MESSAGE (ID,ITYPE,REMARK,SCODE,SNAME,SORT,SVALUE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{itype,jdbcType=NUMERIC},#{remark,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sort,jdbcType=NUMERIC},#{svalue,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.RemindMessage">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_REMIND_MESSAGE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="remark">
+               REMARK,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sname">
+               SNAME,
+           	</if>
+			<if test="sort">
+               SORT,
+           	</if>
+			<if test="svalue">
+               SVALUE,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+                #{remark,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sort != null  ">
+                #{sort,jdbcType=NUMERIC},
+           	</if>
+			<if test="svalue != null and  svalue != ''  ">
+                #{svalue,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.RemindMessage">
+        update SYS_REMIND_MESSAGE
+        <set>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="remark != null">
+                REMARK=#{remark,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sort != null  ">
+                SORT=#{sort,jdbcType=NUMERIC},
+           	</if>
+			<if test="svalue != null and  svalue != ''  ">
+                SVALUE=#{svalue,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.RemindMessage">
+        update SYS_REMIND_MESSAGE
+        set 
+        		ITYPE=#{itype,jdbcType=NUMERIC}
+        		,REMARK=#{remark,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SNAME=#{sname,jdbcType=VARCHAR}
+        		,SORT=#{sort,jdbcType=NUMERIC}
+        		,SVALUE=#{svalue,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	REMARK=#{remark,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SORT=#{sort,jdbcType=NUMERIC}
+	SVALUE=#{svalue,jdbcType=VARCHAR}
+     -->
+     
+</mapper>
