@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.wz.dao.AdvertisDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.wz.Advertis">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IADV_TYPE" property="iadvType" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IIS_DEFAULT" property="iisDefault" jdbcType="NUMERIC"/>
+        <result column="ILINK_TYPE" property="ilinkType" jdbcType="NUMERIC"/>
+        <result column="ISCREEN_DISPLAY_TYPE" property="iscreenDisplayType" jdbcType="NUMERIC"/>
+        <result column="ISORT" property="isort" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="IUSE_TYPE" property="iuseType" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SCONTACT_NAME" property="scontactName" jdbcType="VARCHAR"/>
+        <result column="SCONTENT_URL" property="scontentUrl" jdbcType="VARCHAR"/>
+        <result column="SHREF" property="shref" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SMOBILE" property="smobile" jdbcType="VARCHAR"/>
+        <result column="SREGION_CODE" property="sregionCode" jdbcType="VARCHAR"/>
+        <result column="SREGION_ID" property="sregionId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SSOURCE_TITLE" property="ssourceTitle" jdbcType="VARCHAR"/>
+        <result column="STITLE" property="stitle" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TEND_DATE" property="tendDate" jdbcType="TIMESTAMP"/>
+        <result column="TSTART_DATE" property="tstartDate" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--新增实体类-->
+    <resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.wz.domain.AdvertisDomain">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IADV_TYPE" property="iadvType" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IIS_DEFAULT" property="iisDefault" jdbcType="NUMERIC"/>
+        <result column="ILINK_TYPE" property="ilinkType" jdbcType="NUMERIC"/>
+        <result column="ISORT" property="isort" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SCONTACT_NAME" property="scontactName" jdbcType="VARCHAR"/>
+        <result column="SCONTENT_URL" property="scontentUrl" jdbcType="VARCHAR"/>
+        <result column="SHREF" property="shref" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SMOBILE" property="smobile" jdbcType="VARCHAR"/>
+        <result column="SREGION_ID" property="sregionId" jdbcType="VARCHAR"/>
+        <result column="SREGION_CODE" property="sregionCode" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SSOURCE_TITLE" property="ssourceTitle" jdbcType="VARCHAR"/>
+        <result column="STITLE" property="stitle" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TEND_DATE" property="tendDate" jdbcType="TIMESTAMP"/>
+        <result column="TSTART_DATE" property="tstartDate" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+        <result column="MERCHANTNAME" property="merchantName" jdbcType="VARCHAR"/>
+        <result column="SREGION_NAME" property="sregionName" jdbcType="VARCHAR"/>
+        <result column="ISCREEN_DISPLAY_TYPE" property="iscreenDisplayType" jdbcType="NUMERIC"/>
+        <result column="IUSE_TYPE" property="iuseType" jdbcType="NUMERIC"/>
+    </resultMap>
+
+
+    <sql id="column_List">
+        <![CDATA[
+        ID,IADV_TYPE,IDEL_FLAG,IIS_DEFAULT,ILINK_TYPE,ISCREEN_DISPLAY_TYPE,ISORT,ISTATUS,IUSE_TYPE,SADD_USER,SCONTACT_NAME,SCONTENT_URL,SHREF,SMERCHANT_CODE,SMERCHANT_ID,SMOBILE,SREGION_CODE,SREGION_ID,SREMARK,SSOURCE_TITLE,STITLE,SUPDATE_USER,TADD_TIME,TEND_DATE,TSTART_DATE,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="iadvType != null  ">
+                    and IADV_TYPE=#{iadvType,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisDefault != null  ">
+                    and IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+                </if>
+                <if test="ilinkType != null  ">
+                    and ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+                </if>
+                <if test="iscreenDisplayType != null  ">
+                    and ISCREEN_DISPLAY_TYPE=#{iscreenDisplayType,jdbcType=NUMERIC}
+                </if>
+                <if test="isort != null  ">
+                    and ISORT=#{isort,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="iuseType != null  ">
+                    and IUSE_TYPE=#{iuseType,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactName != null and  scontactName != ''  ">
+                    and SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+                </if>
+                <if test="scontentUrl != null and  scontentUrl != ''  ">
+                    and SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR}
+                </if>
+                <if test="shref != null and  shref != ''  ">
+                    and SHREF=#{shref,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="smobile != null and  smobile != ''  ">
+                    and SMOBILE=#{smobile,jdbcType=VARCHAR}
+                </if>
+                <if test="sregionCode != null and  sregionCode != ''  ">
+                    and SREGION_CODE=#{sregionCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sregionId != null and  sregionId != ''  ">
+                    and SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="ssourceTitle != null and  ssourceTitle != ''  ">
+                    and SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR}
+                </if>
+                <if test="stitle != null and  stitle != ''  ">
+                    and STITLE=#{stitle,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tendDate != null  ">
+                    and TEND_DATE=#{tendDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tstartDate != null  ">
+                    and TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.wz.Advertis">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from WZ_ADVERTIS
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM WZ_ADVERTIS where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.wz.Advertis">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into WZ_ADVERTIS (ID,IADV_TYPE,IDEL_FLAG,IIS_DEFAULT,ILINK_TYPE,ISCREEN_DISPLAY_TYPE,ISORT,ISTATUS,IUSE_TYPE,SADD_USER,SCONTACT_NAME,SCONTENT_URL,SHREF,SMERCHANT_CODE,SMERCHANT_ID,SMOBILE,SREGION_CODE,SREGION_ID,SREMARK,SSOURCE_TITLE,STITLE,SUPDATE_USER,TADD_TIME,TEND_DATE,TSTART_DATE,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iadvType,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{iisDefault,jdbcType=NUMERIC},#{ilinkType,jdbcType=NUMERIC},#{iscreenDisplayType,jdbcType=NUMERIC},#{isort,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{iuseType,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{scontactName,jdbcType=VARCHAR},#{scontentUrl,jdbcType=VARCHAR},#{shref,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{smobile,jdbcType=VARCHAR},#{sregionCode,jdbcType=VARCHAR},#{sregionId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{ssourceTitle,jdbcType=VARCHAR},#{stitle,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tendDate,jdbcType=TIMESTAMP},#{tstartDate,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.wz.Advertis">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into WZ_ADVERTIS
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="iadvType">
+                IADV_TYPE,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="iisDefault">
+                IIS_DEFAULT,
+            </if>
+            <if test="ilinkType">
+                ILINK_TYPE,
+            </if>
+            <if test="iscreenDisplayType">
+                ISCREEN_DISPLAY_TYPE,
+            </if>
+            <if test="isort">
+                ISORT,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="iuseType">
+                IUSE_TYPE,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="scontactName">
+                SCONTACT_NAME,
+            </if>
+            <if test="scontentUrl">
+                SCONTENT_URL,
+            </if>
+            <if test="shref">
+                SHREF,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="smobile">
+                SMOBILE,
+            </if>
+            <if test="sregionCode">
+                SREGION_CODE,
+            </if>
+            <if test="sregionId">
+                SREGION_ID,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="ssourceTitle">
+                SSOURCE_TITLE,
+            </if>
+            <if test="stitle">
+                STITLE,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tendDate">
+                TEND_DATE,
+            </if>
+            <if test="tstartDate">
+                TSTART_DATE,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="iadvType != null  ">
+                #{iadvType,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisDefault != null  ">
+                #{iisDefault,jdbcType=NUMERIC},
+            </if>
+            <if test="ilinkType != null  ">
+                #{ilinkType,jdbcType=NUMERIC},
+            </if>
+            <if test="iscreenDisplayType != null  ">
+                #{iscreenDisplayType,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="iuseType != null  ">
+                #{iuseType,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactName != null and  scontactName != ''  ">
+                #{scontactName,jdbcType=VARCHAR},
+            </if>
+            <if test="scontentUrl != null and  scontentUrl != ''  ">
+                #{scontentUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="shref != null and  shref != ''  ">
+                #{shref,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="smobile != null and  smobile != ''  ">
+                #{smobile,jdbcType=VARCHAR},
+            </if>
+            <if test="sregionCode != null and  sregionCode != ''  ">
+                #{sregionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sregionId != null and  sregionId != ''  ">
+                #{sregionId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="ssourceTitle != null and  ssourceTitle != ''  ">
+                #{ssourceTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="stitle != null and  stitle != ''  ">
+                #{stitle,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tendDate != null  ">
+                #{tendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tstartDate != null  ">
+                #{tstartDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.wz.Advertis">
+        update WZ_ADVERTIS
+        <set>
+            <if test="iadvType != null  ">
+                IADV_TYPE=#{iadvType,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisDefault != null  ">
+                IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC},
+            </if>
+            <if test="ilinkType != null  ">
+                ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC},
+            </if>
+            <if test="iscreenDisplayType != null  ">
+                ISCREEN_DISPLAY_TYPE=#{iscreenDisplayType,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="iuseType != null  ">
+                IUSE_TYPE=#{iuseType,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactName != null and  scontactName != ''  ">
+                SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR},
+            </if>
+            <if test="scontentUrl != null and  scontentUrl != ''  ">
+                SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="shref != null and  shref != ''  ">
+                SHREF=#{shref,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="smobile != null and  smobile != ''  ">
+                SMOBILE=#{smobile,jdbcType=VARCHAR},
+            </if>
+            <if test="sregionCode != null and  sregionCode != ''  ">
+                SREGION_CODE=#{sregionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sregionId != null and  sregionId != ''  ">
+                SREGION_ID=#{sregionId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="ssourceTitle != null and  ssourceTitle != ''  ">
+                SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="stitle != null and  stitle != ''  ">
+                STITLE=#{stitle,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tendDate != null  ">
+                TEND_DATE=#{tendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tstartDate != null  ">
+                TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.wz.Advertis">
+        update WZ_ADVERTIS
+        set
+        IADV_TYPE=#{iadvType,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+        ,ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+        ,ISCREEN_DISPLAY_TYPE=#{iscreenDisplayType,jdbcType=NUMERIC}
+        ,ISORT=#{isort,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,IUSE_TYPE=#{iuseType,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+        ,SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR}
+        ,SHREF=#{shref,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SMOBILE=#{smobile,jdbcType=VARCHAR}
+        ,SREGION_CODE=#{sregionCode,jdbcType=VARCHAR}
+        ,SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR}
+        ,STITLE=#{stitle,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TEND_DATE=#{tendDate,jdbcType=TIMESTAMP}
+        ,TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+    <select id="selectListByVo" resultMap="resultEntity" parameterType="com.cloud.cang.mgr.wz.vo.AdvertisVo">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="sregionId != null and  sregionId != ''   ">
+                    and SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''   ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="idelFlag != null ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <!-- 有效期 -->
+                <if test="tstartDate != null ">
+                    and TEND_DATE &gt;#{tstartDate,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+        ORDER BY IIS_DEFAULT DESC,ISORT,TADD_TIME DESC
+    </select>
+
+    <!--模糊查询-->
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                and A.IDEL_FLAG=0
+                <if test="iisDefault != null  ">
+                    and A.IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+                </if>
+                <if test="iuseType != null  ">
+                    and A.IUSE_TYPE=#{iuseType,jdbcType=NUMERIC}
+                </if>
+                <if test="ilinkType != null  ">
+                    and A.ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="scontactName != null and  scontactName != ''  ">
+                    and A.SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+                </if>
+                <if test="iscreenDisplayType != null and  iscreenDisplayType != ''  ">
+                    and A.ISCREEN_DISPLAY_TYPE=#{iscreenDisplayType,jdbcType=VARCHAR}
+                </if>
+                <if test="iadvType != null and  iadvType != ''  ">
+                    and A.IADV_TYPE=#{iadvType,jdbcType=VARCHAR}
+                </if>
+                <if test="smobile != null and  smobile != ''  ">
+                    and A.SMOBILE=#{smobile,jdbcType=VARCHAR}
+                </if>
+                <if test="stitle != null and  stitle != ''  ">
+                    and A.STITLE LIKE CONCAT('%',#{stitle},'%')
+                </if>
+                <if test="tendDateStart != null ">
+                    and A.TEND_DATE &gt;= #{tendDateStart,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tendDateEnd != null ">
+                    and A.TEND_DATE &lt; date_add(#{tendDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and A.SMERCHANT_CODE LIKE CONCAT('%',#{smerchantCode},'%')
+                </if>
+                <if test="sregionId != null and  sregionId != ''  ">
+                    and A.SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+                </if>
+                <if test="merchantname != null and  merchantname != ''  ">
+                    and B.SNAME LIKE CONCAT('%',#{merchantname},'%')
+                </if>
+                <if test="sregionCode != null and  sregionCode != ''  ">
+                    and A.SREGION_CODE LIKE CONCAT('%',#{sregionCode},'%')
+                </if>
+                <if test="condition != null and  condition != ''  ">
+                    and ${condition}
+                </if>
+                <if test="sregionName != null and sregionName != ''  ">
+                    and C.SREGION_NAME like CONCAT('%',#{sregionName,jdbcType=VARCHAR},'%')
+                </if>
+
+                <if test="tstartDateStart != null  ">
+                    and A.TSTART_DATE>=#{tstartDateStart,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tstartDateEnd != null  ">
+                    and A.TSTART_DATE&lt;date_add(#{tstartDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+                <if test="tendDateStart != null  ">
+                    and A.TEND_DATE>=#{tendDateStart,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tendDateEnd != null  ">
+                    and A.TEND_DATE&lt;date_add(#{tendDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <!--  <sql id="Entity_Where_Clause_Like">
+          <where>
+              <trim prefix="(" suffix=")" prefixOverrides="and">
+                  <if test="id != null and  id != ''   ">
+                      and A.ID=#{id,jdbcType=VARCHAR}
+                  </if>
+                  <if test="iadvType != null  ">
+                      and  A.IADV_TYPE=#{iadvType,jdbcType=NUMERIC}
+                  </if>
+                  <if test="idelFlag != null  ">
+                      and  A.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                  </if>
+                  <if test="iisDefault != null  ">
+                      and  A.IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+                  </if>
+                  <if test="ilinkType != null  ">
+                      and  A.ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+                  </if>
+                  <if test="ishowTime != null  ">
+                      and  A.ISHOW_TIME=#{ishowTime,jdbcType=NUMERIC}
+                  </if>
+                  <if test="isort != null  ">
+                      and  A.ISORT=#{isort,jdbcType=NUMERIC}
+                  </if>
+                  <if test="istatus != null  ">
+                      and  A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                  </if>
+                  <if test="saddUser != null and  saddUser != ''  ">
+                      and  A.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                  </if>
+                  <if test="sbgImgUrl != null and  sbgImgUrl != ''  ">
+                      and  A.SBG_IMG_URL=#{sbgImgUrl,jdbcType=VARCHAR}
+                  </if>
+                  <if test="schannelCode != null and  schannelCode != ''  ">
+                      and  A.SCHANNEL_CODE like CONCAT('%',#{schannelCode,jdbcType=VARCHAR},'%')
+                  </if>
+                  <if test="schannelId != null and  schannelId != ''  ">
+                      and  A.SCHANNEL_ID=#{schannelId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="scontactName != null and  scontactName != ''  ">
+                      and  A.SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+                  </if>
+                  <if test="scontentUrl != null and  scontentUrl != ''  ">
+                      and  A.SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR}
+                  </if>
+                  <if test="shref != null and  shref != ''  ">
+                      and  A.SHREF=#{shref,jdbcType=VARCHAR}
+                  </if>
+                  <if test="smobile != null and  smobile != ''  ">
+                      and  A.SMOBILE=#{smobile,jdbcType=VARCHAR}
+                  </if>
+                  <if test="sregionCode != null and  sregionCode != ''  ">
+                      and  A.SREGION_CODE like CONCAT('%',#{sregionCode,jdbcType=VARCHAR},'%')
+                  </if>
+                  <if test="sregionId != null and  sregionId != ''  ">
+                      and  A.SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="sremark != null and  sremark != ''  ">
+                      and  A.SREMARK=#{sremark,jdbcType=VARCHAR}
+                  </if>
+                  <if test="ssourceTitle != null and  ssourceTitle != ''  ">
+                      and  A.SSOURCE_TITLE like CONCAT('%',#{ssourceTitle,jdbcType=VARCHAR},'%')
+                  </if>
+                  <if test="stitle != null and  stitle != ''  ">
+                      and  A.STITLE like CONCAT('%',#{stitle,jdbcType=VARCHAR},'%')
+                  </if>
+                  <if test="supdateUser != null and  supdateUser != ''  ">
+                      and  A.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                  </if>
+                  <if test="taddTime != null  ">
+                      and  A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="tendDate != null  ">
+                      and  A.TEND_DATE=#{tendDate,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="tstartDate != null  ">
+                      and  A.TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="tupdateTime != null  ">
+                      and  A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="sregionName != null and sregionName != ''  ">
+                      and C.SREGION_NAME like CONCAT('%',#{sregionName,jdbcType=VARCHAR},'%')
+                  </if>
+                  <if test="schannelName != null and schannelName != ''  ">
+                      and B.SNAME like CONCAT('%',#{schannelName,jdbcType=VARCHAR},'%')
+                  </if>
+                  <if test="queryCondition != null and  queryCondition != ''  ">
+                      and ${queryCondition}
+                  </if>
+                  <if test="tstartDateStart != null  ">
+                      and A.TSTART_DATE>=#{tstartDateStart,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="tstartDateEnd != null  ">
+                      and A.TSTART_DATE&lt;date_add(#{tstartDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                  </if>
+                  <if test="tendDateStart != null  ">
+                      and A.TEND_DATE>=#{tendDateStart,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="tendDateEnd != null  ">
+                      and A.TEND_DATE&lt;date_add(#{tendDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                  </if>
+              </trim>
+          </where>
+      </sql>-->
+
+    <!--广告查询页面sql-->
+    <select id="selectAdvertis" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.wz.vo.AdvertisVo">
+        select A.*,B.SNAME as MERCHANTNAME from WZ_ADVERTIS A
+        INNER JOIN WZ_REGION C ON A.SREGION_ID = C.ID and C.IDEL_FLAG=0 and C.ITYPE=10
+        LEFT JOIN sh_merchant_info B ON A.SMERCHANT_ID = B.ID
+        <include refid="Entity_Where_Clause_Like"/>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.ISORT,A.TEND_DATE DESC
+    </select>
+
+
+    <!--根据运营ID查询广告页面sql-->
+    <select id="selectSregionId" resultMap="resultEntityDomain" parameterType="java.util.Map">
+        select A.*,B.SNAME as MERCHANTNAME from WZ_ADVERTIS A
+        INNER JOIN WZ_REGION C ON A.SREGION_ID = C.ID and C.IDEL_FLAG=0 and C.ITYPE=10
+        LEFT JOIN sh_merchant_info B ON A.SMERCHANT_ID = B.ID
+        <include refid="Entity_Where_Clause_Like"/>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        FIELD(A.ISTATUS,1,3,0),A.TSTART_DATE DESC
+    </select>
+
+    <!--更新默认选项-->
+    <update id="updateDefault" parameterType="java.util.Map">
+        update WZ_ADVERTIS set IIS_DEFAULT=0 where ID!='${advertisId}' and SREGION_ID='${regionId}'
+    </update>
+
+
+    <select id="selectByRrgionId" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from WZ_ADVERTIS
+        where SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+    </select>
+
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IADV_TYPE=#{iadvType,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+	ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+	ISCREEN_DISPLAY_TYPE=#{iscreenDisplayType,jdbcType=NUMERIC}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	IUSE_TYPE=#{iuseType,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+	SCONTENT_URL=#{scontentUrl,jdbcType=VARCHAR}
+	SHREF=#{shref,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SMOBILE=#{smobile,jdbcType=VARCHAR}
+	SREGION_CODE=#{sregionCode,jdbcType=VARCHAR}
+	SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSOURCE_TITLE=#{ssourceTitle,jdbcType=VARCHAR}
+	STITLE=#{stitle,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TEND_DATE=#{tendDate,jdbcType=TIMESTAMP}
+	TSTART_DATE=#{tstartDate,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <!--查询商户列表-->
+    <!--  <select id="selectPageByDomainWhere" resultType="com.cloud.cang.mgr.wz.domain.AdvertisDomain"
+              parameterType="com.cloud.cang.mgr.wz.vo.AdvertisVo">
+          select A.*,B.SNAME as MERCHANTNAME from WZ_ADVERTIS A
+          INNER JOIN WZ_REGION C ON A.SREGION_ID = C.ID and C.IDEL_FLAG=0 and C.ITYPE=10
+          LEFT JOIN sh_merchant_info B ON A.SMERCHANT_ID = B.ID
+          <include refid="Entity_Where_Clause_Like"/>
+          ORDER BY
+          <if test="orderStr != null and  orderStr != ''  ">
+              ${orderStr}
+          </if>
+          FIELD(A.ISTATUS,1,3,0),A.TSTART_DATE DESC
+      </select>-->
+    <select id="selectPageByDomainWhere" resultMap="resultEntityDomain"
+            parameterType="com.cloud.cang.mgr.wz.vo.AdvertisVo">
+        select A.*,B.sname as MERCHANTNAME,C.sregion_name as sregionName from wz_advertis A
+        INNER JOIN wz_region C ON A.sregion_id = C.id and C.idel_flag=0 and C.itype in (10,30)
+        LEFT JOIN sh_merchant_info B ON A.SMERCHANT_ID = B.id
+        <include refid="Entity_Where_Clause_Like"/>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.isort,A.tend_date desc
+    </select>
+
+    <select id="selectDomainByAdvId" resultMap="resultEntityDomain" parameterType="java.lang.String">
+        select A.*,B.sname as merchantName,C.sregion_name as sregionName from wz_advertis A
+        INNER JOIN wz_region C ON A.sregion_id = C.id and C.idel_flag=0 and C.itype=10
+        LEFT JOIN sh_merchant_info B ON A.SMERCHANT_ID = B.id
+        where A.ID = #{advId,jdbcType=VARCHAR} and A.ISTATUS=1 and A.idel_flag=0 AND A.IUSE_TYPE = 0
+    </select>
+
+    <select id="selectPageByDeviceId" resultMap="resultEntityDomain"
+            parameterType="com.cloud.cang.mgr.wz.vo.AdvertisVo">
+        select DISTINCT A.*,D.SNAME merchantName,C.sregion_name as sregionName
+        from wz_advertis a
+        LEFT join wz_device_news b on a.id = b.snews_id
+        INNER JOIN wz_region C on A.sregion_id = C.id and C.idel_flag=0
+        LEFT JOIN sh_merchant_info d on A.SMERCHANT_ID = d.id
+        where ((b.sdevice_id=#{deviceId,jdbcType=VARCHAR} and b.idel_flag = 0) or (a.iuse_type =1 and
+        A.ISCREEN_DISPLAY_TYPE =#{iscreenDisplayType,jdbcType=NUMERIC}
+        and A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}))
+        and a.idel_flag = 0
+        <if test="iisDefault != null  ">
+            and A.IIS_DEFAULT=#{iisDefault,jdbcType=NUMERIC}
+        </if>
+        <if test="iuseType != null  ">
+            and A.IUSE_TYPE=#{iuseType,jdbcType=NUMERIC}
+        </if>
+        <if test="ilinkType != null  ">
+            and A.ILINK_TYPE=#{ilinkType,jdbcType=NUMERIC}
+        </if>
+        <if test="istatus != null  ">
+            and A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+        </if>
+        <if test="scontactName != null and  scontactName != ''  ">
+            and A.SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+        </if>
+        <if test="iadvType != null and  iadvType != ''  ">
+            and A.IADV_TYPE=#{iadvType,jdbcType=VARCHAR}
+        </if>
+        <if test="smobile != null and  smobile != ''  ">
+            and A.SMOBILE=#{smobile,jdbcType=VARCHAR}
+        </if>
+        <if test="stitle != null and  stitle != ''  ">
+            and A.STITLE LIKE CONCAT('%',#{stitle},'%')
+        </if>
+        <if test="tendDateStart != null ">
+            and A.TEND_DATE &gt;= #{tendDateStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="tendDateEnd != null ">
+            and A.TEND_DATE &lt; date_add(#{tendDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        <if test="smerchantCode != null and  smerchantCode != ''  ">
+            and A.SMERCHANT_CODE LIKE CONCAT('%',#{smerchantCode},'%')
+        </if>
+        <if test="sregionId != null and  sregionId != ''  ">
+            and A.SREGION_ID=#{sregionId,jdbcType=VARCHAR}
+        </if>
+        <if test="merchantname != null and  merchantname != ''  ">
+            and D.SNAME LIKE CONCAT('%',#{merchantname},'%')
+        </if>
+        <if test="sregionCode != null and  sregionCode != ''  ">
+            and A.SREGION_CODE LIKE CONCAT('%',#{sregionCode},'%')
+        </if>
+        <if test="condition != null and  condition != ''  ">
+            and ${condition}
+        </if>
+        <if test="sregionName != null and sregionName != ''  ">
+            and C.SREGION_NAME like CONCAT('%',#{sregionName,jdbcType=VARCHAR},'%')
+        </if>
+
+        <if test="tstartDateStart != null  ">
+            and A.TSTART_DATE>=#{tstartDateStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="tstartDateEnd != null  ">
+            and A.TSTART_DATE&lt;date_add(#{tstartDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        <if test="tendDateStart != null  ">
+            and A.TEND_DATE>=#{tendDateStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="tendDateEnd != null  ">
+            and A.TEND_DATE&lt;date_add(#{tendDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.id desc,A.tend_date desc
+    </select>
+</mapper>

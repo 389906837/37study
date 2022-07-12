@@ -1,0 +1,92 @@
+/*layuiTable */
+.layui-table, .layui-table-view { margin:0px 0px; }
+
+/*layuiForm */
+.layui-form-item{}
+.layui-form-item input[disabled]{background:#e5e6e7;}
+.layui-form-item button[disabled]{background:#e5e6e7;color:#555}
+.layui-form-label {width: 160px;}
+.layui-form-label200{width: 200px;}
+.layui-form-label220{width: 220px;}
+.layui-form-label100p{width: 100%;}
+
+.layui-form-input100{width: 100px;}
+.layui-form-input130{width: 130px;}
+.layui-form-input{width:212px;}
+.layui-input-inline .form-span{line-height:38px;height:38px;}
+
+.block_textarea span{margin-left:192px!important;}
+.layui-form-textarea260{width:260px;}
+.layui-form-textarea350{width:350px;}
+.layui-form-textarea80p{width:72%;}
+.mt13{margin-top:13px;}
+.layui-input-block {margin-left:15px;}
+.com-layui-btn{width:70px;padding:0}
+.layui-tab{margin:0px 0px;}
+/*treeview */
+.navbar-defaultbg{background:#fff !important}
+.list-group li{border:none}
+.list-group li .icon i.glyphicon-stop,.htvoer{display:none !important}
+.node-selected{background:none !important}
+
+.wfsplitt{border-bottom:2px solid #009688;color:#009688;padding-bottom:5px;margin-bottom:10px;}
+/*右侧 */
+.ibox-content{padding-bottom:50px;}
+.layui-layer-content{padding-bottom:40px;}
+.fixed-bottom{position:fixed;left:0;bottom:0;text-align:center;background:#ececec;width:100%;margin-bottom:0;padding:5px 0;z-index:55555;}
+.fixed-bottom .layui-input-block{margin-left:0;}
+/*.content-tabs{position:fixed;top:0;right:16px;z-index:2;width:100%}
+#content-main {margin-top:40px;}
+#page-wrapper{height:95% !important}*/
+/*.wflist-group-item{max-height:280px;overflow-y:auto;overflow-x:hidden;}*/
+/*底部 */
+.footer{width:100%;position:fixed;bottom:0;right:0}
+
+
+
+/*==========以下部分是Validform必须的===========*/
+.Validform_checktip{  margin-left:8px;  line-height:20px;  height:20px;  overflow:hidden;  color:#999;  font-size:12px;  }
+.Validform_right{  color:#71b83d;  padding-left:20px;  background:url(../images/validform/right.png) no-repeat left center; display: none;  }
+.Validform_wrong{  color:red;  padding-left:20px;  white-space:nowrap;  background:url(../images/validform/error.png) no-repeat left center;width:100%  }
+.Validform_loading{  padding-left:20px;  background:url(../images/validform/onLoad.gif) no-repeat left center;  }
+.Validform_error{  background-color:#ffe7e7;  }
+#Validform_msg{color:#7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width:280px; -webkit-box-shadow:2px 2px 3px #aaa; -moz-box-shadow:2px 2px 3px #aaa; background:#fff; position:absolute; top:0px; right:50px; z-index:99999; display:none;filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');}
+#Validform_msg .iframe{position:absolute; left:0px; top:-1px; z-index:-1;}
+#Validform_msg .Validform_title{line-height:25px; height:25px; text-align:left; font-weight:bold; padding:0 8px; color:#fff; position:relative; background-color:#000;}
+#Validform_msg a.Validform_close:link,#Validform_msg a.Validform_close:visited{line-height:22px; position:absolute; right:8px; top:0px; color:#fff; text-decoration:none;}
+#Validform_msg a.Validform_close:hover{color:#cc0;}
+#Validform_msg .Validform_info{padding:8px;border:1px solid #000; border-top:none; text-align:left;}
+
+/* 2018-04-08 新增加 */
+.choose-btn{float:right;padding:0 8px;height:35px;line-height:35px;background:#92c449;color:#fff;border-radius:5px;margin-bottom:10px;}
+.layui-input-title span{float: left;display:inline-block;height:35px;line-height:35px;font-size:18px;}
+
+.wfregion-search{overflow:hidden;text-align:center;padding-top:10px;padding-bottom:5px;}
+.wfregion-search .layui-input-inline{width:110px;float:none;display:inline-block}
+.wfregion-search .layui-input-inline input{height:34px;line-height:34px;}
+.wfregion ul li{font-size:12px;color:#676a6c;padding:10px 10px;cursor:pointer}
+.wfregion ul li.hover,.wfregion ul li:hover{color:#FFB800}
+.noibox-content{padding-bottom:0}
+
+/* 2018-05-31 新加 */
+.layui-btn.active {  background-color: #92c449;  color: #ffffff; height:20px;line-height: 20px;  }
+.layui-quote-nm-1 {  border-width: 1px 1px 1px 1px;  }
+.fixed-bottom .layui-input-block .lable-left{ position: absolute; left: 10px;line-height: 36px; }
+.inline-150 {  width: 150px!important;}
+.layui-elem-quote {padding: 8px 15px;margin-top: 5px;width: 212px;}
+.p-l{padding-left: 1%;}
+.layui-form-item .require{color: #b2b2c3;font-size: 12px;}
+.istatus-normal{color: #0b75c3;}
+.istatus-warm{color: #FFB800;}
+.istatus-radius{color: #009688;}
+.istatus-danger{color: #FF5722;}
+/* 2019-08-02 新增 */
+#thelist{margin-top:15px;}
+#thelist table tr{border:1px solid #e7eaec;}
+/* 2019-08-07 */
+@media screen and (max-width: 768px) {
+    .layui-col-md6{width:100%;clear:both;}
+}
+
+
+

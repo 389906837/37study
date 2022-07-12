@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.om.dao.OrderCommodityDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.om.OrderCommodity">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FACTUAL_AMOUNT" property="factualAmount" jdbcType="NUMERIC" />
+		<result column="FCOMMODITY_AMOUNT" property="fcommodityAmount" jdbcType="NUMERIC" />
+		<result column="FCOMMODITY_PRICE" property="fcommodityPrice" jdbcType="NUMERIC" />
+		<result column="FCOST_AMOUNT" property="fcostAmount" jdbcType="NUMERIC" />
+		<result column="FCOUPON_DEDUCTION_AMOUNT" property="fcouponDeductionAmount" jdbcType="NUMERIC" />
+		<result column="FDISCOUNT_AMOUNT" property="fdiscountAmount" jdbcType="NUMERIC" />
+		<result column="FFIRST_DISCOUNT_AMOUNT" property="ffirstDiscountAmount" jdbcType="NUMERIC" />
+		<result column="FORDER_COUNT" property="forderCount" jdbcType="NUMERIC" />
+		<result column="FOTHER_DISCOUNT_AMOUNT" property="fotherDiscountAmount" jdbcType="NUMERIC" />
+		<result column="FPOINT_DISCOUNT_AMOUNT" property="fpointDiscountAmount" jdbcType="NUMERIC" />
+		<result column="FPROMOTION_DISCOUNT_AMOUNT" property="fpromotionDiscountAmount" jdbcType="NUMERIC" />
+		<result column="FREFUND_AMOUNT" property="frefundAmount" jdbcType="NUMERIC" />
+		<result column="FREFUND_COUNT" property="frefundCount" jdbcType="NUMERIC" />
+		<result column="FREFUND_POINT" property="frefundPoint" jdbcType="NUMERIC" />
+		<result column="FTAX_POINT" property="ftaxPoint" jdbcType="NUMERIC" />
+		<result column="IPOINT" property="ipoint" jdbcType="NUMERIC" />
+		<result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_NAME" property="scommodityName" jdbcType="VARCHAR" />
+		<result column="SIDENTIFIES" property="sidentifies" jdbcType="VARCHAR" />
+		<result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR" />
+		<result column="SORDER_ID" property="sorderId" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="resultEntityVo" type="com.cloud.cang.mgr.om.vo.OrderCommodityVo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FACTUAL_AMOUNT" property="factualAmount" jdbcType="NUMERIC"/>
+        <result column="FCOMMODITY_AMOUNT" property="fcommodityAmount" jdbcType="NUMERIC"/>
+        <result column="FCOMMODITY_PRICE" property="fcommodityPrice" jdbcType="NUMERIC"/>
+        <result column="FCOST_AMOUNT" property="fcostAmount" jdbcType="NUMERIC"/>
+        <result column="FCOUPON_DEDUCTION_AMOUNT" property="fcouponDeductionAmount" jdbcType="NUMERIC"/>
+        <result column="FDISCOUNT_AMOUNT" property="fdiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FFIRST_DISCOUNT_AMOUNT" property="ffirstDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FORDER_COUNT" property="forderCount" jdbcType="NUMERIC"/>
+        <result column="FOTHER_DISCOUNT_AMOUNT" property="fotherDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FPOINT_DISCOUNT_AMOUNT" property="fpointDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FPROMOTION_DISCOUNT_AMOUNT" property="fpromotionDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FREFUND_AMOUNT" property="frefundAmount" jdbcType="NUMERIC"/>
+        <result column="FREFUND_COUNT" property="frefundCount" jdbcType="NUMERIC"/>
+		<result column="FREFUND_POINT" property="frefundPoint" jdbcType="NUMERIC" />
+		<result column="FTAX_POINT" property="ftaxPoint" jdbcType="NUMERIC"/>
+        <result column="IPOINT" property="ipoint" jdbcType="NUMERIC"/>
+        <result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_NAME" property="scommodityName" jdbcType="VARCHAR"/>
+        <result column="SIDENTIFIES" property="sidentifies" jdbcType="VARCHAR"/>
+        <result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR"/>
+        <result column="SORDER_ID" property="sorderId" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,FACTUAL_AMOUNT,FCOMMODITY_AMOUNT,FCOMMODITY_PRICE,FCOST_AMOUNT,FCOUPON_DEDUCTION_AMOUNT,FDISCOUNT_AMOUNT,FFIRST_DISCOUNT_AMOUNT,FORDER_COUNT,FOTHER_DISCOUNT_AMOUNT,FPOINT_DISCOUNT_AMOUNT,FPROMOTION_DISCOUNT_AMOUNT,FREFUND_AMOUNT,FREFUND_COUNT,FREFUND_POINT,FTAX_POINT,IPOINT,SCOMMODITY_CODE,SCOMMODITY_ID,SCOMMODITY_NAME,SIDENTIFIES,SORDER_CODE,SORDER_ID,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="column_List_Vo">
+        OOC.ID,OOC.FACTUAL_AMOUNT,OOC.FCOMMODITY_AMOUNT,OOC.FCOMMODITY_PRICE,OOC.FCOST_AMOUNT,OOC.FCOUPON_DEDUCTION_AMOUNT,OOC.FDISCOUNT_AMOUNT,
+        OOC.FFIRST_DISCOUNT_AMOUNT,OOC.FORDER_COUNT,OOC.FOTHER_DISCOUNT_AMOUNT,OOC.FPOINT_DISCOUNT_AMOUNT,OOC.FPROMOTION_DISCOUNT_AMOUNT,
+        OOC.FREFUND_AMOUNT,OOC.FREFUND_COUNT,OOC.FTAX_POINT,OOC.IPOINT,OOC.SCOMMODITY_CODE,OOC.SCOMMODITY_ID,
+        OOC.SIDENTIFIES,SORDER_CODE,OOC.SORDER_ID,OOC.TADD_TIME,OOC.TUPDATE_TIME,OOC.FREFUND_POINT,
+		SCI.SNAME SCOMMODITY_NAME,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="factualAmount != null  ">
+               and  FACTUAL_AMOUNT=#{factualAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fcommodityAmount != null  ">
+               and  FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fcommodityPrice != null  ">
+               and  FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC}
+           	</if>
+			<if test="fcostAmount != null  ">
+               and  FCOST_AMOUNT=#{fcostAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fcouponDeductionAmount != null  ">
+               and  FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fdiscountAmount != null  ">
+               and  FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="ffirstDiscountAmount != null  ">
+               and  FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="forderCount != null  ">
+               and  FORDER_COUNT=#{forderCount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fotherDiscountAmount != null  ">
+               and  FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fpointDiscountAmount != null  ">
+               and  FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fpromotionDiscountAmount != null  ">
+               and  FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="frefundAmount != null  ">
+               and  FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="frefundCount != null  ">
+               and  FREFUND_COUNT=#{frefundCount,jdbcType=NUMERIC}
+           	</if>
+			<if test="frefundPoint != null  ">
+               and  FREFUND_POINT=#{frefundPoint,jdbcType=NUMERIC}
+           	</if>
+			<if test="ftaxPoint != null  ">
+               and  FTAX_POINT=#{ftaxPoint,jdbcType=NUMERIC}
+           	</if>
+			<if test="ipoint != null  ">
+               and  IPOINT=#{ipoint,jdbcType=NUMERIC}
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+               and  SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+               and  SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+               and  SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sidentifies != null and  sidentifies != ''  ">
+               and  SIDENTIFIES=#{sidentifies,jdbcType=VARCHAR}
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+               and  SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+               and  SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from OM_ORDER_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.om.OrderCommodity">
+        select
+        <include refid="column_List" />
+        from OM_ORDER_COMMODITY
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from OM_ORDER_COMMODITY
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from OM_ORDER_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM OM_ORDER_COMMODITY where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.om.OrderCommodity">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into OM_ORDER_COMMODITY (ID,FACTUAL_AMOUNT,FCOMMODITY_AMOUNT,FCOMMODITY_PRICE,FCOST_AMOUNT,FCOUPON_DEDUCTION_AMOUNT,FDISCOUNT_AMOUNT,FFIRST_DISCOUNT_AMOUNT,FORDER_COUNT,FOTHER_DISCOUNT_AMOUNT,FPOINT_DISCOUNT_AMOUNT,FPROMOTION_DISCOUNT_AMOUNT,FREFUND_AMOUNT,FREFUND_COUNT,FREFUND_POINT,FTAX_POINT,IPOINT,SCOMMODITY_CODE,SCOMMODITY_ID,SCOMMODITY_NAME,SIDENTIFIES,SORDER_CODE,SORDER_ID,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{factualAmount,jdbcType=NUMERIC},#{fcommodityAmount,jdbcType=NUMERIC},#{fcommodityPrice,jdbcType=NUMERIC},#{fcostAmount,jdbcType=NUMERIC},#{fcouponDeductionAmount,jdbcType=NUMERIC},#{fdiscountAmount,jdbcType=NUMERIC},#{ffirstDiscountAmount,jdbcType=NUMERIC},#{forderCount,jdbcType=NUMERIC},#{fotherDiscountAmount,jdbcType=NUMERIC},#{fpointDiscountAmount,jdbcType=NUMERIC},#{fpromotionDiscountAmount,jdbcType=NUMERIC},#{frefundAmount,jdbcType=NUMERIC},#{frefundCount,jdbcType=NUMERIC},#{frefundPoint,jdbcType=NUMERIC},#{ftaxPoint,jdbcType=NUMERIC},#{ipoint,jdbcType=NUMERIC},#{scommodityCode,jdbcType=VARCHAR},#{scommodityId,jdbcType=VARCHAR},#{scommodityName,jdbcType=VARCHAR},#{sidentifies,jdbcType=VARCHAR},#{sorderCode,jdbcType=VARCHAR},#{sorderId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.om.OrderCommodity">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into OM_ORDER_COMMODITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="factualAmount">
+               FACTUAL_AMOUNT,
+           	</if>
+			<if test="fcommodityAmount">
+               FCOMMODITY_AMOUNT,
+           	</if>
+			<if test="fcommodityPrice">
+               FCOMMODITY_PRICE,
+           	</if>
+			<if test="fcostAmount">
+               FCOST_AMOUNT,
+           	</if>
+			<if test="fcouponDeductionAmount">
+               FCOUPON_DEDUCTION_AMOUNT,
+           	</if>
+			<if test="fdiscountAmount">
+               FDISCOUNT_AMOUNT,
+           	</if>
+			<if test="ffirstDiscountAmount">
+               FFIRST_DISCOUNT_AMOUNT,
+           	</if>
+			<if test="forderCount">
+               FORDER_COUNT,
+           	</if>
+			<if test="fotherDiscountAmount">
+               FOTHER_DISCOUNT_AMOUNT,
+           	</if>
+			<if test="fpointDiscountAmount">
+               FPOINT_DISCOUNT_AMOUNT,
+           	</if>
+			<if test="fpromotionDiscountAmount">
+               FPROMOTION_DISCOUNT_AMOUNT,
+           	</if>
+			<if test="frefundAmount">
+               FREFUND_AMOUNT,
+           	</if>
+			<if test="frefundCount">
+               FREFUND_COUNT,
+           	</if>
+			<if test="frefundPoint">
+               FREFUND_POINT,
+           	</if>
+			<if test="ftaxPoint">
+               FTAX_POINT,
+           	</if>
+			<if test="ipoint">
+               IPOINT,
+           	</if>
+			<if test="scommodityCode">
+               SCOMMODITY_CODE,
+           	</if>
+			<if test="scommodityId">
+               SCOMMODITY_ID,
+           	</if>
+			<if test="scommodityName">
+               SCOMMODITY_NAME,
+           	</if>
+			<if test="sidentifies">
+               SIDENTIFIES,
+           	</if>
+			<if test="sorderCode">
+               SORDER_CODE,
+           	</if>
+			<if test="sorderId">
+               SORDER_ID,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="factualAmount != null  ">
+                #{factualAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcommodityAmount != null  ">
+                #{fcommodityAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcommodityPrice != null  ">
+                #{fcommodityPrice,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcostAmount != null  ">
+                #{fcostAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcouponDeductionAmount != null  ">
+                #{fcouponDeductionAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fdiscountAmount != null  ">
+                #{fdiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="ffirstDiscountAmount != null  ">
+                #{ffirstDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="forderCount != null  ">
+                #{forderCount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fotherDiscountAmount != null  ">
+                #{fotherDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fpointDiscountAmount != null  ">
+                #{fpointDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fpromotionDiscountAmount != null  ">
+                #{fpromotionDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundAmount != null  ">
+                #{frefundAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundCount != null  ">
+                #{frefundCount,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundPoint != null  ">
+                #{frefundPoint,jdbcType=NUMERIC},
+           	</if>
+			<if test="ftaxPoint != null  ">
+                #{ftaxPoint,jdbcType=NUMERIC},
+           	</if>
+			<if test="ipoint != null  ">
+                #{ipoint,jdbcType=NUMERIC},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                #{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                #{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+                #{scommodityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sidentifies != null and  sidentifies != ''  ">
+                #{sidentifies,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+                #{sorderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+                #{sorderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.om.OrderCommodity">
+        update OM_ORDER_COMMODITY
+        <set>
+			<if test="factualAmount != null  ">
+                FACTUAL_AMOUNT=#{factualAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcommodityAmount != null  ">
+                FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcommodityPrice != null  ">
+                FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcostAmount != null  ">
+                FCOST_AMOUNT=#{fcostAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcouponDeductionAmount != null  ">
+                FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fdiscountAmount != null  ">
+                FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="ffirstDiscountAmount != null  ">
+                FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="forderCount != null  ">
+                FORDER_COUNT=#{forderCount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fotherDiscountAmount != null  ">
+                FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fpointDiscountAmount != null  ">
+                FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fpromotionDiscountAmount != null  ">
+                FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundAmount != null  ">
+                FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundCount != null  ">
+                FREFUND_COUNT=#{frefundCount,jdbcType=NUMERIC},
+           	</if>
+			<if test="frefundPoint != null  ">
+                FREFUND_POINT=#{frefundPoint,jdbcType=NUMERIC},
+           	</if>
+			<if test="ftaxPoint != null  ">
+                FTAX_POINT=#{ftaxPoint,jdbcType=NUMERIC},
+           	</if>
+			<if test="ipoint != null  ">
+                IPOINT=#{ipoint,jdbcType=NUMERIC},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+                SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sidentifies != null and  sidentifies != ''  ">
+                SIDENTIFIES=#{sidentifies,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderCode != null and  sorderCode != ''  ">
+                SORDER_CODE=#{sorderCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sorderId != null and  sorderId != ''  ">
+                SORDER_ID=#{sorderId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.om.OrderCommodity">
+        update OM_ORDER_COMMODITY
+        set 
+        		FACTUAL_AMOUNT=#{factualAmount,jdbcType=NUMERIC}
+        		,FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC}
+        		,FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC}
+        		,FCOST_AMOUNT=#{fcostAmount,jdbcType=NUMERIC}
+        		,FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC}
+        		,FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC}
+        		,FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC}
+        		,FORDER_COUNT=#{forderCount,jdbcType=NUMERIC}
+        		,FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC}
+        		,FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC}
+        		,FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC}
+        		,FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC}
+        		,FREFUND_COUNT=#{frefundCount,jdbcType=NUMERIC}
+        		,FREFUND_POINT=#{frefundPoint,jdbcType=NUMERIC}
+        		,FTAX_POINT=#{ftaxPoint,jdbcType=NUMERIC}
+        		,IPOINT=#{ipoint,jdbcType=NUMERIC}
+        		,SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+        		,SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+        		,SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+        		,SIDENTIFIES=#{sidentifies,jdbcType=VARCHAR}
+        		,SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+        		,SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!--	查询订单商品-->
+    <select id="queryDetailsByDomain" resultMap="resultEntityVo"
+            parameterType="com.cloud.cang.mgr.om.domain.OrderCommodityDomain">
+        select
+        <include refid="column_List_Vo"/>
+        from OM_ORDER_COMMODITY OOC
+        LEFT JOIN SP_COMMODITY_INFO SCI ON OOC.SCOMMODITY_ID = SCI.ID
+        <!-- <include refid="Entity_Where_Clause"/>-->
+        WHERE OOC.SORDER_ID =#{sorderId,jdbcType=VARCHAR}
+        order by
+        <if test="orderStr != null and orderStr != ''">
+            ${orderStr}
+        </if>
+        OOC.ID
+    </select>
+    <select id="selectOrderDetail" resultMap="resultEntityVo"
+            parameterType="com.cloud.cang.mgr.om.domain.OrderCommodityDomain">
+        select
+        <include refid="column_List_Vo"/>
+        from OM_ORDER_COMMODITY OOC
+        LEFT JOIN SP_COMMODITY_INFO SCI ON OOC.SCOMMODITY_ID = SCI.ID
+        WHERE OOC.SORDER_ID =#{sorderId,jdbcType=VARCHAR}
+        order by
+       <!-- <if test="orderStr != null and orderStr != ''">
+            ${orderStr}
+        </if>-->
+        OOC.TADD_TIME
+    </select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FACTUAL_AMOUNT=#{factualAmount,jdbcType=NUMERIC}
+	FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC}
+	FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC}
+	FCOST_AMOUNT=#{fcostAmount,jdbcType=NUMERIC}
+	FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC}
+	FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC}
+	FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC}
+	FORDER_COUNT=#{forderCount,jdbcType=NUMERIC}
+	FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC}
+	FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC}
+	FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC}
+	FREFUND_AMOUNT=#{frefundAmount,jdbcType=NUMERIC}
+	FREFUND_COUNT=#{frefundCount,jdbcType=NUMERIC}
+	FREFUND_POINT=#{frefundPoint,jdbcType=NUMERIC}
+	FTAX_POINT=#{ftaxPoint,jdbcType=NUMERIC}
+	IPOINT=#{ipoint,jdbcType=NUMERIC}
+	SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+	SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+	SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+	SIDENTIFIES=#{sidentifies,jdbcType=VARCHAR}
+	SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+	SORDER_ID=#{sorderId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="selectByOrderIdAndComId" parameterType="java.util.Map" resultMap="resultEntity">
+        select
+        FREFUND_AMOUNT,FREFUND_COUNT,ID
+        from OM_ORDER_COMMODITY
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="orderId != null and  orderId != ''   ">
+                    and SORDER_ID=#{orderId,jdbcType=VARCHAR}
+                </if>
+                <if test="commodityId != null and  commodityId != ''   ">
+                    and SCOMMODITY_ID=#{commodityId,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </select>
+    <delete id="delectByOrderId" parameterType="java.lang.String">
+        delete from OM_ORDER_COMMODITY
+        where SORDER_ID = #{orderId,jdbcType=VARCHAR}
+    </delete>
+</mapper>

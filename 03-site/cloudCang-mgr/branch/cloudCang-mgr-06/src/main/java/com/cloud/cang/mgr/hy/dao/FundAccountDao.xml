@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.hy.dao.FundAccountDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.hy.FundAccount">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FAMOUNT_FROZEN" property="famountFrozen" jdbcType="NUMERIC" />
+		<result column="FAMOUNT_FROZEN_OTHER" property="famountFrozenOther" jdbcType="NUMERIC" />
+		<result column="FTOTAL_BALANCE" property="ftotalBalance" jdbcType="NUMERIC" />
+		<result column="FUSABLE_BALANCE" property="fusableBalance" jdbcType="NUMERIC" />
+		<result column="IACCOUNT_TYPE" property="iaccountType" jdbcType="NUMERIC" />
+		<result column="IACCOUNT_USE" property="iaccountUse" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="IVERSION" property="iversion" jdbcType="NUMERIC" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,FAMOUNT_FROZEN,FAMOUNT_FROZEN_OTHER,FTOTAL_BALANCE,FUSABLE_BALANCE,IACCOUNT_TYPE,IACCOUNT_USE,ISTATUS,IVERSION,SCODE,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="famountFrozenBegin != null ">
+			   and FAMOUNT_FROZEN >= #{famountFrozenBegin,jdbcType=NUMERIC}
+			</if>
+			<if test="famountFrozenEnd != null ">
+			   and FAMOUNT_FROZEN <![CDATA[ <= ]]> #{famountFrozenEnd,jdbcType=NUMERIC}
+			</if>
+			<if test="famountFrozenOther != null  ">
+               and  FAMOUNT_FROZEN_OTHER=#{famountFrozenOther,jdbcType=NUMERIC}
+           	</if>
+			<if test="ftotalBalance != null  ">
+               and  FTOTAL_BALANCE=#{ftotalBalance,jdbcType=NUMERIC}
+           	</if>
+			<if test="fusableBalanceBegin != null ">
+			and FUSABLE_BALANCE >= #{fusableBalanceBegin,jdbcType=NUMERIC}
+			</if>
+			<if test="fusableBalanceEnd != null ">
+			and FUSABLE_BALANCE <![CDATA[ <= ]]> #{fusableBalanceEnd,jdbcType=NUMERIC}
+			</if>
+			<if test="iaccountType != null  ">
+			   and  IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC}
+			   </if>
+			<if test="iaccountUse != null  ">
+			   and  IACCOUNT_USE=#{iaccountUse,jdbcType=NUMERIC}
+			   </if>
+			<if test="istatus != null  ">
+			   and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+			   </if>
+			<if test="iversion != null  ">
+			   and  IVERSION=#{iversion,jdbcType=NUMERIC}
+			   </if>
+			<if test="scode != null and  scode != ''  ">
+			   and  SCODE LIKE CONCAT('%',#{scode},'%')
+			   </if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+			   and  SMEMBER_CODE LIKE CONCAT('%',#{smemberCode},'%')
+			   </if>
+			<if test="smemberId != null and  smemberId != ''  ">
+			   and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+			   </if>
+			<if test="smemberName != null and  smemberName != ''  ">
+			   and  SMEMBER_NAME LIKE CONCAT('%',#{smemberName},'%')
+			   </if>
+			<if test="taddTime != null  ">
+			   and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+			   </if>
+			<if test="tupdateTime != null  ">
+			   and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+			   </if>
+		  </trim>
+		</where>
+		</sql>
+
+	<!--返回实体类-->
+	<resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.hy.domain.FundAccountDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FAMOUNT_FROZEN" property="famountFrozen" jdbcType="NUMERIC" />
+		<result column="FAMOUNT_FROZEN_OTHER" property="famountFrozenOther" jdbcType="NUMERIC" />
+		<result column="FTOTAL_BALANCE" property="ftotalBalance" jdbcType="NUMERIC" />
+		<result column="FUSABLE_BALANCE" property="fusableBalance" jdbcType="NUMERIC" />
+		<result column="IACCOUNT_TYPE" property="iaccountType" jdbcType="NUMERIC" />
+		<result column="IACCOUNT_USE" property="iaccountUse" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="IVERSION" property="iversion" jdbcType="NUMERIC" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+		<select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from HY_FUND_ACCOUNT
+		where ID = #{id,jdbcType=VARCHAR}
+		</select>
+		<select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.FundAccount">
+		select
+		<include refid="column_List" />
+		from HY_FUND_ACCOUNT
+		<include refid="Entity_Where_Clause" />
+		</select>
+		<select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from HY_FUND_ACCOUNT
+		<include refid="Entity_Where_Clause" />
+		<if test="orderCondition != null and orderCondition != ''" >
+		 order by ${orderCondition}
+		</if>
+		<if test="queryCondition != null and queryCondition != ''" >
+		  ${queryCondition}
+		</if>
+		</select>
+
+
+		<select id="selectAccountAll" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.hy.vo.FundAccountVo">
+		select
+		<include refid="column_List" />
+		from HY_FUND_ACCOUNT
+		<include refid="Entity_Where_Clause" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+			FIELD(ISTATUS,20,30),TADD_TIME DESC
+		</select>
+
+
+		<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		<![CDATA[
+		delete from HY_FUND_ACCOUNT
+		where ID = #{id,jdbcType=VARCHAR}
+		]]>
+		</delete>
+		<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM HY_FUND_ACCOUNT where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+		</delete>
+		<insert id="insert" parameterType="com.cloud.cang.model.hy.FundAccount">
+		<selectKey keyProperty="id" resultType="String" order="BEFORE">
+			SELECT REPLACE(UUID(),'-','') FROM DUAL
+		</selectKey>
+		<![CDATA[
+		insert into HY_FUND_ACCOUNT (ID,FAMOUNT_FROZEN,FAMOUNT_FROZEN_OTHER,FTOTAL_BALANCE,FUSABLE_BALANCE,IACCOUNT_TYPE,IACCOUNT_USE,ISTATUS,IVERSION,SCODE,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,TADD_TIME,TUPDATE_TIME)
+		values (
+			#{id,jdbcType=VARCHAR}
+			,#{famountFrozen,jdbcType=NUMERIC},#{famountFrozenOther,jdbcType=NUMERIC},#{ftotalBalance,jdbcType=NUMERIC},#{fusableBalance,jdbcType=NUMERIC},#{iaccountType,jdbcType=NUMERIC},#{iaccountUse,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{iversion,jdbcType=NUMERIC},#{scode,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+			)
+		]]>
+		</insert>
+		<insert id="insertSelective" parameterType="com.cloud.cang.model.hy.FundAccount">
+		<selectKey keyProperty="id" resultType="String" order="BEFORE">
+			SELECT REPLACE(UUID(),'-','') FROM DUAL
+		</selectKey>
+		 insert into HY_FUND_ACCOUNT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and  id != ''   ">
+				ID,
+			</if>
+			<if test="famountFrozen">
+			   FAMOUNT_FROZEN,
+			   </if>
+			<if test="famountFrozenOther">
+			   FAMOUNT_FROZEN_OTHER,
+			   </if>
+			<if test="ftotalBalance">
+			   FTOTAL_BALANCE,
+			   </if>
+			<if test="fusableBalance">
+			   FUSABLE_BALANCE,
+			   </if>
+			<if test="iaccountType">
+			   IACCOUNT_TYPE,
+			   </if>
+			<if test="iaccountUse">
+			   IACCOUNT_USE,
+			   </if>
+			<if test="istatus">
+			   ISTATUS,
+			   </if>
+			<if test="iversion">
+			   IVERSION,
+			   </if>
+			<if test="scode">
+			   SCODE,
+			   </if>
+			<if test="smemberCode">
+			   SMEMBER_CODE,
+			   </if>
+			<if test="smemberId">
+			   SMEMBER_ID,
+			   </if>
+			<if test="smemberName">
+			   SMEMBER_NAME,
+			   </if>
+			<if test="taddTime">
+			   TADD_TIME,
+			   </if>
+			<if test="tupdateTime">
+			   TUPDATE_TIME,
+			   </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and  id != ''  ">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="famountFrozen != null  ">
+				#{famountFrozen,jdbcType=NUMERIC},
+			   </if>
+			<if test="famountFrozenOther != null  ">
+				#{famountFrozenOther,jdbcType=NUMERIC},
+			   </if>
+			<if test="ftotalBalance != null  ">
+				#{ftotalBalance,jdbcType=NUMERIC},
+			   </if>
+			<if test="fusableBalance != null  ">
+				#{fusableBalance,jdbcType=NUMERIC},
+			   </if>
+			<if test="iaccountType != null  ">
+				#{iaccountType,jdbcType=NUMERIC},
+			   </if>
+			<if test="iaccountUse != null  ">
+				#{iaccountUse,jdbcType=NUMERIC},
+			   </if>
+			<if test="istatus != null  ">
+				#{istatus,jdbcType=NUMERIC},
+			   </if>
+			<if test="iversion != null  ">
+				#{iversion,jdbcType=NUMERIC},
+			   </if>
+			<if test="scode != null and  scode != ''  ">
+				#{scode,jdbcType=VARCHAR},
+			   </if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+				#{smemberCode,jdbcType=VARCHAR},
+			   </if>
+			<if test="smemberId != null and  smemberId != ''  ">
+				#{smemberId,jdbcType=VARCHAR},
+			   </if>
+			<if test="smemberName != null and  smemberName != ''  ">
+				#{smemberName,jdbcType=VARCHAR},
+			   </if>
+			<if test="taddTime != null  ">
+				#{taddTime,jdbcType=TIMESTAMP},
+			   </if>
+			<if test="tupdateTime != null  ">
+				#{tupdateTime,jdbcType=TIMESTAMP},
+			   </if>
+		</trim>
+		</insert>
+		<update id="updateByIdSelective" parameterType="com.cloud.cang.model.hy.FundAccount">
+		update HY_FUND_ACCOUNT
+		<set>
+			<if test="famountFrozen != null  ">
+				FAMOUNT_FROZEN=#{famountFrozen,jdbcType=NUMERIC},
+			   </if>
+			<if test="famountFrozenOther != null  ">
+				FAMOUNT_FROZEN_OTHER=#{famountFrozenOther,jdbcType=NUMERIC},
+			   </if>
+			<if test="ftotalBalance != null  ">
+				FTOTAL_BALANCE=#{ftotalBalance,jdbcType=NUMERIC},
+			   </if>
+			<if test="fusableBalance != null  ">
+				FUSABLE_BALANCE=#{fusableBalance,jdbcType=NUMERIC},
+			   </if>
+			<if test="iaccountType != null  ">
+				IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC},
+			   </if>
+			<if test="iaccountUse != null  ">
+				IACCOUNT_USE=#{iaccountUse,jdbcType=NUMERIC},
+			   </if>
+			<if test="istatus != null  ">
+				ISTATUS=#{istatus,jdbcType=NUMERIC},
+			   </if>
+			<if test="iversion != null  ">
+				IVERSION=#{iversion,jdbcType=NUMERIC},
+			   </if>
+			<if test="scode != null and  scode != ''  ">
+				SCODE=#{scode,jdbcType=VARCHAR},
+			   </if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+				SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+			   </if>
+			<if test="smemberId != null and  smemberId != ''  ">
+				SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+			   </if>
+			<if test="smemberName != null and  smemberName != ''  ">
+				SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+			   </if>
+			<if test="taddTime != null  ">
+				TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+			   </if>
+			<if test="tupdateTime != null  ">
+				TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+			   </if>
+		</set>
+		where  ID= #{id,jdbcType=VARCHAR}
+		</update>
+		<update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.hy.FundAccount">
+		update HY_FUND_ACCOUNT
+		set
+				FAMOUNT_FROZEN=#{famountFrozen,jdbcType=NUMERIC}
+				,FAMOUNT_FROZEN_OTHER=#{famountFrozenOther,jdbcType=NUMERIC}
+				,FTOTAL_BALANCE=#{ftotalBalance,jdbcType=NUMERIC}
+				,FUSABLE_BALANCE=#{fusableBalance,jdbcType=NUMERIC}
+				,IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC}
+				,IACCOUNT_USE=#{iaccountUse,jdbcType=NUMERIC}
+				,ISTATUS=#{istatus,jdbcType=NUMERIC}
+				,IVERSION=#{iversion,jdbcType=NUMERIC}
+				,SCODE=#{scode,jdbcType=VARCHAR}
+				,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+				,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+				,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+				,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+				,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+		where  ID= #{id,jdbcType=VARCHAR}
+		</update>
+		<!--
+		附加信息，便于自己写sql语句
+		ID= #{id,jdbcType=VARCHAR}
+		FAMOUNT_FROZEN=#{famountFrozen,jdbcType=NUMERIC}
+		FAMOUNT_FROZEN_OTHER=#{famountFrozenOther,jdbcType=NUMERIC}
+		FTOTAL_BALANCE=#{ftotalBalance,jdbcType=NUMERIC}
+		FUSABLE_BALANCE=#{fusableBalance,jdbcType=NUMERIC}
+		IACCOUNT_TYPE=#{iaccountType,jdbcType=NUMERIC}
+		IACCOUNT_USE=#{iaccountUse,jdbcType=NUMERIC}
+		ISTATUS=#{istatus,jdbcType=NUMERIC}
+		IVERSION=#{iversion,jdbcType=NUMERIC}
+		SCODE=#{scode,jdbcType=VARCHAR}
+		SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+		SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+		SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+		TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+		TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+		-->
+     
+</mapper>

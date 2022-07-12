@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sb.dao.DeviceMalfunctionRecordDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sb.DeviceMalfunctionRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SDEALWITH_MAN" property="sdealwithMan" jdbcType="VARCHAR" />
+		<result column="SDEALWITH_TIME" property="sdealwithTime" jdbcType="TIMESTAMP" />
+		<result column="SDECLARE_MAN" property="sdeclareMan" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SERROR_CODE" property="serrorCode" jdbcType="VARCHAR" />
+		<result column="SLEVEL" property="slevel" jdbcType="VARCHAR" />
+		<result column="SMALFUNCTION_DESC" property="smalfunctionDesc" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TDECLARE_TIME" property="tdeclareTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IDEL_FLAG,ISTATUS,ITYPE,SADD_USER,SDEALWITH_MAN,SDEALWITH_TIME,SDECLARE_MAN,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SERROR_CODE,SLEVEL,SMALFUNCTION_DESC,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SUPDATE_USER,TADD_TIME,TDECLARE_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+               and  SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdealwithTime != null  ">
+               and  SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="sdeclareMan != null and  sdeclareMan != ''  ">
+               and  SDECLARE_MAN=#{sdeclareMan,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+               and  SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="serrorCode != null and  serrorCode != ''  ">
+               and  SERROR_CODE=#{serrorCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="slevel != null and  slevel != ''  ">
+               and  SLEVEL=#{slevel,jdbcType=VARCHAR}
+           	</if>
+			<if test="smalfunctionDesc != null and  smalfunctionDesc != ''  ">
+               and  SMALFUNCTION_DESC=#{smalfunctionDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tdeclareTime != null  ">
+               and  TDECLARE_TIME=#{tdeclareTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_MALFUNCTION_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sb.DeviceMalfunctionRecord">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_MALFUNCTION_RECORD
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_MALFUNCTION_RECORD
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SB_DEVICE_MALFUNCTION_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SB_DEVICE_MALFUNCTION_RECORD where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sb.DeviceMalfunctionRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SB_DEVICE_MALFUNCTION_RECORD (ID,IDEL_FLAG,ISTATUS,ITYPE,SADD_USER,SDEALWITH_MAN,SDEALWITH_TIME,SDECLARE_MAN,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SERROR_CODE,SLEVEL,SMALFUNCTION_DESC,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SUPDATE_USER,TADD_TIME,TDECLARE_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sdealwithMan,jdbcType=VARCHAR},#{sdealwithTime,jdbcType=TIMESTAMP},#{sdeclareMan,jdbcType=VARCHAR},#{sdeviceAddress,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{serrorCode,jdbcType=VARCHAR},#{slevel,jdbcType=VARCHAR},#{smalfunctionDesc,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tdeclareTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sb.DeviceMalfunctionRecord">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SB_DEVICE_MALFUNCTION_RECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="sdealwithMan">
+               SDEALWITH_MAN,
+           	</if>
+			<if test="sdealwithTime">
+               SDEALWITH_TIME,
+           	</if>
+			<if test="sdeclareMan">
+               SDECLARE_MAN,
+           	</if>
+			<if test="sdeviceAddress">
+               SDEVICE_ADDRESS,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="serrorCode">
+               SERROR_CODE,
+           	</if>
+			<if test="slevel">
+               SLEVEL,
+           	</if>
+			<if test="smalfunctionDesc">
+               SMALFUNCTION_DESC,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tdeclareTime">
+               TDECLARE_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+                #{sdealwithMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithTime != null  ">
+                #{sdealwithTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sdeclareMan != null and  sdeclareMan != ''  ">
+                #{sdeclareMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                #{sdeviceAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="serrorCode != null and  serrorCode != ''  ">
+                #{serrorCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="slevel != null and  slevel != ''  ">
+                #{slevel,jdbcType=VARCHAR},
+           	</if>
+			<if test="smalfunctionDesc != null and  smalfunctionDesc != ''  ">
+                #{smalfunctionDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tdeclareTime != null  ">
+                #{tdeclareTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sb.DeviceMalfunctionRecord">
+        update SB_DEVICE_MALFUNCTION_RECORD
+        <set>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+                SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdealwithTime != null  ">
+                SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="sdeclareMan != null and  sdeclareMan != ''  ">
+                SDECLARE_MAN=#{sdeclareMan,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="serrorCode != null and  serrorCode != ''  ">
+                SERROR_CODE=#{serrorCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="slevel != null and  slevel != ''  ">
+				SLEVEL=#{slevel,jdbcType=VARCHAR},
+			</if>
+			SMALFUNCTION_DESC=#{smalfunctionDesc,jdbcType=VARCHAR},
+			<!--<if test="smalfunctionDesc != null and  smalfunctionDesc != ''  ">-->
+			<!--</if>-->
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			SREMARK=#{sremark,jdbcType=VARCHAR},
+			<!--<if test="sremark != null and  sremark != ''  ">-->
+			<!--</if>-->
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tdeclareTime != null  ">
+                TDECLARE_TIME=#{tdeclareTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sb.DeviceMalfunctionRecord">
+        update SB_DEVICE_MALFUNCTION_RECORD
+        set 
+        		IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+        		,SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP}
+        		,SDECLARE_MAN=#{sdeclareMan,jdbcType=VARCHAR}
+        		,SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SERROR_CODE=#{serrorCode,jdbcType=VARCHAR}
+        		,SLEVEL=#{slevel,jdbcType=VARCHAR}
+        		,SMALFUNCTION_DESC=#{smalfunctionDesc,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TDECLARE_TIME=#{tdeclareTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--新增返回实体类-->
+	<resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.sb.domain.DeviceMalfunctionRecordDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SDEALWITH_MAN" property="sdealwithMan" jdbcType="VARCHAR" />
+		<result column="SDEALWITH_TIME" property="sdealwithTime" jdbcType="TIMESTAMP" />
+		<result column="SDECLARE_MAN" property="sdeclareMan" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SERROR_CODE" property="serrorCode" jdbcType="VARCHAR" />
+		<result column="SLEVEL" property="slevel" jdbcType="VARCHAR" />
+		<result column="SMALFUNCTION_DESC" property="smalfunctionDesc" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TDECLARE_TIME" property="tdeclareTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+		<result column="MERCHANTNAME" property="merchantName" jdbcType="VARCHAR" />
+		<result column="SBNAME" property="sbName" jdbcType="VARCHAR" />
+		<result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--新增模糊查询-->
+	<sql id="Entity_Where_Clause_Like">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and  A.ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="idelFlag != null  ">
+					and  A.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+				</if>
+				<if test="istatus != null  ">
+					and  A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+				</if>
+				<if test="itype != null  ">
+					and  A.ITYPE=#{itype,jdbcType=NUMERIC}
+				</if>
+				<if test="saddUser != null and  saddUser != ''  ">
+					and  A.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+				</if>
+				<if test="sdealwithMan != null and  sdealwithMan != ''  ">
+					and  A.SDEALWITH_MAN LIKE CONCAT('%',#{sdealwithMan},'%')
+				</if>
+				<if test="sdeclareMan != null and  sdeclareMan != ''  ">
+					and  A.SDECLARE_MAN LIKE CONCAT('%',#{sdeclareMan},'%')
+				</if>
+				<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+					and  A.SDEVICE_CODE LIKE CONCAT('%',#{sdeviceCode},'%')
+				</if>
+				<if test="sdeviceId != null and  sdeviceId != ''  ">
+					and  A.SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+				</if>
+				<if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+					and  A.SDEVICE_ADDRESS LIKE CONCAT('%',#{sdeviceAddress},'%')
+				</if>
+				<if test="serrorCode != null and  serrorCode != ''  ">
+					and  A.SERROR_CODE LIKE CONCAT('%',#{serrorCode},'%')
+				</if>
+				<if test="slevel != null and  slevel != ''  ">
+					and  A.SLEVEL LIKE CONCAT('%',#{slevel},'%')
+				</if>
+				<if test="smalfunctionDesc != null and  smalfunctionDesc != ''  ">
+					and  A.SMALFUNCTION_DESC=#{smalfunctionDesc,jdbcType=VARCHAR}
+				</if>
+				<if test="smerchantCode != null and  smerchantCode != ''  ">
+					and  A.SMERCHANT_CODE LIKE CONCAT('%',#{smerchantCode},'%')
+				</if>
+				<if test="smerchantId != null and  smerchantId != ''  ">
+					and  A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+				</if>
+				<if test="sremark != null and  sremark != ''  ">
+					and  A.SREMARK=#{sremark,jdbcType=VARCHAR}
+				</if>
+				<if test="supdateUser != null and  supdateUser != ''  ">
+					and  A.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+				</if>
+				<if test="taddTime != null  ">
+					and  A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tdeclareTimeStart != null ">
+					and  A.TDECLARE_TIME&gt;=#{tdeclareTimeStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tdeclareTimeEnd != null ">
+					and  A.TDECLARE_TIME&lt;date_add(#{tdeclareTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="sdealwithTimeStart != null ">
+					and  A.SDEALWITH_TIME&gt;=#{sdealwithTimeStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="sdealwithTimeEnd != null ">
+					and  A.SDEALWITH_TIME&lt;date_add(#{sdealwithTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="tupdateTime != null  ">
+					and  A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="sbName != null and  sbName != ''  ">
+					and  B.SNAME LIKE CONCAT('%',#{sbName},'%')
+				</if>
+				<if test="address != null and  address != ''  ">
+					and  CONCAT(B.SPROVINCE_NAME,B.SCITY_NAME,B.SAREA_NAME,B.SPUT_ADDRESS) LIKE CONCAT('%',#{address},'%')
+				</if>
+				<if test="merchantName != null and  merchantName != ''  ">
+					and  C.SNAME LIKE CONCAT('%',#{merchantName},'%')
+				</if>
+				<if test="condition != null and  condition != ''  ">
+					and ${condition}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--查询设备故障信息-->
+	<select id="selectqueryData" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.sb.vo.DeviceMalfunctionRecordVo">
+		select
+		A.ID,
+		A.IDEL_FLAG,
+		A.ISTATUS,
+		A.ITYPE,
+		A.SADD_USER,
+		A.SDEALWITH_MAN,
+		A.SDEALWITH_TIME,
+		A.SDECLARE_MAN,
+		A.SDEVICE_ADDRESS,
+		A.SDEVICE_CODE,
+		A.SDEVICE_ID,
+		A.SERROR_CODE,
+		A.SLEVEL,
+		A.SMALFUNCTION_DESC,
+		A.SMERCHANT_CODE,
+		A.SMERCHANT_ID,
+		A.SREMARK,
+		A.SUPDATE_USER,
+		A.TADD_TIME,
+		A.TDECLARE_TIME,
+		A.TUPDATE_TIME,
+		B.SNAME AS SBNAME,
+		concat(
+		B.SPROVINCE_NAME,
+		B.SCITY_NAME,
+		B.SAREA_NAME,
+		B.SPUT_ADDRESS) AS ADDRESS,
+		C.SNAME AS MERCHANTNAME
+		FROM
+		SB_DEVICE_MALFUNCTION_RECORD A LEFT JOIN SB_DEVICE_INFO B ON A.SDEVICE_ID = B.ID
+		LEFT JOIN SH_MERCHANT_INFO C ON A.SMERCHANT_ID = C.ID
+		<include refid="Entity_Where_Clause_Like" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		FIELD(A.ISTATUS,20,30),A.TDECLARE_TIME DESC
+	</select>
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SDEALWITH_MAN=#{sdealwithMan,jdbcType=VARCHAR}
+	SDEALWITH_TIME=#{sdealwithTime,jdbcType=TIMESTAMP}
+	SDECLARE_MAN=#{sdeclareMan,jdbcType=VARCHAR}
+	SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SERROR_CODE=#{serrorCode,jdbcType=VARCHAR}
+	SLEVEL=#{slevel,jdbcType=VARCHAR}
+	SMALFUNCTION_DESC=#{smalfunctionDesc,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TDECLARE_TIME=#{tdeclareTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.report.dao.ReportDao">
+    <resultMap id="commodityReport" type="com.cloud.cang.mgr.report.vo.CommodityReportVo">
+        <result column="SCOMMODITY_ID" property="commodityId" jdbcType="VARCHAR"/> <!--商品ID-->
+        <result column="SCOMMODITY_NAME" property="commodityName" jdbcType="VARCHAR"/> <!--商品名-->
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+        <result column="COMMODITY_SALE_NUM" property="commoditySaleNum" jdbcType="NUMERIC"/> <!--商品销售总数-->
+        <result column="COMMODITY_SALES_VALUME" property="commoditySalesVolume" jdbcType="NUMERIC"/> <!--商品销售总额(实付金额)-->
+        <result column="COMMODITYF_FCOST" property="commodityFcost" jdbcType="NUMERIC"/> <!--商品总成本-->
+        <result column="COMMODITY_FTAX_POINT" property="commodityFtaxPoint" jdbcType="NUMERIC"/> <!--商品平均税点-->
+        <result column="COMMODITY_GROSSPROFIT" property="commodityGrossProfit" jdbcType="NUMERIC"/> <!--商品总毛利润-->
+        <result column="COMMODITY_NETPROFIT" property="commodityNetProfit" jdbcType="NUMERIC"/> <!--商品总净利润-->
+        <result column="MAX_SALE_MOUNTH" property="maxSaleMounth" jdbcType="NUMERIC"/> <!--销售量最高时段/月份-->
+    </resultMap>
+    <resultMap id="deviceReport" type="com.cloud.cang.mgr.report.vo.DeviceSalesDetailReportVo">
+        <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR"/> <!--设备ID-->
+        <result column="DEVICE_NAME" property="deviceName" jdbcType="VARCHAR"/> <!--设备名-->
+        <result column="THIS_YEAR_PAY_AMOUNT" property="deviceSalesAmount" jdbcType="NUMERIC"/> <!--单设备销售金额(现时段)-->
+        <result column="LAST_YEAR_PAY_AMOUNT" property="lastYearSaleAmount" jdbcType="NUMERIC"/> <!--单设备去年同时间销售金额-->
+        <result column="PAY_TYPE_MOST" property="payTypeMost" jdbcType="NUMERIC"/> <!--支付渠道最多-->
+        <result column="LAST_TIME_PAY_AMOUNT" property="lastTimeSaleAmount" jdbcType="NUMERIC"/> <!--上一时间段销售额-->
+        <result column="COMMODITY_NAME" property="commodityName" jdbcType="VARCHAR"/> <!--热销商品名-->
+        <result column="MAX_SALES_MONTH" property="maxSalesMonth" jdbcType="VARCHAR"/> <!--热销月-->
+    </resultMap>
+    <resultMap id="stockReport" type="com.cloud.cang.mgr.report.vo.StockReportVo">
+        <result column="COMMODITY_NAME" property="commodityName" jdbcType="VARCHAR"/> <!--商品名-->
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+        <result column="BATCH_TOTAL" property="batchTotal" jdbcType="NUMERIC"/> <!--总批次数量-->
+        <result column="FCOST_AMOUNT" property="fcostAmount" jdbcType="NUMERIC"/> <!--总库存成本-->
+        <result column="LOSS_NUM" property="lossNum" jdbcType="NUMERIC"/> <!--已损耗数-->
+        <result column="EXPIRED_NUM" property="expiredNum" jdbcType="NUMERIC"/> <!--已过期库存数-->
+    </resultMap>
+    <resultMap id="enterWarehouseRepot" type="com.cloud.cang.mgr.report.vo.EnterWarehouseVo">
+        <result column="SCOMMODITY_CODE" property="commodityCode" jdbcType="VARCHAR"/> <!--商品编号-->
+        <result column="SCOMMODITY_NAME" property="commodityName" jdbcType="VARCHAR"/> <!--商品名-->
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+        <result column="FORDER_COUNT" property="orderCount" jdbcType="NUMERIC"/> <!--入库数量-->
+        <result column="FCOMMODITY_PRICE" property="commodityPrice" jdbcType="NUMERIC"/> <!--商品单价-->
+        <result column="FCOMMODITY_AMOUNT" property="commodityAmount" jdbcType="NUMERIC"/> <!--商品总额-->
+        <result column="MERCHANT_NAME" property="merchantName" jdbcType="VARCHAR"/> <!--商户名-->
+    </resultMap>
+    <resultMap id="exchangeOfFundsReport" type="com.cloud.cang.mgr.report.vo.ExchangeOfFundsVo">
+        <result column="DATE_RESULT" property="dateResult" jdbcType="TIMESTAMP"/> <!--日期-->
+        <result column="AMOUNT" property="amount" jdbcType="NUMERIC"/> <!--金额-->
+        <result column="TYPE" property="type" jdbcType="NUMERIC"/> <!--类型-->
+    </resultMap>
+    <resultMap id="ExchangeOfFundsMoneySta" type="com.cloud.cang.mgr.report.vo.ExchangeOfFundsMoneyStaVo">
+        <result column="DATE_RESULT" property="dateResult" jdbcType="TIMESTAMP"/> <!--日期-->
+        <!--<result column="PAY_TOTAL_AMOUNT" property="payTotalAmount" jdbcType="NUMERIC"/>--> <!--收款金额-->
+        <result column="TOTAL_AMOUNT" property="totalAmount" jdbcType="NUMERIC"/> <!--收款/退款金额-->
+        <result column="TYPE" property="type" jdbcType="NUMERIC"/> <!--类型-->
+    </resultMap>
+    <resultMap id="exchangeOfFundsDetailReport" type="com.cloud.cang.mgr.report.vo.ExchangeOfFundsDetailVo">
+        <result column="SCOMMODITY_CODE" property="commodityCode" jdbcType="VARCHAR"/> <!--商品编号-->
+        <result column="SCOMMODITY_NAME" property="commodityName" jdbcType="VARCHAR"/> <!--商品名-->
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+        <result column="COMMODITY_TOTAL" property="commodityTotal" jdbcType="NUMERIC"/> <!--商品总数-->
+        <result column="COMMODITY_FACTUAL_AMOUNT" property="commodityFactualAmount" jdbcType="NUMERIC"/> <!--总金额-->
+
+    </resultMap>
+
+    <select id="selectCommodityReporPage" parameterType="com.cloud.cang.mgr.report.domain.CommodityReportDomain"
+            resultMap="commodityReport">
+        SELECT OOC.SCOMMODITY_ID,SCI.SNAME SCOMMODITY_NAME,
+        SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT,
+        IFNULL(SUM(OOC.FORDER_COUNT),0)
+        COMMODITY_SALE_NUM,IFNULL(SUM(OOC.FACTUAL_AMOUNT),0) COMMODITY_SALES_VALUME,
+        IFNULL(sum(ooc.FACTUAL_AMOUNT-ooc.FORDER_COUNT*ooc.FCOST_AMOUNT),0) COMMODITY_GROSSPROFIT,
+        <!--    IFNULL(SUM(OOC.FACTUAL_AMOUNT-OOC.FORDER_COUNT*OOC.FCOST_AMOUNT-IFNULL(OOC.FTAX_POINT*OOC.FACTUAL_AMOUNT,0) ),0)-->
+        IFNULL(SUM(OOC.FACTUAL_AMOUNT-OOC.FORDER_COUNT*OOC.FCOST_AMOUNT-IFNULL(OOC.FACTUAL_AMOUNT/(1+OOC.FTAX_POINT)*OOC.FTAX_POINT,0)
+        ),0)
+        COMMODITY_NETPROFIT,
+        IFNULL(SUM(OOC.FCOST_AMOUNT*OOC.FORDER_COUNT),0) COMMODITYF_FCOST,
+        MAX(DATE_FORMAT(OOC.TADD_TIME,'%c')) MAX_SALE_MOUNTH
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN OM_ORDER_COMMODITY OOC ON OOR.ID= OOC.SORDER_ID
+        INNER JOIN SP_COMMODITY_INFO SCI ON OOC.SCOMMODITY_ID =SCI.ID
+        WHERE OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        <if test="commodityName != null and  commodityName != ''  ">
+            <!--AND OOC.SCOMMODITY_NAME LIKE CONCAT('%',#{commodityName},'%')-->
+            AND CONCAT(SCI.SBRAND_NAME,SCI.SNAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,'/',SCI.SPACKAGE_UNIT) like
+            CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+        </if>
+      <!--  AND OOR.ISTATUS=10-->
+        AND OOR.IDEL_FLAG=0
+        <!--<if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>-->
+        <if test="queryTimeStart != null ">
+            and OOR.TPAY_COMPLETE_TIME&gt;=#{queryTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="queryTimeEnd != null ">
+            and OOR.TPAY_COMPLETE_TIME&lt;date_add(#{queryTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        GROUP BY OOC.SCOMMODITY_ID
+    </select>
+
+    <select id="queryCommodityReportTotalData" parameterType="com.cloud.cang.mgr.report.domain.CommodityReportDomain"
+            resultType="java.util.HashMap">
+        SELECT
+        IFNULL(SUM(OOC.FACTUAL_AMOUNT),0) COMMODITY_SALES_VALUE_TOTAL,
+        IFNULL(sum(ooc.FACTUAL_AMOUNT-ooc.FORDER_COUNT*ooc.FCOST_AMOUNT),0) COMMODITY_GROSSPROFIT_TOTAL,
+        IFNULL(SUM(OOC.FACTUAL_AMOUNT-OOC.FORDER_COUNT*OOC.FCOST_AMOUNT-IFNULL(OOC.FACTUAL_AMOUNT/(1+OOC.FTAX_POINT)*OOC.FTAX_POINT,0)
+        ),0)
+        COMMODITY_NETPROFIT_TOTAL
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN OM_ORDER_COMMODITY OOC ON OOR.ID= OOC.SORDER_ID
+        INNER JOIN SP_COMMODITY_INFO SCI ON OOC.SCOMMODITY_ID =SCI.ID
+        WHERE OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        <if test="commodityName != null and  commodityName != ''  ">
+            AND CONCAT(SCI.SBRAND_NAME,SCI.SNAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,'/',SCI.SPACKAGE_UNIT) like
+            CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+        </if>
+        AND OOR.ISTATUS=10
+        AND OOR.IDEL_FLAG=0
+        <if test="queryTimeStart != null ">
+            and OOR.TPAY_COMPLETE_TIME&gt;=#{queryTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="queryTimeEnd != null ">
+            and OOR.TPAY_COMPLETE_TIME&lt;date_add(#{queryTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+    </select>
+
+    <select id="selectDeviceReportPageByDomain"
+            parameterType="com.cloud.cang.mgr.report.domain.DeviceSalesDetailReportDomain"
+            resultMap="deviceReport">
+        SELECT C.DEVICE_ID,C.sdeviceName DEVICE_NAME,c.SCOMMODITY_NAME COMMODITY_NAME,
+        c.ipay_type PAY_TYPE_MOST,c.MAX_SALES_MONTH ,IFNULL(LAST_TIME_DATA.LAST_TIME_PAY_AMOUNT,0)
+        LAST_TIME_PAY_AMOUNT,IFNULL(LAST_YEAR_DATA.LAST_YEAR_PAY_AMOUNT,0) LAST_YEAR_PAY_AMOUNT,IFNULL(Z.FACTUAL_PAY_AMOUNT,0) THIS_YEAR_PAY_AMOUNT
+        FROM (
+        (SELECT SCOMMODITY_NAME,sdevice_id DEVICE_ID,sdeviceName,SDEVICE_ID, MAX(IPAY_TYPE)
+        IPAY_TYPE,MAX(DATE_FORMAT(TPAY_COMPLETE_TIME,'%c')) MAX_SALES_MONTH
+        FROM(
+        SELECT COUNT(OOC.SCOMMODITY_ID) A,OOC.SCOMMODITY_NAME,OOR.SDEVICE_ID,sdi.sname
+        sdeviceName,OOR.IPAY_TYPE,OOR.TPAY_COMPLETE_TIME
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN OM_ORDER_COMMODITY OOC ON OOR.ID=OOC.SORDER_ID
+        INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+        AND OOR.IDEL_FLAG=0
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="merchantId != null and  merchantId != ''   ">
+                    AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="condition != null and  condition != ''   ">
+                    AND ${condition}
+                </if>
+                <if test="deviceName != null and  deviceName != ''   ">
+                    AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                </if>
+            </trim>
+        </where>
+        GROUP BY oor.SDEVICE_ID,OOC.SCOMMODITY_ID
+        ORDER BY A DESC) A
+        GROUP BY SDEVICE_ID) C
+        LEFT join
+        (SELECT IFNULL(SUM(OOR.FACTUAL_PAY_AMOUNT),0) LAST_TIME_PAY_AMOUNT,OOR.SDEVICE_ID
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+        AND OOR.IDEL_FLAG=0
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="merchantId != null and  merchantId != ''   ">
+                    AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="lastTimeCondition != null and  lastTimeCondition != ''   ">
+                    AND ${lastTimeCondition}
+                </if>
+                <if test="deviceName != null and  deviceName != ''   ">
+                    AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                </if>
+            </trim>
+        </where>
+        GROUP BY OOR.SDEVICE_ID
+        )LAST_TIME_DATA
+        on c.SDEVICE_ID = LAST_TIME_DATA.SDEVICE_ID
+        LEFT JOIN
+        (SELECT IFNULL(SUM(OOR.FACTUAL_PAY_AMOUNT),0) LAST_YEAR_PAY_AMOUNT,OOR.SDEVICE_ID
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+        AND OOR.IDEL_FLAG=0
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="merchantId != null and  merchantId != ''   ">
+                    AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="lastCondition != null and  lastCondition != ''   ">
+                    AND ${lastCondition}
+                </if>
+                <if test="deviceName != null and  deviceName != ''   ">
+                    AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                </if>
+            </trim>
+        </where>
+        GROUP BY OOR.SDEVICE_ID )
+        LAST_YEAR_DATA
+        on LAST_TIME_DATA.SDEVICE_ID = LAST_YEAR_DATA.SDEVICE_ID
+        RIGHT JOIN
+        (
+        SELECT
+        SUM(IFNULL(OOR.FACTUAL_PAY_AMOUNT,0)) FACTUAL_PAY_AMOUNT ,oor.sdevice_id
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="merchantId != null and  merchantId != ''   ">
+                    AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="condition != null and  condition != ''   ">
+                    AND ${condition}
+                </if>
+                <if test="deviceName != null and  deviceName != ''   ">
+                    AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                </if>
+            </trim>
+        </where>
+        AND OOR.IDEL_FLAG=0
+        GROUP BY OOR.SDEVICE_ID
+
+        )Z
+        on c.SDEVICE_ID = z.sdevice_id
+        )
+        <!--
+                SELECT OOR.SDEVICE_ID DEVICE_ID,SDI.SNAME DEVICE_NAME,IFNULL(SUM(OOR.FACTUAL_PAY_AMOUNT),0)
+                THIS_YEAR_PAY_AMOUNT,IFNULL(LAST_YEAR_DATA.LAST_YEAR_PAY_AMOUNT,0) LAST_YEAR_PAY_AMOUNT,
+                MAX(OOR.IPAY_TYPE)
+                PAY_TYPE_MOST,IFNULL(LAST_TIME_DATA.LAST_TIME_PAY_AMOUNT,0)LAST_TIME_PAY_AMOUNT,C.SCOMMODITY_NAME COMMODITY_NAME
+                ,MAX(DATE_FORMAT(OOR.TPAY_COMPLETE_TIME,'%c')) MAX_SALES_MONTH
+                FROM OM_ORDER_RECORD OOR
+                INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+                LEFT JOIN (
+                SELECT SUM(OOR.FACTUAL_PAY_AMOUNT) LAST_YEAR_PAY_AMOUNT,OOR.SDEVICE_ID
+                FROM OM_ORDER_RECORD OOR
+                INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+                <where>
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <if test="merchantId != null and  merchantId != ''   ">
+                            AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                        </if>
+                        <if test="lastCondition != null and  lastCondition != ''   ">
+                            AND ${lastCondition}
+                        </if>
+                        <if test="deviceName != null and  deviceName != ''   ">
+                            AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                        </if>
+                    </trim>
+                </where>
+                AND OOR.ISTATUS=10
+                AND OOR.IDEL_FLAG=0
+                GROUP BY OOR.SDEVICE_ID
+                )LAST_YEAR_DATA ON OOR.SDEVICE_ID=LAST_YEAR_DATA.SDEVICE_ID
+                LEFT JOIN (
+                SELECT SUM(OOR.FACTUAL_PAY_AMOUNT) LAST_TIME_PAY_AMOUNT,OOR.SDEVICE_ID
+                FROM OM_ORDER_RECORD OOR
+                INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+                <where>
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <if test="merchantId != null and  merchantId != ''   ">
+                            AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                        </if>
+                        <if test="lastTimeCondition != null and  lastTimeCondition != ''   ">
+                            AND ${lastTimeCondition}
+                        </if>
+                        <if test="deviceName != null and  deviceName != ''   ">
+                            AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                        </if>
+                    </trim>
+                </where>
+                AND OOR.ISTATUS=10
+                AND OOR.IDEL_FLAG=0
+                GROUP BY OOR.SDEVICE_ID
+                )LAST_TIME_DATA
+                ON OOR.SDEVICE_ID=LAST_TIME_DATA.SDEVICE_ID
+                LEFT JOIN
+                (SELECT SCOMMODITY_NAME,SDEVICE_ID FROM(
+                SELECT COUNT(OOC.SCOMMODITY_ID) A,OOC.SCOMMODITY_NAME,OOR.SDEVICE_ID
+                FROM OM_ORDER_RECORD OOR
+                INNER JOIN OM_ORDER_COMMODITY OOC ON OOR.ID=OOC.SORDER_ID
+                INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+                <where>
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <if test="merchantId != null and  merchantId != ''   ">
+                            AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                        </if>
+                        <if test="condition != null and  condition != ''   ">
+                            AND ${condition}
+                        </if>
+                        <if test="deviceName != null and  deviceName != ''   ">
+                            AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                        </if>
+                    </trim>
+                </where>
+                AND OOR.ISTATUS=10
+                AND OOR.IDEL_FLAG=0
+                GROUP BY OOC.SCOMMODITY_ID
+                ORDER BY A DESC) A
+                GROUP BY SDEVICE_ID )C
+                ON OOR.SDEVICE_ID=C.SDEVICE_ID
+                <where>
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <if test="merchantId != null and  merchantId != ''   ">
+                            AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                        </if>
+                        <if test="condition != null and  condition != ''   ">
+                            AND ${condition}
+                        </if>
+                        <if test="deviceName != null and  deviceName != ''   ">
+                            AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                        </if>
+                    </trim>
+                </where>
+                AND OOR.ISTATUS=10
+                AND OOR.IDEL_FLAG=0
+                GROUP BY OOR.SDEVICE_ID-->
+    </select>
+
+    <select id="queryDeviceReportTotalData"
+            parameterType="com.cloud.cang.mgr.report.domain.DeviceSalesDetailReportDomain"
+            resultType="java.math.BigDecimal">
+        SELECT
+        SUM(IFNULL(OOR.FACTUAL_PAY_AMOUNT,0))
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID = SDI.ID
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="merchantId != null and  merchantId != ''   ">
+                    AND OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="condition != null and  condition != ''   ">
+                    AND ${condition}
+                </if>
+                <if test="deviceName != null and  deviceName != ''   ">
+                    AND SDI.SNAME LIKE CONCAT('%',#{deviceName},'%')
+                </if>
+            </trim>
+        </where>
+        AND OOR.IDEL_FLAG=0
+    </select>
+    <select id="selectStockReportPageByDomain" parameterType="java.util.Map" resultMap="stockReport">
+        select a.COMMODITY_NAME,a.SBRAND_NAME,a.STASTE,a.ISPEC_WEIGHT,a.SSPEC_UNIT,a.SPACKAGE_UNIT,
+        a.BATCH_TOTAL,a.FCOST_AMOUNT,a.LOSS_NUM,IFNULL(b.EXPIRED_NUM,0) EXPIRED_NUM FROM
+        (SELECT SCB.SCOMMODITY_ID,SCI.SNAME
+        COMMODITY_NAME,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT,SUM(SCB.ICOMMODITY_NUM)
+        BATCH_TOTAL,SUM(IFNULL(SCB.FCOST_AMOUNT,0)*IFNULL(SCB.ICOMMODITY_NUM,0))
+        FCOST_AMOUNT,SUM(IFNULL(SCB.ILOSS_GOODS_NUM,0))LOSS_NUM
+        FROM sp_commodity_batch SCB
+        LEFT JOIN SP_COMMODITY_INFO SCI ON SCB.SCOMMODITY_ID = SCI.ID
+        WHERE SCB.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND SCB.IDEL_FLAG =0
+        AND SCB.ISTATUS =10
+        GROUP BY SCB.SCOMMODITY_ID)a
+        LEFT JOIN
+        (select COUNT(*) EXPIRED_NUM,SDS.SCOMMODITY_ID
+        from SM_DEVICE_STOCK SDS
+        LEFT JOIN SM_STOCK_DETAIL SSD ON SDS.ID=SSD.SSTOCK_ID AND SDS.SCOMMODITY_ID = SSD.SCOMMODITY_ID
+        WHERE SDS .SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND SSD.ISTATUS IN(30,40)
+        <!-- AND ISALE_STATUS IS NULL-->
+        GROUP BY SDS.SCOMMODITY_ID)b
+        on a.SCOMMODITY_ID = b.SCOMMODITY_ID
+        <if test="commodityName != null and  commodityName != ''  ">
+            <!--  where COMMODITY_NAME LIKE CONCAT('%',#{commodityName},'%')-->
+            where CONCAT(SBRAND_NAME,COMMODITY_NAME,STASTE,ISPEC_WEIGHT,SSPEC_UNIT,'/',SPACKAGE_UNIT)
+            like CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+        </if>
+    </select>
+
+    <select id="queryBatchReportTotalData" parameterType="java.util.Map" resultType="java.util.HashMap">
+        select
+        sum(a.LOSS_NUM) LOSS_NUM,
+        sum(IFNULL(b.EXPIRED_NUM,0)) EXPIRED_NUM
+        FROM
+        (SELECT SCB.SCOMMODITY_ID,SCI.SNAME
+        COMMODITY_NAME,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT,SUM(SCB.ICOMMODITY_NUM)
+        BATCH_TOTAL,SUM(IFNULL(SCB.FCOST_AMOUNT,0)*IFNULL(SCB.ICOMMODITY_NUM,0))
+        FCOST_AMOUNT,SUM(IFNULL(SCB.ILOSS_GOODS_NUM,0))LOSS_NUM
+        FROM sp_commodity_batch SCB
+        LEFT JOIN SP_COMMODITY_INFO SCI ON SCB.SCOMMODITY_ID = SCI.ID
+        WHERE SCB.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND SCB.IDEL_FLAG =0
+        AND SCB.ISTATUS =10
+        GROUP BY SCB.SCOMMODITY_ID)a
+        LEFT JOIN
+        (select COUNT(*) EXPIRED_NUM,SDS.SCOMMODITY_ID
+        from SM_DEVICE_STOCK SDS
+        LEFT JOIN SM_STOCK_DETAIL SSD ON SDS.ID=SSD.SSTOCK_ID AND SDS.SCOMMODITY_ID = SSD.SCOMMODITY_ID
+        WHERE SDS .SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND SSD.ISTATUS IN(30,40)
+        <!-- AND ISALE_STATUS IS NULL-->
+        GROUP BY SDS.SCOMMODITY_ID)b
+        on a.SCOMMODITY_ID = b.SCOMMODITY_ID
+        <if test="commodityName != null and  commodityName != ''  ">
+            where CONCAT(SBRAND_NAME,COMMODITY_NAME,STASTE,ISPEC_WEIGHT,SSPEC_UNIT,'/',SPACKAGE_UNIT)
+            like CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+        </if>
+
+    </select>
+
+    <select id="selectEnterWarehouseReportPageByDomain"
+            parameterType="com.cloud.cang.mgr.report.domain.EnterWarehouseReportDomain" resultMap="enterWarehouseRepot">
+        SELECT
+        RRC.SCOMMODITY_CODE,SCI.SNAME
+        SCOMMODITY_NAME,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT,
+        RRC.FORDER_COUNT,IFNULL(RRC.FCOMMODITY_PRICE,0)
+        FCOMMODITY_PRICE,IFNULL(RRC.FCOMMODITY_AMOUNT,0) FCOMMODITY_AMOUNT,SMI.SNAME
+        MERCHANT_NAME
+        FROM RM_REPLENISHMENT_COMMODITY RRC
+        LEFT JOIN RM_REPLENISHMENT_RECORD RRR ON RRC.SREPLENISHMENT_ID =RRR.ID
+        LEFT JOIN SH_MERCHANT_INFO SMI ON RRR.SMERCHANT_ID = SMI.ID
+        LEFT JOIN SP_COMMODITY_INFO SCI ON RRC.SCOMMODITY_ID = SCI.ID
+        WHERE RRR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND RRR.IDEL_FLAG = 0
+        AND RRR.ISTATUS = 30
+        AND RRC.ITYPE =#{type,jdbcType=NUMERIC}
+        AND RRC.ICOMMODITY_STATUS = 10
+        <if test="commodityCode != null and  commodityCode != ''  ">
+            AND RRC.SCOMMODITY_CODE LIKE CONCAT('%',#{commodityCode},'%')
+        </if>
+        <if test="commodityName != null and  commodityName != ''  ">
+            AND CONCAT(SCI.SBRAND_NAME,SCI.SNAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,'/',SCI.SPACKAGE_UNIT)
+            like CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="merchantName != null and  merchantName != ''  ">
+            AND SMI.SNAME LIKE CONCAT('%',#{merchantName},'%')
+        </if>
+        <if test="enterWarehouseStart != null ">
+            and RRC.TADD_TIME&gt;=#{enterWarehouseStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="enterWarehouseEnd != null ">
+            and RRC.TADD_TIME&lt;date_add(#{enterWarehouseEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        RRC.TADD_TIME
+    </select>
+
+    <select id="queryEnterWarehouseTotalData"
+            parameterType="com.cloud.cang.mgr.report.domain.EnterWarehouseReportDomain" resultType="java.util.HashMap">
+        SELECT
+        SUM(IFNULL(RRC.FORDER_COUNT,0)) FORDER_TOTAL_NUM,
+        SUM(IFNULL(RRC.FCOMMODITY_AMOUNT,0)) FCOMMODITY_TOTAL_AMOUNT
+
+        FROM RM_REPLENISHMENT_COMMODITY RRC
+        LEFT JOIN RM_REPLENISHMENT_RECORD RRR ON RRC.SREPLENISHMENT_ID =RRR.ID
+        LEFT JOIN SH_MERCHANT_INFO SMI ON RRR.SMERCHANT_ID = SMI.ID
+        LEFT JOIN SP_COMMODITY_INFO SCI ON RRC.SCOMMODITY_ID = SCI.ID
+        WHERE RRR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND RRR.IDEL_FLAG = 0
+        AND RRR.ISTATUS = 30
+        AND RRC.ITYPE =#{type,jdbcType=NUMERIC}
+        AND RRC.ICOMMODITY_STATUS = 10
+        <if test="commodityCode != null and  commodityCode != ''  ">
+            AND RRC.SCOMMODITY_CODE LIKE CONCAT('%',#{commodityCode},'%')
+        </if>
+        <if test="commodityName != null and  commodityName != ''  ">
+            AND CONCAT(SCI.SBRAND_NAME,SCI.SNAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,'/',SCI.SPACKAGE_UNIT)
+            like CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="merchantName != null and  merchantName != ''  ">
+            AND SMI.SNAME LIKE CONCAT('%',#{merchantName},'%')
+        </if>
+        <if test="enterWarehouseStart != null ">
+            and RRC.TADD_TIME&gt;=#{enterWarehouseStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="enterWarehouseEnd != null ">
+            and RRC.TADD_TIME&lt;date_add(#{enterWarehouseEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+    </select>
+
+
+    <!-- 资金往来报表-->
+    <select id="selectExchangeOfFundsReportPageByDomain"
+            parameterType="com.cloud.cang.mgr.report.domain.ExchangeOfFundsDomain" resultMap="exchangeOfFundsReport">
+        SELECT * FROM(
+        SELECT DATE_FORMAT(OOR.TPAY_COMPLETE_TIME,'%Y-%m-%d') DATE_RESULT,IFNULL(SUM(OOR.FACTUAL_PAY_AMOUNT),0) AMOUNT,1
+        type
+        FROM OM_ORDER_RECORD OOR
+        WHERE OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND OOR.ISTATUS = 10
+        AND OOR.IDEL_FLAG=0
+        <if test="queryTimeStart != null ">
+            AND OOR.TPAY_COMPLETE_TIME&gt;=#{queryTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="queryTimeEnd != null ">
+            AND OOR.TPAY_COMPLETE_TIME&lt;= date_add(#{queryTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        GROUP BY DATE_FORMAT(OOR.TPAY_COMPLETE_TIME,'%Y-%m-%d')
+        UNION ALL
+        SELECT DATE_FORMAT(ORA.TREFUND_TIME,'%Y-%m-%d') DATE_RESULT,IFNULL(SUM(ORA.FACTUAL_REFUND_AMOUNT),0) AMOUNT,2
+        type
+        FROM OM_REFUND_AUDIT ORA
+        WHERE ORA.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND ORA.IREFUND_STATUS =30
+        AND ORA.IDEL_FLAG = 0
+        <if test="queryTimeStart != null ">
+            AND ORA.TREFUND_TIME&gt;=#{queryTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="queryTimeEnd != null ">
+            AND ORA.TREFUND_TIME&lt;= date_add(#{queryTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        GROUP BY DATE_FORMAT(ORA.TREFUND_TIME,'%Y-%m-%d')
+        )A
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="type != null and type != ''">
+                    AND A.TYPE= #{type,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.AMOUNT
+    </select>
+
+    <select id="queryExchangeOfFundsTotalData" parameterType="com.cloud.cang.mgr.report.domain.ExchangeOfFundsDomain"
+            resultMap="ExchangeOfFundsMoneySta">
+        SELECT * FROM(
+        SELECT DATE_FORMAT(OOR.TPAY_COMPLETE_TIME,'%Y-%m-%d') DATE_RESULT,IFNULL(SUM(OOR.FACTUAL_PAY_AMOUNT),0)
+        TOTAL_AMOUNT,1
+        type
+        FROM OM_ORDER_RECORD OOR
+        WHERE OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND OOR.ISTATUS = 10
+        AND OOR.IDEL_FLAG=0
+        <if test="queryTimeStart != null ">
+            AND OOR.TPAY_COMPLETE_TIME&gt;=#{queryTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="queryTimeEnd != null ">
+            AND OOR.TPAY_COMPLETE_TIME&lt;= date_add(#{queryTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        UNION ALL
+        SELECT DATE_FORMAT(ORA.TREFUND_TIME,'%Y-%m-%d') DATE_RESULT,IFNULL(SUM(ORA.FACTUAL_REFUND_AMOUNT),0)
+        TOTAL_AMOUNT,2
+        type
+        FROM OM_REFUND_AUDIT ORA
+        WHERE ORA.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND ORA.IREFUND_STATUS =30
+        AND ORA.IDEL_FLAG = 0
+        <if test="queryTimeStart != null ">
+            AND ORA.TREFUND_TIME&gt;=#{queryTimeStart,jdbcType=TIMESTAMP}
+        </if>
+        <if test="queryTimeEnd != null ">
+            AND ORA.TREFUND_TIME&lt;= date_add(#{queryTimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+        </if>
+        )A
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="type != null and type != ''">
+                    AND A.TYPE= #{type,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </select>
+
+
+    <select id="selectExchangeOfFundsReportDetailPageByDomain" parameterType="java.util.Map"
+            resultMap="exchangeOfFundsDetailReport">
+        SELECT OOC.SCOMMODITY_CODE,
+        SCI.SNAME SCOMMODITY_NAME,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT,
+        SUM(OOC.FORDER_COUNT) COMMODITY_TOTAL,SUM(OOC.FACTUAL_AMOUNT) COMMODITY_FACTUAL_AMOUNT
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN OM_ORDER_COMMODITY OOC ON OOR.ID =OOC.SORDER_ID
+        LEFT JOIN SP_COMMODITY_INFO SCI ON OOC.SCOMMODITY_ID =SCI.ID
+        WHERE OOR.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND OOR.ISTATUS = 10
+        AND OOR.IDEL_FLAG=0
+        AND DATE_FORMAT(OOR.TPAY_COMPLETE_TIME,'%Y-%m-%d') =#{dateResult,jdbcType=VARCHAR}
+        <if test="commodityName != null and  commodityName != ''  ">
+            AND CONCAT(SCI.SBRAND_NAME,SCI.SNAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,'/',SCI.SPACKAGE_UNIT) like
+            CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+
+        </if>
+        GROUP BY OOC.SCOMMODITY_ID
+    </select>
+    <select id="selectExchangeOfFundsReportPaymentDetailPage" parameterType="java.util.Map"
+            resultMap="exchangeOfFundsDetailReport">
+        SELECT ORC.SCOMMODITY_CODE,
+        SCI.SNAME SCOMMODITY_NAME,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT,
+        SUM(ORC.FREFUND_COUNT) COMMODITY_TOTAL,SUM(ORC.FREFUND_AMOUNT)
+        COMMODITY_FACTUAL_AMOUNT
+        FROM OM_REFUND_AUDIT ORA
+        INNER JOIN OM_REFUND_COMMODITY ORC ON ORA.ID=ORC.SREFUND_ID
+        LEFT JOIN SP_COMMODITY_INFO SCI ON ORC.SCOMMODITY_ID =SCI.ID
+        WHERE ORA.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND ORA.IREFUND_STATUS =30
+        AND ORA.IDEL_FLAG = 0
+        AND DATE_FORMAT(ORA.TREFUND_TIME,'%Y-%m-%d') =#{dateResult,jdbcType=VARCHAR}
+        <if test="commodityName != null and  commodityName != ''  ">
+            <!--  AND ORC.SCOMMODITY_NAME LIKE CONCAT('%',#{commodityName},'%')-->
+            AND CONCAT(SCI.SBRAND_NAME,SCI.SNAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,'/',SCI.SPACKAGE_UNIT) like
+            CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+
+        </if>
+        GROUP BY ORC.SCOMMODITY_ID
+    </select>
+</mapper>

@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sh.dao.MerchantInfoDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sh.MerchantInfo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="DEXPIRE_DATE" property="dexpireDate" jdbcType="TIMESTAMP"/>
+        <result column="DSIGN_DATE" property="dsignDate" jdbcType="TIMESTAMP"/>
+        <result column="ICOMPANY_TYPE" property="icompanyType" jdbcType="NUMERIC"/>
+        <result column="ICOOPERATION_MODE" property="icooperationMode" jdbcType="NUMERIC"/>
+        <result column="IDB_WAP" property="idbWap" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IDISTRIBUTION_SWITCH" property="idistributionSwitch" jdbcType="NUMERIC"/>
+        <result column="IIS_PARENT" property="iisParent" jdbcType="NUMERIC"/>
+        <result column="IREBATE_RATE" property="irebateRate" jdbcType="NUMERIC"/>
+        <result column="IREBATE_RULE" property="irebateRule" jdbcType="NUMERIC"/>
+        <result column="IREBATE_WAY" property="irebateWay" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="IVM_SKU_TYPE" property="ivmSkuType" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SCONTACT_ADDRESS" property="scontactAddress" jdbcType="VARCHAR"/>
+        <result column="SCONTACT_EMAIL" property="scontactEmail" jdbcType="VARCHAR"/>
+        <result column="SCONTACT_MOBILE" property="scontactMobile" jdbcType="VARCHAR"/>
+        <result column="SCONTACT_NAME" property="scontactName" jdbcType="VARCHAR"/>
+        <result column="SDB_CONTACT" property="sdbContact" jdbcType="VARCHAR"/>
+        <result column="SDB_EMAIL" property="sdbEmail" jdbcType="VARCHAR"/>
+        <result column="SDB_ID" property="sdbId" jdbcType="VARCHAR"/>
+        <result column="SDB_NAME" property="sdbName" jdbcType="VARCHAR"/>
+        <result column="SNAME" property="sname" jdbcType="VARCHAR"/>
+        <result column="SPARENT_CODE" property="sparentCode" jdbcType="VARCHAR"/>
+        <result column="SPARENT_ID" property="sparentId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SROOT_CODE" property="srootCode" jdbcType="VARCHAR"/>
+        <result column="SROOT_ID" property="srootId" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,DEXPIRE_DATE,DSIGN_DATE,ICOMPANY_TYPE,ICOOPERATION_MODE,IDB_WAP,IDEL_FLAG,IDISTRIBUTION_SWITCH,IIS_PARENT,IREBATE_RATE,IREBATE_RULE,IREBATE_WAY,ISTATUS,ITYPE,IVM_SKU_TYPE,SADD_USER,SCODE,SCONTACT_ADDRESS,SCONTACT_EMAIL,SCONTACT_MOBILE,SCONTACT_NAME,SDB_CONTACT,SDB_EMAIL,SDB_ID,SDB_NAME,SNAME,SPARENT_CODE,SPARENT_ID,SREMARK,SROOT_CODE,SROOT_ID,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="dexpireDate != null  ">
+                    and DEXPIRE_DATE=#{dexpireDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="dsignDate != null  ">
+                    and DSIGN_DATE=#{dsignDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="icompanyType != null  ">
+                    and ICOMPANY_TYPE=#{icompanyType,jdbcType=NUMERIC}
+                </if>
+                <if test="icooperationMode != null  ">
+                    and ICOOPERATION_MODE=#{icooperationMode,jdbcType=NUMERIC}
+                </if>
+                <if test="idbWap != null  ">
+                    and IDB_WAP=#{idbWap,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="idistributionSwitch != null  ">
+                    and IDISTRIBUTION_SWITCH=#{idistributionSwitch,jdbcType=NUMERIC}
+                </if>
+                <if test="iisParent != null  ">
+                    and IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+                </if>
+                <if test="irebateRate != null  ">
+                    and IREBATE_RATE=#{irebateRate,jdbcType=NUMERIC}
+                </if>
+                <if test="irebateRule != null  ">
+                    and IREBATE_RULE=#{irebateRule,jdbcType=NUMERIC}
+                </if>
+                <if test="irebateWay != null  ">
+                    and IREBATE_WAY=#{irebateWay,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="ivmSkuType != null  ">
+                    and IVM_SKU_TYPE=#{ivmSkuType,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactAddress != null and  scontactAddress != ''  ">
+                    and SCONTACT_ADDRESS=#{scontactAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactEmail != null and  scontactEmail != ''  ">
+                    and SCONTACT_EMAIL=#{scontactEmail,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactMobile != null and  scontactMobile != ''  ">
+                    and SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactName != null and  scontactName != ''  ">
+                    and SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+                </if>
+                <if test="sdbContact != null and  sdbContact != ''  ">
+                    and SDB_CONTACT=#{sdbContact,jdbcType=VARCHAR}
+                </if>
+                <if test="sdbEmail != null and  sdbEmail != ''  ">
+                    and SDB_EMAIL=#{sdbEmail,jdbcType=VARCHAR}
+                </if>
+                <if test="sdbId != null and  sdbId != ''  ">
+                    and SDB_ID=#{sdbId,jdbcType=VARCHAR}
+                </if>
+                <if test="sdbName != null and  sdbName != ''  ">
+                    and SDB_NAME=#{sdbName,jdbcType=VARCHAR}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                    and SNAME=#{sname,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentCode != null and  sparentCode != ''  ">
+                    and SPARENT_CODE=#{sparentCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentId != null and  sparentId != ''  ">
+                    and SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="srootCode != null and  srootCode != ''  ">
+                    and SROOT_CODE=#{srootCode,jdbcType=VARCHAR}
+                </if>
+                <if test="srootId != null and  srootId != ''  ">
+                    and SROOT_ID=#{srootId,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <sql id="Entity_Where_Clause_Domain">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="idelFlag != null  ">
+                    and shi.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and shi.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="condition != null and  condition != ''  ">
+                    and ${condition}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+
+    <sql id="Entity_Where_ClauseLike">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and shi.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <!--<if test="dexpireDate != null  ">
+                    and  shi.DEXPIRE_DATE=#{dexpireDate,jdbcType=TIMESTAMP}
+                </if>-->
+                <if test="toperateStartDate != null ">
+                    and shi.DEXPIRE_DATE&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="toperateEndDate != null ">
+                    and shi.DEXPIRE_DATE&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+
+                <if test="dsignDate != null  ">
+                    and shi.DSIGN_DATE=#{dsignDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="icompanyType != null  ">
+                    and shi.ICOMPANY_TYPE=#{icompanyType,jdbcType=NUMERIC}
+                </if>
+                <if test="icooperationMode != null  ">
+                    and shi.ICOOPERATION_MODE=#{icooperationMode,jdbcType=NUMERIC}
+                </if>
+                <if test="idbWap != null  ">
+                    and shi.IDB_WAP=#{idbWap,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and shi.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="idistributionSwitch != null  ">
+                    and shi.IDISTRIBUTION_SWITCH=#{idistributionSwitch,jdbcType=NUMERIC}
+                </if>
+                <if test="iisParent != null  ">
+                    and shi.IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+                </if>
+                <if test="irebateRate != null  ">
+                    and shi.IREBATE_RATE=#{irebateRate,jdbcType=NUMERIC}
+                </if>
+                <if test="irebateRule != null  ">
+                    and shi.IREBATE_RULE=#{irebateRule,jdbcType=NUMERIC}
+                </if>
+                <if test="irebateWay != null  ">
+                    and shi.IREBATE_WAY=#{irebateWay,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and shi.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and shi.ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and shi.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and shi.SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactEmail != null and  scontactEmail != ''  ">
+                    and shi.SCONTACT_EMAIL=#{scontactEmail,jdbcType=VARCHAR}
+                </if>
+                <if test="scontactMobile != null and  scontactMobile != ''  ">
+                    <!-- and shi.SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR}-->
+                    and shi.SCONTACT_MOBILE like CONCAT('%',#{scontactMobile,jdbcType=VARCHAR},'%')
+
+                </if>
+                <if test="scontactName != null and  scontactName != ''  ">
+                    <!--   and shi.SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}-->
+                    and shi.SCONTACT_NAME like CONCAT('%',#{scontactName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sdbContact != null and  sdbContact != ''  ">
+                    and shi.SDB_CONTACT=#{sdbContact,jdbcType=VARCHAR}
+                </if>
+                <if test="sdbEmail != null and  sdbEmail != ''  ">
+                    and shi.SDB_EMAIL=#{sdbEmail,jdbcType=VARCHAR}
+                </if>
+                <if test="sdbId != null and  sdbId != ''  ">
+                    and shi.SDB_ID=#{sdbId,jdbcType=VARCHAR}
+                </if>
+                <if test="sdbName != null  ">
+                    and shi.SDB_NAME=#{sdbName,jdbcType=NUMERIC}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                    <!--and  SNAME=#{sname,jdbcType=VARCHAR}-->
+                    and shi.SNAME like CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="scontactAddress != null and  scontactAddress != ''  ">
+                    and shi.SCONTACT_ADDRESS like CONCAT('%',#{scontactAddress,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sparentCode != null and  sparentCode != ''  ">
+                    and shi.SPARENT_CODE=#{sparentCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentId != null and  sparentId != ''  ">
+                    and shi.SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and shi.SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="srootCode != null and  srootCode != ''  ">
+                    and shi.SROOT_CODE=#{srootCode,jdbcType=VARCHAR}
+                </if>
+                <if test="srootId != null and  srootId != ''  ">
+                    and shi.SROOT_ID=#{srootId,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and shi.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and shi.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and shi.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="condition != null and  condition != ''  ">
+                    and ${condition}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sh.MerchantInfo">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_INFO
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <!--查询商户列表缓存-->
+    <select id="selectByDomainWhere" resultMap="resultEntity"
+            parameterType="com.cloud.cang.mgr.sh.domain.MerchantInfoDomain">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_INFO shi
+        <include refid="Entity_Where_Clause_Domain"/>
+    </select>
+   <!-- <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_INFO
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>-->
+
+    <!--查询商户列表-->
+    <select id="selectPageByDomainWhere" resultType="com.cloud.cang.mgr.sh.vo.MerchantInfoVo"
+            parameterType="com.cloud.cang.mgr.sh.domain.MerchantInfoDomain">
+        select shi.*
+        ,smcc.IIS_CONF_WECHAT_GZH,smcc.IIS_CONF_ALIPAY_SHH,smcc.IIS_CONF_ALIPAY,smcc.IIS_CONF_WECHAT
+        from sh_merchant_info shi LEFT JOIN sh_merchant_client_conf smcc on shi.id=smcc.id
+        <include refid="Entity_Where_ClauseLike"/>
+
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        shi.ISTATUS = 20 DESC ,shi.ISTATUS = 40 DESC ,shi.ISTATUS = 30 DESC ,shi.DSIGN_DATE DESC
+    </select>
+    <!--查询商户名存不存在 -->
+    <select id="isNameExist" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from SH_MERCHANT_INFO
+        where SNAME=#{sname,jdbcType=VARCHAR}
+    </select>
+    <!-- 根据父商户Id查询其跟商户-->
+    <!--<select id="selectParentRoot" parameterType="java.lang.String"  resultType="java.util.Map">
+        select SROOT_ID,SROOT_CODE  from sh_merchant_info where ID='f6befd4fff6e11e7be44000c2937a246'
+    </select>-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SH_MERCHANT_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SH_MERCHANT_INFO where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sh.MerchantInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SH_MERCHANT_INFO (ID,DEXPIRE_DATE,DSIGN_DATE,ICOMPANY_TYPE,ICOOPERATION_MODE,IDB_WAP,IDEL_FLAG,IDISTRIBUTION_SWITCH,IIS_PARENT,IREBATE_RATE,IREBATE_RULE,IREBATE_WAY,ISTATUS,ITYPE,IVM_SKU_TYPE,SADD_USER,SCODE,SCONTACT_ADDRESS,SCONTACT_EMAIL,SCONTACT_MOBILE,SCONTACT_NAME,SDB_CONTACT,SDB_EMAIL,SDB_ID,SDB_NAME,SNAME,SPARENT_CODE,SPARENT_ID,SREMARK,SROOT_CODE,SROOT_ID,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{dexpireDate,jdbcType=TIMESTAMP},#{dsignDate,jdbcType=TIMESTAMP},#{icompanyType,jdbcType=NUMERIC},#{icooperationMode,jdbcType=NUMERIC},#{idbWap,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{idistributionSwitch,jdbcType=NUMERIC},#{iisParent,jdbcType=NUMERIC},#{irebateRate,jdbcType=NUMERIC},#{irebateRule,jdbcType=NUMERIC},#{irebateWay,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{ivmSkuType,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{scontactAddress,jdbcType=VARCHAR},#{scontactEmail,jdbcType=VARCHAR},#{scontactMobile,jdbcType=VARCHAR},#{scontactName,jdbcType=VARCHAR},#{sdbContact,jdbcType=VARCHAR},#{sdbEmail,jdbcType=VARCHAR},#{sdbId,jdbcType=VARCHAR},#{sdbName,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sparentCode,jdbcType=VARCHAR},#{sparentId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{srootCode,jdbcType=VARCHAR},#{srootId,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sh.MerchantInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SH_MERCHANT_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="dexpireDate">
+                DEXPIRE_DATE,
+            </if>
+            <if test="dsignDate">
+                DSIGN_DATE,
+            </if>
+            <if test="icompanyType">
+                ICOMPANY_TYPE,
+            </if>
+            <if test="icooperationMode">
+                ICOOPERATION_MODE,
+            </if>
+            <if test="idbWap">
+                IDB_WAP,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="idistributionSwitch">
+                IDISTRIBUTION_SWITCH,
+            </if>
+            <if test="iisParent">
+                IIS_PARENT,
+            </if>
+            <if test="irebateRate">
+                IREBATE_RATE,
+            </if>
+            <if test="irebateRule">
+                IREBATE_RULE,
+            </if>
+            <if test="irebateWay">
+                IREBATE_WAY,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="itype">
+                ITYPE,
+            </if>
+            <if test="ivmSkuType">
+                IVM_SKU_TYPE,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="scontactAddress">
+                SCONTACT_ADDRESS,
+            </if>
+            <if test="scontactEmail">
+                SCONTACT_EMAIL,
+            </if>
+            <if test="scontactMobile">
+                SCONTACT_MOBILE,
+            </if>
+            <if test="scontactName">
+                SCONTACT_NAME,
+            </if>
+            <if test="sdbContact">
+                SDB_CONTACT,
+            </if>
+            <if test="sdbEmail">
+                SDB_EMAIL,
+            </if>
+            <if test="sdbId">
+                SDB_ID,
+            </if>
+            <if test="sdbName">
+                SDB_NAME,
+            </if>
+            <if test="sname">
+                SNAME,
+            </if>
+            <if test="sparentCode">
+                SPARENT_CODE,
+            </if>
+            <if test="sparentId">
+                SPARENT_ID,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="srootCode">
+                SROOT_CODE,
+            </if>
+            <if test="srootId">
+                SROOT_ID,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="dexpireDate != null  ">
+                #{dexpireDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dsignDate != null  ">
+                #{dsignDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="icompanyType != null  ">
+                #{icompanyType,jdbcType=NUMERIC},
+            </if>
+            <if test="icooperationMode != null  ">
+                #{icooperationMode,jdbcType=NUMERIC},
+            </if>
+            <if test="idbWap != null  ">
+                #{idbWap,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="idistributionSwitch != null  ">
+                #{idistributionSwitch,jdbcType=NUMERIC},
+            </if>
+            <if test="iisParent != null  ">
+                #{iisParent,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateRate != null  ">
+                #{irebateRate,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateRule != null  ">
+                #{irebateRule,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateWay != null  ">
+                #{irebateWay,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="ivmSkuType != null  ">
+                #{ivmSkuType,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactAddress != null and  scontactAddress != ''  ">
+                #{scontactAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactEmail != null and  scontactEmail != ''  ">
+                #{scontactEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactMobile != null and  scontactMobile != ''  ">
+                #{scontactMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactName != null and  scontactName != ''  ">
+                #{scontactName,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbContact != null and  sdbContact != ''  ">
+                #{sdbContact,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbEmail != null and  sdbEmail != ''  ">
+                #{sdbEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbId != null and  sdbId != ''  ">
+                #{sdbId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbName != null and  sdbName != ''  ">
+                #{sdbName,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentCode != null and  sparentCode != ''  ">
+                #{sparentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentId != null and  sparentId != ''  ">
+                #{sparentId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="srootCode != null and  srootCode != ''  ">
+                #{srootCode,jdbcType=VARCHAR},
+            </if>
+            <if test="srootId != null and  srootId != ''  ">
+                #{srootId,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sh.MerchantInfo">
+        update SH_MERCHANT_INFO
+        <set>
+            <if test="dexpireDate != null  ">
+                DEXPIRE_DATE=#{dexpireDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dsignDate != null  ">
+                DSIGN_DATE=#{dsignDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="icompanyType != null  ">
+                ICOMPANY_TYPE=#{icompanyType,jdbcType=NUMERIC},
+            </if>
+            <if test="icooperationMode != null  ">
+                ICOOPERATION_MODE=#{icooperationMode,jdbcType=NUMERIC},
+            </if>
+            <if test="idbWap != null  ">
+                IDB_WAP=#{idbWap,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="idistributionSwitch != null  ">
+                IDISTRIBUTION_SWITCH=#{idistributionSwitch,jdbcType=NUMERIC},
+            </if>
+            <if test="iisParent != null  ">
+                IIS_PARENT=#{iisParent,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateRate != null  ">
+                IREBATE_RATE=#{irebateRate,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateRule != null  ">
+                IREBATE_RULE=#{irebateRule,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateWay != null  ">
+                IREBATE_WAY=#{irebateWay,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="ivmSkuType != null  ">
+                IVM_SKU_TYPE=#{ivmSkuType,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactAddress != null and  scontactAddress != ''  ">
+                SCONTACT_ADDRESS=#{scontactAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactEmail != null and  scontactEmail != ''  ">
+                SCONTACT_EMAIL=#{scontactEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactMobile != null and  scontactMobile != ''  ">
+                SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactName != null and  scontactName != ''  ">
+                SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbContact != null and  sdbContact != ''  ">
+                SDB_CONTACT=#{sdbContact,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbEmail != null and  sdbEmail != ''  ">
+                SDB_EMAIL=#{sdbEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbId != null and  sdbId != ''  ">
+                SDB_ID=#{sdbId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbName != null and  sdbName != ''  ">
+                SDB_NAME=#{sdbName,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentCode != null and  sparentCode != ''  ">
+                SPARENT_CODE=#{sparentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentId != null and  sparentId != ''  ">
+                SPARENT_ID=#{sparentId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="srootCode != null and  srootCode != ''  ">
+                SROOT_CODE=#{srootCode,jdbcType=VARCHAR},
+            </if>
+            <if test="srootId != null and  srootId != ''  ">
+                SROOT_ID=#{srootId,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!--修改 -->
+    <update id="updateById" parameterType="com.cloud.cang.model.sh.MerchantInfo">
+        update SH_MERCHANT_INFO
+        <set>
+            <if test="dexpireDate != null  ">
+                DEXPIRE_DATE=#{dexpireDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dsignDate != null  ">
+                DSIGN_DATE=#{dsignDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="icompanyType != null  ">
+                ICOMPANY_TYPE=#{icompanyType,jdbcType=NUMERIC},
+            </if>
+            <if test="icooperationMode != null  ">
+                ICOOPERATION_MODE=#{icooperationMode,jdbcType=NUMERIC},
+            </if>
+            <if test="idbWap != null  ">
+                IDB_WAP=#{idbWap,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="idistributionSwitch != null  ">
+                IDISTRIBUTION_SWITCH=#{idistributionSwitch,jdbcType=NUMERIC},
+            </if>
+            <if test="iisParent != null  ">
+                IIS_PARENT=#{iisParent,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateRate != null  ">
+                IREBATE_RATE=#{irebateRate,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateRule != null  ">
+                IREBATE_RULE=#{irebateRule,jdbcType=NUMERIC},
+            </if>
+            <if test="irebateWay != null  ">
+                IREBATE_WAY=#{irebateWay,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactEmail != null and  scontactEmail != ''  ">
+                SCONTACT_EMAIL=#{scontactEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactMobile != null and  scontactMobile != ''  ">
+                SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactName != null and  scontactName != ''  ">
+                SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR},
+            </if>
+            <if test="scontactAddress != null and  scontactAddress != ''  ">
+                SCONTACT_ADDRESS=#{scontactAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbContact != null">
+                SDB_CONTACT=#{sdbContact,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbEmail != null">
+                SDB_EMAIL=#{sdbEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbId != null ">
+                SDB_ID=#{sdbId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdbName != null">
+                SDB_NAME=#{sdbName,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentCode != null and  sparentCode != ''  ">
+                SPARENT_CODE=#{sparentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentId != null and  sparentId != ''  ">
+                SPARENT_ID=#{sparentId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="srootCode != null and  srootCode != ''  ">
+                SROOT_CODE=#{srootCode,jdbcType=VARCHAR},
+            </if>
+            <if test="srootId != null and  srootId != ''  ">
+                SROOT_ID=#{srootId,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="ivmSkuType != null  ">
+                IVM_SKU_TYPE=#{ivmSkuType,jdbcType=NUMERIC},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sh.MerchantInfo">
+        update SH_MERCHANT_INFO
+        set
+        DEXPIRE_DATE=#{dexpireDate,jdbcType=TIMESTAMP}
+        ,DSIGN_DATE=#{dsignDate,jdbcType=TIMESTAMP}
+        ,ICOMPANY_TYPE=#{icompanyType,jdbcType=NUMERIC}
+        ,ICOOPERATION_MODE=#{icooperationMode,jdbcType=NUMERIC}
+        ,IDB_WAP=#{idbWap,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IDISTRIBUTION_SWITCH=#{idistributionSwitch,jdbcType=NUMERIC}
+        ,IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+        ,IREBATE_RATE=#{irebateRate,jdbcType=NUMERIC}
+        ,IREBATE_RULE=#{irebateRule,jdbcType=NUMERIC}
+        ,IREBATE_WAY=#{irebateWay,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,ITYPE=#{itype,jdbcType=NUMERIC}
+        ,IVM_SKU_TYPE=#{ivmSkuType,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SCONTACT_ADDRESS=#{scontactAddress,jdbcType=VARCHAR}
+        ,SCONTACT_EMAIL=#{scontactEmail,jdbcType=VARCHAR}
+        ,SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR}
+        ,SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+        ,SDB_CONTACT=#{sdbContact,jdbcType=VARCHAR}
+        ,SDB_EMAIL=#{sdbEmail,jdbcType=VARCHAR}
+        ,SDB_ID=#{sdbId,jdbcType=VARCHAR}
+        ,SDB_NAME=#{sdbName,jdbcType=VARCHAR}
+        ,SNAME=#{sname,jdbcType=VARCHAR}
+        ,SPARENT_CODE=#{sparentCode,jdbcType=VARCHAR}
+        ,SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SROOT_CODE=#{srootCode,jdbcType=VARCHAR}
+        ,SROOT_ID=#{srootId,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	DEXPIRE_DATE=#{dexpireDate,jdbcType=TIMESTAMP}
+	DSIGN_DATE=#{dsignDate,jdbcType=TIMESTAMP}
+	ICOMPANY_TYPE=#{icompanyType,jdbcType=NUMERIC}
+	ICOOPERATION_MODE=#{icooperationMode,jdbcType=NUMERIC}
+	IDB_WAP=#{idbWap,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IDISTRIBUTION_SWITCH=#{idistributionSwitch,jdbcType=NUMERIC}
+	IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+	IREBATE_RATE=#{irebateRate,jdbcType=NUMERIC}
+	IREBATE_RULE=#{irebateRule,jdbcType=NUMERIC}
+	IREBATE_WAY=#{irebateWay,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	IVM_SKU_TYPE=#{ivmSkuType,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SCONTACT_ADDRESS=#{scontactAddress,jdbcType=VARCHAR}
+	SCONTACT_EMAIL=#{scontactEmail,jdbcType=VARCHAR}
+	SCONTACT_MOBILE=#{scontactMobile,jdbcType=VARCHAR}
+	SCONTACT_NAME=#{scontactName,jdbcType=VARCHAR}
+	SDB_CONTACT=#{sdbContact,jdbcType=VARCHAR}
+	SDB_EMAIL=#{sdbEmail,jdbcType=VARCHAR}
+	SDB_ID=#{sdbId,jdbcType=VARCHAR}
+	SDB_NAME=#{sdbName,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SPARENT_CODE=#{sparentCode,jdbcType=VARCHAR}
+	SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SROOT_CODE=#{srootCode,jdbcType=VARCHAR}
+	SROOT_ID=#{srootId,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="selectByCode" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from sh_merchant_info
+        where scode = #{merchantCode,jdbcType=VARCHAR}
+    </select>
+</mapper>

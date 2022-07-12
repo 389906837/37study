@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sb.dao.DeviceCommodityDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sb.DeviceCommodity">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ISTATUS,SADD_USER,SCOMMODITY_CODE,SCOMMODITY_ID,SDEVICE_CODE,SDEVICE_ID,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+               and  SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+               and  SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sb.DeviceCommodity">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_COMMODITY
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_COMMODITY
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SB_DEVICE_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SB_DEVICE_COMMODITY where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sb.DeviceCommodity">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SB_DEVICE_COMMODITY (ID,ISTATUS,SADD_USER,SCOMMODITY_CODE,SCOMMODITY_ID,SDEVICE_CODE,SDEVICE_ID,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{istatus,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{scommodityCode,jdbcType=VARCHAR},#{scommodityId,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sb.DeviceCommodity">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SB_DEVICE_COMMODITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="scommodityCode">
+               SCOMMODITY_CODE,
+           	</if>
+			<if test="scommodityId">
+               SCOMMODITY_ID,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                #{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                #{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sb.DeviceCommodity">
+        update SB_DEVICE_COMMODITY
+        <set>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sb.DeviceCommodity">
+        update SB_DEVICE_COMMODITY
+        set 
+        		ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+        		,SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--新增SQL开始-->
+	<!--模糊查询条件-->
+	<sql id="Entity_Where_Clause_Like">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and A.ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="istatus != null  ">
+					and  A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+				</if>
+				<if test="saddUser != null and  saddUser != ''  ">
+					and  A.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+				</if>
+				<if test="scommodityCode != null and  scommodityCode != ''  ">
+					<!--and  SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}-->
+					and  A.SCOMMODITY_CODE like CONCAT('%',#{scommodityCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="scommodityId != null and  scommodityId != ''  ">
+					and  A.SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+				</if>
+				<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+					<!--and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}-->
+					and  A.SDEVICE_CODE like CONCAT('%',#{sdeviceCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sdeviceId != null and  sdeviceId != ''  ">
+					and  A.SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+				</if>
+				<if test="supdateUser != null and  supdateUser != ''  ">
+					and  A.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+				</if>
+				<if test="taddTime != null  ">
+					and  A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tupdateTime != null  ">
+					and  A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="sname != null and  sname != ''  ">
+					and  B.SNAME like CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="commodityName != null and  commodityName != ''  ">
+					and  C.SNAME like CONCAT('%',#{commodityName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="merchantName != null and merchantName != ''  ">
+					and  D.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="merchantCode != null and merchantCode != ''  ">
+					and  D.SCODE like CONCAT('%',#{merchantCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="queryCondition != null and  queryCondition != ''  ">
+					and  ${queryCondition}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--分页查询返回对象映射-->
+	<resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.sb.domain.DeviceCommodityDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="merchantName" property="merchantName" jdbcType="VARCHAR" />
+		<result column="merchantCode" property="merchantCode" jdbcType="VARCHAR" />
+		<result column="commodityName" property="commodityName" jdbcType="VARCHAR" />
+		<result column="totalSalesNum" property="totalSalesNum" jdbcType="NUMERIC" />
+		<result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR" />
+		<result column="STASTE" property="staste" jdbcType="VARCHAR" />
+		<result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="NUMERIC" />
+		<result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR" />
+		<result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--分页查询-->
+	<select id="selectByDomainWhere" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.sb.vo.DeviceCommodityVo">
+		select
+		A.ID,A.ISTATUS,A.SADD_USER,A.SCOMMODITY_CODE,A.SCOMMODITY_ID,A.SDEVICE_CODE,A.SDEVICE_ID,A.SUPDATE_USER,A.TADD_TIME,A.TUPDATE_TIME,
+		B.SNAME,
+		C.SNAME as commodityName,C.SBRAND_NAME,C.STASTE,C.ISPEC_WEIGHT,C.SSPEC_UNIT,C.SPACKAGE_UNIT,
+		D.SNAME as merchantName,D.SCODE as merchantCode,
+			(SELECT SUM(F.FORDER_COUNT)
+			from om_order_record  E
+			INNER JOIN om_order_commodity F on E.ID = F.SORDER_ID
+			WHERE A.SDEVICE_ID = E.SDEVICE_ID and A.SCOMMODITY_ID = F.SCOMMODITY_ID)
+		as totalSalesNum
+		from
+		SB_DEVICE_COMMODITY A
+		INNER  JOIN SB_DEVICE_INFO B ON A.SDEVICE_ID = B.ID
+		INNER JOIN SH_MERCHANT_INFO D ON  B.SMERCHANT_ID = D.ID
+		INNER JOIN SP_COMMODITY_INFO C ON  A.SCOMMODITY_ID = C.ID
+		<include refid="Entity_Where_Clause_Like" />
+		order by
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		A.TADD_TIME desc
+	</select>
+
+	<select id="selectSalesNum" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT SUM(B.FORDER_COUNT)
+		FROM OM_ORDER_RECORD AS A
+		INNER JOIN OM_ORDER_COMMODITY AS B
+		ON A.ID = B.SORDER_ID
+		WHERE A.SDEVICE_ID = #{deviceId,jdbcType=VARCHAR}
+		AND B.SCOMMODITY_ID = #{commodityId,jdbcType=VARCHAR}
+	</select>
+
+	<!---->
+	<update id="updateToDropOffByCommodityId" parameterType="com.cloud.cang.model.sb.DeviceCommodity">
+		update SB_DEVICE_COMMODITY
+		set
+		ISTATUS=#{istatus,jdbcType=NUMERIC}
+		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+		where  SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+	</update>
+	<!--
+        附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+    ISTATUS=#{istatus,jdbcType=NUMERIC}
+    SADD_USER=#{saddUser,jdbcType=VARCHAR}
+    SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+    SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+    SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+    SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+    SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+    TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+    TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

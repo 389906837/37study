@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sp.dao.CommodityInfoDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sp.CommodityInfo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FAVG_COST_PRICE" property="favgCostPrice" jdbcType="NUMERIC"/>
+        <result column="FAVG_SALE_PRICE" property="favgSalePrice" jdbcType="NUMERIC"/>
+        <result column="FCOST_PRICE" property="fcostPrice" jdbcType="NUMERIC"/>
+        <result column="FMARKET_PRICE" property="fmarketPrice" jdbcType="NUMERIC"/>
+        <result column="FSALE_PRICE" property="fsalePrice" jdbcType="NUMERIC"/>
+        <result column="ICOMMODITY_FLOAT" property="icommodityFloat" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IELECTRONIC_FLOAT" property="ielectronicFloat" jdbcType="NUMERIC"/>
+        <result column="IIDENTIFICATION_TYPE" property="iidentificationType" jdbcType="NUMERIC"/>
+        <result column="IIS_USE_INTEGRAL" property="iisUseIntegral" jdbcType="NUMERIC"/>
+        <result column="IJOIN_ACTIVE_NUM" property="ijoinActiveNum" jdbcType="NUMERIC"/>
+        <result column="ILIFE_TYPE" property="ilifeType" jdbcType="NUMERIC"/>
+        <result column="IMAX_INTEGRAL" property="imaxIntegral" jdbcType="NUMERIC"/>
+        <result column="ISALE_NUM" property="isaleNum" jdbcType="NUMERIC"/>
+        <result column="ISHELF_LIFE" property="ishelfLife" jdbcType="NUMERIC"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="ISTORE_DEVICE" property="istoreDevice" jdbcType="NUMERIC"/>
+        <result column="IWEIGTH" property="iweigth" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SBIG_CATEGORY_ID" property="sbigCategoryId" jdbcType="VARCHAR"/>
+        <result column="SBIG_CATEGORY_NAME" property="sbigCategoryName" jdbcType="VARCHAR"/>
+        <result column="SBRAND_ID" property="sbrandId" jdbcType="VARCHAR"/>
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="SCATEGORY_CODE" property="scategoryCode" jdbcType="VARCHAR"/>
+        <result column="SCATEGORY_NAME" property="scategoryName" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_IMG" property="scommodityImg" jdbcType="VARCHAR"/>
+        <result column="SLABEL_ID" property="slabelId" jdbcType="VARCHAR"/>
+        <result column="SLABEL_NAME" property="slabelName" jdbcType="VARCHAR"/>
+        <result column="SMANUFACTURER" property="smanufacturer" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SNAME" property="sname" jdbcType="VARCHAR"/>
+        <result column="SORIGIN" property="sorigin" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGING_MATERIAL" property="spackagingMaterial" jdbcType="VARCHAR"/>
+        <result column="SPRODUCT_BARCODE" property="sproductBarcode" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SSHORT_NAME" property="sshortName" jdbcType="VARCHAR"/>
+        <result column="SSMALL_CATEGORY_ID" property="ssmallCategoryId" jdbcType="VARCHAR"/>
+        <result column="SSMALL_CATEGORY_NAME" property="ssmallCategoryName" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="SVR_CODE" property="svrCode" jdbcType="VARCHAR"/>
+        <result column="SVR_COMMODITY_CODE" property="svrCommodityCode" jdbcType="VARCHAR"/>
+        <result column="SVR_COMMODITY_ID" property="svrCommodityId" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="EditResultEntity" type="com.cloud.cang.mgr.om.vo.OrderCommodityEditVo">
+        <result column="SNAME" property="sname" jdbcType="VARCHAR"/>
+        <result column="FSALE_PRICE" property="fsalePrice" jdbcType="NUMERIC"/>
+        <result column="FCOST_AMOUNT" property="fcostAmount" jdbcType="NUMERIC"/>
+        <result column="FTAX_POINT" property="ftaxPoint" jdbcType="NUMERIC"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,FAVG_COST_PRICE,FAVG_SALE_PRICE,FCOST_PRICE,FMARKET_PRICE,FSALE_PRICE,ICOMMODITY_FLOAT,IDEL_FLAG,IELECTRONIC_FLOAT,IIDENTIFICATION_TYPE,IIS_USE_INTEGRAL,IJOIN_ACTIVE_NUM,ILIFE_TYPE,IMAX_INTEGRAL,ISALE_NUM,ISHELF_LIFE,ISPEC_WEIGHT,ISTATUS,ISTORE_DEVICE,IWEIGTH,SADD_USER,SBIG_CATEGORY_ID,SBIG_CATEGORY_NAME,SBRAND_ID,SBRAND_NAME,SCATEGORY_CODE,SCATEGORY_NAME,SCODE,SCOMMODITY_IMG,SLABEL_ID,SLABEL_NAME,SMANUFACTURER,SMERCHANT_CODE,SMERCHANT_ID,SNAME,SORIGIN,SPACKAGE_UNIT,SPACKAGING_MATERIAL,SPRODUCT_BARCODE,SREMARK,SSHORT_NAME,SSMALL_CATEGORY_ID,SSMALL_CATEGORY_NAME,SSPEC_UNIT,STASTE,SUPDATE_USER,SVR_CODE,SVR_COMMODITY_CODE,SVR_COMMODITY_ID,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="favgCostPrice != null  ">
+                    and FAVG_COST_PRICE=#{favgCostPrice,jdbcType=NUMERIC}
+                </if>
+                <if test="favgSalePrice != null  ">
+                    and FAVG_SALE_PRICE=#{favgSalePrice,jdbcType=NUMERIC}
+                </if>
+                <if test="fcostPrice != null  ">
+                    and FCOST_PRICE=#{fcostPrice,jdbcType=NUMERIC}
+                </if>
+                <if test="fmarketPrice != null  ">
+                    and FMARKET_PRICE=#{fmarketPrice,jdbcType=NUMERIC}
+                </if>
+                <if test="fsalePrice != null  ">
+                    and FSALE_PRICE=#{fsalePrice,jdbcType=NUMERIC}
+                </if>
+                <if test="icommodityFloat != null  ">
+                    and ICOMMODITY_FLOAT=#{icommodityFloat,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="ielectronicFloat != null  ">
+                    and IELECTRONIC_FLOAT=#{ielectronicFloat,jdbcType=NUMERIC}
+                </if>
+                <if test="iidentificationType != null  ">
+                    and IIDENTIFICATION_TYPE=#{iidentificationType,jdbcType=NUMERIC}
+                </if>
+                <if test="iisUseIntegral != null  ">
+                    and IIS_USE_INTEGRAL=#{iisUseIntegral,jdbcType=NUMERIC}
+                </if>
+                <if test="ijoinActiveNum != null  ">
+                    and IJOIN_ACTIVE_NUM=#{ijoinActiveNum,jdbcType=NUMERIC}
+                </if>
+                <if test="ilifeType != null  ">
+                    and ILIFE_TYPE=#{ilifeType,jdbcType=NUMERIC}
+                </if>
+                <if test="imaxIntegral != null  ">
+                    and IMAX_INTEGRAL=#{imaxIntegral,jdbcType=NUMERIC}
+                </if>
+                <if test="isaleNum != null  ">
+                    and ISALE_NUM=#{isaleNum,jdbcType=NUMERIC}
+                </if>
+                <if test="ishelfLife != null  ">
+                    and ISHELF_LIFE=#{ishelfLife,jdbcType=NUMERIC}
+                </if>
+                <if test="ispecWeight != null  ">
+                    and ISPEC_WEIGHT=#{ispecWeight,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="istoreDevice != null  ">
+                    and ISTORE_DEVICE=#{istoreDevice,jdbcType=NUMERIC}
+                </if>
+                <if test="iweigth != null  ">
+                    and IWEIGTH=#{iweigth,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="sbigCategoryId != null and  sbigCategoryId != ''  ">
+                    and SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR}
+                </if>
+                <if test="sbigCategoryName != null and  sbigCategoryName != ''  ">
+                    and SBIG_CATEGORY_NAME=#{sbigCategoryName,jdbcType=VARCHAR}
+                </if>
+                <if test="sbrandId != null and  sbrandId != ''  ">
+                    and SBRAND_ID=#{sbrandId,jdbcType=VARCHAR}
+                </if>
+                <if test="sbrandName != null and  sbrandName != ''  ">
+                    and SBRAND_NAME=#{sbrandName,jdbcType=VARCHAR}
+                </if>
+                <if test="scategoryCode != null and  scategoryCode != ''  ">
+                    and SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+                </if>
+                <if test="scategoryName != null and  scategoryName != ''  ">
+                    and SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="scommodityImg != null and  scommodityImg != ''  ">
+                    and SCOMMODITY_IMG=#{scommodityImg,jdbcType=VARCHAR}
+                </if>
+                <if test="slabelId != null and  slabelId != ''  ">
+                    and SLABEL_ID=#{slabelId,jdbcType=VARCHAR}
+                </if>
+                <if test="slabelName != null and  slabelName != ''  ">
+                    and SLABEL_NAME=#{slabelName,jdbcType=VARCHAR}
+                </if>
+                <if test="smanufacturer != null and  smanufacturer != ''  ">
+                    and SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                    and SNAME=#{sname,jdbcType=VARCHAR}
+                </if>
+                <if test="sorigin != null and  sorigin != ''  ">
+                    and SORIGIN=#{sorigin,jdbcType=VARCHAR}
+                </if>
+                <if test="spackageUnit != null and  spackageUnit != ''  ">
+                    and SPACKAGE_UNIT=#{spackageUnit,jdbcType=VARCHAR}
+                </if>
+                <if test="spackagingMaterial != null and  spackagingMaterial != ''  ">
+                    and SPACKAGING_MATERIAL=#{spackagingMaterial,jdbcType=VARCHAR}
+                </if>
+                <if test="sproductBarcode != null and  sproductBarcode != ''  ">
+                    and SPRODUCT_BARCODE=#{sproductBarcode,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="sshortName != null and  sshortName != ''  ">
+                    and SSHORT_NAME=#{sshortName,jdbcType=VARCHAR}
+                </if>
+                <if test="ssmallCategoryId != null and  ssmallCategoryId != ''  ">
+                    and SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR}
+                </if>
+                <if test="ssmallCategoryName != null and  ssmallCategoryName != ''  ">
+                    and SSMALL_CATEGORY_NAME=#{ssmallCategoryName,jdbcType=VARCHAR}
+                </if>
+                <if test="sspecUnit != null and  sspecUnit != ''  ">
+                    and SSPEC_UNIT=#{sspecUnit,jdbcType=VARCHAR}
+                </if>
+                <if test="staste != null and  staste != ''  ">
+                    and STASTE=#{staste,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="svrCode != null and  svrCode != ''  ">
+                    and SVR_CODE=#{svrCode,jdbcType=VARCHAR}
+                </if>
+                <if test="svrCommodityCode != null and  svrCommodityCode != ''  ">
+                    and SVR_COMMODITY_CODE=#{svrCommodityCode,jdbcType=VARCHAR}
+                </if>
+                <if test="svrCommodityId != null and  svrCommodityId != ''  ">
+                    and SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SP_COMMODITY_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        select
+        <include refid="column_List"/>
+        from SP_COMMODITY_INFO
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SP_COMMODITY_INFO
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SP_COMMODITY_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SP_COMMODITY_INFO where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SP_COMMODITY_INFO (ID,FAVG_COST_PRICE,FAVG_SALE_PRICE,FCOST_PRICE,FMARKET_PRICE,FSALE_PRICE,ICOMMODITY_FLOAT,IDEL_FLAG,IELECTRONIC_FLOAT,IIDENTIFICATION_TYPE,IIS_USE_INTEGRAL,IJOIN_ACTIVE_NUM,ILIFE_TYPE,IMAX_INTEGRAL,ISALE_NUM,ISHELF_LIFE,ISPEC_WEIGHT,ISTATUS,ISTORE_DEVICE,IWEIGTH,SADD_USER,SBIG_CATEGORY_ID,SBIG_CATEGORY_NAME,SBRAND_ID,SBRAND_NAME,SCATEGORY_CODE,SCATEGORY_NAME,SCODE,SCOMMODITY_IMG,SLABEL_ID,SLABEL_NAME,SMANUFACTURER,SMERCHANT_CODE,SMERCHANT_ID,SNAME,SORIGIN,SPACKAGE_UNIT,SPACKAGING_MATERIAL,SPRODUCT_BARCODE,SREMARK,SSHORT_NAME,SSMALL_CATEGORY_ID,SSMALL_CATEGORY_NAME,SSPEC_UNIT,STASTE,SUPDATE_USER,SVR_CODE,SVR_COMMODITY_CODE,SVR_COMMODITY_ID,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{favgCostPrice,jdbcType=NUMERIC},#{favgSalePrice,jdbcType=NUMERIC},#{fcostPrice,jdbcType=NUMERIC},#{fmarketPrice,jdbcType=NUMERIC},#{fsalePrice,jdbcType=NUMERIC},#{icommodityFloat,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{ielectronicFloat,jdbcType=NUMERIC},#{iidentificationType,jdbcType=NUMERIC},#{iisUseIntegral,jdbcType=NUMERIC},#{ijoinActiveNum,jdbcType=NUMERIC},#{ilifeType,jdbcType=NUMERIC},#{imaxIntegral,jdbcType=NUMERIC},#{isaleNum,jdbcType=NUMERIC},#{ishelfLife,jdbcType=NUMERIC},#{ispecWeight,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{istoreDevice,jdbcType=NUMERIC},#{iweigth,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sbigCategoryId,jdbcType=VARCHAR},#{sbigCategoryName,jdbcType=VARCHAR},#{sbrandId,jdbcType=VARCHAR},#{sbrandName,jdbcType=VARCHAR},#{scategoryCode,jdbcType=VARCHAR},#{scategoryName,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{scommodityImg,jdbcType=VARCHAR},#{slabelId,jdbcType=VARCHAR},#{slabelName,jdbcType=VARCHAR},#{smanufacturer,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sorigin,jdbcType=VARCHAR},#{spackageUnit,jdbcType=VARCHAR},#{spackagingMaterial,jdbcType=VARCHAR},#{sproductBarcode,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{sshortName,jdbcType=VARCHAR},#{ssmallCategoryId,jdbcType=VARCHAR},#{ssmallCategoryName,jdbcType=VARCHAR},#{sspecUnit,jdbcType=VARCHAR},#{staste,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{svrCode,jdbcType=VARCHAR},#{svrCommodityCode,jdbcType=VARCHAR},#{svrCommodityId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SP_COMMODITY_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="favgCostPrice">
+                FAVG_COST_PRICE,
+            </if>
+            <if test="favgSalePrice">
+                FAVG_SALE_PRICE,
+            </if>
+            <if test="fcostPrice">
+                FCOST_PRICE,
+            </if>
+            <if test="fmarketPrice">
+                FMARKET_PRICE,
+            </if>
+            <if test="fsalePrice">
+                FSALE_PRICE,
+            </if>
+            <if test="icommodityFloat">
+                ICOMMODITY_FLOAT,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="ielectronicFloat">
+                IELECTRONIC_FLOAT,
+            </if>
+            <if test="iidentificationType">
+                IIDENTIFICATION_TYPE,
+            </if>
+            <if test="iisUseIntegral">
+                IIS_USE_INTEGRAL,
+            </if>
+            <if test="ijoinActiveNum">
+                IJOIN_ACTIVE_NUM,
+            </if>
+            <if test="ilifeType">
+                ILIFE_TYPE,
+            </if>
+            <if test="imaxIntegral">
+                IMAX_INTEGRAL,
+            </if>
+            <if test="isaleNum">
+                ISALE_NUM,
+            </if>
+            <if test="ishelfLife">
+                ISHELF_LIFE,
+            </if>
+            <if test="ispecWeight">
+                ISPEC_WEIGHT,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="istoreDevice">
+                ISTORE_DEVICE,
+            </if>
+            <if test="iweigth">
+                IWEIGTH,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="sbigCategoryId">
+                SBIG_CATEGORY_ID,
+            </if>
+            <if test="sbigCategoryName">
+                SBIG_CATEGORY_NAME,
+            </if>
+            <if test="sbrandId">
+                SBRAND_ID,
+            </if>
+            <if test="sbrandName">
+                SBRAND_NAME,
+            </if>
+            <if test="scategoryCode">
+                SCATEGORY_CODE,
+            </if>
+            <if test="scategoryName">
+                SCATEGORY_NAME,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="scommodityImg">
+                SCOMMODITY_IMG,
+            </if>
+            <if test="slabelId">
+                SLABEL_ID,
+            </if>
+            <if test="slabelName">
+                SLABEL_NAME,
+            </if>
+            <if test="smanufacturer">
+                SMANUFACTURER,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="sname">
+                SNAME,
+            </if>
+            <if test="sorigin">
+                SORIGIN,
+            </if>
+            <if test="spackageUnit">
+                SPACKAGE_UNIT,
+            </if>
+            <if test="spackagingMaterial">
+                SPACKAGING_MATERIAL,
+            </if>
+            <if test="sproductBarcode">
+                SPRODUCT_BARCODE,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="sshortName">
+                SSHORT_NAME,
+            </if>
+            <if test="ssmallCategoryId">
+                SSMALL_CATEGORY_ID,
+            </if>
+            <if test="ssmallCategoryName">
+                SSMALL_CATEGORY_NAME,
+            </if>
+            <if test="sspecUnit">
+                SSPEC_UNIT,
+            </if>
+            <if test="staste">
+                STASTE,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="svrCode">
+                SVR_CODE,
+            </if>
+            <if test="svrCommodityCode">
+                SVR_COMMODITY_CODE,
+            </if>
+            <if test="svrCommodityId">
+                SVR_COMMODITY_ID,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="favgCostPrice != null  ">
+                #{favgCostPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="favgSalePrice != null  ">
+                #{favgSalePrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fcostPrice != null  ">
+                #{fcostPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fmarketPrice != null  ">
+                #{fmarketPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fsalePrice != null  ">
+                #{fsalePrice,jdbcType=NUMERIC},
+            </if>
+            <if test="icommodityFloat != null  ">
+                #{icommodityFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="ielectronicFloat != null  ">
+                #{ielectronicFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="iidentificationType != null  ">
+                #{iidentificationType,jdbcType=NUMERIC},
+            </if>
+            <if test="iisUseIntegral != null  ">
+                #{iisUseIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="ijoinActiveNum != null  ">
+                #{ijoinActiveNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ilifeType != null  ">
+                #{ilifeType,jdbcType=NUMERIC},
+            </if>
+            <if test="imaxIntegral != null  ">
+                #{imaxIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="isaleNum != null  ">
+                #{isaleNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ishelfLife != null  ">
+                #{ishelfLife,jdbcType=NUMERIC},
+            </if>
+            <if test="ispecWeight != null  ">
+                #{ispecWeight,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="istoreDevice != null  ">
+                #{istoreDevice,jdbcType=NUMERIC},
+            </if>
+            <if test="iweigth != null  ">
+                #{iweigth,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sbigCategoryId != null and  sbigCategoryId != ''  ">
+                #{sbigCategoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbigCategoryName != null and  sbigCategoryName != ''  ">
+                #{sbigCategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandId != null and  sbrandId != ''  ">
+                #{sbrandId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandName != null and  sbrandName != ''  ">
+                #{sbrandName,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryCode != null and  scategoryCode != ''  ">
+                #{scategoryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryName != null and  scategoryName != ''  ">
+                #{scategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityImg != null and  scommodityImg != ''  ">
+                #{scommodityImg,jdbcType=VARCHAR},
+            </if>
+            <if test="slabelId != null and  slabelId != ''  ">
+                #{slabelId,jdbcType=VARCHAR},
+            </if>
+            <if test="slabelName != null and  slabelName != ''  ">
+                #{slabelName,jdbcType=VARCHAR},
+            </if>
+            <if test="smanufacturer != null and  smanufacturer != ''  ">
+                #{smanufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sorigin != null and  sorigin != ''  ">
+                #{sorigin,jdbcType=VARCHAR},
+            </if>
+            <if test="spackageUnit != null and  spackageUnit != ''  ">
+                #{spackageUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="spackagingMaterial != null and  spackagingMaterial != ''  ">
+                #{spackagingMaterial,jdbcType=VARCHAR},
+            </if>
+            <if test="sproductBarcode != null and  sproductBarcode != ''  ">
+                #{sproductBarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="sshortName != null and  sshortName != ''  ">
+                #{sshortName,jdbcType=VARCHAR},
+            </if>
+            <if test="ssmallCategoryId != null and  ssmallCategoryId != ''  ">
+                #{ssmallCategoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="ssmallCategoryName != null and  ssmallCategoryName != ''  ">
+                #{ssmallCategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="sspecUnit != null and  sspecUnit != ''  ">
+                #{sspecUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="staste != null and  staste != ''  ">
+                #{staste,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCode != null and  svrCode != ''  ">
+                #{svrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCommodityCode != null and  svrCommodityCode != ''  ">
+                #{svrCommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCommodityId != null and  svrCommodityId != ''  ">
+                #{svrCommodityId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        <set>
+            <if test="favgCostPrice != null  ">
+                FAVG_COST_PRICE=#{favgCostPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="favgSalePrice != null  ">
+                FAVG_SALE_PRICE=#{favgSalePrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fcostPrice != null  ">
+                FCOST_PRICE=#{fcostPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fmarketPrice != null  ">
+                FMARKET_PRICE=#{fmarketPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fsalePrice != null  ">
+                FSALE_PRICE=#{fsalePrice,jdbcType=NUMERIC},
+            </if>
+            <if test="icommodityFloat != null  ">
+                ICOMMODITY_FLOAT=#{icommodityFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="ielectronicFloat != null  ">
+                IELECTRONIC_FLOAT=#{ielectronicFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="iidentificationType != null  ">
+                IIDENTIFICATION_TYPE=#{iidentificationType,jdbcType=NUMERIC},
+            </if>
+            <if test="iisUseIntegral != null  ">
+                IIS_USE_INTEGRAL=#{iisUseIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="ijoinActiveNum != null  ">
+                IJOIN_ACTIVE_NUM=#{ijoinActiveNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ilifeType != null  ">
+                ILIFE_TYPE=#{ilifeType,jdbcType=NUMERIC},
+            </if>
+            <if test="imaxIntegral != null  ">
+                IMAX_INTEGRAL=#{imaxIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="isaleNum != null  ">
+                ISALE_NUM=#{isaleNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ishelfLife != null  ">
+                ISHELF_LIFE=#{ishelfLife,jdbcType=NUMERIC},
+            </if>
+            <if test="ispecWeight != null  ">
+                ISPEC_WEIGHT=#{ispecWeight,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="istoreDevice != null  ">
+                ISTORE_DEVICE=#{istoreDevice,jdbcType=NUMERIC},
+            </if>
+            <if test="iweigth != null  ">
+                IWEIGTH=#{iweigth,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sbigCategoryId != null and  sbigCategoryId != ''  ">
+                SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbigCategoryName != null and  sbigCategoryName != ''  ">
+                SBIG_CATEGORY_NAME=#{sbigCategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandId != null and  sbrandId != ''  ">
+                SBRAND_ID=#{sbrandId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandName != null and  sbrandName != ''  ">
+                SBRAND_NAME=#{sbrandName,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryCode != null and  scategoryCode != ''  ">
+                SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryName != null and  scategoryName != ''  ">
+                SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityImg != null and  scommodityImg != ''  ">
+                SCOMMODITY_IMG=#{scommodityImg,jdbcType=VARCHAR},
+            </if>
+            <if test="slabelId != null and  slabelId != ''  ">
+                SLABEL_ID=#{slabelId,jdbcType=VARCHAR},
+            </if>
+            <if test="slabelName != null and  slabelName != ''  ">
+                SLABEL_NAME=#{slabelName,jdbcType=VARCHAR},
+            </if>
+            <if test="smanufacturer != null and  smanufacturer != ''  ">
+                SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sorigin != null and  sorigin != ''  ">
+                SORIGIN=#{sorigin,jdbcType=VARCHAR},
+            </if>
+            <if test="spackageUnit != null and  spackageUnit != ''  ">
+                SPACKAGE_UNIT=#{spackageUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="spackagingMaterial != null and  spackagingMaterial != ''  ">
+                SPACKAGING_MATERIAL=#{spackagingMaterial,jdbcType=VARCHAR},
+            </if>
+            <if test="sproductBarcode != null and  sproductBarcode != ''  ">
+                SPRODUCT_BARCODE=#{sproductBarcode,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="sshortName != null and  sshortName != ''  ">
+                SSHORT_NAME=#{sshortName,jdbcType=VARCHAR},
+            </if>
+            <if test="ssmallCategoryId != null and  ssmallCategoryId != ''  ">
+                SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="ssmallCategoryName != null and  ssmallCategoryName != ''  ">
+                SSMALL_CATEGORY_NAME=#{ssmallCategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="sspecUnit != null and  sspecUnit != ''  ">
+                SSPEC_UNIT=#{sspecUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="staste != null and  staste != ''  ">
+                STASTE=#{staste,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCode != null and  svrCode != ''  ">
+                SVR_CODE=#{svrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCommodityCode != null and  svrCommodityCode != ''  ">
+                SVR_COMMODITY_CODE=#{svrCommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCommodityId != null and  svrCommodityId != ''  ">
+                SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set
+        FAVG_COST_PRICE=#{favgCostPrice,jdbcType=NUMERIC}
+        ,FAVG_SALE_PRICE=#{favgSalePrice,jdbcType=NUMERIC}
+        ,FCOST_PRICE=#{fcostPrice,jdbcType=NUMERIC}
+        ,FMARKET_PRICE=#{fmarketPrice,jdbcType=NUMERIC}
+        ,FSALE_PRICE=#{fsalePrice,jdbcType=NUMERIC}
+        ,ICOMMODITY_FLOAT=#{icommodityFloat,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IELECTRONIC_FLOAT=#{ielectronicFloat,jdbcType=NUMERIC}
+        ,IIDENTIFICATION_TYPE=#{iidentificationType,jdbcType=NUMERIC}
+        ,IIS_USE_INTEGRAL=#{iisUseIntegral,jdbcType=NUMERIC}
+        ,IJOIN_ACTIVE_NUM=#{ijoinActiveNum,jdbcType=NUMERIC}
+        ,ILIFE_TYPE=#{ilifeType,jdbcType=NUMERIC}
+        ,IMAX_INTEGRAL=#{imaxIntegral,jdbcType=NUMERIC}
+        ,ISALE_NUM=#{isaleNum,jdbcType=NUMERIC}
+        ,ISHELF_LIFE=#{ishelfLife,jdbcType=NUMERIC}
+        ,ISPEC_WEIGHT=#{ispecWeight,jdbcType=NUMERIC}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,ISTORE_DEVICE=#{istoreDevice,jdbcType=NUMERIC}
+        ,IWEIGTH=#{iweigth,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR}
+        ,SBIG_CATEGORY_NAME=#{sbigCategoryName,jdbcType=VARCHAR}
+        ,SBRAND_ID=#{sbrandId,jdbcType=VARCHAR}
+        ,SBRAND_NAME=#{sbrandName,jdbcType=VARCHAR}
+        ,SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+        ,SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SCOMMODITY_IMG=#{scommodityImg,jdbcType=VARCHAR}
+        ,SLABEL_ID=#{slabelId,jdbcType=VARCHAR}
+        ,SLABEL_NAME=#{slabelName,jdbcType=VARCHAR}
+        ,SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SNAME=#{sname,jdbcType=VARCHAR}
+        ,SORIGIN=#{sorigin,jdbcType=VARCHAR}
+        ,SPACKAGE_UNIT=#{spackageUnit,jdbcType=VARCHAR}
+        ,SPACKAGING_MATERIAL=#{spackagingMaterial,jdbcType=VARCHAR}
+        ,SPRODUCT_BARCODE=#{sproductBarcode,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SSHORT_NAME=#{sshortName,jdbcType=VARCHAR}
+        ,SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR}
+        ,SSMALL_CATEGORY_NAME=#{ssmallCategoryName,jdbcType=VARCHAR}
+        ,SSPEC_UNIT=#{sspecUnit,jdbcType=VARCHAR}
+        ,STASTE=#{staste,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,SVR_CODE=#{svrCode,jdbcType=VARCHAR}
+        ,SVR_COMMODITY_CODE=#{svrCommodityCode,jdbcType=VARCHAR}
+        ,SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!--新增SQL开始-->
+    <!--根据视觉商品修改结果修改对应商品表中对应商品-->
+    <update id="updateByVrIdSelectiveVo" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        <set>
+            SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR},
+            STASTE=#{staste,jdbcType=VARCHAR},
+            SPACKAGING_MATERIAL=#{spackagingMaterial,jdbcType=VARCHAR},
+            SPRODUCT_BARCODE=#{sproductBarcode,jdbcType=VARCHAR},
+            SORIGIN=#{sorigin,jdbcType=VARCHAR},
+            SSHORT_NAME=#{sshortName,jdbcType=VARCHAR},
+            IIDENTIFICATION_TYPE=#{iidentificationType,jdbcType=NUMERIC},
+            SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR},
+            SSMALL_CATEGORY_NAME=#{ssmallCategoryName,jdbcType=VARCHAR},
+            SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR},
+            SBIG_CATEGORY_NAME=#{sbigCategoryName,jdbcType=VARCHAR},
+            <if test="icommodityFloat != null  ">
+                ICOMMODITY_FLOAT=#{icommodityFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="ielectronicFloat != null  ">
+                IELECTRONIC_FLOAT=#{ielectronicFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="iweigth != null  ">
+                IWEIGTH=#{iweigth,jdbcType=NUMERIC},
+            </if>
+            <if test="favgCostPrice != null  ">
+                FAVG_COST_PRICE=#{favgCostPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="favgSalePrice != null  ">
+                FAVG_SALE_PRICE=#{favgSalePrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fcostPrice != null  ">
+                FCOST_PRICE=#{fcostPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fmarketPrice != null  ">
+                FMARKET_PRICE=#{fmarketPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="fsalePrice != null  ">
+                FSALE_PRICE=#{fsalePrice,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisUseIntegral != null  ">
+                IIS_USE_INTEGRAL=#{iisUseIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="ijoinActiveNum != null  ">
+                IJOIN_ACTIVE_NUM=#{ijoinActiveNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ilifeType != null  ">
+                ILIFE_TYPE=#{ilifeType,jdbcType=NUMERIC},
+            </if>
+            <if test="imaxIntegral != null  ">
+                IMAX_INTEGRAL=#{imaxIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="isaleNum != null  ">
+                ISALE_NUM=#{isaleNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ishelfLife != null  ">
+                ISHELF_LIFE=#{ishelfLife,jdbcType=NUMERIC},
+            </if>
+            <if test="ispecWeight != null  ">
+                ISPEC_WEIGHT=#{ispecWeight,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="istoreDevice != null  ">
+                ISTORE_DEVICE=#{istoreDevice,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandId != null and  sbrandId != ''  ">
+                SBRAND_ID=#{sbrandId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandName != null and  sbrandName != ''  ">
+                SBRAND_NAME=#{sbrandName,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryCode != null and  scategoryCode != ''  ">
+                SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryName != null and  scategoryName != ''  ">
+                SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityImg != null and  scommodityImg != ''  ">
+                SCOMMODITY_IMG=#{scommodityImg,jdbcType=VARCHAR},
+            </if>
+            <if test="slabelId != null and  slabelId != ''  ">
+                SLABEL_ID=#{slabelId,jdbcType=VARCHAR},
+            </if>
+            <if test="slabelName != null and  slabelName != ''  ">
+                SLABEL_NAME=#{slabelName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="spackageUnit != null and  spackageUnit != ''  ">
+                SPACKAGE_UNIT=#{spackageUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="sspecUnit != null and  sspecUnit != ''  ">
+                SSPEC_UNIT=#{sspecUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCode != null and  svrCode != ''  ">
+                SVR_CODE=#{svrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCommodityCode != null and  svrCommodityCode != ''  ">
+                SVR_COMMODITY_CODE=#{svrCommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+    </update>
+    <!--自定义编辑-->
+    <update id="updateByIdSelectiveVo" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        <set>
+            SLABEL_ID=#{slabelId,jdbcType=VARCHAR},
+            SLABEL_NAME=#{slabelName,jdbcType=VARCHAR},
+            FCOST_PRICE=#{fcostPrice,jdbcType=NUMERIC},
+            FMARKET_PRICE=#{fmarketPrice,jdbcType=NUMERIC},
+            FSALE_PRICE=#{fsalePrice,jdbcType=NUMERIC},
+            SREMARK=#{sremark,jdbcType=VARCHAR},
+            STASTE=#{staste,jdbcType=VARCHAR},
+            SPACKAGING_MATERIAL=#{spackagingMaterial,jdbcType=VARCHAR},
+            SPRODUCT_BARCODE=#{sproductBarcode,jdbcType=VARCHAR},
+            SORIGIN=#{sorigin,jdbcType=VARCHAR},
+            IIDENTIFICATION_TYPE=#{iidentificationType,jdbcType=NUMERIC},
+            SSHORT_NAME=#{sshortName,jdbcType=VARCHAR},
+            <if test="icommodityFloat != null  ">
+                ICOMMODITY_FLOAT=#{icommodityFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="ielectronicFloat != null  ">
+                IELECTRONIC_FLOAT=#{ielectronicFloat,jdbcType=NUMERIC},
+            </if>
+            <if test="iweigth != null  ">
+                IWEIGTH=#{iweigth,jdbcType=NUMERIC},
+            </if>
+            <if test="favgCostPrice != null  ">
+                FAVG_COST_PRICE=#{favgCostPrice,jdbcType=NUMERIC},
+            </if>
+            <if test="favgSalePrice != null  ">
+                FAVG_SALE_PRICE=#{favgSalePrice,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisUseIntegral != null  ">
+                IIS_USE_INTEGRAL=#{iisUseIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="ijoinActiveNum != null  ">
+                IJOIN_ACTIVE_NUM=#{ijoinActiveNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ilifeType != null  ">
+                ILIFE_TYPE=#{ilifeType,jdbcType=NUMERIC},
+            </if>
+            <if test="imaxIntegral != null  ">
+                IMAX_INTEGRAL=#{imaxIntegral,jdbcType=NUMERIC},
+            </if>
+            <if test="isaleNum != null  ">
+                ISALE_NUM=#{isaleNum,jdbcType=NUMERIC},
+            </if>
+            <if test="ishelfLife != null  ">
+                ISHELF_LIFE=#{ishelfLife,jdbcType=NUMERIC},
+            </if>
+            <if test="ispecWeight != null  ">
+                ISPEC_WEIGHT=#{ispecWeight,jdbcType=NUMERIC},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="istoreDevice != null  ">
+                ISTORE_DEVICE=#{istoreDevice,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sbigCategoryId != null and  sbigCategoryId != ''  ">
+                SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbigCategoryName != null and  sbigCategoryName != ''  ">
+                SBIG_CATEGORY_NAME=#{sbigCategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandId != null and  sbrandId != ''  ">
+                SBRAND_ID=#{sbrandId,jdbcType=VARCHAR},
+            </if>
+            <if test="sbrandName != null and  sbrandName != ''  ">
+                SBRAND_NAME=#{sbrandName,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryCode != null and  scategoryCode != ''  ">
+                SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scategoryName != null and  scategoryName != ''  ">
+                SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityImg != null and  scommodityImg != ''  ">
+                SCOMMODITY_IMG=#{scommodityImg,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="spackageUnit != null and  spackageUnit != ''  ">
+                SPACKAGE_UNIT=#{spackageUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="ssmallCategoryId != null and  ssmallCategoryId != ''  ">
+                SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR},
+            </if>
+            <if test="ssmallCategoryName != null and  ssmallCategoryName != ''  ">
+                SSMALL_CATEGORY_NAME=#{ssmallCategoryName,jdbcType=VARCHAR},
+            </if>
+            <if test="sspecUnit != null and  sspecUnit != ''  ">
+                SSPEC_UNIT=#{sspecUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCode != null and  svrCode != ''  ">
+                SVR_CODE=#{svrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCommodityCode != null and  svrCommodityCode != ''  ">
+                SVR_COMMODITY_CODE=#{svrCommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCommodityId != null and  svrCommodityId != ''  ">
+                SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <resultMap id="resultDomainEntity" type="com.cloud.cang.mgr.sp.domain.CommodityDomain">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FAVG_COST_PRICE" property="favgCostPrice" jdbcType="NUMERIC"/>
+        <result column="FAVG_SALE_PRICE" property="favgSalePrice" jdbcType="NUMERIC"/>
+        <result column="FCOST_PRICE" property="fcostPrice" jdbcType="NUMERIC"/>
+        <result column="FMARKET_PRICE" property="fmarketPrice" jdbcType="NUMERIC"/>
+        <result column="FSALE_PRICE" property="fsalePrice" jdbcType="NUMERIC"/>
+        <result column="ICOMMODITY_FLOAT" property="icommodityFloat" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IELECTRONIC_FLOAT" property="ielectronicFloat" jdbcType="NUMERIC"/>
+        <result column="IIDENTIFICATION_TYPE" property="iidentificationType" jdbcType="NUMERIC"/>
+        <result column="IIS_USE_INTEGRAL" property="iisUseIntegral" jdbcType="NUMERIC"/>
+        <result column="IJOIN_ACTIVE_NUM" property="ijoinActiveNum" jdbcType="NUMERIC"/>
+        <result column="ILIFE_TYPE" property="ilifeType" jdbcType="NUMERIC"/>
+        <result column="IMAX_INTEGRAL" property="imaxIntegral" jdbcType="NUMERIC"/>
+        <result column="ISALE_NUM" property="isaleNum" jdbcType="NUMERIC"/>
+        <result column="ISHELF_LIFE" property="ishelfLife" jdbcType="NUMERIC"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="NUMERIC"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="ISTORE_DEVICE" property="istoreDevice" jdbcType="NUMERIC"/>
+        <result column="IWEIGTH" property="iweigth" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SBIG_CATEGORY_ID" property="sbigCategoryId" jdbcType="VARCHAR"/>
+        <result column="SBIG_CATEGORY_NAME" property="sbigCategoryName" jdbcType="VARCHAR"/>
+        <result column="SBRAND_ID" property="sbrandId" jdbcType="VARCHAR"/>
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="SCATEGORY_CODE" property="scategoryCode" jdbcType="VARCHAR"/>
+        <result column="SCATEGORY_NAME" property="scategoryName" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_IMG" property="scommodityImg" jdbcType="VARCHAR"/>
+        <result column="SLABEL_ID" property="slabelId" jdbcType="VARCHAR"/>
+        <result column="SLABEL_NAME" property="slabelName" jdbcType="VARCHAR"/>
+        <result column="SMANUFACTURER" property="smanufacturer" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SNAME" property="sname" jdbcType="VARCHAR"/>
+        <result column="SORIGIN" property="sorigin" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGING_MATERIAL" property="spackagingMaterial" jdbcType="VARCHAR"/>
+        <result column="SPRODUCT_BARCODE" property="sproductBarcode" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SSHORT_NAME" property="sshortName" jdbcType="VARCHAR"/>
+        <result column="SSMALL_CATEGORY_ID" property="ssmallCategoryId" jdbcType="VARCHAR"/>
+        <result column="SSMALL_CATEGORY_NAME" property="ssmallCategoryName" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="SVR_CODE" property="svrCode" jdbcType="VARCHAR"/>
+        <result column="SVR_COMMODITY_CODE" property="svrCommodityCode" jdbcType="VARCHAR"/>
+        <result column="SVR_COMMODITY_ID" property="svrCommodityId" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+        <result column="merchantName" property="merchantName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="VO_Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and A.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="icommodityFloat != null  ">
+                    and A.ICOMMODITY_FLOAT=#{icommodityFloat,jdbcType=NUMERIC}
+                </if>
+                <if test="ielectronicFloat != null  ">
+                    and A.IELECTRONIC_FLOAT=#{ielectronicFloat,jdbcType=NUMERIC}
+                </if>
+                <if test="iweigth != null  ">
+                    and A.IWEIGTH=#{iweigth,jdbcType=NUMERIC}
+                </if>
+                <if test="fcostPrice != null  ">
+                    and A.FCOST_PRICE=#{fcostPrice,jdbcType=NUMERIC}
+                </if>
+                <if test="favgCostPrice != null  ">
+                    and A.FAVG_COST_PRICE=#{favgCostPrice,jdbcType=NUMERIC}
+                </if>
+                <if test="fmarketPrice != null  ">
+                    and A.FMARKET_PRICE=#{fmarketPrice,jdbcType=NUMERIC}
+                </if>
+                <if test="fsalePrice != null  ">
+                    and A.FSALE_PRICE=#{fsalePrice,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and A.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisUseIntegral != null  ">
+                    and A.IIS_USE_INTEGRAL=#{iisUseIntegral,jdbcType=NUMERIC}
+                </if>
+                <if test="ilifeType != null  ">
+                    and A.ILIFE_TYPE=#{ilifeType,jdbcType=NUMERIC}
+                </if>
+                <if test="imaxIntegral != null  ">
+                    and A.IMAX_INTEGRAL=#{imaxIntegral,jdbcType=NUMERIC}
+                </if>
+                <if test="isaleNum != null  ">
+                    and A.ISALE_NUM=#{isaleNum,jdbcType=NUMERIC}
+                </if>
+                <if test="ishelfLife != null  ">
+                    and A.ISHELF_LIFE=#{ishelfLife,jdbcType=NUMERIC}
+                </if>
+                <if test="ispecWeight != null  ">
+                    and A.ISPEC_WEIGHT=#{ispecWeight,jdbcType=NUMERIC}
+                </if>
+                <if test="istatus != null  ">
+                    and A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="istoreDevice != null  ">
+                    and A.ISTORE_DEVICE=#{istoreDevice,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and A.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="sbigCategoryId != null and  sbigCategoryId != ''  ">
+                    and A.SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR}
+                </if>
+                <if test="sbigCategoryName != null and  sbigCategoryName != ''  ">
+                    and A.SBIG_CATEGORY_NAME=#{sbigCategoryName,jdbcType=VARCHAR}
+                </if>
+                <if test="sbrandId != null and  sbrandId != ''  ">
+                    and A.SBRAND_ID=#{sbrandId,jdbcType=VARCHAR}
+                </if>
+                <if test="sbrandName != null and  sbrandName != ''  ">
+                    and A.SBRAND_NAME like CONCAT('%',#{sbrandName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="scategoryCode != null and  scategoryCode != ''  ">
+                    and A.SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+                </if>
+                <if test="scategoryName != null and  scategoryName != ''  ">
+                    and A.SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and A.SCODE like CONCAT('%',#{scode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="scommodityImg != null and  scommodityImg != ''  ">
+                    and A.SCOMMODITY_IMG=#{scommodityImg,jdbcType=VARCHAR}
+                </if>
+                <if test="slabelId != null and  slabelId != ''  ">
+                    and A.SLABEL_ID=#{slabelId,jdbcType=VARCHAR}
+                </if>
+                <if test="slabelName != null and  slabelName != ''  ">
+                    and A.SLABEL_NAME like CONCAT('%',#{slabelName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and A.SMERCHANT_CODE like CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                    and CONCAT(A.SBRAND_NAME,A.SNAME,A.STASTE,A.ISPEC_WEIGHT,A.SSPEC_UNIT,'/',A.SPACKAGE_UNIT) like
+                    CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="spackageUnit != null and  spackageUnit != ''  ">
+                    and A.SPACKAGE_UNIT=#{spackageUnit,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and A.SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="sshortName != null and  sshortName != ''  ">
+                    and A.SSHORT_NAME=#{sshortName,jdbcType=VARCHAR}
+                </if>
+                <if test="ssmallCategoryId != null and  ssmallCategoryId != ''  ">
+                    and A.SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR}
+                </if>
+                <if test="ssmallCategoryName != null and  ssmallCategoryName != ''  ">
+                    and A.SSMALL_CATEGORY_NAME like CONCAT('%',#{ssmallCategoryName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sspecUnit != null and  sspecUnit != ''  ">
+                    and A.SSPEC_UNIT=#{sspecUnit,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and A.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="svrCode != null and  svrCode != ''  ">
+                    and A.SVR_CODE like CONCAT('%',#{svrCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="svrCommodityCode != null and  svrCommodityCode != ''  ">
+                    and A.SVR_COMMODITY_CODE=#{svrCommodityCode,jdbcType=VARCHAR}
+                </if>
+                <if test="svrCommodityId != null and  svrCommodityId != ''  ">
+                    and A.SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="merchantName != null  and  merchantName != '' ">
+                    and B.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="queryCondition != null and  queryCondition != ''  ">
+                    and ${queryCondition}
+                </if>
+                <if test="deviceId != null and  deviceId != ''  ">
+                    and C.SDEVICE_ID=#{deviceId,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectPageByDomainWhere" resultMap="resultDomainEntity"
+            parameterType="com.cloud.cang.mgr.sp.vo.CommodityVo">
+        select
+        A.ID,A.FAVG_COST_PRICE,A.FAVG_SALE_PRICE,A.FCOST_PRICE,A.FMARKET_PRICE,A.FSALE_PRICE,A.ICOMMODITY_FLOAT,A.IDEL_FLAG,
+        A.IELECTRONIC_FLOAT,A.IIDENTIFICATION_TYPE,A.IIS_USE_INTEGRAL,A.IJOIN_ACTIVE_NUM,A.ILIFE_TYPE,A.IMAX_INTEGRAL,
+        A.ISALE_NUM,A.ISHELF_LIFE,A.ISPEC_WEIGHT,A.ISTATUS,A.ISTORE_DEVICE,A.IWEIGTH,A.SADD_USER,A.SBIG_CATEGORY_ID,
+        A.SBIG_CATEGORY_NAME,A.SBRAND_ID,A.SBRAND_NAME,A.SCATEGORY_CODE,A.SCATEGORY_NAME,A.SCODE,A.SCOMMODITY_IMG,
+        A.SLABEL_ID,A.SLABEL_NAME,A.SMANUFACTURER,A.SMERCHANT_CODE,A.SMERCHANT_ID,A.SNAME,A.SORIGIN,A.SPACKAGE_UNIT,
+        A.SPACKAGING_MATERIAL,A.SPRODUCT_BARCODE,A.SREMARK,A.SSHORT_NAME,A.SSMALL_CATEGORY_ID,A.SSMALL_CATEGORY_NAME,
+        A.SSPEC_UNIT,A.STASTE,A.SUPDATE_USER,A.SVR_CODE,A.SVR_COMMODITY_CODE,A.SVR_COMMODITY_ID,A.TADD_TIME,A.TUPDATE_TIME,
+        B.SNAME as merchantName
+        from SP_COMMODITY_INFO A
+        LEFT JOIN SH_MERCHANT_INFO B ON A.SMERCHANT_ID=B.ID
+        <include refid="VO_Entity_Where_Clause"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        FIELD(A.ISTATUS,20), A.TADD_TIME DESC
+    </select>
+    <!--订单编辑选择商品-->
+    <select id="selectOrderCommodity" parameterType="com.cloud.cang.mgr.sp.vo.CommodityVo"
+            resultMap="resultDomainEntity">
+        select
+        A.ID,A.FAVG_COST_PRICE,A.FAVG_SALE_PRICE,A.FCOST_PRICE,A.FMARKET_PRICE,A.FSALE_PRICE,A.ICOMMODITY_FLOAT,A.IDEL_FLAG,
+        A.IELECTRONIC_FLOAT,A.IIDENTIFICATION_TYPE,A.IIS_USE_INTEGRAL,A.IJOIN_ACTIVE_NUM,A.ILIFE_TYPE,A.IMAX_INTEGRAL,
+        A.ISALE_NUM,A.ISHELF_LIFE,A.ISPEC_WEIGHT,A.ISTATUS,A.ISTORE_DEVICE,A.IWEIGTH,A.SADD_USER,A.SBIG_CATEGORY_ID,
+        A.SBIG_CATEGORY_NAME,A.SBRAND_ID,A.SBRAND_NAME,A.SCATEGORY_CODE,A.SCATEGORY_NAME,A.SCODE,A.SCOMMODITY_IMG,
+        A.SLABEL_ID,A.SLABEL_NAME,A.SMANUFACTURER,A.SMERCHANT_CODE,A.SMERCHANT_ID,A.SNAME,A.SORIGIN,A.SPACKAGE_UNIT,
+        A.SPACKAGING_MATERIAL,A.SPRODUCT_BARCODE,A.SREMARK,A.SSHORT_NAME,A.SSMALL_CATEGORY_ID,A.SSMALL_CATEGORY_NAME,
+        A.SSPEC_UNIT,A.STASTE,A.SUPDATE_USER,A.SVR_CODE,A.SVR_COMMODITY_CODE,A.SVR_COMMODITY_ID,A.TADD_TIME,A.TUPDATE_TIME
+        from
+        SM_DEVICE_STOCK C
+        INNER JOIN sp_commodity_info A ON C.SMERCHANT_ID = A.SMERCHANT_ID and C.SCOMMODITY_ID = A.ID
+        <include refid="VO_Entity_Where_Clause"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        FIELD(A.ISTATUS,20), A.TADD_TIME DESC
+    </select>
+
+    <select id="selectByCode" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SP_COMMODITY_INFO
+        where SCODE = #{commodityCode,jdbcType=VARCHAR}
+    </select>
+    <select id="selectUnDelById" resultMap="resultEntity" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        select
+        <include refid="column_List"/>
+        from SP_COMMODITY_INFO
+        where SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+        and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        and IDEL_FLAG=0
+    </select>
+
+    <!--视觉商品状态修改为停用或者已下架时，修改商品状态为失效-->
+    <update id="updateStatusToInvalid" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set ISTATUS=20
+        where SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+    </update>
+
+    <!--视觉商品状态修改为在售并且已上架时， 修改商品状态为正常-->
+    <update id="updateStatusTovalid" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set ISTATUS=10
+        where SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateJoinNumByMerchantId" parameterType="java.lang.String">
+        update SP_COMMODITY_INFO
+        set IJOIN_ACTIVE_NUM=IFNULL(IJOIN_ACTIVE_NUM,0)+1
+        where SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR} and IDEL_FLAG=0 and ISTATUS = 10
+    </update>
+    <update id="updateJoinNumByCommodityIds" parameterType="java.util.Map">
+        update SP_COMMODITY_INFO
+        set IJOIN_ACTIVE_NUM=IFNULL(IJOIN_ACTIVE_NUM,0)+1
+        where SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR} and id in (${commodityIds}) and IDEL_FLAG=0 and ISTATUS = 10
+    </update>
+
+
+    <!--获取商户所有有效设备-->
+    <select id="selectAllCommodityByMerchantId" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SP_COMMODITY_INFO
+        where smerchant_id = #{smerchantId,jdbcType=VARCHAR} and istatus=10 and idel_flag=0
+    </select>
+
+    <!--查询所有商品-->
+    <select id="queryAllCom" resultMap="resultEntity">
+        select
+        <include refid="column_List"/>
+        from SP_COMMODITY_INFO
+        <include refid="Entity_Where_Clause"/>
+    </select>
+
+    <!--根据商品标签ID清空该商品的标签-->
+    <update id="emptyCommodityLabel" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set SLABEL_ID="" , SLABEL_NAME=""
+        where SLABEL_ID=#{slabelId,jdbcType=VARCHAR}
+    </update>
+
+
+    <!--根据商品品牌ID清空该商品的品牌信息-->
+    <update id="emptyBrand" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set
+        SBRAND_ID="",SBRAND_NAME="",TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        where SBRAND_ID=#{sbrandId,jdbcType=VARCHAR}
+        AND SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        AND IDEL_FLAG=0
+    </update>
+
+    <!--根据商品品牌ID清空该商品的品牌信息-->
+    <update id="emptyCommodityBigCategory" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set
+        SBIG_CATEGORY_ID="",SBIG_CATEGORY_NAME="",TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        where SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR}
+        AND SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        AND IDEL_FLAG=0
+    </update>
+
+    <!--根据商品品牌ID清空该商品的品牌信息-->
+    <update id="emptyCommoditySmallCategory" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set
+        SSMALL_CATEGORY_ID="",SSMALL_CATEGORY_NAME="",TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        where SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR}
+        AND SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        AND IDEL_FLAG=0
+    </update>
+
+    <!--根据视觉商品ID逻辑删除-->
+    <update id="logicDeleteVrCommodityByVrId" parameterType="java.lang.String">
+        update SP_COMMODITY_INFO
+        set IDEL_FLAG=1
+        where SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+    </update>
+
+    <!--根据品牌ID修改对应商品信息-->
+    <update id="updateBrandInfo" parameterType="com.cloud.cang.model.sp.CommodityInfo">
+        update SP_COMMODITY_INFO
+        set
+        SBRAND_NAME=#{sbrandName,jdbcType=VARCHAR},SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where SBRAND_ID=#{sbrandId,jdbcType=VARCHAR}
+        and IDEL_FLAG=0
+    </update>
+
+    <select id="selectExisCommodity" parameterType="java.util.Map" resultMap="EditResultEntity">
+        SELECT
+        SCI.SNAME,SCI.FSALE_PRICE,SSD.FCOST_AMOUNT,IFNULL(SSD.FTAX_POINT,0) FTAX_POINT
+        from sp_commodity_info SCI
+        INNER JOIN SM_DEVICE_STOCK SDS on SDS.SCOMMODITY_ID = SCI.id AND SDS.SMERCHANT_ID =SCI.SMERCHANT_ID
+        RIGHT JOIN SM_STOCK_DETAIL SSD ON SDS.ID = SSD.SSTOCK_ID AND SSD.SCOMMODITY_ID = SDS.SCOMMODITY_ID
+        WHERE SCI.ID = #{id,jdbcType=VARCHAR}
+        AND SCI.SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND SCI.IDEL_FLAG =0
+        AND SCI.ISTATUS = 10
+        AND SDS.SDEVICE_ID =#{deviceId,jdbcType=VARCHAR}
+        ORDER BY SSD.TADD_TIME DESC
+        LIMIT 1
+    </select>
+
+    <select id="selectCommodityInfoByExport" resultType="java.util.HashMap"
+            parameterType="com.cloud.cang.mgr.sp.vo.CommodityVo">
+        SELECT
+        A.ID,
+        concat(
+        A.SBRAND_NAME,
+        A.SNAME,
+        A.STASTE,
+        A.ISPEC_WEIGHT,
+        A.SSPEC_UNIT
+        ) AS SPNAME,
+        A.SBRAND_NAME,
+        A.SNAME,
+        A.SSPEC_UNIT,
+        A.FAVG_COST_PRICE,
+        A.FAVG_SALE_PRICE,
+        A.FCOST_PRICE,
+        A.FMARKET_PRICE,
+        A.FSALE_PRICE,
+        A.IDEL_FLAG,
+        A.IIDENTIFICATION_TYPE,
+        A.IIS_USE_INTEGRAL,
+        A.IJOIN_ACTIVE_NUM,
+        A.ILIFE_TYPE,
+        A.IMAX_INTEGRAL,
+        A.ISALE_NUM,
+        A.ISHELF_LIFE,
+        A.ISTATUS,
+        A.ISTORE_DEVICE,
+        A.SADD_USER,
+        A.SBIG_CATEGORY_ID,
+        A.SBIG_CATEGORY_NAME,
+        A.SBRAND_ID,
+        A.SCATEGORY_CODE,
+        A.SCATEGORY_NAME,
+        A.SCODE,
+        A.SCOMMODITY_IMG,
+        A.SLABEL_ID,
+        A.SLABEL_NAME,
+        A.SMANUFACTURER,
+        A.SMERCHANT_CODE,
+        A.SMERCHANT_ID,
+        A.SSHORT_NAME,
+        A.SORIGIN,
+        A.SPACKAGE_UNIT,
+        A.SPACKAGING_MATERIAL,
+        A.SPRODUCT_BARCODE,
+        A.SREMARK,
+        A.SSHORT_NAME,
+        A.SSMALL_CATEGORY_ID,
+        A.SSMALL_CATEGORY_NAME,
+        A.SUPDATE_USER,
+        A.SVR_CODE,
+        A.SVR_COMMODITY_CODE,
+        A.SVR_COMMODITY_ID,
+        A.TADD_TIME,
+        A.TUPDATE_TIME,
+        A.SMERCHANT_CODE,
+        B.SNAME as MERCHANT_NAME
+        FROM SP_COMMODITY_INFO A
+        LEFT JOIN SH_MERCHANT_INFO B ON A.SMERCHANT_ID=B.ID
+        <include refid="VO_Entity_Where_Clause"/>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        FIELD(A.ISTATUS,20), A.TADD_TIME DESC
+    </select>
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FAVG_COST_PRICE=#{favgCostPrice,jdbcType=NUMERIC}
+	FAVG_SALE_PRICE=#{favgSalePrice,jdbcType=NUMERIC}
+	FCOST_PRICE=#{fcostPrice,jdbcType=NUMERIC}
+	FMARKET_PRICE=#{fmarketPrice,jdbcType=NUMERIC}
+	FSALE_PRICE=#{fsalePrice,jdbcType=NUMERIC}
+	ICOMMODITY_FLOAT=#{icommodityFloat,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IELECTRONIC_FLOAT=#{ielectronicFloat,jdbcType=NUMERIC}
+	IIDENTIFICATION_TYPE=#{iidentificationType,jdbcType=NUMERIC}
+	IIS_USE_INTEGRAL=#{iisUseIntegral,jdbcType=NUMERIC}
+	IJOIN_ACTIVE_NUM=#{ijoinActiveNum,jdbcType=NUMERIC}
+	ILIFE_TYPE=#{ilifeType,jdbcType=NUMERIC}
+	IMAX_INTEGRAL=#{imaxIntegral,jdbcType=NUMERIC}
+	ISALE_NUM=#{isaleNum,jdbcType=NUMERIC}
+	ISHELF_LIFE=#{ishelfLife,jdbcType=NUMERIC}
+	ISPEC_WEIGHT=#{ispecWeight,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ISTORE_DEVICE=#{istoreDevice,jdbcType=NUMERIC}
+	IWEIGTH=#{iweigth,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SBIG_CATEGORY_ID=#{sbigCategoryId,jdbcType=VARCHAR}
+	SBIG_CATEGORY_NAME=#{sbigCategoryName,jdbcType=VARCHAR}
+	SBRAND_ID=#{sbrandId,jdbcType=VARCHAR}
+	SBRAND_NAME=#{sbrandName,jdbcType=VARCHAR}
+	SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+	SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SCOMMODITY_IMG=#{scommodityImg,jdbcType=VARCHAR}
+	SLABEL_ID=#{slabelId,jdbcType=VARCHAR}
+	SLABEL_NAME=#{slabelName,jdbcType=VARCHAR}
+	SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SORIGIN=#{sorigin,jdbcType=VARCHAR}
+	SPACKAGE_UNIT=#{spackageUnit,jdbcType=VARCHAR}
+	SPACKAGING_MATERIAL=#{spackagingMaterial,jdbcType=VARCHAR}
+	SPRODUCT_BARCODE=#{sproductBarcode,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSHORT_NAME=#{sshortName,jdbcType=VARCHAR}
+	SSMALL_CATEGORY_ID=#{ssmallCategoryId,jdbcType=VARCHAR}
+	SSMALL_CATEGORY_NAME=#{ssmallCategoryName,jdbcType=VARCHAR}
+	SSPEC_UNIT=#{sspecUnit,jdbcType=VARCHAR}
+	STASTE=#{staste,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	SVR_CODE=#{svrCode,jdbcType=VARCHAR}
+	SVR_COMMODITY_CODE=#{svrCommodityCode,jdbcType=VARCHAR}
+	SVR_COMMODITY_ID=#{svrCommodityId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+</mapper>

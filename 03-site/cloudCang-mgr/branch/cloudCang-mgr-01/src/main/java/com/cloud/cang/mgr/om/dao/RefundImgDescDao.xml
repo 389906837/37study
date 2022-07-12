@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.om.dao.RefundImgDescDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.om.RefundImgDesc">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISORT" property="isort" jdbcType="NUMERIC" />
+		<result column="SIMG_PATH" property="simgPath" jdbcType="VARCHAR" />
+		<result column="SREFUND_ID" property="srefundId" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ISORT,SIMG_PATH,SREFUND_ID
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="isort != null  ">
+               and  ISORT=#{isort,jdbcType=NUMERIC}
+           	</if>
+			<if test="simgPath != null and  simgPath != ''  ">
+               and  SIMG_PATH=#{simgPath,jdbcType=VARCHAR}
+           	</if>
+			<if test="srefundId != null and  srefundId != ''  ">
+               and  SREFUND_ID=#{srefundId,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from OM_REFUND_IMG_DESC
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.om.RefundImgDesc">
+        select
+        <include refid="column_List" />
+        from OM_REFUND_IMG_DESC
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from OM_REFUND_IMG_DESC
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from OM_REFUND_IMG_DESC
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM OM_REFUND_IMG_DESC where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.om.RefundImgDesc">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into OM_REFUND_IMG_DESC (ID,ISORT,SIMG_PATH,SREFUND_ID)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{isort,jdbcType=NUMERIC},#{simgPath,jdbcType=VARCHAR},#{srefundId,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.om.RefundImgDesc">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into OM_REFUND_IMG_DESC
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="isort">
+               ISORT,
+           	</if>
+			<if test="simgPath">
+               SIMG_PATH,
+           	</if>
+			<if test="srefundId">
+               SREFUND_ID,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="simgPath != null and  simgPath != ''  ">
+                #{simgPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="srefundId != null and  srefundId != ''  ">
+                #{srefundId,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.om.RefundImgDesc">
+        update OM_REFUND_IMG_DESC
+        <set>
+			<if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="simgPath != null and  simgPath != ''  ">
+                SIMG_PATH=#{simgPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="srefundId != null and  srefundId != ''  ">
+                SREFUND_ID=#{srefundId,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.om.RefundImgDesc">
+        update OM_REFUND_IMG_DESC
+        set 
+        		ISORT=#{isort,jdbcType=NUMERIC}
+        		,SIMG_PATH=#{simgPath,jdbcType=VARCHAR}
+        		,SREFUND_ID=#{srefundId,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	SIMG_PATH=#{simgPath,jdbcType=VARCHAR}
+	SREFUND_ID=#{srefundId,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

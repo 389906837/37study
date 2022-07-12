@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sys.dao.MenuDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.Menu">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="BIS_DISPLAY" property="bisDisplay" jdbcType="NUMERIC" />
+		<result column="BIS_LEAF" property="bisLeaf" jdbcType="NUMERIC" />
+		<result column="BIS_ROOT" property="bisRoot" jdbcType="NUMERIC" />
+		<result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP" />
+		<result column="DMODIFY_DATE" property="dmodifyDate" jdbcType="TIMESTAMP" />
+		<result column="IMENU_LEVEL" property="imenuLevel" jdbcType="NUMERIC" />
+		<result column="ISORT" property="isort" jdbcType="NUMERIC" />
+		<result column="SADD_OPERATOR" property="saddOperator" jdbcType="VARCHAR" />
+		<result column="SIMAGE_PATH" property="simagePath" jdbcType="VARCHAR" />
+		<result column="SMENU_NO" property="smenuNo" jdbcType="VARCHAR" />
+		<result column="SMENU_PATH" property="smenuPath" jdbcType="VARCHAR" />
+		<result column="SMODIFY_OPERATOR" property="smodifyOperator" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SPARENT_ID" property="sparentId" jdbcType="VARCHAR" />
+		<result column="SPUR_ID" property="spurId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SSYSTEM_SOURCE" property="ssystemSource" jdbcType="VARCHAR" />
+		<result column="STITLE" property="stitle" jdbcType="VARCHAR" />
+    </resultMap>
+	<resultMap id="resultEntityVo" type="com.cloud.cang.mgr.sys.vo.MenuDto">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="BIS_DISPLAY" property="bisDisplay" jdbcType="NUMERIC" />
+		<result column="BIS_LEAF" property="bisLeaf" jdbcType="NUMERIC" />
+		<result column="BIS_ROOT" property="bisRoot" jdbcType="NUMERIC" />
+		<result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP" />
+		<result column="DMODIFY_DATE" property="dmodifyDate" jdbcType="TIMESTAMP" />
+		<result column="IMENU_LEVEL" property="imenuLevel" jdbcType="NUMERIC" />
+		<result column="ISORT" property="isort" jdbcType="NUMERIC" />
+		<result column="SADD_OPERATOR" property="saddOperator" jdbcType="VARCHAR" />
+		<result column="SIMAGE_PATH" property="simagePath" jdbcType="VARCHAR" />
+		<result column="SMENU_NO" property="smenuNo" jdbcType="VARCHAR" />
+		<result column="SMENU_PATH" property="smenuPath" jdbcType="VARCHAR" />
+		<result column="SMODIFY_OPERATOR" property="smodifyOperator" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SPARENT_ID" property="sparentId" jdbcType="VARCHAR" />
+		<result column="SPUR_ID" property="spurId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SSYSTEM_SOURCE" property="ssystemSource" jdbcType="VARCHAR" />
+		<result column="STITLE" property="stitle" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,BIS_DISPLAY,BIS_LEAF,BIS_ROOT,DADD_DATE,DMODIFY_DATE,IMENU_LEVEL,ISORT,SADD_OPERATOR,SIMAGE_PATH,SMENU_NO,SMENU_PATH,SMODIFY_OPERATOR,SNAME,SPARENT_ID,SPUR_ID,SREMARK,SSYSTEM_SOURCE,STITLE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="bisDisplay != null  ">
+               and  BIS_DISPLAY=#{bisDisplay,jdbcType=NUMERIC}
+           	</if>
+			<if test="bisLeaf != null  ">
+               and  BIS_LEAF=#{bisLeaf,jdbcType=NUMERIC}
+           	</if>
+			<if test="bisRoot != null  ">
+               and  BIS_ROOT=#{bisRoot,jdbcType=NUMERIC}
+           	</if>
+			<if test="daddDate != null  ">
+               and  DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="dmodifyDate != null  ">
+               and  DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="imenuLevel != null  ">
+               and  IMENU_LEVEL=#{imenuLevel,jdbcType=NUMERIC}
+           	</if>
+			<if test="isort != null  ">
+               and  ISORT=#{isort,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+               and  SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+           	</if>
+			<if test="simagePath != null and  simagePath != ''  ">
+               and  SIMAGE_PATH=#{simagePath,jdbcType=VARCHAR}
+           	</if>
+			<if test="smenuNo != null and  smenuNo != ''  ">
+               and  SMENU_NO=#{smenuNo,jdbcType=VARCHAR}
+           	</if>
+			<if test="smenuPath != null and  smenuPath != ''  ">
+               and  SMENU_PATH=#{smenuPath,jdbcType=VARCHAR}
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+               and  SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+               and  SNAME=#{sname,jdbcType=VARCHAR}
+           	</if>
+			<if test="sparentId != null and  sparentId != ''  ">
+               and  SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+           	</if>
+			<if test="spurId != null and  spurId != ''  ">
+               and  SPUR_ID=#{spurId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssystemSource != null and  ssystemSource != ''  ">
+               and  SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR}
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+               and  STITLE=#{stitle,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+	<sql id="VO_Where_Clause">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="bisDisplay != null  ">
+					and  BIS_DISPLAY=#{bisDisplay,jdbcType=NUMERIC}
+				</if>
+				<if test="bisLeaf != null  ">
+					and  BIS_LEAF=#{bisLeaf,jdbcType=NUMERIC}
+				</if>
+				<if test="bisRoot != null  ">
+					and  BIS_ROOT=#{bisRoot,jdbcType=NUMERIC}
+				</if>
+				<if test="daddDate != null  ">
+					and  DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="dmodifyDate != null  ">
+					and  DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="imenuLevel != null  ">
+					and  IMENU_LEVEL=#{imenuLevel,jdbcType=NUMERIC}
+				</if>
+				<if test="isort != null  ">
+					and  ISORT=#{isort,jdbcType=NUMERIC}
+				</if>
+				<if test="saddOperator != null and  saddOperator != ''  ">
+					and  SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+				</if>
+				<if test="simagePath != null and  simagePath != ''  ">
+					and  SIMAGE_PATH=#{simagePath,jdbcType=VARCHAR}
+				</if>
+				<if test="smenuNo != null and  smenuNo != ''  ">
+					and  SMENU_NO like CONCAT('%',#{smenuNo,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="smenuPath != null and  smenuPath != ''  ">
+					and  SMENU_PATH like CONCAT('%',#{smenuPath,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+					and  SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+				</if>
+				<if test="sname != null and  sname != ''  ">
+					and  SNAME like CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sparentId != null and  sparentId != ''  ">
+					and  (SPARENT_ID=#{sparentId,jdbcType=VARCHAR} or ID=#{sparentId,jdbcType=VARCHAR})
+				</if>
+				<if test="spurId != null and  spurId != ''  ">
+					and  SPUR_ID=#{spurId,jdbcType=VARCHAR}
+				</if>
+				<if test="sremark != null and  sremark != ''  ">
+					and  SREMARK like CONCAT('%',#{sremark,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="stitle != null and  stitle != ''  ">
+					and  STITLE like CONCAT('%',#{stitle,jdbcType=VARCHAR},'%')
+				</if>
+			</trim>
+		</where>
+	</sql>
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_MENU
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.Menu">
+        select
+        <include refid="column_List" />
+        from SYS_MENU
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_MENU
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_MENU
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_MENU where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.Menu">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SYS_MENU (ID,BIS_DISPLAY,BIS_LEAF,BIS_ROOT,DADD_DATE,DMODIFY_DATE,IMENU_LEVEL,ISORT,SADD_OPERATOR,SIMAGE_PATH,SMENU_NO,SMENU_PATH,SMODIFY_OPERATOR,SNAME,SPARENT_ID,SPUR_ID,SREMARK,SSYSTEM_SOURCE,STITLE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{bisDisplay,jdbcType=NUMERIC},#{bisLeaf,jdbcType=NUMERIC},#{bisRoot,jdbcType=NUMERIC},#{daddDate,jdbcType=TIMESTAMP},#{dmodifyDate,jdbcType=TIMESTAMP},#{imenuLevel,jdbcType=NUMERIC},#{isort,jdbcType=NUMERIC},#{saddOperator,jdbcType=VARCHAR},#{simagePath,jdbcType=VARCHAR},#{smenuNo,jdbcType=VARCHAR},#{smenuPath,jdbcType=VARCHAR},#{smodifyOperator,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sparentId,jdbcType=VARCHAR},#{spurId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{ssystemSource,jdbcType=VARCHAR},#{stitle,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.Menu">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_MENU
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="bisDisplay">
+               BIS_DISPLAY,
+           	</if>
+			<if test="bisLeaf">
+               BIS_LEAF,
+           	</if>
+			<if test="bisRoot">
+               BIS_ROOT,
+           	</if>
+			<if test="daddDate">
+               DADD_DATE,
+           	</if>
+			<if test="dmodifyDate">
+               DMODIFY_DATE,
+           	</if>
+			<if test="imenuLevel">
+               IMENU_LEVEL,
+           	</if>
+			<if test="isort">
+               ISORT,
+           	</if>
+			<if test="saddOperator">
+               SADD_OPERATOR,
+           	</if>
+			<if test="simagePath">
+               SIMAGE_PATH,
+           	</if>
+			<if test="smenuNo">
+               SMENU_NO,
+           	</if>
+			<if test="smenuPath">
+               SMENU_PATH,
+           	</if>
+			<if test="smodifyOperator">
+               SMODIFY_OPERATOR,
+           	</if>
+			<if test="sname">
+               SNAME,
+           	</if>
+			<if test="sparentId">
+               SPARENT_ID,
+           	</if>
+			<if test="spurId">
+               SPUR_ID,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="ssystemSource">
+               SSYSTEM_SOURCE,
+           	</if>
+			<if test="stitle">
+               STITLE,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="bisDisplay != null  ">
+                #{bisDisplay,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisLeaf != null  ">
+                #{bisLeaf,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisRoot != null  ">
+                #{bisRoot,jdbcType=NUMERIC},
+           	</if>
+			<if test="daddDate != null  ">
+                #{daddDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dmodifyDate != null  ">
+                #{dmodifyDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="imenuLevel != null  ">
+                #{imenuLevel,jdbcType=NUMERIC},
+           	</if>
+			<if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+                #{saddOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="simagePath != null and  simagePath != ''  ">
+                #{simagePath,jdbcType=VARCHAR},
+           	</if>
+			<if test="smenuNo != null and  smenuNo != ''  ">
+                #{smenuNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="smenuPath != null and  smenuPath != ''  ">
+                #{smenuPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                #{smodifyOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sparentId != null and  sparentId != ''  ">
+                #{sparentId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spurId != null and  spurId != ''  ">
+                #{spurId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssystemSource != null and  ssystemSource != ''  ">
+                #{ssystemSource,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                #{stitle,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.Menu">
+        update SYS_MENU
+        <set>
+			<if test="bisDisplay != null  ">
+                BIS_DISPLAY=#{bisDisplay,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisLeaf != null  ">
+                BIS_LEAF=#{bisLeaf,jdbcType=NUMERIC},
+           	</if>
+			<if test="bisRoot != null  ">
+                BIS_ROOT=#{bisRoot,jdbcType=NUMERIC},
+           	</if>
+			<if test="daddDate != null  ">
+                DADD_DATE=#{daddDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dmodifyDate != null  ">
+                DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="imenuLevel != null  ">
+                IMENU_LEVEL=#{imenuLevel,jdbcType=NUMERIC},
+           	</if>
+			<if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+                SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR},
+           	</if>
+			<!--<if test="simagePath != null and  simagePath != ''  ">-->
+			<if test="simagePath != null">
+                SIMAGE_PATH=#{simagePath,jdbcType=VARCHAR},
+           	</if>
+			<if test="smenuNo != null and  smenuNo != ''  ">
+                SMENU_NO=#{smenuNo,jdbcType=VARCHAR},
+           	</if>
+			<if test="smenuPath != null and  smenuPath != ''  ">
+                SMENU_PATH=#{smenuPath,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sparentId != null and  sparentId != ''  ">
+                SPARENT_ID=#{sparentId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spurId != null and  spurId != ''  ">
+                SPUR_ID=#{spurId,jdbcType=VARCHAR},
+           	</if>
+		<!--	<if test="sremark != null and  sremark != ''  ">-->
+			<if test="sremark != null">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssystemSource != null and  ssystemSource != ''  ">
+                SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                STITLE=#{stitle,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.Menu">
+        update SYS_MENU
+        set 
+        		BIS_DISPLAY=#{bisDisplay,jdbcType=NUMERIC}
+        		,BIS_LEAF=#{bisLeaf,jdbcType=NUMERIC}
+        		,BIS_ROOT=#{bisRoot,jdbcType=NUMERIC}
+        		,DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+        		,DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+        		,IMENU_LEVEL=#{imenuLevel,jdbcType=NUMERIC}
+        		,ISORT=#{isort,jdbcType=NUMERIC}
+        		,SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+        		,SIMAGE_PATH=#{simagePath,jdbcType=VARCHAR}
+        		,SMENU_NO=#{smenuNo,jdbcType=VARCHAR}
+        		,SMENU_PATH=#{smenuPath,jdbcType=VARCHAR}
+        		,SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+        		,SNAME=#{sname,jdbcType=VARCHAR}
+        		,SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+        		,SPUR_ID=#{spurId,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR}
+        		,STITLE=#{stitle,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+	<select id="queryByMap" resultMap="resultEntity" parameterType="java.util.Map">
+		SELECT distinct <include refid="column_List" />
+		FROM sys_menu WHERE BIS_DISPLAY='1' and FIND_IN_SET(sparent_id, getChildList('0'))
+		and (id in (select p.sparent_id from sys_purview p
+		LEFT OUTER JOIN sys_merchant_purview smp on smp.spurview_id = p.id
+		LEFT OUTER JOIN sys_rolepurview rp on rp.spurview_id = p.id
+		LEFT OUTER JOIN sys_role r on r.id = rp.srole_id
+		LEFT OUTER JOIN sys_operatorrole orl on orl.srole_id = r.id
+		where orl.soperator_id = #{userId,jdbcType=VARCHAR} and smp.smerchant_id=#{merchantId,jdbcType=VARCHAR}
+		and r.SSYSTEM_SOURCE ='10'
+		) or bis_leaf=0)
+		and SSYSTEM_SOURCE in('10','30')
+		order by isort asc
+	</select>
+	<select id="selectByMerchantId" resultMap="resultEntity" parameterType="java.lang.String">
+		SELECT distinct <include refid="column_List" />
+		FROM sys_menu WHERE BIS_DISPLAY='1' and FIND_IN_SET(sparent_id, getChildList('0'))
+		and (id in (select p.sparent_id from sys_purview p
+		LEFT OUTER JOIN sys_merchant_purview smp on smp.spurview_id = p.id
+		where smp.smerchant_id=#{merchantId,jdbcType=VARCHAR}) or bis_leaf=0)
+		and SSYSTEM_SOURCE in ('10','30')
+		order by isort asc
+	</select>
+	<select id="isNameExist" resultType="java.lang.Integer" parameterType="com.cloud.cang.model.sys.Menu">
+		select
+		count(*)
+		from SYS_MENU
+		where  BINARY SNAME=#{sname,jdbcType=VARCHAR}
+		and SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+		<if test="id != null">
+			and ID = #{id,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<!-- 删除菜单的权限码 -->
+	<delete id="deletePurviewByMenuId" parameterType="java.lang.String">
+		<![CDATA[
+    	delete from sys_purview where SPARENT_ID=#{id,jdbcType=VARCHAR}
+        ]]>
+	</delete>
+	<!-- 删除菜单的权限分配 -->
+	<delete id="deleteRolePurviewMenuId" parameterType="java.lang.String">
+		<![CDATA[
+    	delete from sys_rolepurview where spurview_id in(select id from SYS_PURVIEW where SPARENT_ID=#{id,jdbcType=VARCHAR})
+        ]]>
+	</delete>
+	<!-- 删除菜单商户权限码关联表 -->
+	<delete id="deletePurviewMerchantByMenuId" parameterType="java.lang.String">
+		<![CDATA[
+    	delete from sys_merchant_purview where spurview_id in(select id from sys_purview where sparent_id=#{menuId,jdbcType=VARCHAR})
+        ]]>
+	</delete>
+	<select id="queryAllMenu" resultMap="resultEntity" parameterType="com.cloud.cang.mgr.sys.domain.MenuDomain">
+		select
+		<include refid="column_List" />
+		from SYS_MENU
+		<include refid="VO_Where_Clause" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		ISORT ASC, SMENU_NO DESC
+	</select>
+	<select id="queryAllMenuVo" resultMap="resultEntityVo" parameterType="com.cloud.cang.mgr.sys.domain.MenuDomain">
+		select
+		<include refid="column_List" />
+		from SYS_MENU
+		<include refid="VO_Where_Clause" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		ISORT ASC, SMENU_NO DESC
+	</select>
+	<select id="selectByParentMenu" resultMap="resultEntity">
+		select
+		<include refid="column_List" />
+		from SYS_MENU where BIS_ROOT = 1 and BIS_DISPLAY = 1 and SPARENT_ID = '0'
+		ORDER BY ISORT ASC,SMENU_NO DESC
+	</select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	BIS_DISPLAY=#{bisDisplay,jdbcType=NUMERIC}
+	BIS_LEAF=#{bisLeaf,jdbcType=NUMERIC}
+	BIS_ROOT=#{bisRoot,jdbcType=NUMERIC}
+	DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+	DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+	IMENU_LEVEL=#{imenuLevel,jdbcType=NUMERIC}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+	SIMAGE_PATH=#{simagePath,jdbcType=VARCHAR}
+	SMENU_NO=#{smenuNo,jdbcType=VARCHAR}
+	SMENU_PATH=#{smenuPath,jdbcType=VARCHAR}
+	SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+	SPUR_ID=#{spurId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSYSTEM_SOURCE=#{ssystemSource,jdbcType=VARCHAR}
+	STITLE=#{stitle,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

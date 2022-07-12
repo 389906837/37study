@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sl.dao.DeviceOperDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sl.DeviceOper">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ICLIENT_TYPE" property="iclientType" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SCLOSE_PIC_URL" property="sclosePicUrl" jdbcType="VARCHAR" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SIP" property="sip" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SOPEN_PIC_URL" property="sopenPicUrl" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TCLOSE_TIME" property="tcloseTime" jdbcType="TIMESTAMP" />
+		<result column="TOPEN_TIME" property="topenTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ICLIENT_TYPE,ITYPE,SCLOSE_PIC_URL,SDEVICE_CODE,SIP,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPEN_PIC_URL,SREMARK,TADD_TIME,TCLOSE_TIME,TOPEN_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="iclientType != null  ">
+               and  ICLIENT_TYPE=#{iclientType,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="sclosePicUrl != null and  sclosePicUrl != ''  ">
+               and  SCLOSE_PIC_URL=#{sclosePicUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+               and  SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sip != null and  sip != ''  ">
+               and  SIP=#{sip,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+               and  SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sopenPicUrl != null and  sopenPicUrl != ''  ">
+               and  SOPEN_PIC_URL=#{sopenPicUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tcloseTime != null  ">
+               and  TCLOSE_TIME=#{tcloseTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="topenTime != null  ">
+               and  TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SL_DEVICE_OPER
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sl.DeviceOper">
+        select
+        <include refid="column_List" />
+        from SL_DEVICE_OPER
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SL_DEVICE_OPER
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SL_DEVICE_OPER
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SL_DEVICE_OPER where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sl.DeviceOper">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SL_DEVICE_OPER (ID,ICLIENT_TYPE,ITYPE,SCLOSE_PIC_URL,SDEVICE_CODE,SIP,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPEN_PIC_URL,SREMARK,TADD_TIME,TCLOSE_TIME,TOPEN_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iclientType,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{sclosePicUrl,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sip,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{sopenPicUrl,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tcloseTime,jdbcType=TIMESTAMP},#{topenTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sl.DeviceOper">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SL_DEVICE_OPER
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="iclientType">
+               ICLIENT_TYPE,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="sclosePicUrl">
+               SCLOSE_PIC_URL,
+           	</if>
+			<if test="sdeviceCode">
+               SDEVICE_CODE,
+           	</if>
+			<if test="sip">
+               SIP,
+           	</if>
+			<if test="smemberCode">
+               SMEMBER_CODE,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="sopenPicUrl">
+               SOPEN_PIC_URL,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tcloseTime">
+               TCLOSE_TIME,
+           	</if>
+			<if test="topenTime">
+               TOPEN_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="iclientType != null  ">
+                #{iclientType,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="sclosePicUrl != null and  sclosePicUrl != ''  ">
+                #{sclosePicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sip != null and  sip != ''  ">
+                #{sip,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenPicUrl != null and  sopenPicUrl != ''  ">
+                #{sopenPicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tcloseTime != null  ">
+                #{tcloseTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="topenTime != null  ">
+                #{topenTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sl.DeviceOper">
+        update SL_DEVICE_OPER
+        <set>
+			<if test="iclientType != null  ">
+                ICLIENT_TYPE=#{iclientType,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="sclosePicUrl != null and  sclosePicUrl != ''  ">
+                SCLOSE_PIC_URL=#{sclosePicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sip != null and  sip != ''  ">
+                SIP=#{sip,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenPicUrl != null and  sopenPicUrl != ''  ">
+                SOPEN_PIC_URL=#{sopenPicUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tcloseTime != null  ">
+                TCLOSE_TIME=#{tcloseTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="topenTime != null  ">
+                TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sl.DeviceOper">
+        update SL_DEVICE_OPER
+        set 
+        		ICLIENT_TYPE=#{iclientType,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SCLOSE_PIC_URL=#{sclosePicUrl,jdbcType=VARCHAR}
+        		,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        		,SIP=#{sip,jdbcType=VARCHAR}
+        		,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SOPEN_PIC_URL=#{sopenPicUrl,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TCLOSE_TIME=#{tcloseTime,jdbcType=TIMESTAMP}
+        		,TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--新增sql-->
+	<resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.sl.domain.OperatelogDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ICLIENT_TYPE" property="iclientType" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR" />
+		<result column="SIP" property="sip" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TCLOSE_TIME" property="tcloseTime" jdbcType="TIMESTAMP" />
+		<result column="TOPEN_TIME" property="topenTime" jdbcType="TIMESTAMP" />
+		<result column="SPUT_ADDRESS" property="adress" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sbName" jdbcType="VARCHAR" />
+		<result column="SCLOSE_PIC_URL" property="sclosePicUrl" jdbcType="VARCHAR" />
+		<result column="SOPEN_PIC_URL" property="sopenPicUrl" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--模糊查询-->
+	<sql id="Entity_Where_Clause_Like">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and SDO.ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="iclientType != null  ">
+					and  SDO.ICLIENT_TYPE=#{iclientType,jdbcType=NUMERIC}
+				</if>
+				<if test="itype != null  ">
+					and  SDO.ITYPE=#{itype,jdbcType=NUMERIC}
+				</if>
+				<if test="sdeviceCode != null and  sdeviceCode != ''  ">
+					and  SDO.SDEVICE_CODE LIKE CONCAT('%',#{sdeviceCode},'%')
+				</if>
+				<if test="sip != null and  sip != ''  ">
+					and  SDO.SIP LIKE CONCAT('%',#{sip},'%')
+				</if>
+				<if test="smemberCode != null and  smemberCode != ''  ">
+					and  SDO.SMEMBER_CODE LIKE CONCAT('%',#{smemberCode},'%')
+				</if>
+				<if test="smemberId != null and  smemberId != ''  ">
+					and  SDO.SMEMBER_ID LIKE CONCAT('%',#{smemberId},'%')
+				</if>
+				<if test="smemberName != null and  smemberName != ''  ">
+					and  SDO.SMEMBER_NAME LIKE CONCAT('%',#{smemberName},'%')
+				</if>
+				<if test="sremark != null and  sremark != ''  ">
+					and  SDO.SREMARK LIKE CONCAT('%',#{sremark},'%')
+				</if>
+				<if test="taddTime != null  ">
+					and  SDO.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="toperateStartDate != null ">
+					and  SDO.TOPEN_TIME&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="toperateEndDate != null ">
+					and  SDO.TOPEN_TIME&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="topenTime != null ">
+					and  SDO.TCLOSE_TIME&gt;=#{topenTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tcloseTime != null ">
+					and  SDO.TCLOSE_TIME&lt;date_add(#{tcloseTime,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="sbName != null and  sbName != ''   ">
+					and A.SNAME LIKE CONCAT('%',#{sbName},'%')
+				</if>
+				<if test="adress != null and  adress != '' ">
+					and CONCAT(A.SPROVINCE_NAME,A.SCITY_NAME,A.SAREA_NAME,A.SPUT_ADDRESS) LIKE CONCAT('%',#{adress},'%')
+				</if>
+				<if test="condition != null and  condition != ''  ">
+					and ${condition}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<select id="queryDeviceLog" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.sl.vo.DeviceLogVo">
+		select
+		SDO.ID,
+		SDO.ICLIENT_TYPE,
+		SDO.ITYPE,
+		A.SNAME AS SBNAME,
+		concat(
+		A.SPROVINCE_NAME,
+		A.SCITY_NAME,
+		A.SAREA_NAME,
+		A.SPUT_ADDRESS) AS ADRESS,
+		SDO.SDEVICE_CODE,
+		SDO.SIP,
+		SDO.SMEMBER_CODE,
+		SDO.SMEMBER_ID,
+		SDO.SMEMBER_NAME,
+		SDO.SREMARK,
+		SDO.TADD_TIME,
+		SDO.TCLOSE_TIME,
+		SDO.TOPEN_TIME,
+		SDO.SOPEN_PIC_URL,
+		SDO.SCLOSE_PIC_URL
+		FROM
+		SL_DEVICE_OPER  SDO
+		LEFT JOIN SB_DEVICE_INFO A ON SDO.SDEVICE_CODE = A.SCODE
+		<!--LEFT JOIN HY_MEMBER_INFO HMI ON SDO.SMEMBER_ID = HMI.ID-->
+		<include refid="Entity_Where_Clause_Like" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		SDO.TCLOSE_TIME DESC
+	</select>
+
+
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ICLIENT_TYPE=#{iclientType,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SCLOSE_PIC_URL=#{sclosePicUrl,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SIP=#{sip,jdbcType=VARCHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SOPEN_PIC_URL=#{sopenPicUrl,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TCLOSE_TIME=#{tcloseTime,jdbcType=TIMESTAMP}
+	TOPEN_TIME=#{topenTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

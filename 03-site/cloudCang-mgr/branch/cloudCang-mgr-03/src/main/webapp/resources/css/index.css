@@ -1,0 +1,97 @@
+
+@charset "utf-8";
+body{background:#f3f3f5;}
+.index-fourul{padding:30px;background:#fff;overflow:hidden;margin-top:20px;width:98%;}
+.index-fourul ul li{float:left;border:1px solid #dbdbdb;width:18%;margin-right:2.5%;text-align:center;height:98px; }
+.index-fourul ul li:last-child{margin-right:0}
+.index-fourul ul li p{color:#909090;font-size:15px;text-align:left;line-height:20px;}
+.index-fourul ul li h2{color:#26323e;font-size:26px;font-weight:normal;text-align:left;line-height:30px;}
+.index-fourul ul li:last-child{margin-right:0;}
+.index-fourulblock,.index-fourul ul li i{display:inline-block;}
+.index-fourulblock{padding-left:70px;position:relative;margin-top:25px}
+.index-fourulblock i{position:absolute;left:0;top:0;}
+.index-fourul ul li i.index-dingd{background-position:-223px 0;width:50px;height:56px;top:-3px !important;}
+.index-fourul ul li i.index-xiaos{background-position:-280px 0;width:60px;height:60px;top:-5px !important;}
+.index-fourul ul li i.index-xiaos1{background-position:-350px 0;width:55px;height:50px;}
+.index-fourul ul li i.index-zuot{background-position:-409px 0;width:57px;height:50px;}
+.index-fourul ul li i.index-xiaos2{background-position:-469px 0;width:53px;height:53px;top:-1px !important;}
+.index-equipment{margin-right:2%;padding-top:25px;overflow:hidden;}
+.index-equipment-left{float:left;width:72%;}
+.index-equipment-right{float:right;width:26.5%;}
+.treated{background:#efefef;border-radius:5px;margin-bottom:20px;}
+.treated-title{color:#26323e;font-size:17px;line-height:49px;padding:0 5%;}
+.treated ul{background:#fff;border-bottom-left-radius:5px;border-bottom-right-radius:5px;}
+.treated ul li{width:90%;margin:auto;color:#26323e;font-size:15px;position:relative;line-height:52px;border-bottom:1px solid #e1e1e1}
+.treated ul li span{position:absolute;right:0;top:0;}
+.treated ul li span em{color:#d13a3e;}
+.treated ul li:last-child{border-bottom:none;} 
+.ranking-title{overflow:hidden;background:#efefef;border-top-left-radius:5px;border-top-right-radius:5px;}
+.ranking-title h2{width:50%;float:left;text-align:center;height:49px;line-height:49px;font-weight:normal;font-size:17px;cursor: pointer;}
+.ranking-title h2.hover{background:#92c449;color:#fff;}
+.ranking{background:#fff}
+.ranking-today{overflow:hidden;text-align:center;color:#291c1c;font-size:14px;padding:30px 0;}
+.ranking-today button,.ranking-today input{display:inline-block;line-height:20px;padding:0 5px;}
+.ranking-today input{margin:0 5px;}
+.ranking-today button{border-radius:10px;/*padding:0 2%;*/border:none;height:20px;margin-top:7px;float:left;font-size:12px;}
+.ranking-today button.hover{background:#92c449;color:#fff}
+.ranking-today input{border:1px solid #dbdbdb;width:90%;font-size:12px;padding-right:10%}
+.ranking-todayinput{display:inline-block;width:45%;position:relative}
+.ranking-todayinput i{position:absolute;right:10%;top:10px}
+.ranking-ul,.ranking-ulsun{overflow:hidden;width:100%;margin:auto;}
+.ranking-ul li{float:left;color:#291c1c;font-size:16px;text-align:center;}
+.ranking-ulsun li{float:left;color:#26323e;font-size:15px;line-height:52px;text-align:center;border-bottom:1px solid #e1e1e1;white-space: nowrap;  word-break: keep-all;  text-overflow: ellipsis;  overflow: hidden;}
+.ranking-ulsun li span{display:block;width:30px;height:30px;line-height:30px;text-align:center;border-radius:3px;margin:11px auto;}
+.ranking-ulsun li span.first{background:#fbd94b;}
+.ranking-ulsun li span.two{background:#dfdfdf;}
+.ranking-ulsun li span.three{background:#f7cea9;}
+.overview{overflow:hidden;}
+.overview-left{float:left;width:49%;}
+.overview-right{float:right;width:49%;}
+.overview-title{height:40px;line-height:40px;background:#f77b5b;padding-left:3%;color:#fff;font-size:17px;border-top-left-radius:5px;border-top-right-radius:5px;}
+.overview-right .overview-title{color:#26323e;}
+.overview-left ul,.overview-right ul{overflow:hidden;background:#fff;padding:10px 0 10px 0;border-bottom-left-radius:5px;border-bottom-right-radius:5px;}
+.overview-left ul li,.overview-right ul li{float:left;text-align:center;width:24%;border-right:1px solid #dbdbdb;}
+.overview-left ul li:last-child,.overview-right ul li:last-child{border:none;}
+.overview-left ul li h2,.overview-right ul li h2{color:#d13a3e;font-size:26px;font-weight:normal;line-height:40px;}
+.overview-left ul li p,.overview-right ul li p{color:#26323e;font-size:15px;}
+.index-echarts{margin-top:25px;background:#fff;overflow:hidden;}
+.index-echarts-left{float:left;width:72%;padding:0 0 0 1%;}
+.index-echarts-right{float:left;width:28%;}
+.index-echarts-title{color:#26323e;font-size:15px;position:relative;line-height:20px;margin:20px 0;width:96.5%}
+.index-echarts-title div{position:absolute;right:0;top:0;color:#909090;font-size:15px;width:86%;text-align:right}
+.index-echarts-title div button,.index-echarts-title div input{display:inline-block;color:#291c1c;font-size:14px;border:none}
+.index-echarts-title div div{position:static;width:32%;position:relative}
+.index-echarts-title div input{border:1px solid #dbdbdb;}
+.index-echarts-title div div input{width: 90%;font-size: 12px;padding-right: 10%;}
+.index-echarts-title div div i{position: absolute;  right: 5%; top: 10px;  }
+.index-echarts-right p{color:#909090;font-size:15px;line-height:35px;padding-top:65px;}
+.index-echarts-right p em{color:#26323e;font-size:24px;vertical-align:middle;}
+.index-echarts-right p.f15-icon{color:#909090;font-size:12px;padding-left:20px;background:url(../images/shang.png) no-repeat left center;line-height:18px;padding-top:0;}
+.index-echarts-right p.f15-icon span{color:#d13a3e;}
+.index-echarts-right p.f15-xia{background:url(../images/xia.png) no-repeat left center;}
+.index-echarts-right p.f15-xia span{color:#92c449;}
+.index-echarts-right p.f15-chiping{background:url(../images/chiping.png) no-repeat left center;}
+@media screen and (max-width: 1680px) {
+    .index-echarts-title div button{padding: 0 15px;}
+}
+@media screen and (max-width: 1366px) {
+    .index-echarts-title div button{padding:0 0 0 5px;}
+}
+@media screen and (max-width: 1280px) {
+    .index-echarts-title{font-size:12px;}
+    .form-control{padding:6px 2px;}
+    .index-echarts-title div{width:89%;}
+    .index-echarts-title div div{width:21%;}
+    .index-echarts-title div button{padding:0 0 0 0px;font-size:12px}
+    .ranking-title h2{font-size:13px;}
+    .ranking-ul li{font-size:12px;}
+    .index-echarts-right p{font-size:12px;}
+    .index-echarts-right p em{font-size:20px;}
+    .ranking-todayinput{left:-50px;top:15px;}
+    .ranking-todayinput{width:70%;}
+}
+
+
+
+
+

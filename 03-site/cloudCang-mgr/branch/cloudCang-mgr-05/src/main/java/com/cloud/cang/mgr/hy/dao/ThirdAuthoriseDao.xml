@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.hy.dao.ThirdAuthoriseDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.hy.ThirdAuthorise">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITHIRD_TYPE" property="ithirdType" jdbcType="NUMERIC" />
+		<result column="SACCESS_TOKEN" property="saccessToken" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SOPEN_ID" property="sopenId" jdbcType="VARCHAR" />
+		<result column="SOTHER_IMG" property="sotherImg" jdbcType="VARCHAR" />
+		<result column="SOTHER_NICKNAME" property="sotherNickname" jdbcType="VARCHAR" />
+		<result column="SREFUSE_TOKEN" property="srefuseToken" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="STHIRD_USERID" property="sthirdUserid" jdbcType="VARCHAR" />
+		<result column="TAUTHORISE_TIME" property="tauthoriseTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ISTATUS,ITHIRD_TYPE,SACCESS_TOKEN,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPEN_ID,SOTHER_IMG,SOTHER_NICKNAME,SREFUSE_TOKEN,SREMARK,STHIRD_USERID,TAUTHORISE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="ithirdType != null  ">
+               and  ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC}
+           	</if>
+			<if test="saccessToken != null and  saccessToken != ''  ">
+               and  SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+               and  SMEMBER_CODE LIKE CONCAT('%',#{smemberCode},'%')
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+               and  SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+               and  SMEMBER_NAME LIKE CONCAT('%',#{smemberName},'%')
+           	</if>
+			<if test="sopenId != null and  sopenId != ''  ">
+               and  SOPEN_ID=#{sopenId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sotherImg != null and  sotherImg != ''  ">
+               and  SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR}
+           	</if>
+			<if test="sotherNickname != null and  sotherNickname != ''  ">
+               and  SOTHER_NICKNAME LIKE CONCAT('%',#{sotherNickname},'%')
+           	</if>
+			<if test="srefuseToken != null and  srefuseToken != ''  ">
+               and  SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="sthirdUserid != null and  sthirdUserid != ''  ">
+               and  STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR}
+           	</if>
+			<if test="toperateStartDate != null ">
+			   and  TAUTHORISE_TIME&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="toperateEndDate != null ">
+			   and  TAUTHORISE_TIME&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+			</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from HY_THIRD_AUTHORISE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+        select
+        <include refid="column_List" />
+        from HY_THIRD_AUTHORISE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from HY_THIRD_AUTHORISE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+
+	<select id="selectThirdAuthorise" resultMap="resultEntityDoamin" parameterType="com.cloud.cang.mgr.hy.vo.ThirdAuthoriseInfoVo">
+		select
+		<include refid="column_List" />
+		from HY_THIRD_AUTHORISE
+		<include refid="Entity_Where_Clause" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		FIELD(ISTATUS,20),TAUTHORISE_TIME DESC
+	</select>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from HY_THIRD_AUTHORISE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM HY_THIRD_AUTHORISE where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into HY_THIRD_AUTHORISE (ID,ISTATUS,ITHIRD_TYPE,SACCESS_TOKEN,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SOPEN_ID,SOTHER_IMG,SOTHER_NICKNAME,SREFUSE_TOKEN,SREMARK,STHIRD_USERID,TAUTHORISE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{istatus,jdbcType=NUMERIC},#{ithirdType,jdbcType=NUMERIC},#{saccessToken,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{sopenId,jdbcType=VARCHAR},#{sotherImg,jdbcType=VARCHAR},#{sotherNickname,jdbcType=VARCHAR},#{srefuseToken,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{sthirdUserid,jdbcType=VARCHAR},#{tauthoriseTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into HY_THIRD_AUTHORISE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="ithirdType">
+               ITHIRD_TYPE,
+           	</if>
+			<if test="saccessToken">
+               SACCESS_TOKEN,
+           	</if>
+			<if test="smemberCode">
+               SMEMBER_CODE,
+           	</if>
+			<if test="smemberId">
+               SMEMBER_ID,
+           	</if>
+			<if test="smemberName">
+               SMEMBER_NAME,
+           	</if>
+			<if test="sopenId">
+               SOPEN_ID,
+           	</if>
+			<if test="sotherImg">
+               SOTHER_IMG,
+           	</if>
+			<if test="sotherNickname">
+               SOTHER_NICKNAME,
+           	</if>
+			<if test="srefuseToken">
+               SREFUSE_TOKEN,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="sthirdUserid">
+               STHIRD_USERID,
+           	</if>
+			<if test="tauthoriseTime">
+               TAUTHORISE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="ithirdType != null  ">
+                #{ithirdType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saccessToken != null and  saccessToken != ''  ">
+                #{saccessToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenId != null and  sopenId != ''  ">
+                #{sopenId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherImg != null and  sotherImg != ''  ">
+                #{sotherImg,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherNickname != null and  sotherNickname != ''  ">
+                #{sotherNickname,jdbcType=VARCHAR},
+           	</if>
+			<if test="srefuseToken != null and  srefuseToken != ''  ">
+                #{srefuseToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sthirdUserid != null and  sthirdUserid != ''  ">
+                #{sthirdUserid,jdbcType=VARCHAR},
+           	</if>
+			<if test="tauthoriseTime != null  ">
+                #{tauthoriseTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+        update HY_THIRD_AUTHORISE
+        <set>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="ithirdType != null  ">
+                ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC},
+           	</if>
+			<if test="saccessToken != null and  saccessToken != ''  ">
+                SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sopenId != null and  sopenId != ''  ">
+                SOPEN_ID=#{sopenId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherImg != null and  sotherImg != ''  ">
+                SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR},
+           	</if>
+			<if test="sotherNickname != null and  sotherNickname != ''  ">
+                SOTHER_NICKNAME=#{sotherNickname,jdbcType=VARCHAR},
+           	</if>
+			<if test="srefuseToken != null and  srefuseToken != ''  ">
+                SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sthirdUserid != null and  sthirdUserid != ''  ">
+                STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR},
+           	</if>
+			<if test="tauthoriseTime != null  ">
+                TAUTHORISE_TIME=#{tauthoriseTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.hy.ThirdAuthorise">
+        update HY_THIRD_AUTHORISE
+        set 
+        		ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC}
+        		,SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR}
+        		,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SOPEN_ID=#{sopenId,jdbcType=VARCHAR}
+        		,SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR}
+        		,SOTHER_NICKNAME=#{sotherNickname,jdbcType=VARCHAR}
+        		,SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR}
+        		,TAUTHORISE_TIME=#{tauthoriseTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--返回实体类-->
+	<resultMap id="resultEntityDoamin" type="com.cloud.cang.mgr.hy.domain.ThirdAuthoriseInfoDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITHIRD_TYPE" property="ithirdType" jdbcType="NUMERIC" />
+		<result column="SACCESS_TOKEN" property="saccessToken" jdbcType="VARCHAR" />
+		<result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR" />
+		<result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR" />
+		<result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR" />
+		<result column="SOPEN_ID" property="sopenId" jdbcType="VARCHAR" />
+		<result column="SOTHER_IMG" property="sotherImg" jdbcType="VARCHAR" />
+		<result column="SOTHER_NICKNAME" property="sotherNickname" jdbcType="VARCHAR" />
+		<result column="SREFUSE_TOKEN" property="srefuseToken" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="STHIRD_USERID" property="sthirdUserid" jdbcType="VARCHAR" />
+		<result column="TAUTHORISE_TIME" property="tauthoriseTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITHIRD_TYPE=#{ithirdType,jdbcType=NUMERIC}
+	SACCESS_TOKEN=#{saccessToken,jdbcType=VARCHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SOPEN_ID=#{sopenId,jdbcType=VARCHAR}
+	SOTHER_IMG=#{sotherImg,jdbcType=VARCHAR}
+	SOTHER_NICKNAME=#{sotherNickname,jdbcType=VARCHAR}
+	SREFUSE_TOKEN=#{srefuseToken,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	STHIRD_USERID=#{sthirdUserid,jdbcType=VARCHAR}
+	TAUTHORISE_TIME=#{tauthoriseTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

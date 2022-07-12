@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.xx.dao.SalesMsgMainDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.xx.SalesMsgMain">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ICOUNT" property="icount" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="SADDUSER" property="sadduser" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SCONTENT" property="scontent" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SSELECT" property="sselect" jdbcType="VARCHAR" />
+		<result column="SSPARTNER_ID" property="sspartnerId" jdbcType="VARCHAR" />
+		<result column="SSUPPLIER_CODE" property="ssupplierCode" jdbcType="VARCHAR" />
+		<result column="TADDTIME" property="taddtime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ICOUNT,ISTATUS,REMARK,SADDUSER,SCODE,SCONTENT,SMERCHANT_CODE,SMERCHANT_ID,SSELECT,SSPARTNER_ID,SSUPPLIER_CODE,TADDTIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="icount != null  ">
+               and  ICOUNT=#{icount,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+               and  REMARK=#{remark,jdbcType=VARCHAR}
+           	</if>
+			<if test="sadduser != null and  sadduser != ''  ">
+               and  SADDUSER=#{sadduser,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+               and  SCONTENT=#{scontent,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sselect != null and  sselect != ''  ">
+               and  SSELECT=#{sselect,jdbcType=VARCHAR}
+           	</if>
+			<if test="sspartnerId != null and  sspartnerId != ''  ">
+               and  SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssupplierCode != null and  ssupplierCode != ''  ">
+               and  SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddtime != null  ">
+               and  TADDTIME=#{taddtime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from XX_SALES_MSG_MAIN
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.xx.SalesMsgMain">
+        select
+        <include refid="column_List" />
+        from XX_SALES_MSG_MAIN
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from XX_SALES_MSG_MAIN
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from XX_SALES_MSG_MAIN
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM XX_SALES_MSG_MAIN where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.xx.SalesMsgMain">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into XX_SALES_MSG_MAIN (ID,ICOUNT,ISTATUS,REMARK,SADDUSER,SCODE,SCONTENT,SMERCHANT_CODE,SMERCHANT_ID,SSELECT,SSPARTNER_ID,SSUPPLIER_CODE,TADDTIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{icount,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{remark,jdbcType=VARCHAR},#{sadduser,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{scontent,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sselect,jdbcType=VARCHAR},#{sspartnerId,jdbcType=VARCHAR},#{ssupplierCode,jdbcType=VARCHAR},#{taddtime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.xx.SalesMsgMain">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into XX_SALES_MSG_MAIN
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="icount">
+               ICOUNT,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="remark">
+               REMARK,
+           	</if>
+			<if test="sadduser">
+               SADDUSER,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="scontent">
+               SCONTENT,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="sselect">
+               SSELECT,
+           	</if>
+			<if test="sspartnerId">
+               SSPARTNER_ID,
+           	</if>
+			<if test="ssupplierCode">
+               SSUPPLIER_CODE,
+           	</if>
+			<if test="taddtime">
+               TADDTIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="icount != null  ">
+                #{icount,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+                #{remark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sadduser != null and  sadduser != ''  ">
+                #{sadduser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                #{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sselect != null and  sselect != ''  ">
+                #{sselect,jdbcType=VARCHAR},
+           	</if>
+			<if test="sspartnerId != null and  sspartnerId != ''  ">
+                #{sspartnerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                #{ssupplierCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddtime != null  ">
+                #{taddtime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.xx.SalesMsgMain">
+        update XX_SALES_MSG_MAIN
+        <set>
+			<if test="icount != null  ">
+                ICOUNT=#{icount,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="remark != null and  remark != ''  ">
+                REMARK=#{remark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sadduser != null and  sadduser != ''  ">
+                SADDUSER=#{sadduser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                SCONTENT=#{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sselect != null and  sselect != ''  ">
+                SSELECT=#{sselect,jdbcType=VARCHAR},
+           	</if>
+			<if test="sspartnerId != null and  sspartnerId != ''  ">
+                SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddtime != null  ">
+                TADDTIME=#{taddtime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.xx.SalesMsgMain">
+        update XX_SALES_MSG_MAIN
+        set 
+        		ICOUNT=#{icount,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,REMARK=#{remark,jdbcType=VARCHAR}
+        		,SADDUSER=#{sadduser,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SCONTENT=#{scontent,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SSELECT=#{sselect,jdbcType=VARCHAR}
+        		,SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR}
+        		,SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+        		,TADDTIME=#{taddtime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+	<!--返回实体类-->
+	<resultMap id="resultDomain" type="com.cloud.cang.mgr.xx.domain.SalesMsgMainDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ICOUNT" property="icount" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="SADDUSER" property="sadduser" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SCONTENT" property="scontent" jdbcType="VARCHAR" />
+		<result column="SSELECT" property="sselect" jdbcType="VARCHAR" />
+		<result column="SSPARTNER_ID" property="sspartnerId" jdbcType="VARCHAR" />
+		<result column="SSUPPLIER_CODE" property="ssupplierCode" jdbcType="VARCHAR" />
+		<result column="TADDTIME" property="taddtime" jdbcType="TIMESTAMP" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SUPPLIERINFOSNAME" property="supplierInfoSname" jdbcType="VARCHAR" />
+		<result column="MERCHANTNAME" property="merchantName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--新增模糊查询-->
+	<sql id="Entity_Where_Clause_Like">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and A.ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="icount != null  ">
+					and  A.ICOUNT=#{icount,jdbcType=NUMERIC}
+				</if>
+				<if test="istatus != null  ">
+					and  A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+				</if>
+				<if test="remark != null and  remark != ''  ">
+					and  A.REMARK=#{remark,jdbcType=VARCHAR}
+				</if>
+				<if test="sadduser != null and  sadduser != ''  ">
+					and  A.SADDUSER=#{sadduser,jdbcType=VARCHAR}
+				</if>
+				<if test="scode != null and  scode != ''  ">
+					and  A.SCODE LIKE CONCAT('%',#{scode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="scontent != null and  scontent != ''  ">
+					and  A.SCONTENT LIKE CONCAT('%',#{scontent,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sselect != null and  sselect != ''  ">
+					and  A.SSELECT=#{sselect,jdbcType=VARCHAR}
+				</if>
+				<if test="sspartnerId != null and  sspartnerId != ''  ">
+					and  A.SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR}
+				</if>
+				<if test="ssupplierCode != null and  ssupplierCode != ''  ">
+					and  A.SSUPPLIER_CODE LIKE CONCAT('%',#{ssupplierCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="toperateStartDate != null ">
+					and  A.TADDTIME&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="toperateEndDate != null ">
+					and  A.TADDTIME&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="smerchantCode != null and  smerchantCode != ''  ">
+					and  A.SMERCHANT_CODE LIKE CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="smerchantId != null and  smerchantId != ''  ">
+					and  A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+				</if>
+				<if test="supplierInfoSname != null and  supplierInfoSname != ''  ">
+					and  B.SNAME LIKE CONCAT('%',#{supplierInfoSname,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="merchantName != null and merchantName != ''  ">
+					and  C.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--新增查询营销短信联表sql-->
+	<select id="selectMarketing" resultMap="resultDomain" parameterType="com.cloud.cang.mgr.xx.domain.SalesMsgMainDomain">
+		SELECT
+		A.ID,
+		A.SMERCHANT_ID,
+		A.SMERCHANT_CODE,
+		B.SNAME AS SUPPLIERINFOSNAME,
+		C.SNAME AS MERCHANTNAME,
+		A.ICOUNT,
+		A.ISTATUS,
+		A.REMARK,
+		A.SADDUSER,
+		A.SCODE,
+		A.SCONTENT,
+		A.SSELECT,
+		A.SSPARTNER_ID,
+		A.SSUPPLIER_CODE,
+		A.TADDTIME
+		FROM
+		XX_SALES_MSG_MAIN A
+		LEFT JOIN XX_SUPPLIER_INFO B ON A.SSPARTNER_ID = B.ID
+		LEFT JOIN SH_MERCHANT_INFO C ON A.SMERCHANT_ID = C.ID
+		<include refid="Entity_Where_Clause_Like" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		A.TADDTIME desc
+	</select>
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ICOUNT=#{icount,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	REMARK=#{remark,jdbcType=VARCHAR}
+	SADDUSER=#{sadduser,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SCONTENT=#{scontent,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SSELECT=#{sselect,jdbcType=VARCHAR}
+	SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR}
+	SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+	TADDTIME=#{taddtime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

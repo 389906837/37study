@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sys.dao.IndexDao">
+    <resultMap id="resultCommoditySaleRankingVo" type="com.cloud.cang.mgr.sys.vo.CommoditySaleRankingVo">
+        <result column="SCOMMODITY_ID" property="commodityId" jdbcType="VARCHAR"/> <!--商品Id-->
+        <result column="COMMODITY_NAME" property="commodityName" jdbcType="VARCHAR"/> <!--商品名-->
+        <result column="COMMODITY_COUNT" property="commodityCount" jdbcType="VARCHAR"/> <!--购买商品数量-->
+        <result column="COMMODITY_AMOUNT" property="commodityAmount" jdbcType="NUMERIC"/> <!--总销售额-->
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="resultDeviceSaleRankingVo" type="com.cloud.cang.mgr.sys.vo.DeviceSaleRankingVo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="DEVICE_ID" property="deviceId" jdbcType="VARCHAR"/> <!--设备名Id-->
+        <result column="DEVICE_NAME" property="deviceName" jdbcType="VARCHAR"/> <!--设备名-->
+        <result column="DEVICE_SALE_AMOUNT" property="deviceSaleAmount" jdbcType="NUMERIC"/> <!--设备销售总金额-->
+        <result column="DEVICE_SALE_NUM" property="deviceSaleNum" jdbcType="VARCHAR"/> <!--设备销售商品数-->
+        <result column="VISITOR_NUM" property="visitorNum" jdbcType="VARCHAR"/> <!--设备访客数-->
+    </resultMap>
+    <resultMap id="resultEcharts" type="com.cloud.cang.mgr.sys.vo.EchartsVo">
+        <result column="VALUE" property="value" jdbcType="NUMERIC"/><!--数据 -->
+        <result column="NAME" property="name" jdbcType="VARCHAR"/><!--横坐标 -->
+        <result column="CATEGORIES" property="categories" jdbcType="VARCHAR"/><!--横坐标临时数据-->
+        <result column="GROUP" property="group" jdbcType="VARCHAR"/><!--别名-->
+    </resultMap>
+    <select id="selectSevenDSaleTotal" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        <!-- SELECT SUM(FORDER_AMOUNT) SEVEND_SALE_TOTAL
+             FROM TJ_SUMMARIZATION_TODAY SEVEND_SALE_TOTAL
+             WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+             AND DATE_SUB(NOW(), INTERVAL 7 DAY) <= DATE(TADD_TIME)-->
+        select IFNULL(SUM(FTOTAL_AMOUNT),0)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND IDEL_FLAG=0
+        <!--  AND ISTATUS =10-->
+        and date_sub(now(), INTERVAL 7 DAY) <![CDATA[<= ]]> date(TORDER_TIME)
+
+    </select>
+    <!--已上架商品数-->
+    <select id="selectUpShelfCommodity" parameterType="java.lang.String" resultType="int">
+        select count(*)
+        from SP_COMMODITY_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        and IDEL_FLAG=0
+        and ISTATUS = 10
+    </select>
+    <!--已下架商品数-->
+    <select id="selectDownShelfCommodity" parameterType="java.lang.String" resultType="int">
+        select count(*)
+        from SP_COMMODITY_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        and IDEL_FLAG=0
+        and ISTATUS = 20
+    </select>
+    <!--库存预警数-->
+    <select id="selectCommodityStockWarn" parameterType="java.lang.String" resultType="int">
+        select count(*)
+        from SM_DEVICE_STOCK sds
+        inner JOIN SM_STANDARD_DETAIL ssd on sds.SDEVICE_ID = ssd.SDEVICE_ID and sds.SCOMMODITY_ID =ssd.SCOMMODITY_ID
+        INNER JOIN SM_STANDARD_STOCK sss on sds.SDEVICE_ID = sss.SDEVICE_ID
+        INNER JOIN sp_commodity_info SCI ON ssd.SCOMMODITY_ID = sci.id
+        where sds.SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        and sds.ISTOCK  <![CDATA[<=]]>ssd.IMIN_SILL_VALUE
+        and sss.istatus = 10
+        AND SCI.IDEL_FLAG=0
+        AND SCI.ISTATUS=10
+    </select>
+    <!--过期预警数-->
+    <select id="selectCommodityExpireWarn" parameterType="java.lang.String" resultType="int">
+        <!--  SELECT count(*)
+          from SM_DEVICE_STOCK sds
+          INNER JOIN SM_STOCK_DETAIL ssd on sds.id=ssd.SSTOCK_ID and sds.SCOMMODITY_ID = ssd.SCOMMODITY_ID
+          INNER JOIN sp_commodity_info SCI ON SSD.SCOMMODITY_ID = SCI.ID
+          where sds.SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+          AND SCI.IDEL_FLAG=0
+          AND SCI.ISTATUS=10
+          AND TO_DAYS(ssd.DEXPIRED_DATE) - TO_DAYS(NOW()) <![CDATA[ <= ]]>#{commodityDexpire,jdbcType=VARCHAR}-->
+
+        SELECT COUNT(*)
+        FROM SM_DEVICE_STOCK SDS
+        LEFT JOIN SM_STOCK_DETAIL SSD ON SDS.ID=SSD.SSTOCK_ID AND SDS.SCOMMODITY_ID = SSD.SCOMMODITY_ID
+        WHERE SDS .SMERCHANT_ID =#{merchantId,jdbcType=VARCHAR}
+        AND SSD.ISTATUS IN(10)
+        AND ISALE_STATUS IS NULL
+        AND TO_DAYS(ssd.DEXPIRED_DATE) - TO_DAYS(NOW()) <![CDATA[ <= ]]>#{commodityDexpire,jdbcType=VARCHAR}
+    </select>
+    <select id="selectTdAdd" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+            SELECT IFNULL(COUNT(*),0) TD_ADD
+            FROM HY_MEMBER_INFO
+            WHERE DATEDIFF(ADD_TIME,NOW())=0
+            AND SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+            AND IDEL_FLAG = 0
+            AND ISTATUS =1
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectYdAdd" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+            SELECT IFNULL(COUNT(*),0)  YD_ADD
+            FROM HY_MEMBER_INFO
+            WHERE DATEDIFF(ADD_TIME,NOW())=-1
+            AND SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+            AND IDEL_FLAG = 0
+            AND ISTATUS =1
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectMAdd" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+            SELECT IFNULL(COUNT(*),0)  M_ADD
+            FROM HY_MEMBER_INFO
+            WHERE  DATE_FORMAT(ADD_TIME, '%Y%M') = DATE_FORMAT(CURDATE() , '%Y%M')
+            AND SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+            AND IDEL_FLAG = 0
+            AND ISTATUS =1
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectMemberTotal" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+            SELECT IFNULL(COUNT(*),0)  MEMBER_TOTAL
+            FROM HY_MEMBER_INFO
+            WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+            AND IDEL_FLAG=0
+            AND ISTATUS =1
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectPPaymentOrderNum" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+            SELECT COUNT(*)
+            FROM OM_ORDER_RECORD
+            WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+            AND  IDEL_FLAG=0
+            AND  ISTATUS=100
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectPRefundNum" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+        SELECT  COUNT(*)
+        FROM  OM_REFUND_AUDIT
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND  IDEL_FLAG=0
+        AND  IAUDIT_STATUS=10
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectPReplenishmentOrderNum" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+        SELECT COUNT(*)
+        FROM RM_REPLENISHMENT_PLAN
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND  IDEL_FLAG=0
+        AND  (ISTATUS=10)
+
+        ]]>
+    </select>
+    <select id="selectDeviceFaultNum" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+        SELECT COUNT(*)
+        FROM SB_DEVICE_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        and  IDEL_FLAG=0
+        and  ISTATUS IN (30)
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectCommodityErrorNum" parameterType="java.lang.String" resultType="int">
+        <![CDATA[
+
+
+
+
+        SELECT COUNT(*)
+        FROM SM_DEVICE_STOCK SDS
+        INNER JOIN SM_STOCK_DETAIL ssd on sds.id=ssd.SSTOCK_ID and sds.SCOMMODITY_ID = ssd.SCOMMODITY_ID
+        WHERE SDS.SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND SSD.ISTATUS <> 10
+        AND SSD.ISALE_STATUS IS NULL
+
+
+
+
+        ]]>
+    </select>
+    <select id="selectStocktakingError" parameterType="java.lang.String" resultType="int">
+        SELECT COUNT(*)
+        FROM SM_DEVICE_STOCK SDS
+        INNER JOIN SM_STOCK_DETAIL ssd on sds.id=ssd.SSTOCK_ID and sds.SCOMMODITY_ID = ssd.SCOMMODITY_ID
+        WHERE SDS.SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND SSD.ISTATUS = 50
+    </select>
+    <!--商品销售Top.10-->
+    <select id="selectCommoditySaleRanking" parameterType="java.util.Map" resultMap="resultCommoditySaleRankingVo">
+        select OOC.SCOMMODITY_ID COMMODITY_ID,SUM(FCOMMODITY_AMOUNT)
+        COMMODITY_AMOUNT,SUM(OOC.FORDER_COUNT) COMMODITY_COUNT,
+        SCI.SNAME COMMODITY_NAME,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT
+        from OM_ORDER_RECORD oor
+        INNER JOIN om_order_commodity OOC ON OOR.ID =OOC.SORDER_ID
+        LEFT JOIN SP_COMMODITY_INFO SCI ON OOC.SCOMMODITY_ID = SCI.ID
+        WHERE OOR.SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!-- AND OOR.ISTATUS=10-->
+        AND OOR.IDEL_FLAG=0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+        <!-- and OOC.ICOMMODITY_STATUS=20-->
+        <!--and OOC.ISTATUS=10-->
+        GROUP BY OOC.SCOMMODITY_ID
+        ORDER BY COMMODITY_COUNT DESC
+        LIMIT 10
+    </select>
+    <!--设备销售Top.10-->
+    <select id="selectDeviceSaleRanking" parameterType="java.util.Map" resultMap="resultDeviceSaleRankingVo">
+        SELECT
+        a.ID,a.DEVICE_ID,a.DEVICE_NAME,IFNULL(a.DEVICE_SALE_AMOUNT,0) DEVICE_SALE_AMOUNT,
+        IFNULL(a.DEVICE_SALE_NUM,0) DEVICE_SALE_NUM,IFNULL(b.VISITOR_NUM,0) VISITOR_NUM
+        FROM
+        (select OOR.ID ,OOR.SDEVICE_CODE,OOR.SDEVICE_ID DEVICE_ID,SDI.SNAME DEVICE_NAME,SUM(OOR.FTOTAL_AMOUNT)
+        DEVICE_SALE_AMOUNT ,count(OOR.ID) DEVICE_SALE_NUM
+        FROM OM_ORDER_RECORD OOR
+        INNER JOIN SB_DEVICE_INFO SDI ON OOR.SDEVICE_ID=SDI.ID
+        WHERE OOR.SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!-- AND OOR.ISTATUS=10-->
+        AND OOR.IDEL_FLAG=0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+        GROUP BY OOR.SDEVICE_ID) a
+        LEFT JOIN
+        (SELECT count(*) VISITOR_NUM ,SDEVICE_CODE
+        FROM SL_DEVICE_OPER
+        WHERE ITYPE IN(10,30)
+        <if test="deviceOperCondition != null and  deviceOperCondition != ''">
+            AND ${deviceOperCondition}
+        </if>
+        GROUP BY SDEVICE_CODE)b
+        ON a.SDEVICE_CODE =b.SDEVICE_CODE
+        ORDER BY A.DEVICE_SALE_AMOUNT DESC
+        LIMIT 10
+
+    </select>
+    <!--订单统计-->
+    <select id="selectOrderStatistics" parameterType="java.util.Map" resultMap="resultEcharts">
+        select temp.date CATEGORIES,
+        IFNULL (dd.num,0) Value
+        from
+        (SELECT
+        DATE_FORMAT(
+        ADDDATE(
+        #{start,jdbcType=TIMESTAMP},
+        INTERVAL @d DAY
+        ),
+        '%Y-%m-%d'
+        ) AS date ,@d :=@d + 1 day
+        FROM
+        sys_statistics_temp,
+        (SELECT @d := 0) temp
+        WHERE
+        ADDDATE(
+        #{start,jdbcType=TIMESTAMP},
+        INTERVAL @d DAY
+        ) <![CDATA[ <= ]]> DATE_FORMAT(#{end,jdbcType=TIMESTAMP}, '%Y-%m-%d')
+        ORDER BY day
+        ) temp
+        LEFT JOIN
+        (select DATE_FORMAT(TORDER_TIME,'%Y-%m-%d') AS PAYDATE,count(*) num
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+        group by DATE_FORMAT(TORDER_TIME,'%y-%m-%d')
+        ) dd
+        on dd.PAYDATE = temp.date
+        ORDER BY temp.day
+    </select>
+    <!--今日订单统计数据-->
+    <select id="selectSpecialdayOrderStatistics" parameterType="java.util.Map" resultMap="resultEcharts">
+        select CONCAT(b.dayHour,':00') NAME ,IFNULL(a.order_num,0) VALUE,(case when b.dayHour is not null then '订单统计'
+        end) `GROUP` from
+        (select HOUR (TORDER_TIME) AS hours,count(*)order_num
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+
+        group by DATE_FORMAT(TORDER_TIME,'%Y-%m-%d-%H')) a
+
+        RIGHT JOIN
+
+        (SELECT one.hours + two.hours AS dayHour
+        FROM (SELECT 0 hours
+        UNION ALL SELECT 1 hours
+        UNION ALL SELECT 2 hours
+        UNION ALL SELECT 3 hours
+        UNION ALL SELECT 4 hours
+        UNION ALL SELECT 5 hours
+        UNION ALL SELECT 6 hours
+        UNION ALL SELECT 7 hours
+        UNION ALL SELECT 8 hours
+        UNION ALL SELECT 9 hours) one
+        CROSS JOIN (SELECT 0 hours
+        UNION ALL SELECT 10 hours
+        UNION ALL SELECT 20 hours) two
+        WHERE (one.hours + two.hours) &lt; 24)b
+        on a.hours=b.dayHour
+        ORDER BY b.dayHour
+    </select>
+    <!--本月订单总数-->
+    <select id="selectThisMonthOrderNum" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        select count(*)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <!-- AND date_format(TORDER_TIME, '%Y%m') = date_format(curdate() , '%Y%m')-->
+        <if test="thisMonthStart != null and  thisMonthStart != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{thisMonthStart,jdbcType=VARCHAR}
+        </if>
+        <if test="thisMonthEnd != null and  thisMonthEnd != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{thisMonthEnd,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!--上月订单总数-->
+    <select id="selectLastMonthOrderNum" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        select count(*)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <!--AND DATE_FORMAT(TORDER_TIME, '%Y %M') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y %M')-->
+        <if test="lastMonthStart != null and  lastMonthStart != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{lastMonthStart,jdbcType=VARCHAR}
+        </if>
+        <if test="lastMonthEnd != null and  lastMonthEnd != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{lastMonthEnd,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!--本周订单总数-->
+    <select id="selectThisWeekOrderNum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+        select count(*)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="start != null and  start != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{start,jdbcType=VARCHAR}
+        </if>
+        <if test="end != null and  end != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{end,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!--上周订单总数-->
+    <select id="selectLastWeekOrderNum" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+        select count(*)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--   AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="lastStart != null and  lastStart != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{lastStart,jdbcType=VARCHAR}
+        </if>
+        <if test="lastEnd != null and  lastEnd != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{lastEnd,jdbcType=VARCHAR}
+        </if>
+        <!-- AND YEARWEEK(date_format(TPAY_COMPLETE_TIME,'%Y-%m-%d')) = YEARWEEK(now())-1-->
+    </select>
+    <!--销售统计-->
+    <select id="selectSalesAmountStatistics" parameterType="java.util.Map" resultMap="resultEcharts">
+        select temp.date CATEGORIES,IFNULL(SALES_AMOUNT,0) VALUE
+        FROM
+        (SELECT
+        DATE_FORMAT(
+        ADDDATE(
+        #{start,jdbcType=TIMESTAMP},
+        INTERVAL @d DAY
+        ),
+        '%Y-%m-%d'
+        ) AS date ,@d :=@d + 1 day
+        FROM
+        sys_statistics_temp,
+        (SELECT @d := 0) temp
+        WHERE
+        ADDDATE(
+        #{start,jdbcType=TIMESTAMP},
+        INTERVAL @d DAY
+        ) <![CDATA[ <= ]]> DATE_FORMAT(#{end,jdbcType=TIMESTAMP}, '%Y-%m-%d')
+        ORDER BY day
+        ) temp
+        LEFT JOIN
+        (select DATE_FORMAT(TORDER_TIME,'%Y-%m-%d') AS PAYDATE,SUM(FTOTAL_AMOUNT) SALES_AMOUNT
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--   AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+        group by DATE_FORMAT(TORDER_TIME,'%y-%m-%d')
+        ) dd
+        on dd.PAYDATE = temp.date
+        ORDER BY temp.day
+    </select>
+    <!--今天/昨天销售统计-->
+    <select id="selectSpecialdaySalesStatistics" parameterType="java.util.Map" resultMap="resultEcharts">
+        select CONCAT(b.dayHour,':00') NAME ,IFNULL(a.SALES_AMOUNT,0) VALUE,(case when b.dayHour is not null then '销售统计'
+        end) `GROUP`
+        from
+        (select HOUR (TORDER_TIME) AS hours,SUM(FTOTAL_AMOUNT) SALES_AMOUNT
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+        group by DATE_FORMAT(TORDER_TIME,'%y-%m-%d-%h'))a
+        RIGHT JOIN
+        (SELECT one.hours + two.hours AS dayHour
+        FROM (SELECT 0 hours
+        UNION ALL SELECT 1 hours
+        UNION ALL SELECT 2 hours
+        UNION ALL SELECT 3 hours
+        UNION ALL SELECT 4 hours
+        UNION ALL SELECT 5 hours
+        UNION ALL SELECT 6 hours
+        UNION ALL SELECT 7 hours
+        UNION ALL SELECT 8 hours
+        UNION ALL SELECT 9 hours) one
+        CROSS JOIN (SELECT 0 hours
+        UNION ALL SELECT 10 hours
+        UNION ALL SELECT 20 hours) two
+        WHERE (one.hours + two.hours)
+        &lt;
+        24)b
+        on a.hours=b.dayHour
+        ORDER BY b.dayHour
+    </select>
+    <!-- 本月销售额-->
+    <select id="selectThisMonthSaleAmount" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        select IFNULL(sum(FTOTAL_AMOUNT),0)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <!--AND date_format(TORDER_TIME, '%Y%m') = date_format(curdate() , '%Y%m')-->
+        <if test="thisMonthStart != null and  thisMonthStart != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{thisMonthStart,jdbcType=VARCHAR}
+        </if>
+        <if test="thisMonthEnd != null and  thisMonthEnd != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{thisMonthEnd,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!-- 上月销售额-->
+    <select id="selectLastMonthSaleAmount" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        select IFNULL(sum(FTOTAL_AMOUNT),0)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <!-- AND DATE_FORMAT(TORDER_TIME, '%Y %M') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y %M')-->
+        <if test="lastMonthStart != null and  lastMonthStart != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{lastMonthStart,jdbcType=VARCHAR}
+        </if>
+        <if test="lastMonthEnd != null and  lastMonthEnd != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{lastMonthEnd,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!-- 本周销售额-->
+    <select id="selectThisWeekSaleAmount" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+        select IFNULL(sum(FTOTAL_AMOUNT),0)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--  AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="start != null and  start != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{start,jdbcType=VARCHAR}
+        </if>
+        <if test="end != null and  end != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{end,jdbcType=VARCHAR}
+        </if>
+        <!-- AND YEARWEEK(date_format(TPAY_COMPLETE_TIME,'%Y-%m-%d')) = YEARWEEK(now())-->
+    </select>
+    <!-- 上周销售额-->
+    <select id="selectLastWeekSaleAmount" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        select IFNULL(sum(FTOTAL_AMOUNT),0)
+        FROM OM_ORDER_RECORD
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        <!--   AND ISTATUS= 10-->
+        AND IDEL_FLAG= 0
+        <if test="lastStart != null and  lastStart != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &gt;=#{lastStart,jdbcType=VARCHAR}
+        </if>
+        <if test="lastEnd != null and  lastEnd != ''">
+            AND DATE_FORMAT(TORDER_TIME, '%Y-%m-%d') &lt;=#{lastEnd,jdbcType=VARCHAR}
+        </if>
+        <!--  AND YEARWEEK(date_format(TPAY_COMPLETE_TIME,'%Y-%m-%d')) = YEARWEEK(now())-1-->
+    </select>
+    <!--会员统计-->
+    <select id="selectMemberStatistics" parameterType="java.util.Map" resultMap="resultEcharts">
+        select temp.date CATEGORIES,
+        IFNULL(hy.num,0) Value from
+        (SELECT
+        DATE_FORMAT(
+        ADDDATE(
+        #{start,jdbcType=TIMESTAMP},
+        INTERVAL @d DAY
+        ),
+        '%Y-%m-%d'
+        ) AS date ,@d :=@d + 1 day
+        FROM
+        sys_statistics_temp,
+        (SELECT @d := 0) temp
+        WHERE
+        ADDDATE(
+        #{start,jdbcType=TIMESTAMP},
+        INTERVAL @d DAY
+        ) &lt;= DATE_FORMAT(#{end,jdbcType=TIMESTAMP}, '%Y-%m-%d')
+        ORDER BY day
+        ) temp LEFT JOIN (SELECT DATE_FORMAT(ADD_TIME,'%Y-%m-%d') as hydate, count(*) num
+        FROM HY_MEMBER_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND ISTATUS = 1
+        AND IDEL_FLAG =0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+        group by DATE_FORMAT(ADD_TIME,'%Y-%m-%d')
+        ) hy
+        on hy.hydate = temp.date
+        ORDER BY temp.day
+    </select>
+    <!--今日会员统计数据-->
+    <select id="selectSpecialdayMemberStatistics" parameterType="java.util.Map" resultMap="resultEcharts">
+        select CONCAT(b.dayHour,':00') NAME ,IFNULL(a.MEMBER_NUM,0) VALUE,(case when b.dayHour is not null then '会员统计'
+        end) `GROUP`
+        from
+        (select COUNT(*) MEMBER_NUM,HOUR (ADD_TIME) AS hours
+        from HY_MEMBER_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND ISTATUS = 1
+        AND IDEL_FLAG =0
+        <if test="condition != null and  condition != ''">
+            AND ${condition}
+        </if>
+        group by date_format(ADD_TIME, '%Y-%m-%d %H '))a
+        RIGHT JOIN
+        (SELECT one.hours + two.hours AS dayHour
+        FROM (SELECT 0 hours
+        UNION ALL SELECT 1 hours
+        UNION ALL SELECT 2 hours
+        UNION ALL SELECT 3 hours
+        UNION ALL SELECT 4 hours
+        UNION ALL SELECT 5 hours
+        UNION ALL SELECT 6 hours
+        UNION ALL SELECT 7 hours
+        UNION ALL SELECT 8 hours
+        UNION ALL SELECT 9 hours) one
+        CROSS JOIN (SELECT 0 hours
+        UNION ALL SELECT 10 hours
+        UNION ALL SELECT 20 hours) two
+        WHERE (one.hours + two.hours)
+        &lt;
+        24) b
+        on a.hours=b.dayHour
+        ORDER BY dayHour ASC
+    </select>
+    <!--本月会员总数-->
+    <select id="selectThisMonthMemberNum" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        SELECT count(*)
+        FROM HY_MEMBER_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND ISTATUS = 1
+        AND IDEL_FLAG =0
+        <!-- AND date_format(ADD_TIME, '%Y%m') = date_format(curdate() , '%Y%m')-->
+        <if test="thisMonthStart != null and  thisMonthStart != ''">
+            AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &gt;=#{thisMonthStart,jdbcType=VARCHAR}
+        </if>
+        <if test="thisMonthEnd != null and  thisMonthEnd != ''">
+            AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &lt;=#{thisMonthEnd,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!--上月会员总数-->
+    <select id="selectLastMonthMemberNum" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        SELECT count(*)
+        FROM HY_MEMBER_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND ISTATUS = 1
+        AND IDEL_FLAG =0
+        <!-- AND DATE_FORMAT(ADD_TIME, '%Y %M') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y %M')-->
+        <if test="lastMonthStart != null and  lastMonthStart != ''">
+            AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &gt;=#{lastMonthStart,jdbcType=VARCHAR}
+        </if>
+        <if test="lastMonthEnd != null and  lastMonthEnd != ''">
+                AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &lt;=#{lastMonthEnd,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!--本周会员总数-->
+    <select id="selectThisWeekMemberNum" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        SELECT count(*)
+        FROM HY_MEMBER_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND ISTATUS = 1
+        AND IDEL_FLAG =0
+        <if test="start != null and  start != ''">
+            AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &gt;=#{start,jdbcType=VARCHAR}
+        </if>
+        <if test="end != null and  end != ''">
+            AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &lt;=#{end,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <!--上周会员总数-->
+    <select id="selectLastWeekMemberNum" parameterType="java.lang.String" resultType="java.math.BigDecimal">
+        SELECT count(*)
+        FROM HY_MEMBER_INFO
+        WHERE SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        AND ISTATUS = 1
+        AND IDEL_FLAG =0
+        <if test="lastStart != null and  lastStart != ''">
+            AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &gt;=#{lastStart,jdbcType=VARCHAR}
+        </if>
+        <if test="lastEnd != null and  lastEnd != ''">
+            AND DATE_FORMAT(TREGISTER_TIME, '%Y-%m-%d') &lt;=#{lastEnd,jdbcType=VARCHAR}
+        </if>
+        AND YEARWEEK(date_format(ADD_TIME,'%Y-%m-%d')) = YEARWEEK(now())-1
+    </select>
+</mapper>

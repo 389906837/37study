@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.xx.dao.SalesMsgDetailDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.xx.SalesMsgDetail">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SCONTEXT" property="scontext" jdbcType="VARCHAR" />
+		<result column="SMAIN_ID" property="smainId" jdbcType="VARCHAR" />
+		<result column="SMOBILE" property="smobile" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ITYPE,SCONTEXT,SMAIN_ID,SMOBILE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="scontext != null and  scontext != ''  ">
+               and  SCONTEXT=#{scontext,jdbcType=VARCHAR}
+           	</if>
+			<if test="smainId != null and  smainId != ''  ">
+               and  SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smobile != null and  smobile != ''  ">
+               and  SMOBILE=#{smobile,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from XX_SALES_MSG_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.xx.SalesMsgDetail">
+        select
+        <include refid="column_List" />
+        from XX_SALES_MSG_DETAIL
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from XX_SALES_MSG_DETAIL
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from XX_SALES_MSG_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM XX_SALES_MSG_DETAIL where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.xx.SalesMsgDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into XX_SALES_MSG_DETAIL (ID,ITYPE,SCONTEXT,SMAIN_ID,SMOBILE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{itype,jdbcType=NUMERIC},#{scontext,jdbcType=VARCHAR},#{smainId,jdbcType=VARCHAR},#{smobile,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.xx.SalesMsgDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into XX_SALES_MSG_DETAIL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="scontext">
+               SCONTEXT,
+           	</if>
+			<if test="smainId">
+               SMAIN_ID,
+           	</if>
+			<if test="smobile">
+               SMOBILE,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="scontext != null and  scontext != ''  ">
+                #{scontext,jdbcType=VARCHAR},
+           	</if>
+			<if test="smainId != null and  smainId != ''  ">
+                #{smainId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smobile != null and  smobile != ''  ">
+                #{smobile,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.xx.SalesMsgDetail">
+        update XX_SALES_MSG_DETAIL
+        <set>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="scontext != null and  scontext != ''  ">
+                SCONTEXT=#{scontext,jdbcType=VARCHAR},
+           	</if>
+			<if test="smainId != null and  smainId != ''  ">
+                SMAIN_ID=#{smainId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smobile != null and  smobile != ''  ">
+                SMOBILE=#{smobile,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.xx.SalesMsgDetail">
+        update XX_SALES_MSG_DETAIL
+        set 
+        		ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SCONTEXT=#{scontext,jdbcType=VARCHAR}
+        		,SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+        		,SMOBILE=#{smobile,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SCONTEXT=#{scontext,jdbcType=VARCHAR}
+	SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+	SMOBILE=#{smobile,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

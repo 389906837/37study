@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.lm.dao.LabelBatchCommodityDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.lm.LabelBatchCommodity">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FILE_LOCATION" property="fileLocation" jdbcType="VARCHAR"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IIS_SINGLE_COMMODITY" property="iisSingleCommodity" jdbcType="NUMERIC"/>
+        <result column="IMARK_STATUS" property="imarkStatus" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SBATCH_CODE" property="sbatchCode" jdbcType="VARCHAR"/>
+        <result column="SBATCH_ID" property="sbatchId" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR"/>
+        <result column="SCOMMODITY_NAME" property="scommodityName" jdbcType="VARCHAR"/>
+        <result column="SFILE_NAME" property="sfileName" jdbcType="VARCHAR"/>
+        <result column="SPIC_NUM" property="spicNum" jdbcType="NUMERIC"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="SVR_CODE" property="svrCode" jdbcType="VARCHAR"/>
+        <result column="SVR_IDENTIFICATION" property="svrIdentification" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TMARK_COMPLETION_TIME" property="tmarkCompletionTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,FILE_LOCATION,IDEL_FLAG,IIS_SINGLE_COMMODITY,IMARK_STATUS,SADD_USER,SBATCH_CODE,SBATCH_ID,SCODE,SCOMMODITY_CODE,SCOMMODITY_NAME,SFILE_NAME,SPIC_NUM,SREMARK,SUPDATE_USER,SVR_CODE,SVR_IDENTIFICATION,TADD_TIME,TMARK_COMPLETION_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="fileLocation != null and  fileLocation != ''  ">
+                    and FILE_LOCATION=#{fileLocation,jdbcType=VARCHAR}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="iisSingleCommodity != null  ">
+                    and IIS_SINGLE_COMMODITY=#{iisSingleCommodity,jdbcType=NUMERIC}
+                </if>
+                <if test="imarkStatus != null  ">
+                    and IMARK_STATUS=#{imarkStatus,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="sbatchCode != null and  sbatchCode != ''  ">
+                    and SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sbatchId != null and  sbatchId != ''  ">
+                    and SBATCH_ID=#{sbatchId,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null and  scode != ''  ">
+                    and SCODE=#{scode,jdbcType=VARCHAR}
+                </if>
+                <if test="scommodityCode != null and  scommodityCode != ''  ">
+                    and SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+                </if>
+                <if test="scommodityName != null and  scommodityName != ''  ">
+                    and SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+                </if>
+                <if test="sfileName != null and  sfileName != ''  ">
+                    and SFILE_NAME=#{sfileName,jdbcType=VARCHAR}
+                </if>
+                <if test="spicNum != null  ">
+                    and SPIC_NUM=#{spicNum,jdbcType=NUMERIC}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="svrCode != null and  svrCode != ''  ">
+                    and SVR_CODE=#{svrCode,jdbcType=VARCHAR}
+                </if>
+                <if test="svrIdentification != null and  svrIdentification != ''  ">
+                    and SVR_IDENTIFICATION=#{svrIdentification,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tmarkCompletionTime != null  ">
+                    and TMARK_COMPLETION_TIME=#{tmarkCompletionTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from LM_LABEL_BATCH_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity"
+            parameterType="com.cloud.cang.model.lm.LabelBatchCommodity">
+        select
+        <include refid="column_List"/>
+        from LM_LABEL_BATCH_COMMODITY
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from LM_LABEL_BATCH_COMMODITY
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from LM_LABEL_BATCH_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM LM_LABEL_BATCH_COMMODITY where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.lm.LabelBatchCommodity">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into LM_LABEL_BATCH_COMMODITY (ID,FILE_LOCATION,IDEL_FLAG,IIS_SINGLE_COMMODITY,IMARK_STATUS,SADD_USER,SBATCH_CODE,SBATCH_ID,SCODE,SCOMMODITY_CODE,SCOMMODITY_NAME,SFILE_NAME,SPIC_NUM,SREMARK,SUPDATE_USER,SVR_CODE,SVR_IDENTIFICATION,TADD_TIME,TMARK_COMPLETION_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{fileLocation,jdbcType=VARCHAR},#{idelFlag,jdbcType=NUMERIC},#{iisSingleCommodity,jdbcType=NUMERIC},#{imarkStatus,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sbatchCode,jdbcType=VARCHAR},#{sbatchId,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{scommodityCode,jdbcType=VARCHAR},#{scommodityName,jdbcType=VARCHAR},#{sfileName,jdbcType=VARCHAR},#{spicNum,jdbcType=NUMERIC},#{sremark,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{svrCode,jdbcType=VARCHAR},#{svrIdentification,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tmarkCompletionTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.lm.LabelBatchCommodity">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into LM_LABEL_BATCH_COMMODITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="fileLocation">
+                FILE_LOCATION,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="iisSingleCommodity">
+                IIS_SINGLE_COMMODITY,
+            </if>
+            <if test="imarkStatus">
+                IMARK_STATUS,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="sbatchCode">
+                SBATCH_CODE,
+            </if>
+            <if test="sbatchId">
+                SBATCH_ID,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="scommodityCode">
+                SCOMMODITY_CODE,
+            </if>
+            <if test="scommodityName">
+                SCOMMODITY_NAME,
+            </if>
+            <if test="sfileName">
+                SFILE_NAME,
+            </if>
+            <if test="spicNum">
+                SPIC_NUM,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="svrCode">
+                SVR_CODE,
+            </if>
+            <if test="svrIdentification">
+                SVR_IDENTIFICATION,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tmarkCompletionTime">
+                TMARK_COMPLETION_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="fileLocation != null and  fileLocation != ''  ">
+                #{fileLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisSingleCommodity != null  ">
+                #{iisSingleCommodity,jdbcType=NUMERIC},
+            </if>
+            <if test="imarkStatus != null  ">
+                #{imarkStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sbatchCode != null and  sbatchCode != ''  ">
+                #{sbatchCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sbatchId != null and  sbatchId != ''  ">
+                #{sbatchId,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityCode != null and  scommodityCode != ''  ">
+                #{scommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityName != null and  scommodityName != ''  ">
+                #{scommodityName,jdbcType=VARCHAR},
+            </if>
+            <if test="sfileName != null and  sfileName != ''  ">
+                #{sfileName,jdbcType=VARCHAR},
+            </if>
+            <if test="spicNum != null  ">
+                #{spicNum,jdbcType=NUMERIC},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCode != null and  svrCode != ''  ">
+                #{svrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrIdentification != null and  svrIdentification != ''  ">
+                #{svrIdentification,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tmarkCompletionTime != null  ">
+                #{tmarkCompletionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.lm.LabelBatchCommodity">
+        update LM_LABEL_BATCH_COMMODITY
+        <set>
+            <if test="fileLocation != null and  fileLocation != ''  ">
+                FILE_LOCATION=#{fileLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="iisSingleCommodity != null  ">
+                IIS_SINGLE_COMMODITY=#{iisSingleCommodity,jdbcType=NUMERIC},
+            </if>
+            <if test="imarkStatus != null  ">
+                IMARK_STATUS=#{imarkStatus,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sbatchCode != null and  sbatchCode != ''  ">
+                SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sbatchId != null and  sbatchId != ''  ">
+                SBATCH_ID=#{sbatchId,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityCode != null and  scommodityCode != ''  ">
+                SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="scommodityName != null and  scommodityName != ''  ">
+                SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR},
+            </if>
+            <if test="sfileName != null and  sfileName != ''  ">
+                SFILE_NAME=#{sfileName,jdbcType=VARCHAR},
+            </if>
+            <if test="spicNum != null  ">
+                SPIC_NUM=#{spicNum,jdbcType=NUMERIC},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCode != null and  svrCode != ''  ">
+                SVR_CODE=#{svrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="svrIdentification != null and  svrIdentification != ''  ">
+                SVR_IDENTIFICATION=#{svrIdentification,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tmarkCompletionTime != null  ">
+                TMARK_COMPLETION_TIME=#{tmarkCompletionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.lm.LabelBatchCommodity">
+        update LM_LABEL_BATCH_COMMODITY
+        set
+        FILE_LOCATION=#{fileLocation,jdbcType=VARCHAR}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IIS_SINGLE_COMMODITY=#{iisSingleCommodity,jdbcType=NUMERIC}
+        ,IMARK_STATUS=#{imarkStatus,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR}
+        ,SBATCH_ID=#{sbatchId,jdbcType=VARCHAR}
+        ,SCODE=#{scode,jdbcType=VARCHAR}
+        ,SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+        ,SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+        ,SFILE_NAME=#{sfileName,jdbcType=VARCHAR}
+        ,SPIC_NUM=#{spicNum,jdbcType=NUMERIC}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,SVR_CODE=#{svrCode,jdbcType=VARCHAR}
+        ,SVR_IDENTIFICATION=#{svrIdentification,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TMARK_COMPLETION_TIME=#{tmarkCompletionTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FILE_LOCATION=#{fileLocation,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_SINGLE_COMMODITY=#{iisSingleCommodity,jdbcType=NUMERIC}
+	IMARK_STATUS=#{imarkStatus,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR}
+	SBATCH_ID=#{sbatchId,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+	SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+	SFILE_NAME=#{sfileName,jdbcType=VARCHAR}
+	SPIC_NUM=#{spicNum,jdbcType=NUMERIC}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	SVR_CODE=#{svrCode,jdbcType=VARCHAR}
+	SVR_IDENTIFICATION=#{svrIdentification,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TMARK_COMPLETION_TIME=#{tmarkCompletionTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+    <update id="updateBySvrCode" parameterType="com.cloud.cang.mgr.lm.domain.LabelBatchCommodityDomain">
+        update LM_LABEL_BATCH_COMMODITY
+        <set>
+            <if test="scommodityName != null and  scommodityName != ''  ">
+                SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR},
+            </if>
+            <if test="svrCode != null and  svrCode != ''  ">
+                SVR_CODE=#{svrCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where SVR_CODE= #{oldSvrCode,jdbcType=VARCHAR}
+    </update>
+</mapper>

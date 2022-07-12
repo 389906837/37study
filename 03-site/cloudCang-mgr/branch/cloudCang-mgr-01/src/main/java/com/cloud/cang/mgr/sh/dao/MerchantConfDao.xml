@@ -1,0 +1,1034 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sh.dao.MerchantConfDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sh.MerchantConf">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FPAY_LIMIT_DAY" property="fpayLimitDay" jdbcType="NUMERIC"/>
+        <result column="FPAY_LIMIT_MONEY" property="fpayLimitMoney" jdbcType="NUMERIC"/>
+        <result column="FPAY_LIMIT_MONTH" property="fpayLimitMonth" jdbcType="NUMERIC"/>
+        <result column="FPAY_LIMIT_SINGLE" property="fpayLimitSingle" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SALIPAY_ACCOUNT" property="salipayAccount" jdbcType="VARCHAR"/>
+        <result column="SAPP_ID" property="sappId" jdbcType="VARCHAR"/>
+        <result column="SAPP_PUBLIC_KEY" property="sappPublicKey" jdbcType="VARCHAR"/>
+        <result column="SAPP_SECRET" property="sappSecret" jdbcType="VARCHAR"/>
+        <result column="SCALL_BACK_URL" property="scallBackUrl" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SPAY_CALL_BACK_URL" property="spayCallBackUrl" jdbcType="VARCHAR"/>
+        <result column="SPAY_WECHAT_KEY" property="spayWechatKey" jdbcType="VARCHAR"/>
+        <result column="SPID" property="spid" jdbcType="VARCHAR"/>
+        <result column="SPLAN_ID" property="splanId" jdbcType="VARCHAR"/>
+        <result column="SPRIVATE_KEY" property="sprivateKey" jdbcType="VARCHAR"/>
+        <result column="SPUBLIC_KEY" property="spublicKey" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="SWECHAT_ACCOUNT" property="swechatAccount" jdbcType="VARCHAR"/>
+        <result column="SWECHAT_CERT_PWD" property="swechatCertPwd" jdbcType="VARCHAR"/>
+        <result column="SWECHAT_CERT_URL" property="swechatCertUrl" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,FPAY_LIMIT_DAY,FPAY_LIMIT_MONEY,FPAY_LIMIT_MONTH,FPAY_LIMIT_SINGLE,IDEL_FLAG,ITYPE,SADD_USER,SALIPAY_ACCOUNT,SAPP_ID,SAPP_PUBLIC_KEY,SAPP_SECRET,SCALL_BACK_URL,SMERCHANT_CODE,SMERCHANT_ID,SPAY_CALL_BACK_URL,SPAY_WECHAT_KEY,SPID,SPLAN_ID,SPRIVATE_KEY,SPUBLIC_KEY,SUPDATE_USER,SWECHAT_ACCOUNT,SWECHAT_CERT_PWD,SWECHAT_CERT_URL,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="fpayLimitDay != null  ">
+                    and FPAY_LIMIT_DAY=#{fpayLimitDay,jdbcType=NUMERIC}
+                </if>
+                <if test="fpayLimitMoney != null  ">
+                    and FPAY_LIMIT_MONEY=#{fpayLimitMoney,jdbcType=NUMERIC}
+                </if>
+                <if test="fpayLimitMonth != null  ">
+                    and FPAY_LIMIT_MONTH=#{fpayLimitMonth,jdbcType=NUMERIC}
+                </if>
+                <if test="fpayLimitSingle != null  ">
+                    and FPAY_LIMIT_SINGLE=#{fpayLimitSingle,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="salipayAccount != null and  salipayAccount != ''  ">
+                    and SALIPAY_ACCOUNT=#{salipayAccount,jdbcType=VARCHAR}
+                </if>
+                <if test="sappId != null and  sappId != ''  ">
+                    and SAPP_ID=#{sappId,jdbcType=VARCHAR}
+                </if>
+                <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                    and SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR}
+                </if>
+                <if test="sappSecret != null and  sappSecret != ''  ">
+                    and SAPP_SECRET=#{sappSecret,jdbcType=VARCHAR}
+                </if>
+                <if test="scallBackUrl != null and  scallBackUrl != ''  ">
+                    and SCALL_BACK_URL=#{scallBackUrl,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="spayCallBackUrl != null and  spayCallBackUrl != ''  ">
+                    and SPAY_CALL_BACK_URL=#{spayCallBackUrl,jdbcType=VARCHAR}
+                </if>
+                <if test="spayWechatKey != null and  spayWechatKey != ''  ">
+                    and SPAY_WECHAT_KEY=#{spayWechatKey,jdbcType=VARCHAR}
+                </if>
+                <if test="spid != null and  spid != ''  ">
+                    and SPID=#{spid,jdbcType=VARCHAR}
+                </if>
+                <if test="splanId != null and  splanId != ''  ">
+                    and SPLAN_ID=#{splanId,jdbcType=VARCHAR}
+                </if>
+                <if test="sprivateKey != null and  sprivateKey != ''  ">
+                    and SPRIVATE_KEY=#{sprivateKey,jdbcType=VARCHAR}
+                </if>
+                <if test="spublicKey != null and  spublicKey != ''  ">
+                    and SPUBLIC_KEY=#{spublicKey,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="swechatAccount != null and  swechatAccount != ''  ">
+                    and SWECHAT_ACCOUNT=#{swechatAccount,jdbcType=VARCHAR}
+                </if>
+                <if test="swechatCertPwd != null and  swechatCertPwd != ''  ">
+                    and SWECHAT_CERT_PWD=#{swechatCertPwd,jdbcType=VARCHAR}
+                </if>
+                <if test="swechatCertUrl != null and  swechatCertUrl != ''  ">
+                    and SWECHAT_CERT_URL=#{swechatCertUrl,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_CONF
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sh.MerchantConf">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_CONF
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_CONF
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SH_MERCHANT_CONF
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SH_MERCHANT_CONF where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sh.MerchantConf">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SH_MERCHANT_CONF (ID,FPAY_LIMIT_DAY,FPAY_LIMIT_MONEY,FPAY_LIMIT_MONTH,FPAY_LIMIT_SINGLE,IDEL_FLAG,ITYPE,SADD_USER,SALIPAY_ACCOUNT,SAPP_ID,SAPP_PUBLIC_KEY,SAPP_SECRET,SCALL_BACK_URL,SMERCHANT_CODE,SMERCHANT_ID,SPAY_CALL_BACK_URL,SPAY_WECHAT_KEY,SPID,SPLAN_ID,SPRIVATE_KEY,SPUBLIC_KEY,SUPDATE_USER,SWECHAT_ACCOUNT,SWECHAT_CERT_PWD,SWECHAT_CERT_URL,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{fpayLimitDay,jdbcType=NUMERIC},#{fpayLimitMoney,jdbcType=NUMERIC},#{fpayLimitMonth,jdbcType=NUMERIC},#{fpayLimitSingle,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{salipayAccount,jdbcType=VARCHAR},#{sappId,jdbcType=VARCHAR},#{sappPublicKey,jdbcType=VARCHAR},#{sappSecret,jdbcType=VARCHAR},#{scallBackUrl,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{spayCallBackUrl,jdbcType=VARCHAR},#{spayWechatKey,jdbcType=VARCHAR},#{spid,jdbcType=VARCHAR},#{splanId,jdbcType=VARCHAR},#{sprivateKey,jdbcType=VARCHAR},#{spublicKey,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{swechatAccount,jdbcType=VARCHAR},#{swechatCertPwd,jdbcType=VARCHAR},#{swechatCertUrl,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sh.MerchantConf">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SH_MERCHANT_CONF
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="fpayLimitDay">
+                FPAY_LIMIT_DAY,
+            </if>
+            <if test="fpayLimitMoney">
+                FPAY_LIMIT_MONEY,
+            </if>
+            <if test="fpayLimitMonth">
+                FPAY_LIMIT_MONTH,
+            </if>
+            <if test="fpayLimitSingle">
+                FPAY_LIMIT_SINGLE,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="itype">
+                ITYPE,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="salipayAccount">
+                SALIPAY_ACCOUNT,
+            </if>
+            <if test="sappId">
+                SAPP_ID,
+            </if>
+            <if test="sappPublicKey">
+                SAPP_PUBLIC_KEY,
+            </if>
+            <if test="sappSecret">
+                SAPP_SECRET,
+            </if>
+            <if test="scallBackUrl">
+                SCALL_BACK_URL,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="spayCallBackUrl">
+                SPAY_CALL_BACK_URL,
+            </if>
+            <if test="spayWechatKey">
+                SPAY_WECHAT_KEY,
+            </if>
+            <if test="spid">
+                SPID,
+            </if>
+            <if test="splanId">
+                SPLAN_ID,
+            </if>
+            <if test="sprivateKey">
+                SPRIVATE_KEY,
+            </if>
+            <if test="spublicKey">
+                SPUBLIC_KEY,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="swechatAccount">
+                SWECHAT_ACCOUNT,
+            </if>
+            <if test="swechatCertPwd">
+                SWECHAT_CERT_PWD,
+            </if>
+            <if test="swechatCertUrl">
+                SWECHAT_CERT_URL,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="fpayLimitDay != null  ">
+                #{fpayLimitDay,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitMoney != null  ">
+                #{fpayLimitMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitMonth != null  ">
+                #{fpayLimitMonth,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitSingle != null  ">
+                #{fpayLimitSingle,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="salipayAccount != null and  salipayAccount != ''  ">
+                #{salipayAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="sappId != null and  sappId != ''  ">
+                #{sappId,jdbcType=VARCHAR},
+            </if>
+            <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                #{sappPublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sappSecret != null and  sappSecret != ''  ">
+                #{sappSecret,jdbcType=VARCHAR},
+            </if>
+            <if test="scallBackUrl != null and  scallBackUrl != ''  ">
+                #{scallBackUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="spayCallBackUrl != null and  spayCallBackUrl != ''  ">
+                #{spayCallBackUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="spayWechatKey != null and  spayWechatKey != ''  ">
+                #{spayWechatKey,jdbcType=VARCHAR},
+            </if>
+            <if test="spid != null and  spid != ''  ">
+                #{spid,jdbcType=VARCHAR},
+            </if>
+            <if test="splanId != null and  splanId != ''  ">
+                #{splanId,jdbcType=VARCHAR},
+            </if>
+            <if test="sprivateKey != null and  sprivateKey != ''  ">
+                #{sprivateKey,jdbcType=VARCHAR},
+            </if>
+            <if test="spublicKey != null and  spublicKey != ''  ">
+                #{spublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="swechatAccount != null and  swechatAccount != ''  ">
+                #{swechatAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="swechatCertPwd != null and  swechatCertPwd != ''  ">
+                #{swechatCertPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="swechatCertUrl != null and  swechatCertUrl != ''  ">
+                #{swechatCertUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sh.MerchantConf">
+        update SH_MERCHANT_CONF
+        <set>
+            <if test="fpayLimitDay != null  ">
+                FPAY_LIMIT_DAY=#{fpayLimitDay,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitMoney != null  ">
+                FPAY_LIMIT_MONEY=#{fpayLimitMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitMonth != null  ">
+                FPAY_LIMIT_MONTH=#{fpayLimitMonth,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitSingle != null  ">
+                FPAY_LIMIT_SINGLE=#{fpayLimitSingle,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="salipayAccount != null and  salipayAccount != ''  ">
+                SALIPAY_ACCOUNT=#{salipayAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="sappId != null and  sappId != ''  ">
+                SAPP_ID=#{sappId,jdbcType=VARCHAR},
+            </if>
+            <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sappSecret != null and  sappSecret != ''  ">
+                SAPP_SECRET=#{sappSecret,jdbcType=VARCHAR},
+            </if>
+            <if test="scallBackUrl != null and  scallBackUrl != ''  ">
+                SCALL_BACK_URL=#{scallBackUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="spayCallBackUrl != null and  spayCallBackUrl != ''  ">
+                SPAY_CALL_BACK_URL=#{spayCallBackUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="spayWechatKey != null and  spayWechatKey != ''  ">
+                SPAY_WECHAT_KEY=#{spayWechatKey,jdbcType=VARCHAR},
+            </if>
+            <if test="spid != null and  spid != ''  ">
+                SPID=#{spid,jdbcType=VARCHAR},
+            </if>
+            <if test="splanId != null and  splanId != ''  ">
+                SPLAN_ID=#{splanId,jdbcType=VARCHAR},
+            </if>
+            <if test="sprivateKey != null and  sprivateKey != ''  ">
+                SPRIVATE_KEY=#{sprivateKey,jdbcType=VARCHAR},
+            </if>
+            <if test="spublicKey != null and  spublicKey != ''  ">
+                SPUBLIC_KEY=#{spublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="swechatAccount != null and  swechatAccount != ''  ">
+                SWECHAT_ACCOUNT=#{swechatAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="swechatCertPwd != null and  swechatCertPwd != ''  ">
+                SWECHAT_CERT_PWD=#{swechatCertPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="swechatCertUrl != null and  swechatCertUrl != ''  ">
+                SWECHAT_CERT_URL=#{swechatCertUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sh.MerchantConf">
+        update SH_MERCHANT_CONF
+        set
+        FPAY_LIMIT_DAY=#{fpayLimitDay,jdbcType=NUMERIC}
+        ,FPAY_LIMIT_MONEY=#{fpayLimitMoney,jdbcType=NUMERIC}
+        ,FPAY_LIMIT_MONTH=#{fpayLimitMonth,jdbcType=NUMERIC}
+        ,FPAY_LIMIT_SINGLE=#{fpayLimitSingle,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,ITYPE=#{itype,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SALIPAY_ACCOUNT=#{salipayAccount,jdbcType=VARCHAR}
+        ,SAPP_ID=#{sappId,jdbcType=VARCHAR}
+        ,SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR}
+        ,SAPP_SECRET=#{sappSecret,jdbcType=VARCHAR}
+        ,SCALL_BACK_URL=#{scallBackUrl,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SPAY_CALL_BACK_URL=#{spayCallBackUrl,jdbcType=VARCHAR}
+        ,SPAY_WECHAT_KEY=#{spayWechatKey,jdbcType=VARCHAR}
+        ,SPID=#{spid,jdbcType=VARCHAR}
+        ,SPLAN_ID=#{splanId,jdbcType=VARCHAR}
+        ,SPRIVATE_KEY=#{sprivateKey,jdbcType=VARCHAR}
+        ,SPUBLIC_KEY=#{spublicKey,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,SWECHAT_ACCOUNT=#{swechatAccount,jdbcType=VARCHAR}
+        ,SWECHAT_CERT_PWD=#{swechatCertPwd,jdbcType=VARCHAR}
+        ,SWECHAT_CERT_URL=#{swechatCertUrl,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FPAY_LIMIT_DAY=#{fpayLimitDay,jdbcType=NUMERIC}
+	FPAY_LIMIT_MONEY=#{fpayLimitMoney,jdbcType=NUMERIC}
+	FPAY_LIMIT_MONTH=#{fpayLimitMonth,jdbcType=NUMERIC}
+	FPAY_LIMIT_SINGLE=#{fpayLimitSingle,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SALIPAY_ACCOUNT=#{salipayAccount,jdbcType=VARCHAR}
+	SAPP_ID=#{sappId,jdbcType=VARCHAR}
+	SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR}
+	SAPP_SECRET=#{sappSecret,jdbcType=VARCHAR}
+	SCALL_BACK_URL=#{scallBackUrl,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SPAY_CALL_BACK_URL=#{spayCallBackUrl,jdbcType=VARCHAR}
+	SPAY_WECHAT_KEY=#{spayWechatKey,jdbcType=VARCHAR}
+	SPID=#{spid,jdbcType=VARCHAR}
+	SPLAN_ID=#{splanId,jdbcType=VARCHAR}
+	SPRIVATE_KEY=#{sprivateKey,jdbcType=VARCHAR}
+	SPUBLIC_KEY=#{spublicKey,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	SWECHAT_ACCOUNT=#{swechatAccount,jdbcType=VARCHAR}
+	SWECHAT_CERT_PWD=#{swechatCertPwd,jdbcType=VARCHAR}
+	SWECHAT_CERT_URL=#{swechatCertUrl,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <!--编辑 -->
+
+
+    <select id="selectByIdType" resultMap="resultEntity" parameterType="com.cloud.cang.model.sh.MerchantConf">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_CONF
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <!-- 修改商户微信/支付宝配置-->
+    <update id="updateByDomain" parameterType="com.cloud.cang.mgr.sh.domain.MerchantConfDomain">
+        update SH_MERCHANT_CONF
+        <set>
+            <choose>
+                <!-- 微信支付配置修改-->
+                <when test=' IISWC != null and IISWC == "1" '>
+                    <!-- <if test="WCfpayLimitDay != null  ">-->
+                        FPAY_LIMIT_DAY=#{WCfpayLimitDay,jdbcType=NUMERIC},
+                  <!--  </if>-->
+                    <!-- <if test="WCfpayLimitMoney != null  ">-->
+                        FPAY_LIMIT_MONEY=#{WCfpayLimitMoney,jdbcType=NUMERIC},
+                   <!-- </if>-->
+                    <!-- <if test="WCfpayLimitMonth != null  ">-->
+                        FPAY_LIMIT_MONTH=#{WCfpayLimitMonth,jdbcType=NUMERIC},
+                 <!--   </if>-->
+                    <!-- <if test="WCfpayLimitSingle != null  ">-->
+                        FPAY_LIMIT_SINGLE=#{WCfpayLimitSingle,jdbcType=NUMERIC},
+                   <!-- </if>-->
+                    <if test="idelFlag != null  ">
+                        IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+                    </if>
+                    <if test="itype != null  ">
+                        ITYPE=#{itype,jdbcType=NUMERIC},
+                    </if>
+                    <if test="saddUser != null   ">
+                        SADD_USER=#{saddUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCsappId != null  ">
+                        SAPP_ID=#{WCsappId,jdbcType=VARCHAR},
+                    </if>
+                    <!-- <if test="WCsappPublicKey != null  ">
+                         SAPP_PUBLIC_KEY=#{WCsappPublicKey,jdbcType=VARCHAR},
+                     </if>-->
+                    <if test="WCsappSecret != null ">
+                        SAPP_SECRET=#{WCsappSecret,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCscallBackUrl != null ">
+                        SCALL_BACK_URL=#{WCscallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="smerchantId != null ">
+                        SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCspId != null  ">
+                        SPID=#{WCspId,jdbcType=VARCHAR},
+                    </if>
+                    <!--  <if test="WCsprivateKey != null">
+                          SPRIVATE_KEY=#{WCsprivateKey,jdbcType=VARCHAR},
+                      </if>
+                      <if test="WCspublicKey != null">
+                          SPUBLIC_KEY=#{WCspublicKey,jdbcType=VARCHAR},
+                      </if>-->
+                    <if test="supdateUser != null ">
+                        SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="taddTime != null  ">
+                        TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="tupdateTime != null  ">
+                        TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="WCspayCallBackUrl != null and  WCspayCallBackUrl != ''  ">
+                        SPAY_CALL_BACK_URL=#{WCspayCallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCsplanId != null and  WCsplanId != ''  ">
+                        SPLAN_ID=#{WCsplanId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="spayWechatKey != null and  spayWechatKey != ''  ">
+                        SPAY_WECHAT_KEY=#{spayWechatKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="swechatCertUrl != null and  swechatCertUrl != ''  ">
+                        SWECHAT_CERT_URL=#{swechatCertUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="swechatCertPwd != null and  swechatCertPwd != ''  ">
+                        SWECHAT_CERT_PWD=#{swechatCertPwd,jdbcType=VARCHAR},
+                    </if>
+                    <if test="swechatAccount != null and  swechatAccount != ''  ">
+                        SWECHAT_ACCOUNT=#{swechatAccount,jdbcType=VARCHAR}
+                    </if>
+                </when>
+                <when test=' IISWC != null and IISWC == "0" '>
+              <!--      <if test="fpayLimitDay != null  ">-->
+                        FPAY_LIMIT_DAY=#{fpayLimitDay,jdbcType=NUMERIC},
+                    <!--</if>-->
+                <!--    <if test="fpayLimitMoney != null  ">-->
+                        FPAY_LIMIT_MONEY=#{fpayLimitMoney,jdbcType=NUMERIC},
+                  <!--  </if>-->
+               <!--     <if test="fpayLimitMonth != null  ">-->
+                        FPAY_LIMIT_MONTH=#{fpayLimitMonth,jdbcType=NUMERIC},
+                  <!--  </if>-->
+                   <!-- <if test="fpayLimitSingle != null  ">-->
+                        FPAY_LIMIT_SINGLE=#{fpayLimitSingle,jdbcType=NUMERIC},
+                   <!-- </if>-->
+                    <if test="idelFlag != null  ">
+                        IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+                    </if>
+                    <if test="itype != null  ">
+                        ITYPE=#{itype,jdbcType=NUMERIC},
+                    </if>
+                    <if test="saddUser != null">
+                        SADD_USER=#{saddUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sappId != null">
+                        SAPP_ID=#{sappId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sappPublicKey != null">
+                        SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sappSecret != null">
+                        SAPP_SECRET=#{sappSecret,jdbcType=VARCHAR},
+                    </if>
+                    <if test="scallBackUrl != null ">
+                        SCALL_BACK_URL=#{scallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="smerchantId != null ">
+                        SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="spid != null">
+                        SPID=#{spid,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sprivateKey != null ">
+                        SPRIVATE_KEY=#{sprivateKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="spublicKey != null">
+                        SPUBLIC_KEY=#{spublicKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="supdateUser != null ">
+                        SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="taddTime != null  ">
+                        TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="tupdateTime != null  ">
+                        TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="spayCallBackUrl != null and  spayCallBackUrl != ''  ">
+                        SPAY_CALL_BACK_URL=#{spayCallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="salipayAccount != null and  salipayAccount != ''  ">
+                        SALIPAY_ACCOUNT=#{salipayAccount,jdbcType=VARCHAR}
+                    </if>
+                </when>
+            </choose>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!--根据商户Id逻辑删除商户配置表-->
+    <update id="upBySmerchantId" parameterType="com.cloud.cang.model.sh.MerchantConf">
+        update SH_MERCHANT_CONF
+        <set>
+            <if test="fpayLimitDay != null  ">
+                FPAY_LIMIT_DAY=#{fpayLimitDay,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitMoney != null  ">
+                FPAY_LIMIT_MONEY=#{fpayLimitMoney,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitMonth != null  ">
+                FPAY_LIMIT_MONTH=#{fpayLimitMonth,jdbcType=NUMERIC},
+            </if>
+            <if test="fpayLimitSingle != null  ">
+                FPAY_LIMIT_SINGLE=#{fpayLimitSingle,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sappId != null and  sappId != ''  ">
+                SAPP_ID=#{sappId,jdbcType=VARCHAR},
+            </if>
+            <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                SAPP_PUBLIC_KEY=#{sappPublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="sappSecret != null and  sappSecret != ''  ">
+                SAPP_SECRET=#{sappSecret,jdbcType=VARCHAR},
+            </if>
+            <if test="scallBackUrl != null and  scallBackUrl != ''  ">
+                SCALL_BACK_URL=#{scallBackUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="spid != null and  spid != ''  ">
+                SPID=#{spid,jdbcType=VARCHAR},
+            </if>
+            <if test="sprivateKey != null and  sprivateKey != ''  ">
+                SPRIVATE_KEY=#{sprivateKey,jdbcType=VARCHAR},
+            </if>
+            <if test="spublicKey != null and  spublicKey != ''  ">
+                SPUBLIC_KEY=#{spublicKey,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="spayCallBackUrl != null and  spayCallBackUrl != ''  ">
+                SPAY_CALL_BACK_URL=#{spayCallBackUrl,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+    </update>
+
+    <!--新增商户配置 -->
+    <insert id="insertMerchantDomain" parameterType="com.cloud.cang.mgr.sh.domain.MerchantConfDomain">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SH_MERCHANT_CONF
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <choose>
+                <when test=' IISWC != null and IISWC == "0"  '>
+                    <if test="id != null and  id != ''   ">
+                        ID,
+                    </if>
+                    <if test="fpayLimitDay != null and  fpayLimitDay != ''">
+                        FPAY_LIMIT_DAY,
+                    </if>
+                    <if test="fpayLimitMoney  != null and  fpayLimitMoney != '' ">
+                        FPAY_LIMIT_MONEY,
+                    </if>
+                    <if test="fpayLimitMonth  != null and  fpayLimitMonth != '' ">
+                        FPAY_LIMIT_MONTH,
+                    </if>
+                    <if test="fpayLimitSingle != null and  fpayLimitSingle != '' ">
+                        FPAY_LIMIT_SINGLE,
+                    </if>
+                    <if test="idelFlag != null ">
+                        IDEL_FLAG,
+                    </if>
+                    <if test="itype != null and  itype != '' ">
+                        ITYPE,
+                    </if>
+                    <if test="saddUser != null and  saddUser != '' ">
+                        SADD_USER,
+                    </if>
+                    <if test="sappId != null and  sappId != '' ">
+                        SAPP_ID,
+                    </if>
+                    <if test="sappPublicKey != null and  sappPublicKey != '' ">
+                        SAPP_PUBLIC_KEY,
+                    </if>
+                    <if test="sappSecret != null and  sappSecret != '' ">
+                        SAPP_SECRET,
+                    </if>
+                    <if test="scallBackUrl  != null and  scallBackUrl != '' ">
+                        SCALL_BACK_URL,
+                    </if>
+                    <if test="smerchantId">
+                        SMERCHANT_ID,
+                    </if>
+                    <if test="smerchantCode">
+                        SMERCHANT_CODE,
+                    </if>
+                    <if test="spid != null and  spid != '' ">
+                        SPID,
+                    </if>
+                    <if test="sprivateKey != null and  sprivateKey != '' ">
+                        SPRIVATE_KEY,
+                    </if>
+                    <if test="spublicKey != null and  spublicKey != '' ">
+                        SPUBLIC_KEY,
+                    </if>
+                    <if test="supdateUser != null and  supdateUser != '' ">
+                        SUPDATE_USER,
+                    </if>
+                    <if test="taddTime">
+                        TADD_TIME,
+                    </if>
+                    <if test="tupdateTime">
+                        TUPDATE_TIME,
+                    </if>
+                    <if test="spayCallBackUrl != null and  spayCallBackUrl != ''  ">
+                        SPAY_CALL_BACK_URL,
+                    </if>
+                    <if test="salipayAccount != null and  salipayAccount != ''  ">
+                        SALIPAY_ACCOUNT
+                    </if>
+                </when>
+                <when test=' IISWC != null and IISWC == "1"  '>
+                    <if test="id != null and  id != ''   ">
+                        ID,
+                    </if>
+                    <if test="WCfpayLimitDay != null and  WCfpayLimitDay != ''">
+                        FPAY_LIMIT_DAY,
+                    </if>
+                    <if test="WCfpayLimitMoney  != null and  WCfpayLimitMoney != '' ">
+                        FPAY_LIMIT_MONEY,
+                    </if>
+                    <if test="WCfpayLimitMonth  != null and  WCfpayLimitMonth != '' ">
+                        FPAY_LIMIT_MONTH,
+                    </if>
+                    <if test="WCfpayLimitSingle != null and  WCfpayLimitSingle != '' ">
+                        FPAY_LIMIT_SINGLE,
+                    </if>
+                    <if test="idelFlag != null ">
+                        IDEL_FLAG,
+                    </if>
+                    <if test="itype != null and  itype != '' ">
+                        ITYPE,
+                    </if>
+                    <if test="saddUser != null and  saddUser != '' ">
+                        SADD_USER,
+                    </if>
+                    <if test="WCsappId != null and  WCsappId != '' ">
+                        SAPP_ID,
+                    </if>
+                    <!--   <if test="WCsappPublicKey != null and  WCsappPublicKey != '' ">
+                           SAPP_PUBLIC_KEY,
+                       </if>-->
+                    <if test="WCsappSecret != null and  WCsappSecret != '' ">
+                        SAPP_SECRET,
+                    </if>
+                    <if test="WCscallBackUrl  != null and  WCscallBackUrl != '' ">
+                        SCALL_BACK_URL,
+                    </if>
+                    <if test="smerchantId !=null and smerchantId !=''">
+                        SMERCHANT_ID,
+                    </if>
+                    <if test="smerchantCode !=null and smerchantCode != ''">
+                        SMERCHANT_CODE,
+                    </if>
+                    <!-- 微信商户号 SPID -->
+                    <if test="WCspId !=null and WCspId != ''">
+                        SPID,
+                    </if>
+                    <!--  <if test="WCsprivateKey != null and WCsprivateKey != '' ">
+                          SPRIVATE_KEY,
+                      </if>
+                      <if test="WCspublicKey != null and  WCspublicKey != '' ">
+                          SPUBLIC_KEY,
+                      </if>-->
+                    <if test="supdateUser != null and  supdateUser != '' ">
+                        SUPDATE_USER,
+                    </if>
+                    <if test="taddTime != null ">
+                        TADD_TIME,
+                    </if>
+                    <if test="tupdateTime != null">
+                        TUPDATE_TIME,
+                    </if>
+                    <if test="WCspayCallBackUrl != null and  WCspayCallBackUrl != ''  ">
+                        SPAY_CALL_BACK_URL,
+                    </if>
+                    <if test="WCsplanId != null and  WCsplanId != ''  ">
+                        SPLAN_ID,
+                    </if>
+                    <if test="spayWechatKey != null and  spayWechatKey != ''  ">
+                        SPAY_WECHAT_KEY,
+                    </if>
+                    <if test="swechatCertUrl != null and  swechatCertUrl != ''  ">
+                        SWECHAT_CERT_URL,
+                    </if>
+                    <if test="swechatCertPwd != null and  swechatCertPwd != ''  ">
+                        SWECHAT_CERT_PWD,
+                    </if>
+                    <if test="swechatAccount != null and  swechatAccount != ''  ">
+                        SWECHAT_ACCOUNT
+                    </if>
+                </when>
+            </choose>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <choose>
+                <when test=' IISWC != null and IISWC == "0"  '>
+                    <if test="id != null and  id != ''  ">
+                        #{id,jdbcType=VARCHAR},
+                    </if>
+                    <if test="fpayLimitDay != null  ">
+                        #{fpayLimitDay,jdbcType=NUMERIC},
+                    </if>
+                    <if test="fpayLimitMoney != null  ">
+                        #{fpayLimitMoney,jdbcType=NUMERIC},
+                    </if>
+                    <if test="fpayLimitMonth != null  ">
+                        #{fpayLimitMonth,jdbcType=NUMERIC},
+                    </if>
+                    <if test="fpayLimitSingle != null  ">
+                        #{fpayLimitSingle,jdbcType=NUMERIC},
+                    </if>
+                    <if test="idelFlag != null  ">
+                        #{idelFlag,jdbcType=NUMERIC},
+                    </if>
+                    <if test="itype != null  ">
+                        #{itype,jdbcType=NUMERIC},
+                    </if>
+                    <if test="saddUser != null and  saddUser != ''  ">
+                        #{saddUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sappId != null and  sappId != ''  ">
+                        #{sappId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sappPublicKey != null and  sappPublicKey != ''  ">
+                        #{sappPublicKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sappSecret != null and  sappSecret != ''  ">
+                        #{sappSecret,jdbcType=VARCHAR},
+                    </if>
+                    <if test="scallBackUrl != null and  scallBackUrl != ''  ">
+                        #{scallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="smerchantId != null and  smerchantId != ''  ">
+                        #{smerchantId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="smerchantCode != null and  smerchantCode != ''  ">
+                        #{smerchantCode,jdbcType=VARCHAR},
+                    </if>
+                    <if test="spid != null and  spid != ''  ">
+                        #{spid,jdbcType=VARCHAR},
+                    </if>
+                    <if test="sprivateKey != null and  sprivateKey != ''  ">
+                        #{sprivateKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="spublicKey != null and  spublicKey != ''  ">
+                        #{spublicKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="supdateUser != null and  supdateUser != ''  ">
+                        #{supdateUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="taddTime != null  ">
+                        #{taddTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="tupdateTime != null  ">
+                        #{tupdateTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="spayCallBackUrl != null and  spayCallBackUrl != ''  ">
+                        #{spayCallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="salipayAccount != null and  salipayAccount != ''  ">
+                        #{salipayAccount,jdbcType=VARCHAR}
+                    </if>
+                </when>
+                <when test='IISWC != null and IISWC == "1" '>
+                    <if test="id != null and  id != ''  ">
+                        #{id,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCfpayLimitDay != null  ">
+                        #{WCfpayLimitDay,jdbcType=NUMERIC},
+                    </if>
+                    <if test="WCfpayLimitMoney != null  ">
+                        #{WCfpayLimitMoney,jdbcType=NUMERIC},
+                    </if>
+                    <if test="WCfpayLimitMonth != null  ">
+                        #{WCfpayLimitMonth,jdbcType=NUMERIC},
+                    </if>
+                    <if test="WCfpayLimitSingle != null  ">
+                        #{WCfpayLimitSingle,jdbcType=NUMERIC},
+                    </if>
+                    <if test="idelFlag != null  ">
+                        #{idelFlag,jdbcType=NUMERIC},
+                    </if>
+                    <if test="itype != null  ">
+                        #{itype,jdbcType=NUMERIC},
+                    </if>
+                    <if test="saddUser != null and  saddUser != ''  ">
+                        #{saddUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCsappId != null and  WCsappId != ''  ">
+                        #{WCsappId,jdbcType=VARCHAR},
+                    </if>
+                    <!--<if test="WCsappPublicKey != null and  WCsappPublicKey != ''  ">
+                        #{WCsappPublicKey,jdbcType=VARCHAR},
+                    </if>-->
+                    <if test="WCsappSecret != null and  WCsappSecret != ''  ">
+                        #{WCsappSecret,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCscallBackUrl != null and  WCscallBackUrl != ''  ">
+                        #{WCscallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="smerchantId != null and  smerchantId != ''  ">
+                        #{smerchantId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="smerchantCode != null and  smerchantCode != ''  ">
+                        #{smerchantCode,jdbcType=VARCHAR},
+                    </if>
+                    <!-- 微信商户号 SPID -->
+                    <if test="WCspId != null and  WCspId != ''  ">
+                        #{WCspId,jdbcType=VARCHAR},
+                    </if>
+                    <!--<if test="WCsprivateKey != null and  WCsprivateKey != ''  ">
+                        #{WCsprivateKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCspublicKey != null and  WCspublicKey != ''  ">
+                        #{WCspublicKey,jdbcType=VARCHAR},
+                    </if>-->
+                    <if test="supdateUser != null and  supdateUser != ''  ">
+                        #{supdateUser,jdbcType=VARCHAR},
+                    </if>
+                    <if test="taddTime != null  ">
+                        #{taddTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="tupdateTime != null  ">
+                        #{tupdateTime,jdbcType=TIMESTAMP},
+                    </if>
+                    <if test="WCspayCallBackUrl != null and  WCspayCallBackUrl != ''  ">
+                        #{WCspayCallBackUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="WCsplanId != null and  WCsplanId != ''  ">
+                        #{WCsplanId,jdbcType=VARCHAR},
+                    </if>
+                    <if test="spayWechatKey != null and  spayWechatKey != ''  ">
+                        #{spayWechatKey,jdbcType=VARCHAR},
+                    </if>
+                    <if test="swechatCertUrl != null and  swechatCertUrl != ''  ">
+                        #{swechatCertUrl,jdbcType=VARCHAR},
+                    </if>
+                    <if test="swechatCertPwd != null and  swechatCertPwd != ''  ">
+                        #{swechatCertPwd,jdbcType=VARCHAR},
+                    </if>
+                    <if test="swechatAccount != null and  swechatAccount != ''  ">
+                        #{swechatAccount,jdbcType=VARCHAR}
+                    </if>
+                </when>
+            </choose>
+        </trim>
+    </insert>
+</mapper>

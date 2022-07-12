@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.rm.dao.ReplenishmentCommodityDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.rm.ReplenishmentCommodity">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FCOMMODITY_AMOUNT" property="fcommodityAmount" jdbcType="NUMERIC" />
+		<result column="FCOMMODITY_PRICE" property="fcommodityPrice" jdbcType="NUMERIC" />
+		<result column="FORDER_COUNT" property="forderCount" jdbcType="NUMERIC" />
+		<result column="ICOMMODITY_STATUS" property="icommodityStatus" jdbcType="NUMERIC" />
+		<result column="ICURR_STOCK" property="icurrStock" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_NAME" property="scommodityName" jdbcType="VARCHAR" />
+		<result column="SREPLENISHMENT_CODE" property="sreplenishmentCode" jdbcType="VARCHAR" />
+		<result column="SREPLENISHMENT_ID" property="sreplenishmentId" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,FCOMMODITY_AMOUNT,FCOMMODITY_PRICE,FORDER_COUNT,ICOMMODITY_STATUS,ICURR_STOCK,ITYPE,SCOMMODITY_CODE,SCOMMODITY_ID,SCOMMODITY_NAME,SREPLENISHMENT_CODE,SREPLENISHMENT_ID,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="fcommodityAmount != null  ">
+               and  FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="fcommodityPrice != null  ">
+               and  FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC}
+           	</if>
+			<if test="forderCount != null  ">
+               and  FORDER_COUNT=#{forderCount,jdbcType=NUMERIC}
+           	</if>
+			<if test="icommodityStatus != null  ">
+               and  ICOMMODITY_STATUS=#{icommodityStatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="icurrStock != null  ">
+               and  ICURR_STOCK=#{icurrStock,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+               and  SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+               and  SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+               and  SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreplenishmentCode != null and  sreplenishmentCode != ''  ">
+               and  SREPLENISHMENT_CODE=#{sreplenishmentCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sreplenishmentId != null and  sreplenishmentId != ''  ">
+               and  SREPLENISHMENT_ID=#{sreplenishmentId,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from RM_REPLENISHMENT_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.rm.ReplenishmentCommodity">
+        select
+        <include refid="column_List" />
+        from RM_REPLENISHMENT_COMMODITY
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from RM_REPLENISHMENT_COMMODITY
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from RM_REPLENISHMENT_COMMODITY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM RM_REPLENISHMENT_COMMODITY where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.rm.ReplenishmentCommodity">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into RM_REPLENISHMENT_COMMODITY (ID,FCOMMODITY_AMOUNT,FCOMMODITY_PRICE,FORDER_COUNT,ICOMMODITY_STATUS,ICURR_STOCK,ITYPE,SCOMMODITY_CODE,SCOMMODITY_ID,SCOMMODITY_NAME,SREPLENISHMENT_CODE,SREPLENISHMENT_ID,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{fcommodityAmount,jdbcType=NUMERIC},#{fcommodityPrice,jdbcType=NUMERIC},#{forderCount,jdbcType=NUMERIC},#{icommodityStatus,jdbcType=NUMERIC},#{icurrStock,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{scommodityCode,jdbcType=VARCHAR},#{scommodityId,jdbcType=VARCHAR},#{scommodityName,jdbcType=VARCHAR},#{sreplenishmentCode,jdbcType=VARCHAR},#{sreplenishmentId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.rm.ReplenishmentCommodity">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into RM_REPLENISHMENT_COMMODITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="fcommodityAmount">
+               FCOMMODITY_AMOUNT,
+           	</if>
+			<if test="fcommodityPrice">
+               FCOMMODITY_PRICE,
+           	</if>
+			<if test="forderCount">
+               FORDER_COUNT,
+           	</if>
+			<if test="icommodityStatus">
+               ICOMMODITY_STATUS,
+           	</if>
+			<if test="icurrStock">
+               ICURR_STOCK,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="scommodityCode">
+               SCOMMODITY_CODE,
+           	</if>
+			<if test="scommodityId">
+               SCOMMODITY_ID,
+           	</if>
+			<if test="scommodityName">
+               SCOMMODITY_NAME,
+           	</if>
+			<if test="sreplenishmentCode">
+               SREPLENISHMENT_CODE,
+           	</if>
+			<if test="sreplenishmentId">
+               SREPLENISHMENT_ID,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="fcommodityAmount != null  ">
+                #{fcommodityAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcommodityPrice != null  ">
+                #{fcommodityPrice,jdbcType=NUMERIC},
+           	</if>
+			<if test="forderCount != null  ">
+                #{forderCount,jdbcType=NUMERIC},
+           	</if>
+			<if test="icommodityStatus != null  ">
+                #{icommodityStatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="icurrStock != null  ">
+                #{icurrStock,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                #{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                #{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+                #{scommodityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreplenishmentCode != null and  sreplenishmentCode != ''  ">
+                #{sreplenishmentCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreplenishmentId != null and  sreplenishmentId != ''  ">
+                #{sreplenishmentId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.rm.ReplenishmentCommodity">
+        update RM_REPLENISHMENT_COMMODITY
+        <set>
+			<if test="fcommodityAmount != null  ">
+                FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="fcommodityPrice != null  ">
+                FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC},
+           	</if>
+			<if test="forderCount != null  ">
+                FORDER_COUNT=#{forderCount,jdbcType=NUMERIC},
+           	</if>
+			<if test="icommodityStatus != null  ">
+                ICOMMODITY_STATUS=#{icommodityStatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="icurrStock != null  ">
+                ICURR_STOCK=#{icurrStock,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="scommodityCode != null and  scommodityCode != ''  ">
+                SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityId != null and  scommodityId != ''  ">
+                SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR},
+           	</if>
+			<if test="scommodityName != null and  scommodityName != ''  ">
+                SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreplenishmentCode != null and  sreplenishmentCode != ''  ">
+                SREPLENISHMENT_CODE=#{sreplenishmentCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sreplenishmentId != null and  sreplenishmentId != ''  ">
+                SREPLENISHMENT_ID=#{sreplenishmentId,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.rm.ReplenishmentCommodity">
+        update RM_REPLENISHMENT_COMMODITY
+        set 
+        		FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC}
+        		,FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC}
+        		,FORDER_COUNT=#{forderCount,jdbcType=NUMERIC}
+        		,ICOMMODITY_STATUS=#{icommodityStatus,jdbcType=NUMERIC}
+        		,ICURR_STOCK=#{icurrStock,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+        		,SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+        		,SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+        		,SREPLENISHMENT_CODE=#{sreplenishmentCode,jdbcType=VARCHAR}
+        		,SREPLENISHMENT_ID=#{sreplenishmentId,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+	<resultMap id="resultDomainEntity" type="com.cloud.cang.mgr.rm.domain.ReplenishCommodityDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FCOMMODITY_AMOUNT" property="fcommodityAmount" jdbcType="NUMERIC" />
+		<result column="FCOMMODITY_PRICE" property="fcommodityPrice" jdbcType="NUMERIC" />
+		<result column="FORDER_COUNT" property="forderCount" jdbcType="NUMERIC" />
+		<result column="ICOMMODITY_STATUS" property="icommodityStatus" jdbcType="NUMERIC" />
+		<result column="ICURR_STOCK" property="icurrStock" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SCOMMODITY_CODE" property="scommodityCode" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_ID" property="scommodityId" jdbcType="VARCHAR" />
+		<result column="SCOMMODITY_NAME" property="scommodityName" jdbcType="VARCHAR" />
+		<result column="SREPLENISHMENT_CODE" property="sreplenishmentCode" jdbcType="VARCHAR" />
+		<result column="SREPLENISHMENT_ID" property="sreplenishmentId" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+		<result column="SPNAME" property="spsname" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--根据ID查询-->
+	<select id="selectInfoId" resultMap="resultDomainEntity" parameterType="java.lang.String">
+		SELECT
+			A.ID,
+			concat(
+				B.SBRAND_NAME,
+				B.SNAME,
+				B.STASTE,
+				B.ISPEC_WEIGHT,
+				B.SSPEC_UNIT
+			) AS SPNAME,
+			A.FCOMMODITY_AMOUNT,
+			A.FCOMMODITY_PRICE,
+			A.FORDER_COUNT,
+			A.ICOMMODITY_STATUS,
+			A.ICURR_STOCK,
+			A.ITYPE,
+			A.SCOMMODITY_CODE,
+			A.SCOMMODITY_ID,
+			A.SCOMMODITY_NAME,
+			A.SREPLENISHMENT_CODE,
+			A.SREPLENISHMENT_ID,
+			A.TADD_TIME,
+			A.TUPDATE_TIME
+		FROM
+			RM_REPLENISHMENT_COMMODITY A
+		LEFT JOIN SP_COMMODITY_INFO B ON A.SCOMMODITY_ID = B.ID
+				where A.SREPLENISHMENT_ID = #{sreplenishmentId,jdbcType=VARCHAR}
+				ORDER BY
+				FIELD(A.ITYPE,10,20),A.TADD_TIME DESC
+	</select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FCOMMODITY_AMOUNT=#{fcommodityAmount,jdbcType=NUMERIC}
+	FCOMMODITY_PRICE=#{fcommodityPrice,jdbcType=NUMERIC}
+	FORDER_COUNT=#{forderCount,jdbcType=NUMERIC}
+	ICOMMODITY_STATUS=#{icommodityStatus,jdbcType=NUMERIC}
+	ICURR_STOCK=#{icurrStock,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SCOMMODITY_CODE=#{scommodityCode,jdbcType=VARCHAR}
+	SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+	SCOMMODITY_NAME=#{scommodityName,jdbcType=VARCHAR}
+	SREPLENISHMENT_CODE=#{sreplenishmentCode,jdbcType=VARCHAR}
+	SREPLENISHMENT_ID=#{sreplenishmentId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sb.dao.DeviceModelDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sb.DeviceModel">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ICAMERA_NUM" property="icameraNum" jdbcType="NUMERIC" />
+		<result column="ICARGO_ROAD_NUM" property="icargoRoadNum" jdbcType="NUMERIC" />
+		<result column="ICOMPRESSOR_NUM" property="icompressorNum" jdbcType="NUMERIC" />
+		<result column="IDOOR_PIN_SN" property="idoorPinSn" jdbcType="NUMERIC" />
+		<result column="IELECTRIC_SHOCK" property="ielectricShock" jdbcType="NUMERIC" />
+		<result column="IHALL_PIN_SN" property="ihallPinSn" jdbcType="NUMERIC" />
+		<result column="IIS_DETECT_HALL" property="iisDetectHall" jdbcType="NUMERIC" />
+		<result column="IIS_USE_EXPAND_GPIO" property="iisUseExpandGpio" jdbcType="NUMERIC" />
+		<result column="ILAYER_NUM" property="ilayerNum" jdbcType="NUMERIC" />
+		<result column="ILOCK_CYLINDER" property="ilockCylinder" jdbcType="NUMERIC" />
+		<result column="IMOTHERBOARD_NUM" property="imotherboardNum" jdbcType="NUMERIC" />
+		<result column="IOPENDOOR_PIN_SN" property="iopendoorPinSn" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SAD_CONF" property="sadConf" jdbcType="VARCHAR" />
+		<result column="SAD_DIMENSIONS" property="sadDimensions" jdbcType="VARCHAR" />
+		<result column="SCAMERA_BRAND" property="scameraBrand" jdbcType="VARCHAR" />
+		<result column="SCAMERA_METHOD" property="scameraMethod" jdbcType="VARCHAR" />
+		<result column="SCAMERA_MODEL" property="scameraModel" jdbcType="VARCHAR" />
+		<result column="SCAMERA_TYPE" property="scameraType" jdbcType="VARCHAR" />
+		<result column="SCOMPRESSOR_DESC" property="scompressorDesc" jdbcType="VARCHAR" />
+		<result column="SCOMPRESSOR_POSITION" property="scompressorPosition" jdbcType="VARCHAR" />
+		<result column="SCONTRAST_MODE" property="scontrastMode" jdbcType="VARCHAR" />
+		<result column="SCORE_DESC" property="scoreDesc" jdbcType="VARCHAR" />
+		<result column="SDAILY_POWER" property="sdailyPower" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SDEVICE_MODEL" property="sdeviceModel" jdbcType="VARCHAR" />
+		<result column="SDIMENSIONS" property="sdimensions" jdbcType="VARCHAR" />
+		<result column="SLOCKS_MANUFACTURER" property="slocksManufacturer" jdbcType="VARCHAR" />
+		<result column="SLOCKS_MODEL" property="slocksModel" jdbcType="VARCHAR" />
+		<result column="SMANUFACTURER" property="smanufacturer" jdbcType="VARCHAR" />
+		<result column="SPAY_WAP" property="spayWap" jdbcType="VARCHAR" />
+		<result column="SPCB_MODEL" property="spcbModel" jdbcType="VARCHAR" />
+		<result column="SPRODUCT_CAPACITY" property="sproductCapacity" jdbcType="VARCHAR" />
+		<result column="SPRODUCT_TYPES" property="sproductTypes" jdbcType="VARCHAR" />
+		<result column="SRATED_POWER" property="sratedPower" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="SVISUAL_SERVICE_PROVIDER" property="svisualServiceProvider" jdbcType="VARCHAR" />
+		<result column="SWEIGHT" property="sweight" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,ICAMERA_NUM,ICARGO_ROAD_NUM,ICOMPRESSOR_NUM,IDOOR_PIN_SN,IELECTRIC_SHOCK,IHALL_PIN_SN,IIS_DETECT_HALL,IIS_USE_EXPAND_GPIO,ILAYER_NUM,ILOCK_CYLINDER,IMOTHERBOARD_NUM,IOPENDOOR_PIN_SN,SADD_USER,SAD_CONF,SAD_DIMENSIONS,SCAMERA_BRAND,SCAMERA_METHOD,SCAMERA_MODEL,SCAMERA_TYPE,SCOMPRESSOR_DESC,SCOMPRESSOR_POSITION,SCONTRAST_MODE,SCORE_DESC,SDAILY_POWER,SDEVICE_ID,SDEVICE_MODEL,SDIMENSIONS,SLOCKS_MANUFACTURER,SLOCKS_MODEL,SMANUFACTURER,SPAY_WAP,SPCB_MODEL,SPRODUCT_CAPACITY,SPRODUCT_TYPES,SRATED_POWER,SREMARK,SUPDATE_USER,SVISUAL_SERVICE_PROVIDER,SWEIGHT,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="icameraNum != null  ">
+               and  ICAMERA_NUM=#{icameraNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="icargoRoadNum != null  ">
+               and  ICARGO_ROAD_NUM=#{icargoRoadNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="icompressorNum != null  ">
+               and  ICOMPRESSOR_NUM=#{icompressorNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="idoorPinSn != null  ">
+               and  IDOOR_PIN_SN=#{idoorPinSn,jdbcType=NUMERIC}
+           	</if>
+			<if test="ielectricShock != null  ">
+               and  IELECTRIC_SHOCK=#{ielectricShock,jdbcType=NUMERIC}
+           	</if>
+			<if test="ihallPinSn != null  ">
+               and  IHALL_PIN_SN=#{ihallPinSn,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisDetectHall != null  ">
+               and  IIS_DETECT_HALL=#{iisDetectHall,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisUseExpandGpio != null  ">
+               and  IIS_USE_EXPAND_GPIO=#{iisUseExpandGpio,jdbcType=NUMERIC}
+           	</if>
+			<if test="ilayerNum != null  ">
+               and  ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="ilockCylinder != null  ">
+               and  ILOCK_CYLINDER=#{ilockCylinder,jdbcType=NUMERIC}
+           	</if>
+			<if test="imotherboardNum != null  ">
+               and  IMOTHERBOARD_NUM=#{imotherboardNum,jdbcType=NUMERIC}
+           	</if>
+			<if test="iopendoorPinSn != null  ">
+               and  IOPENDOOR_PIN_SN=#{iopendoorPinSn,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sadConf != null and  sadConf != ''  ">
+               and  SAD_CONF=#{sadConf,jdbcType=VARCHAR}
+           	</if>
+			<if test="sadDimensions != null and  sadDimensions != ''  ">
+               and  SAD_DIMENSIONS=#{sadDimensions,jdbcType=VARCHAR}
+           	</if>
+			<if test="scameraBrand != null and  scameraBrand != ''  ">
+               and  SCAMERA_BRAND=#{scameraBrand,jdbcType=VARCHAR}
+           	</if>
+			<if test="scameraMethod != null and  scameraMethod != ''  ">
+               and  SCAMERA_METHOD=#{scameraMethod,jdbcType=VARCHAR}
+           	</if>
+			<if test="scameraModel != null and  scameraModel != ''  ">
+               and  SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR}
+           	</if>
+			<if test="scameraType != null and  scameraType != ''  ">
+               and  SCAMERA_TYPE=#{scameraType,jdbcType=VARCHAR}
+           	</if>
+			<if test="scompressorDesc != null and  scompressorDesc != ''  ">
+               and  SCOMPRESSOR_DESC=#{scompressorDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="scompressorPosition != null and  scompressorPosition != ''  ">
+               and  SCOMPRESSOR_POSITION=#{scompressorPosition,jdbcType=VARCHAR}
+           	</if>
+			<if test="scontrastMode != null and  scontrastMode != ''  ">
+               and  SCONTRAST_MODE=#{scontrastMode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scoreDesc != null and  scoreDesc != ''  ">
+               and  SCORE_DESC=#{scoreDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdailyPower != null and  sdailyPower != ''  ">
+               and  SDAILY_POWER=#{sdailyPower,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+               and  SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdeviceModel != null and  sdeviceModel != ''  ">
+               and  SDEVICE_MODEL=#{sdeviceModel,jdbcType=VARCHAR}
+           	</if>
+			<if test="sdimensions != null and  sdimensions != ''  ">
+               and  SDIMENSIONS=#{sdimensions,jdbcType=VARCHAR}
+           	</if>
+			<if test="slocksManufacturer != null and  slocksManufacturer != ''  ">
+               and  SLOCKS_MANUFACTURER=#{slocksManufacturer,jdbcType=VARCHAR}
+           	</if>
+			<if test="slocksModel != null and  slocksModel != ''  ">
+               and  SLOCKS_MODEL=#{slocksModel,jdbcType=VARCHAR}
+           	</if>
+			<if test="smanufacturer != null and  smanufacturer != ''  ">
+               and  SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR}
+           	</if>
+			<if test="spayWap != null and  spayWap != ''  ">
+               and  SPAY_WAP=#{spayWap,jdbcType=VARCHAR}
+           	</if>
+			<if test="spcbModel != null and  spcbModel != ''  ">
+               and  SPCB_MODEL=#{spcbModel,jdbcType=VARCHAR}
+           	</if>
+			<if test="sproductCapacity != null and  sproductCapacity != ''  ">
+               and  SPRODUCT_CAPACITY=#{sproductCapacity,jdbcType=VARCHAR}
+           	</if>
+			<if test="sproductTypes != null and  sproductTypes != ''  ">
+               and  SPRODUCT_TYPES=#{sproductTypes,jdbcType=VARCHAR}
+           	</if>
+			<if test="sratedPower != null and  sratedPower != ''  ">
+               and  SRATED_POWER=#{sratedPower,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="svisualServiceProvider != null and  svisualServiceProvider != ''  ">
+               and  SVISUAL_SERVICE_PROVIDER=#{svisualServiceProvider,jdbcType=VARCHAR}
+           	</if>
+			<if test="sweight != null and  sweight != ''  ">
+               and  SWEIGHT=#{sweight,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_MODEL
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sb.DeviceModel">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_MODEL
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SB_DEVICE_MODEL
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SB_DEVICE_MODEL
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SB_DEVICE_MODEL where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sb.DeviceModel">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SB_DEVICE_MODEL (ID,ICAMERA_NUM,ICARGO_ROAD_NUM,ICOMPRESSOR_NUM,IDOOR_PIN_SN,IELECTRIC_SHOCK,IHALL_PIN_SN,IIS_DETECT_HALL,IIS_USE_EXPAND_GPIO,ILAYER_NUM,ILOCK_CYLINDER,IMOTHERBOARD_NUM,IOPENDOOR_PIN_SN,SADD_USER,SAD_CONF,SAD_DIMENSIONS,SCAMERA_BRAND,SCAMERA_METHOD,SCAMERA_MODEL,SCAMERA_TYPE,SCOMPRESSOR_DESC,SCOMPRESSOR_POSITION,SCONTRAST_MODE,SCORE_DESC,SDAILY_POWER,SDEVICE_ID,SDEVICE_MODEL,SDIMENSIONS,SLOCKS_MANUFACTURER,SLOCKS_MODEL,SMANUFACTURER,SPAY_WAP,SPCB_MODEL,SPRODUCT_CAPACITY,SPRODUCT_TYPES,SRATED_POWER,SREMARK,SUPDATE_USER,SVISUAL_SERVICE_PROVIDER,SWEIGHT,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{icameraNum,jdbcType=NUMERIC},#{icargoRoadNum,jdbcType=NUMERIC},#{icompressorNum,jdbcType=NUMERIC},#{idoorPinSn,jdbcType=NUMERIC},#{ielectricShock,jdbcType=NUMERIC},#{ihallPinSn,jdbcType=NUMERIC},#{iisDetectHall,jdbcType=NUMERIC},#{iisUseExpandGpio,jdbcType=NUMERIC},#{ilayerNum,jdbcType=NUMERIC},#{ilockCylinder,jdbcType=NUMERIC},#{imotherboardNum,jdbcType=NUMERIC},#{iopendoorPinSn,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sadConf,jdbcType=VARCHAR},#{sadDimensions,jdbcType=VARCHAR},#{scameraBrand,jdbcType=VARCHAR},#{scameraMethod,jdbcType=VARCHAR},#{scameraModel,jdbcType=VARCHAR},#{scameraType,jdbcType=VARCHAR},#{scompressorDesc,jdbcType=VARCHAR},#{scompressorPosition,jdbcType=VARCHAR},#{scontrastMode,jdbcType=VARCHAR},#{scoreDesc,jdbcType=VARCHAR},#{sdailyPower,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{sdeviceModel,jdbcType=VARCHAR},#{sdimensions,jdbcType=VARCHAR},#{slocksManufacturer,jdbcType=VARCHAR},#{slocksModel,jdbcType=VARCHAR},#{smanufacturer,jdbcType=VARCHAR},#{spayWap,jdbcType=VARCHAR},#{spcbModel,jdbcType=VARCHAR},#{sproductCapacity,jdbcType=VARCHAR},#{sproductTypes,jdbcType=VARCHAR},#{sratedPower,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{svisualServiceProvider,jdbcType=VARCHAR},#{sweight,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sb.DeviceModel">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SB_DEVICE_MODEL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="icameraNum">
+               ICAMERA_NUM,
+           	</if>
+			<if test="icargoRoadNum">
+               ICARGO_ROAD_NUM,
+           	</if>
+			<if test="icompressorNum">
+               ICOMPRESSOR_NUM,
+           	</if>
+			<if test="idoorPinSn">
+               IDOOR_PIN_SN,
+           	</if>
+			<if test="ielectricShock">
+               IELECTRIC_SHOCK,
+           	</if>
+			<if test="ihallPinSn">
+               IHALL_PIN_SN,
+           	</if>
+			<if test="iisDetectHall">
+               IIS_DETECT_HALL,
+           	</if>
+			<if test="iisUseExpandGpio">
+               IIS_USE_EXPAND_GPIO,
+           	</if>
+			<if test="ilayerNum">
+               ILAYER_NUM,
+           	</if>
+			<if test="ilockCylinder">
+               ILOCK_CYLINDER,
+           	</if>
+			<if test="imotherboardNum">
+               IMOTHERBOARD_NUM,
+           	</if>
+			<if test="iopendoorPinSn">
+               IOPENDOOR_PIN_SN,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="sadConf">
+               SAD_CONF,
+           	</if>
+			<if test="sadDimensions">
+               SAD_DIMENSIONS,
+           	</if>
+			<if test="scameraBrand">
+               SCAMERA_BRAND,
+           	</if>
+			<if test="scameraMethod">
+               SCAMERA_METHOD,
+           	</if>
+			<if test="scameraModel">
+               SCAMERA_MODEL,
+           	</if>
+			<if test="scameraType">
+               SCAMERA_TYPE,
+           	</if>
+			<if test="scompressorDesc">
+               SCOMPRESSOR_DESC,
+           	</if>
+			<if test="scompressorPosition">
+               SCOMPRESSOR_POSITION,
+           	</if>
+			<if test="scontrastMode">
+               SCONTRAST_MODE,
+           	</if>
+			<if test="scoreDesc">
+               SCORE_DESC,
+           	</if>
+			<if test="sdailyPower">
+               SDAILY_POWER,
+           	</if>
+			<if test="sdeviceId">
+               SDEVICE_ID,
+           	</if>
+			<if test="sdeviceModel">
+               SDEVICE_MODEL,
+           	</if>
+			<if test="sdimensions">
+               SDIMENSIONS,
+           	</if>
+			<if test="slocksManufacturer">
+               SLOCKS_MANUFACTURER,
+           	</if>
+			<if test="slocksModel">
+               SLOCKS_MODEL,
+           	</if>
+			<if test="smanufacturer">
+               SMANUFACTURER,
+           	</if>
+			<if test="spayWap">
+               SPAY_WAP,
+           	</if>
+			<if test="spcbModel">
+               SPCB_MODEL,
+           	</if>
+			<if test="sproductCapacity">
+               SPRODUCT_CAPACITY,
+           	</if>
+			<if test="sproductTypes">
+               SPRODUCT_TYPES,
+           	</if>
+			<if test="sratedPower">
+               SRATED_POWER,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="svisualServiceProvider">
+               SVISUAL_SERVICE_PROVIDER,
+           	</if>
+			<if test="sweight">
+               SWEIGHT,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="icameraNum != null  ">
+                #{icameraNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="icargoRoadNum != null  ">
+                #{icargoRoadNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="icompressorNum != null  ">
+                #{icompressorNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="idoorPinSn != null  ">
+                #{idoorPinSn,jdbcType=NUMERIC},
+           	</if>
+			<if test="ielectricShock != null  ">
+                #{ielectricShock,jdbcType=NUMERIC},
+           	</if>
+			<if test="ihallPinSn != null  ">
+                #{ihallPinSn,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisDetectHall != null  ">
+                #{iisDetectHall,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisUseExpandGpio != null  ">
+                #{iisUseExpandGpio,jdbcType=NUMERIC},
+           	</if>
+			<if test="ilayerNum != null  ">
+                #{ilayerNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ilockCylinder != null  ">
+                #{ilockCylinder,jdbcType=NUMERIC},
+           	</if>
+			<if test="imotherboardNum != null  ">
+                #{imotherboardNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iopendoorPinSn != null  ">
+                #{iopendoorPinSn,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sadConf != null and  sadConf != ''  ">
+                #{sadConf,jdbcType=VARCHAR},
+           	</if>
+			<if test="sadDimensions != null and  sadDimensions != ''  ">
+                #{sadDimensions,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraBrand != null and  scameraBrand != ''  ">
+                #{scameraBrand,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraMethod != null and  scameraMethod != ''  ">
+                #{scameraMethod,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraModel != null and  scameraModel != ''  ">
+                #{scameraModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraType != null and  scameraType != ''  ">
+                #{scameraType,jdbcType=VARCHAR},
+           	</if>
+			<if test="scompressorDesc != null and  scompressorDesc != ''  ">
+                #{scompressorDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="scompressorPosition != null and  scompressorPosition != ''  ">
+                #{scompressorPosition,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontrastMode != null and  scontrastMode != ''  ">
+                #{scontrastMode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scoreDesc != null and  scoreDesc != ''  ">
+                #{scoreDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdailyPower != null and  sdailyPower != ''  ">
+                #{sdailyPower,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceModel != null and  sdeviceModel != ''  ">
+                #{sdeviceModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdimensions != null and  sdimensions != ''  ">
+                #{sdimensions,jdbcType=VARCHAR},
+           	</if>
+			<if test="slocksManufacturer != null and  slocksManufacturer != ''  ">
+                #{slocksManufacturer,jdbcType=VARCHAR},
+           	</if>
+			<if test="slocksModel != null and  slocksModel != ''  ">
+                #{slocksModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="smanufacturer != null and  smanufacturer != ''  ">
+                #{smanufacturer,jdbcType=VARCHAR},
+           	</if>
+			<if test="spayWap != null and  spayWap != ''  ">
+                #{spayWap,jdbcType=VARCHAR},
+           	</if>
+			<if test="spcbModel != null and  spcbModel != ''  ">
+                #{spcbModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproductCapacity != null and  sproductCapacity != ''  ">
+                #{sproductCapacity,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproductTypes != null and  sproductTypes != ''  ">
+                #{sproductTypes,jdbcType=VARCHAR},
+           	</if>
+			<if test="sratedPower != null and  sratedPower != ''  ">
+                #{sratedPower,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisualServiceProvider != null and  svisualServiceProvider != ''  ">
+                #{svisualServiceProvider,jdbcType=VARCHAR},
+           	</if>
+			<if test="sweight != null and  sweight != ''  ">
+                #{sweight,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sb.DeviceModel">
+        update SB_DEVICE_MODEL
+        <set>
+			<if test="icameraNum != null  ">
+                ICAMERA_NUM=#{icameraNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="icargoRoadNum != null  ">
+                ICARGO_ROAD_NUM=#{icargoRoadNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="icompressorNum != null  ">
+                ICOMPRESSOR_NUM=#{icompressorNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="idoorPinSn != null  ">
+                IDOOR_PIN_SN=#{idoorPinSn,jdbcType=NUMERIC},
+           	</if>
+			<if test="ielectricShock != null  ">
+                IELECTRIC_SHOCK=#{ielectricShock,jdbcType=NUMERIC},
+           	</if>
+			<if test="ihallPinSn != null  ">
+                IHALL_PIN_SN=#{ihallPinSn,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisDetectHall != null  ">
+                IIS_DETECT_HALL=#{iisDetectHall,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisUseExpandGpio != null  ">
+                IIS_USE_EXPAND_GPIO=#{iisUseExpandGpio,jdbcType=NUMERIC},
+           	</if>
+			<if test="ilayerNum != null  ">
+                ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="ilockCylinder != null  ">
+                ILOCK_CYLINDER=#{ilockCylinder,jdbcType=NUMERIC},
+           	</if>
+			<if test="imotherboardNum != null  ">
+                IMOTHERBOARD_NUM=#{imotherboardNum,jdbcType=NUMERIC},
+           	</if>
+			<if test="iopendoorPinSn != null  ">
+                IOPENDOOR_PIN_SN=#{iopendoorPinSn,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sadConf != null and  sadConf != ''  ">
+                SAD_CONF=#{sadConf,jdbcType=VARCHAR},
+           	</if>
+			<if test="sadDimensions != null and  sadDimensions != ''  ">
+                SAD_DIMENSIONS=#{sadDimensions,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraBrand != null and  scameraBrand != ''  ">
+                SCAMERA_BRAND=#{scameraBrand,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraMethod != null and  scameraMethod != ''  ">
+                SCAMERA_METHOD=#{scameraMethod,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraModel != null and  scameraModel != ''  ">
+                SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="scameraType != null and  scameraType != ''  ">
+                SCAMERA_TYPE=#{scameraType,jdbcType=VARCHAR},
+           	</if>
+			<if test="scompressorDesc != null and  scompressorDesc != ''  ">
+                SCOMPRESSOR_DESC=#{scompressorDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="scompressorPosition != null and  scompressorPosition != ''  ">
+                SCOMPRESSOR_POSITION=#{scompressorPosition,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontrastMode != null and  scontrastMode != ''  ">
+                SCONTRAST_MODE=#{scontrastMode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scoreDesc != null and  scoreDesc != ''  ">
+                SCORE_DESC=#{scoreDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdailyPower != null and  sdailyPower != ''  ">
+                SDAILY_POWER=#{sdailyPower,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdeviceModel != null and  sdeviceModel != ''  ">
+                SDEVICE_MODEL=#{sdeviceModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="sdimensions != null and  sdimensions != ''  ">
+                SDIMENSIONS=#{sdimensions,jdbcType=VARCHAR},
+           	</if>
+			<if test="slocksManufacturer != null and  slocksManufacturer != ''  ">
+                SLOCKS_MANUFACTURER=#{slocksManufacturer,jdbcType=VARCHAR},
+           	</if>
+			<if test="slocksModel != null and  slocksModel != ''  ">
+                SLOCKS_MODEL=#{slocksModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="smanufacturer != null and  smanufacturer != ''  ">
+                SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR},
+           	</if>
+			<if test="spayWap != null and  spayWap != ''  ">
+                SPAY_WAP=#{spayWap,jdbcType=VARCHAR},
+           	</if>
+			<if test="spcbModel != null and  spcbModel != ''  ">
+                SPCB_MODEL=#{spcbModel,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproductCapacity != null and  sproductCapacity != ''  ">
+                SPRODUCT_CAPACITY=#{sproductCapacity,jdbcType=VARCHAR},
+           	</if>
+			<if test="sproductTypes != null and  sproductTypes != ''  ">
+                SPRODUCT_TYPES=#{sproductTypes,jdbcType=VARCHAR},
+           	</if>
+			<if test="sratedPower != null and  sratedPower != ''  ">
+                SRATED_POWER=#{sratedPower,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="svisualServiceProvider != null and  svisualServiceProvider != ''  ">
+                SVISUAL_SERVICE_PROVIDER=#{svisualServiceProvider,jdbcType=VARCHAR},
+           	</if>
+			<if test="sweight != null and  sweight != ''  ">
+                SWEIGHT=#{sweight,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sb.DeviceModel">
+        update SB_DEVICE_MODEL
+        set 
+        		ICAMERA_NUM=#{icameraNum,jdbcType=NUMERIC}
+        		,ICARGO_ROAD_NUM=#{icargoRoadNum,jdbcType=NUMERIC}
+        		,ICOMPRESSOR_NUM=#{icompressorNum,jdbcType=NUMERIC}
+        		,IDOOR_PIN_SN=#{idoorPinSn,jdbcType=NUMERIC}
+        		,IELECTRIC_SHOCK=#{ielectricShock,jdbcType=NUMERIC}
+        		,IHALL_PIN_SN=#{ihallPinSn,jdbcType=NUMERIC}
+        		,IIS_DETECT_HALL=#{iisDetectHall,jdbcType=NUMERIC}
+        		,IIS_USE_EXPAND_GPIO=#{iisUseExpandGpio,jdbcType=NUMERIC}
+        		,ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC}
+        		,ILOCK_CYLINDER=#{ilockCylinder,jdbcType=NUMERIC}
+        		,IMOTHERBOARD_NUM=#{imotherboardNum,jdbcType=NUMERIC}
+        		,IOPENDOOR_PIN_SN=#{iopendoorPinSn,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SAD_CONF=#{sadConf,jdbcType=VARCHAR}
+        		,SAD_DIMENSIONS=#{sadDimensions,jdbcType=VARCHAR}
+        		,SCAMERA_BRAND=#{scameraBrand,jdbcType=VARCHAR}
+        		,SCAMERA_METHOD=#{scameraMethod,jdbcType=VARCHAR}
+        		,SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR}
+        		,SCAMERA_TYPE=#{scameraType,jdbcType=VARCHAR}
+        		,SCOMPRESSOR_DESC=#{scompressorDesc,jdbcType=VARCHAR}
+        		,SCOMPRESSOR_POSITION=#{scompressorPosition,jdbcType=VARCHAR}
+        		,SCONTRAST_MODE=#{scontrastMode,jdbcType=VARCHAR}
+        		,SCORE_DESC=#{scoreDesc,jdbcType=VARCHAR}
+        		,SDAILY_POWER=#{sdailyPower,jdbcType=VARCHAR}
+        		,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        		,SDEVICE_MODEL=#{sdeviceModel,jdbcType=VARCHAR}
+        		,SDIMENSIONS=#{sdimensions,jdbcType=VARCHAR}
+        		,SLOCKS_MANUFACTURER=#{slocksManufacturer,jdbcType=VARCHAR}
+        		,SLOCKS_MODEL=#{slocksModel,jdbcType=VARCHAR}
+        		,SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR}
+        		,SPAY_WAP=#{spayWap,jdbcType=VARCHAR}
+        		,SPCB_MODEL=#{spcbModel,jdbcType=VARCHAR}
+        		,SPRODUCT_CAPACITY=#{sproductCapacity,jdbcType=VARCHAR}
+        		,SPRODUCT_TYPES=#{sproductTypes,jdbcType=VARCHAR}
+        		,SRATED_POWER=#{sratedPower,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,SVISUAL_SERVICE_PROVIDER=#{svisualServiceProvider,jdbcType=VARCHAR}
+        		,SWEIGHT=#{sweight,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--添加的SQL开始-->
+
+	<!--自定义修改方法-->
+	<update id="updateByIdSelectiveVo" parameterType="com.cloud.cang.model.sb.DeviceModel">
+		update SB_DEVICE_MODEL
+		<set>
+			ICOMPRESSOR_NUM=#{icompressorNum,jdbcType=NUMERIC},
+			IELECTRIC_SHOCK=#{ielectricShock,jdbcType=NUMERIC},
+			ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC},
+			SAD_CONF=#{sadConf,jdbcType=VARCHAR},
+			SAD_DIMENSIONS=#{sadDimensions,jdbcType=VARCHAR},
+			SCOMPRESSOR_DESC=#{scompressorDesc,jdbcType=VARCHAR},
+			SCOMPRESSOR_POSITION=#{scompressorPosition,jdbcType=VARCHAR},
+			SCORE_DESC=#{scoreDesc,jdbcType=VARCHAR},
+			SDAILY_POWER=#{sdailyPower,jdbcType=VARCHAR},
+			SDEVICE_MODEL=#{sdeviceModel,jdbcType=VARCHAR},
+			SDIMENSIONS=#{sdimensions,jdbcType=VARCHAR},
+			SLOCKS_MANUFACTURER=#{slocksManufacturer,jdbcType=VARCHAR},
+			SLOCKS_MODEL=#{slocksModel,jdbcType=VARCHAR},
+			ICAMERA_NUM=#{icameraNum,jdbcType=NUMERIC},
+			ICARGO_ROAD_NUM=#{icargoRoadNum,jdbcType=NUMERIC},
+			IMOTHERBOARD_NUM=#{imotherboardNum,jdbcType=NUMERIC},
+			SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR},
+			SPAY_WAP=#{spayWap,jdbcType=VARCHAR},
+			SPRODUCT_CAPACITY=#{sproductCapacity,jdbcType=VARCHAR},
+			SPRODUCT_TYPES=#{sproductTypes,jdbcType=VARCHAR},
+			SRATED_POWER=#{sratedPower,jdbcType=VARCHAR},
+			SREMARK=#{sremark,jdbcType=VARCHAR},
+			SWEIGHT=#{sweight,jdbcType=VARCHAR},
+			SCAMERA_METHOD=#{scameraMethod,jdbcType=VARCHAR},
+			SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR},
+			SCAMERA_BRAND=#{scameraBrand,jdbcType=VARCHAR},
+			SCAMERA_TYPE=#{scameraType,jdbcType=VARCHAR},
+			SVISUAL_SERVICE_PROVIDER=#{svisualServiceProvider,jdbcType=VARCHAR},
+			SPCB_MODEL=#{spcbModel,jdbcType=VARCHAR},
+			IOPENDOOR_PIN_SN=#{iopendoorPinSn,jdbcType=NUMERIC},
+			IHALL_PIN_SN=#{ihallPinSn,jdbcType=NUMERIC},
+			IDOOR_PIN_SN=#{idoorPinSn,jdbcType=NUMERIC},
+			ILOCK_CYLINDER=#{ilockCylinder,jdbcType=NUMERIC},
+			IIS_DETECT_HALL=#{iisDetectHall,jdbcType=NUMERIC},
+			IIS_USE_EXPAND_GPIO=#{iisUseExpandGpio,jdbcType=NUMERIC},
+			SCONTRAST_MODE=#{scontrastMode,jdbcType=VARCHAR},
+			<if test="saddUser != null and  saddUser != ''  ">
+				SADD_USER=#{saddUser,jdbcType=VARCHAR},
+			</if>
+			<if test="sdeviceId != null and  sdeviceId != ''  ">
+				SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+				SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="taddTime != null  ">
+				TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tupdateTime != null  ">
+				TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where  ID= #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!--分页查询返回对象映射MonitorDataConfDomain-->
+	<resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.sb.domain.DeviceModelDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ICAMERA_NUM" property="icameraNum" jdbcType="NUMERIC" />
+		<result column="ICARGO_ROAD_NUM" property="icargoRoadNum" jdbcType="NUMERIC" />
+		<result column="ICOMPRESSOR_NUM" property="icompressorNum" jdbcType="NUMERIC" />
+		<result column="IDOOR_PIN_SN" property="idoorPinSn" jdbcType="NUMERIC" />
+		<result column="IELECTRIC_SHOCK" property="ielectricShock" jdbcType="NUMERIC" />
+		<result column="IHALL_PIN_SN" property="ihallPinSn" jdbcType="NUMERIC" />
+		<result column="IIS_DETECT_HALL" property="iisDetectHall" jdbcType="NUMERIC" />
+		<result column="IIS_USE_EXPAND_GPIO" property="iisUseExpandGpio" jdbcType="NUMERIC" />
+		<result column="ILAYER_NUM" property="ilayerNum" jdbcType="NUMERIC" />
+		<result column="ILOCK_CYLINDER" property="ilockCylinder" jdbcType="NUMERIC" />
+		<result column="IMOTHERBOARD_NUM" property="imotherboardNum" jdbcType="NUMERIC" />
+		<result column="IOPENDOOR_PIN_SN" property="iopendoorPinSn" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SAD_CONF" property="sadConf" jdbcType="VARCHAR" />
+		<result column="SAD_DIMENSIONS" property="sadDimensions" jdbcType="VARCHAR" />
+		<result column="SCAMERA_BRAND" property="scameraBrand" jdbcType="VARCHAR" />
+		<result column="SCAMERA_METHOD" property="scameraMethod" jdbcType="VARCHAR" />
+		<result column="SCAMERA_MODEL" property="scameraModel" jdbcType="VARCHAR" />
+		<result column="SCAMERA_TYPE" property="scameraType" jdbcType="VARCHAR" />
+		<result column="SCOMPRESSOR_DESC" property="scompressorDesc" jdbcType="VARCHAR" />
+		<result column="SCOMPRESSOR_POSITION" property="scompressorPosition" jdbcType="VARCHAR" />
+		<result column="SCORE_DESC" property="scoreDesc" jdbcType="VARCHAR" />
+		<result column="SDAILY_POWER" property="sdailyPower" jdbcType="VARCHAR" />
+		<result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR" />
+		<result column="SDEVICE_MODEL" property="sdeviceModel" jdbcType="VARCHAR" />
+		<result column="SDIMENSIONS" property="sdimensions" jdbcType="VARCHAR" />
+		<result column="SLOCKS_MANUFACTURER" property="slocksManufacturer" jdbcType="VARCHAR" />
+		<result column="SLOCKS_MODEL" property="slocksModel" jdbcType="VARCHAR" />
+		<result column="SMANUFACTURER" property="smanufacturer" jdbcType="VARCHAR" />
+		<result column="SPAY_WAP" property="spayWap" jdbcType="VARCHAR" />
+		<result column="SPCB_MODEL" property="spcbModel" jdbcType="VARCHAR" />
+		<result column="SPRODUCT_CAPACITY" property="sproductCapacity" jdbcType="VARCHAR" />
+		<result column="SPRODUCT_TYPES" property="sproductTypes" jdbcType="VARCHAR" />
+		<result column="SRATED_POWER" property="sratedPower" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="SVISUAL_SERVICE_PROVIDER" property="svisualServiceProvider" jdbcType="VARCHAR" />
+		<result column="SWEIGHT" property="sweight" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="merchantName" property="merchantName" jdbcType="VARCHAR" />
+		<result column="merchantCode" property="merchantCode" jdbcType="VARCHAR" />
+		<result column="SCONTRAST_MODE" property="scontrastMode" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--模糊查询条件-->
+	<sql id="Entity_Where_Clause_Like">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and A.ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="icameraNum != null  ">
+					and  A.ICAMERA_NUM=#{icameraNum,jdbcType=NUMERIC}
+				</if>
+				<if test="icargoRoadNum != null  ">
+					and  A.ICARGO_ROAD_NUM=#{icargoRoadNum,jdbcType=NUMERIC}
+				</if>
+				<if test="icompressorNum != null  ">
+					and  A.ICOMPRESSOR_NUM=#{icompressorNum,jdbcType=NUMERIC}
+				</if>
+				<if test="idoorPinSn != null  ">
+					and  A.IDOOR_PIN_SN=#{idoorPinSn,jdbcType=NUMERIC}
+				</if>
+				<if test="ielectricShock != null  ">
+					and  A.IELECTRIC_SHOCK=#{ielectricShock,jdbcType=NUMERIC}
+				</if>
+				<if test="ihallPinSn != null  ">
+					and  A.IHALL_PIN_SN=#{ihallPinSn,jdbcType=NUMERIC}
+				</if>
+				<if test="iisDetectHall != null  ">
+					and  A.IIS_DETECT_HALL=#{iisDetectHall,jdbcType=NUMERIC}
+				</if>
+				<if test="iisUseExpandGpio != null  ">
+					and  A.IIS_USE_EXPAND_GPIO=#{iisUseExpandGpio,jdbcType=NUMERIC}
+				</if>
+				<if test="ilayerNum != null  ">
+					and  A.ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC}
+				</if>
+				<if test="ilockCylinder != null  ">
+					and  A.ILOCK_CYLINDER=#{ilockCylinder,jdbcType=NUMERIC}
+				</if>
+				<if test="imotherboardNum != null  ">
+					and  A.IMOTHERBOARD_NUM=#{imotherboardNum,jdbcType=NUMERIC}
+				</if>
+				<if test="iopendoorPinSn != null  ">
+					and  A.IOPENDOOR_PIN_SN=#{iopendoorPinSn,jdbcType=NUMERIC}
+				</if>
+				<if test="saddUser != null and  saddUser != ''  ">
+					and  A.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+				</if>
+				<if test="sadConf != null and  sadConf != ''  ">
+					and  A.SAD_CONF=#{sadConf,jdbcType=VARCHAR}
+				</if>
+				<if test="sadDimensions != null and  sadDimensions != ''  ">
+					and  A.SAD_DIMENSIONS=#{sadDimensions,jdbcType=VARCHAR}
+				</if>
+				<if test="scameraBrand != null and  scameraBrand != ''  ">
+					and  A.SCAMERA_BRAND=#{scameraBrand,jdbcType=VARCHAR}
+				</if>
+				<if test="scameraMethod != null and  scameraMethod != ''  ">
+					and  A.SCAMERA_METHOD=#{scameraMethod,jdbcType=VARCHAR}
+				</if>
+				<if test="scameraModel != null and  scameraModel != ''  ">
+					and  A.SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR}
+				</if>
+				<if test="scameraType != null and  scameraType != ''  ">
+					and  A.SCAMERA_TYPE=#{scameraType,jdbcType=VARCHAR}
+				</if>
+				<if test="scompressorDesc != null and  scompressorDesc != ''  ">
+					and  A.SCOMPRESSOR_DESC=#{scompressorDesc,jdbcType=VARCHAR}
+				</if>
+				<if test="scompressorPosition != null and  scompressorPosition != ''  ">
+					and  A.SCOMPRESSOR_POSITION=#{scompressorPosition,jdbcType=VARCHAR}
+				</if>
+				<if test="scoreDesc != null and  scoreDesc != ''  ">
+					and  A.SCORE_DESC=#{scoreDesc,jdbcType=VARCHAR}
+				</if>
+				<if test="sdailyPower != null and  sdailyPower != ''  ">
+					and  A.SDAILY_POWER=#{sdailyPower,jdbcType=VARCHAR}
+				</if>
+				<if test="sdeviceId != null and  sdeviceId != ''  ">
+					and  A.SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+				</if>
+				<if test="sdeviceModel != null and  sdeviceModel != ''  ">
+					and  A.SDEVICE_MODEL=#{sdeviceModel,jdbcType=VARCHAR}
+				</if>
+				<if test="sdimensions != null and  sdimensions != ''  ">
+					and  A.SDIMENSIONS=#{sdimensions,jdbcType=VARCHAR}
+				</if>
+				<if test="slocksManufacturer != null and  slocksManufacturer != ''  ">
+					and  A.SLOCKS_MANUFACTURER=#{slocksManufacturer,jdbcType=VARCHAR}
+				</if>
+				<if test="slocksModel != null and  slocksModel != ''  ">
+					and  A.SLOCKS_MODEL=#{slocksModel,jdbcType=VARCHAR}
+				</if>
+				<if test="smanufacturer != null and  smanufacturer != ''  ">
+					and  A.SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR}
+				</if>
+				<if test="spayWap != null and  spayWap != ''  ">
+					and  A.SPAY_WAP=#{spayWap,jdbcType=VARCHAR}
+				</if>
+				<if test="spcbModel != null and  spcbModel != ''  ">
+					and  A.SPCB_MODEL=#{spcbModel,jdbcType=VARCHAR}
+				</if>
+				<if test="sproductCapacity != null and  sproductCapacity != ''  ">
+					and  A.SPRODUCT_CAPACITY=#{sproductCapacity,jdbcType=VARCHAR}
+				</if>
+				<if test="sproductTypes != null and  sproductTypes != ''  ">
+					and  A.SPRODUCT_TYPES=#{sproductTypes,jdbcType=VARCHAR}
+				</if>
+				<if test="sratedPower != null and  sratedPower != ''  ">
+					and  A.SRATED_POWER=#{sratedPower,jdbcType=VARCHAR}
+				</if>
+				<if test="sremark != null and  sremark != ''  ">
+					and  A.SREMARK=#{sremark,jdbcType=VARCHAR}
+				</if>
+				<if test="supdateUser != null and  supdateUser != ''  ">
+					and  A.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+				</if>
+				<if test="svisualServiceProvider != null and  svisualServiceProvider != ''  ">
+					and  A.SVISUAL_SERVICE_PROVIDER=#{svisualServiceProvider,jdbcType=VARCHAR}
+				</if>
+				<if test="sweight != null and  sweight != ''  ">
+					and  A.SWEIGHT=#{sweight,jdbcType=VARCHAR}
+				</if>
+				<if test="taddTime != null  ">
+					and  A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tupdateTime != null  ">
+					and  A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="scontrastMode != null and  scontrastMode != ''  ">
+					and  A.SCONTRAST_MODE=#{scontrastMode,jdbcType=VARCHAR}
+				</if>
+				<if test="scode != null and  scode != ''  ">
+					and  B.SCODE like CONCAT('%',#{scode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sname != null and  sname != ''  ">
+					and  B.SNAME like CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="merchantName != null and merchantName != ''  ">
+					and  D.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="merchantCode != null and merchantCode != ''  ">
+					and  D.SCODE like CONCAT('%',#{merchantCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="queryCondition != null and  queryCondition != ''  ">
+					and  ${queryCondition}
+				</if>
+			</trim>
+		</where>
+	</sql>
+	<!--分页查询-->
+	<select id="selectByDomainWhere" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.sb.vo.DeviceModelVo">
+		select
+		A.ID,A.ICAMERA_NUM,A.ICARGO_ROAD_NUM,A.ICOMPRESSOR_NUM,A.IDOOR_PIN_SN,A.IELECTRIC_SHOCK,A.IHALL_PIN_SN,A.IIS_DETECT_HALL,A.IIS_USE_EXPAND_GPIO,
+		A.ILAYER_NUM,A.ILOCK_CYLINDER,A.IMOTHERBOARD_NUM,A.IOPENDOOR_PIN_SN,A.SADD_USER,A.SAD_CONF,A.SAD_DIMENSIONS,A.SCAMERA_BRAND,A.SCAMERA_METHOD,
+		A.SCAMERA_MODEL,A.SCAMERA_TYPE,A.SCOMPRESSOR_DESC,A.SCOMPRESSOR_POSITION,A.SCORE_DESC,A.SDAILY_POWER,A.SDEVICE_ID,A.SDEVICE_MODEL,A.SDIMENSIONS,
+		A.SLOCKS_MANUFACTURER,A.SLOCKS_MODEL,A.SMANUFACTURER,A.SPAY_WAP,A.SPCB_MODEL,A.SPRODUCT_CAPACITY,A.SPRODUCT_TYPES,A.SRATED_POWER,A.SREMARK,
+		A.SUPDATE_USER,A.SVISUAL_SERVICE_PROVIDER,A.SWEIGHT,A.TADD_TIME,A.TUPDATE_TIME,A.SCONTRAST_MODE,
+		B.SCODE,B.SNAME,
+		D.SNAME as merchantName,D.SCODE as merchantCode
+		from SB_DEVICE_MODEL A
+		INNER  JOIN SB_DEVICE_INFO B ON A.SDEVICE_ID = B.ID
+		INNER JOIN SH_MERCHANT_INFO D ON  B.SMERCHANT_ID = D.ID
+		<include refid="Entity_Where_Clause_Like" />
+		order by
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		TADD_TIME
+		desc
+	</select>
+
+	<select id="selectByDeviceId" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+			<include refid="column_List" />
+		from
+			SB_DEVICE_MODEL
+		WHERE
+			SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	</select>
+	<!--添加的SQL结束-->
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ICAMERA_NUM=#{icameraNum,jdbcType=NUMERIC}
+	ICARGO_ROAD_NUM=#{icargoRoadNum,jdbcType=NUMERIC}
+	ICOMPRESSOR_NUM=#{icompressorNum,jdbcType=NUMERIC}
+	IDOOR_PIN_SN=#{idoorPinSn,jdbcType=NUMERIC}
+	IELECTRIC_SHOCK=#{ielectricShock,jdbcType=NUMERIC}
+	IHALL_PIN_SN=#{ihallPinSn,jdbcType=NUMERIC}
+	IIS_DETECT_HALL=#{iisDetectHall,jdbcType=NUMERIC}
+	IIS_USE_EXPAND_GPIO=#{iisUseExpandGpio,jdbcType=NUMERIC}
+	ILAYER_NUM=#{ilayerNum,jdbcType=NUMERIC}
+	ILOCK_CYLINDER=#{ilockCylinder,jdbcType=NUMERIC}
+	IMOTHERBOARD_NUM=#{imotherboardNum,jdbcType=NUMERIC}
+	IOPENDOOR_PIN_SN=#{iopendoorPinSn,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SAD_CONF=#{sadConf,jdbcType=VARCHAR}
+	SAD_DIMENSIONS=#{sadDimensions,jdbcType=VARCHAR}
+	SCAMERA_BRAND=#{scameraBrand,jdbcType=VARCHAR}
+	SCAMERA_METHOD=#{scameraMethod,jdbcType=VARCHAR}
+	SCAMERA_MODEL=#{scameraModel,jdbcType=VARCHAR}
+	SCAMERA_TYPE=#{scameraType,jdbcType=VARCHAR}
+	SCOMPRESSOR_DESC=#{scompressorDesc,jdbcType=VARCHAR}
+	SCOMPRESSOR_POSITION=#{scompressorPosition,jdbcType=VARCHAR}
+	SCONTRAST_MODE=#{scontrastMode,jdbcType=VARCHAR}
+	SCORE_DESC=#{scoreDesc,jdbcType=VARCHAR}
+	SDAILY_POWER=#{sdailyPower,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SDEVICE_MODEL=#{sdeviceModel,jdbcType=VARCHAR}
+	SDIMENSIONS=#{sdimensions,jdbcType=VARCHAR}
+	SLOCKS_MANUFACTURER=#{slocksManufacturer,jdbcType=VARCHAR}
+	SLOCKS_MODEL=#{slocksModel,jdbcType=VARCHAR}
+	SMANUFACTURER=#{smanufacturer,jdbcType=VARCHAR}
+	SPAY_WAP=#{spayWap,jdbcType=VARCHAR}
+	SPCB_MODEL=#{spcbModel,jdbcType=VARCHAR}
+	SPRODUCT_CAPACITY=#{sproductCapacity,jdbcType=VARCHAR}
+	SPRODUCT_TYPES=#{sproductTypes,jdbcType=VARCHAR}
+	SRATED_POWER=#{sratedPower,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	SVISUAL_SERVICE_PROVIDER=#{svisualServiceProvider,jdbcType=VARCHAR}
+	SWEIGHT=#{sweight,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.om.dao.OrderAuditDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.om.OrderAudit">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FTOTAL_AMOUNT" property="ftotalAmount" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_CLIENT_TYPE" property="isourceClientType" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY" property="isourceWay" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_CODE" property="isourceWayCode" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_NAME" property="isourceWayName" jdbcType="VARCHAR"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="IVERSION" property="iversion" jdbcType="NUMERIC"/>
+        <result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_NAME" property="sdeviceName" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_REMARK" property="shandlerRemark" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERID" property="shandlerUserid" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERNAME" property="shandlerUsername" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR"/>
+        <result column="SREADER_SERIAL_NUMBER" property="sreaderSerialNumber" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="THANDLER_TIME" property="thandlerTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="downLoadResultEntityVo" type="com.cloud.cang.mgr.om.vo.DownloadOrderAuditVo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FTOTAL_AMOUNT" property="ftotalAmount" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_CLIENT_TYPE" property="isourceClientType" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY" property="isourceWay" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_CODE" property="isourceWayCode" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_NAME" property="isourceWayName" jdbcType="VARCHAR"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="IVERSION" property="iversion" jdbcType="NUMERIC"/>
+        <result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_NAME" property="sdeviceName" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_REMARK" property="shandlerRemark" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERID" property="shandlerUserid" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERNAME" property="shandlerUsername" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR"/>
+        <result column="SREADER_SERIAL_NUMBER" property="sreaderSerialNumber" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="THANDLER_TIME" property="thandlerTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+
+        <result column="MERCHANT_NAME" property="merchantName" jdbcType="VARCHAR"/>
+        <result column="FCOMMODITY_PRICE" property="fcommodityPrice" jdbcType="NUMERIC"/>
+        <result column="FORDER_COUNT" property="forderCount" jdbcType="NUMERIC"/>
+        <result column="FCOMMODITY_AMOUNT" property="fcommodityAmount" jdbcType="NUMERIC"/>
+
+        <result column="SNAME" property="commodityName" jdbcType="VARCHAR"/>
+        <result column="SBRAND_NAME" property="sbrandName" jdbcType="VARCHAR"/>
+        <result column="STASTE" property="staste" jdbcType="VARCHAR"/>
+        <result column="ISPEC_WEIGHT" property="ispecWeight" jdbcType="VARCHAR"/>
+        <result column="SSPEC_UNIT" property="sspecUnit" jdbcType="VARCHAR"/>
+        <result column="SPACKAGE_UNIT" property="spackageUnit" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="resultEntityVo" type="com.cloud.cang.mgr.om.vo.OrderAuditVo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FTOTAL_AMOUNT" property="ftotalAmount" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_CLIENT_TYPE" property="isourceClientType" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY" property="isourceWay" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_CODE" property="isourceWayCode" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_NAME" property="isourceWayName" jdbcType="VARCHAR"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="IVERSION" property="iversion" jdbcType="NUMERIC"/>
+        <result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_NAME" property="sdeviceName" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_REMARK" property="shandlerRemark" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERID" property="shandlerUserid" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERNAME" property="shandlerUsername" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR"/>
+        <result column="SREADER_SERIAL_NUMBER" property="sreaderSerialNumber" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="THANDLER_TIME" property="thandlerTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+        <result column="MERCHANT_NAME" property="merchantName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,FTOTAL_AMOUNT,IDEL_FLAG,ISOURCE_CLIENT_TYPE,ISOURCE_WAY,ISOURCE_WAY_CODE,ISOURCE_WAY_NAME,ISTATUS,ITYPE,IVERSION,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SDEVICE_NAME,SHANDLER_REMARK,SHANDLER_USERID,SHANDLER_USERNAME,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SMERCHANT_CODE,SMERCHANT_ID,SORDER_CODE,SREADER_SERIAL_NUMBER,TADD_TIME,THANDLER_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="ftotalAmount != null  ">
+                    and FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceClientType != null  ">
+                    and ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWay != null  ">
+                    and ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayCode != null  ">
+                    and ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayName != null and  isourceWayName != ''  ">
+                    and ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="iversion != null  ">
+                    and IVERSION=#{iversion,jdbcType=NUMERIC}
+                </if>
+                <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                    and SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                    and SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceId != null and  sdeviceId != ''  ">
+                    and SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceName != null and  sdeviceName != ''  ">
+                    and SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                    and SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                    and SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                    and SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberCode != null and  smemberCode != ''  ">
+                    and SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberId != null and  smemberId != ''  ">
+                    and SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberName != null and  smemberName != ''  ">
+                    and SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sorderCode != null and  sorderCode != ''  ">
+                    and SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                    and SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="thandlerTime != null  ">
+                    and THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="queryCondition != null and  queryCondition != ''  ">
+                    and ${queryCondition}
+                </if>
+                <if test="id != null and  id != ''   ">
+                    and A.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <!-- <if test="ftotalAmount != null  ">
+                     and A.FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+                 </if>-->
+                <if test="ftotalAmountBegin != null ">
+                    and A.FTOTAL_AMOUNT >= #{ftotalAmountBegin,jdbcType=NUMERIC}
+                </if>
+                <if test="ftotalAmountEnd != null ">
+                    and A.FTOTAL_AMOUNT <![CDATA[ <= ]]> #{ftotalAmountEnd,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and A.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceClientType != null  ">
+                    and A.ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWay != null  ">
+                    and A.ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayCode != null  ">
+                    and A.ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayName != null and  isourceWayName != ''  ">
+                    and A.ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+                </if>
+                <if test="istatus != null  ">
+                    and A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and A.ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="iversion != null  ">
+                    and A.IVERSION=#{iversion,jdbcType=NUMERIC}
+                </if>
+                <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                    and A.SDEVICE_ADDRESS LIKE CONCAT('%',#{sdeviceAddress},'%')
+                </if>
+                <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                    and A.SDEVICE_CODE LIKE CONCAT('%',#{sdeviceCode},'%')
+                </if>
+                <if test="sdeviceId != null and  sdeviceId != ''  ">
+                    and A.SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceName != null and  sdeviceName != ''  ">
+                    and A.SDEVICE_NAME LIKE CONCAT('%',#{sdeviceName},'%')
+                </if>
+                <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                    and A.SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                    and A.SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                    and A.SHANDLER_USERNAME like CONCAT('%',#{shandlerUsername,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smemberCode != null and  smemberCode != ''  ">
+                    and A.SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberId != null and  smemberId != ''  ">
+                    and A.SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberName != null and  smemberName != ''  ">
+                    and A.SMEMBER_NAME LIKE CONCAT('%',#{smemberName},'%')
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and A.SMERCHANT_CODE LIKE CONCAT('%',#{smerchantCode},'%')
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sorderCode != null and  sorderCode != ''  ">
+                    and A.SORDER_CODE LIKE CONCAT('%',#{sorderCode},'%')
+                </if>
+                <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                    and A.SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="thandlerTime != null  ">
+                    and A.THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+                <!--<if test="ipayType != null and ipayType!='' ">
+                    and OOR.IPAY_TYPE=#{ipayType,jdbcType=VARCHAR}
+                </if>-->
+                <if test="merchantName != null and  merchantName != '' ">
+                    and smi.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_AUDIT
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.om.OrderAudit">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_AUDIT
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_AUDIT
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from OM_ORDER_AUDIT
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM OM_ORDER_AUDIT where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.om.OrderAudit">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into OM_ORDER_AUDIT (ID,FTOTAL_AMOUNT,IDEL_FLAG,ISOURCE_CLIENT_TYPE,ISOURCE_WAY,ISOURCE_WAY_CODE,ISOURCE_WAY_NAME,ISTATUS,ITYPE,IVERSION,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SDEVICE_NAME,SHANDLER_REMARK,SHANDLER_USERID,SHANDLER_USERNAME,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SMERCHANT_CODE,SMERCHANT_ID,SORDER_CODE,SREADER_SERIAL_NUMBER,TADD_TIME,THANDLER_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{ftotalAmount,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{isourceClientType,jdbcType=NUMERIC},#{isourceWay,jdbcType=NUMERIC},#{isourceWayCode,jdbcType=NUMERIC},#{isourceWayName,jdbcType=VARCHAR},#{istatus,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{iversion,jdbcType=NUMERIC},#{sdeviceAddress,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{sdeviceName,jdbcType=VARCHAR},#{shandlerRemark,jdbcType=VARCHAR},#{shandlerUserid,jdbcType=VARCHAR},#{shandlerUsername,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sorderCode,jdbcType=VARCHAR},#{sreaderSerialNumber,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{thandlerTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.om.OrderAudit">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into OM_ORDER_AUDIT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="ftotalAmount">
+                FTOTAL_AMOUNT,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="isourceClientType">
+                ISOURCE_CLIENT_TYPE,
+            </if>
+            <if test="isourceWay">
+                ISOURCE_WAY,
+            </if>
+            <if test="isourceWayCode">
+                ISOURCE_WAY_CODE,
+            </if>
+            <if test="isourceWayName">
+                ISOURCE_WAY_NAME,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="itype">
+                ITYPE,
+            </if>
+            <if test="iversion">
+                IVERSION,
+            </if>
+            <if test="sdeviceAddress">
+                SDEVICE_ADDRESS,
+            </if>
+            <if test="sdeviceCode">
+                SDEVICE_CODE,
+            </if>
+            <if test="sdeviceId">
+                SDEVICE_ID,
+            </if>
+            <if test="sdeviceName">
+                SDEVICE_NAME,
+            </if>
+            <if test="shandlerRemark">
+                SHANDLER_REMARK,
+            </if>
+            <if test="shandlerUserid">
+                SHANDLER_USERID,
+            </if>
+            <if test="shandlerUsername">
+                SHANDLER_USERNAME,
+            </if>
+            <if test="smemberCode">
+                SMEMBER_CODE,
+            </if>
+            <if test="smemberId">
+                SMEMBER_ID,
+            </if>
+            <if test="smemberName">
+                SMEMBER_NAME,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="sorderCode">
+                SORDER_CODE,
+            </if>
+            <if test="sreaderSerialNumber">
+                SREADER_SERIAL_NUMBER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="thandlerTime">
+                THANDLER_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="ftotalAmount != null  ">
+                #{ftotalAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceClientType != null  ">
+                #{isourceClientType,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWay != null  ">
+                #{isourceWay,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayCode != null  ">
+                #{isourceWayCode,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayName != null and  isourceWayName != ''  ">
+                #{isourceWayName,jdbcType=VARCHAR},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="iversion != null  ">
+                #{iversion,jdbcType=NUMERIC},
+            </if>
+            <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                #{sdeviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceName != null and  sdeviceName != ''  ">
+                #{sdeviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                #{shandlerRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                #{shandlerUserid,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                #{shandlerUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderCode != null and  sorderCode != ''  ">
+                #{sorderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                #{sreaderSerialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="thandlerTime != null  ">
+                #{thandlerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.om.OrderAudit">
+        update OM_ORDER_AUDIT
+        <set>
+            <if test="ftotalAmount != null  ">
+                FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceClientType != null  ">
+                ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWay != null  ">
+                ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayCode != null  ">
+                ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayName != null and  isourceWayName != ''  ">
+                ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="iversion != null  ">
+                IVERSION=#{iversion,jdbcType=NUMERIC},
+            </if>
+            <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceName != null and  sdeviceName != ''  ">
+                SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderCode != null and  sorderCode != ''  ">
+                SORDER_CODE=#{sorderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="thandlerTime != null  ">
+                THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.om.OrderAudit">
+        update OM_ORDER_AUDIT
+        set
+        FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+        ,ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+        ,ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+        ,ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,ITYPE=#{itype,jdbcType=NUMERIC}
+        ,IVERSION=#{iversion,jdbcType=NUMERIC}
+        ,SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+        ,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        ,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        ,SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR}
+        ,SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+        ,SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+        ,SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR}
+        ,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        ,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        ,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+        ,SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+	ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+	ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+	ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	IVERSION=#{iversion,jdbcType=NUMERIC}
+	SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR}
+	SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+	SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+	SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+	SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="selectPageByDomainWhere" parameterType="com.cloud.cang.mgr.om.domain.OrderAuditDomain"
+            resultMap="resultEntityVo">
+        select A.*,SMI.SNAME as MERCHANT_NAME<!--,OOR.IPAY_TYPE-->
+        from OM_ORDER_AUDIT AS A
+        <!-- LEFT JOIN OM_ORDER_RECORD OOR ON A.SORDER_ID =OOR.ID-->
+        LEFT JOIN sh_merchant_info AS smi on A.SMERCHANT_ID=smi.ID
+        <include refid="Entity_Where_Clause_Like"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        FIELD(A.ISTATUS,10,20,30),A.TADD_TIME DESC,A.TADD_TIME desc,A.ID
+    </select>
+    <select id="queryTotalData" parameterType="com.cloud.cang.mgr.om.domain.OrderAuditDomain"
+            resultType="java.math.BigDecimal">
+        SELECT SUM(IFNULL(A.FTOTAL_AMOUNT,0))
+        from OM_ORDER_AUDIT AS A
+        LEFT JOIN sh_merchant_info AS smi on A.SMERCHANT_ID=smi.ID
+        <include refid="Entity_Where_Clause_Like"/>
+    </select>
+    <select id="selectByDomain" parameterType="com.cloud.cang.mgr.om.domain.OrderAuditDomain"
+            resultMap="downLoadResultEntityVo">
+        select A.*,SMI.SNAME as
+        MERCHANT_NAME,OOAC.FCOMMODITY_PRICE,OOAC.FORDER_COUNT,OOAC.FCOMMODITY_AMOUNT,
+        SCI.SNAME ,SCI.SBRAND_NAME,SCI.STASTE,SCI.ISPEC_WEIGHT,SCI.SSPEC_UNIT,SCI.SPACKAGE_UNIT
+        from OM_ORDER_AUDIT AS A
+        LEFT JOIN sh_merchant_info AS smi on A.SMERCHANT_ID=smi.ID
+        LEFT JOIN OM_ORDER_AUDIT_COMMODITY OOAC on A.id =OOAC.SORDER_ID
+        LEFT JOIN SP_COMMODITY_INFO SCI ON OOAC.SCOMMODITY_ID = SCI.ID
+        <include refid="Entity_Where_Clause_Like"/>
+        order by
+        A.THANDLER_TIME desc,
+        A.TADD_TIME desc,A.ID
+    </select>
+</mapper>

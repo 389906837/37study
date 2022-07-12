@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sys.dao.FastMenuDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.FastMenu">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="SMENU_ICON" property="smenuIcon" jdbcType="VARCHAR"/>
+        <result column="SMENU_NAME" property="smenuName" jdbcType="VARCHAR"/>
+        <result column="SMENU_PATH" property="smenuPath" jdbcType="VARCHAR"/>
+        <result column="SOPERATOR_ID" property="soperatorId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <resultMap id="resultEntityVo" type="com.cloud.cang.mgr.sys.vo.MenuVo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <!-- <result column="SMENU_PATH" property="smenuPath" jdbcType="VARCHAR"/>
+         <result column="SMENU_NAME" property="smenuName" jdbcType="VARCHAR"/>
+         <result column=" DETAIL_NAME" property="detalName" jdbcType="VARCHAR"/>
+         <result column=" DETAIL_VALUE" property="detailValue" jdbcType="VARCHAR"/>
+         <result column="ICON" property="icon" jdbcType="VARCHAR"/>-->
+        <result column="ISSELECT" property="isSelect" jdbcType="VARCHAR"/>
+        <result column="SMENU_NAME" property="smenuName" jdbcType="VARCHAR"/>
+        <result column="DETAIL_ID" property="detailId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,IDEL_FLAG,SMENU_ICON,SMENU_NAME,SMENU_PATH,SOPERATOR_ID,SREMARK,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="smenuIcon != null and  smenuIcon != ''  ">
+                    and SMENU_ICON=#{smenuIcon,jdbcType=VARCHAR}
+                </if>
+                <if test="smenuName != null and  smenuName != ''  ">
+                    and SMENU_NAME=#{smenuName,jdbcType=VARCHAR}
+                </if>
+                <if test="smenuPath != null and  smenuPath != ''  ">
+                    and SMENU_PATH=#{smenuPath,jdbcType=VARCHAR}
+                </if>
+                <if test="soperatorId != null and  soperatorId != ''  ">
+                    and SOPERATOR_ID=#{soperatorId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SYS_FAST_MENU
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.FastMenu">
+        select
+        <include refid="column_List"/>
+        from SYS_FAST_MENU
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SYS_FAST_MENU
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <select id="selectUserMenu" resultMap="resultEntityVo">
+        <!-- SELECT
+         F.*, (case when p.id is not null then 1 else 0 end) ISSELECT
+         FROM(
+         select DISTINCT sm.*
+         from SYS_OPERATORROLE sorr
+         RIGHT JOIN SYS_ROLEPURVIEW srp on sorr.SROLE_ID = srp.SROLE_ID
+         RIGHT JOIN SYS_PURVIEW sp on srp.SPURVIEW_ID = sp.ID
+         RIGHT JOIN SYS_MENU sm on sp.SPARENT_ID =sm.id
+         RIGHT JOIN SYS_PARAMETER_GROUP_DETAIL SPGD ON SP.SPUR_NO = SPGD.SVALUE
+         where sorr.SOPERATOR_ID =#{id,jdbcType=VARCHAR})F
+         LEFT JOIN(
+         select sm.* from sys_fast_menu sfm
+         RIGHT JOIN SYS_PARAMETER_GROUP_DETAIL spg on sfm.SMENU_NAME = spg.sname
+         RIGHT JOIN SYS_PURVIEW sp on spg.SVALUE = sp.SPUR_NO
+         RIGHT JOIN SYS_MENU sm on sp.SPARENT_ID=sm.id
+         where sfm.SOPERATOR_ID =#{id,jdbcType=VARCHAR})p
+         on f.id =p.id-->
+        SELECT
+        F.*,(case when p.id is not null then 1 else 0 end) ISSELECT
+        FROM(
+        select DISTINCT SPGD.id as DETAIL_ID,sm.id,sm.SNAME SMENU_NAME
+        from SYS_OPERATORROLE sorr
+        RIGHT JOIN SYS_ROLEPURVIEW srp on sorr.SROLE_ID = srp.SROLE_ID
+        RIGHT JOIN SYS_PURVIEW sp on srp.SPURVIEW_ID = sp.ID
+        RIGHT JOIN SYS_MENU sm on sp.SPARENT_ID =sm.id
+        RIGHT JOIN SYS_PARAMETER_GROUP_DETAIL SPGD ON SP.SPUR_NO = SPGD.SVALUE
+        where sorr.SOPERATOR_ID =#{id,jdbcType=VARCHAR})F
+        LEFT JOIN(
+        select sm.id
+        from sys_fast_menu sfm
+        RIGHT JOIN SYS_PARAMETER_GROUP_DETAIL spg on sfm.SMENU_NAME = spg.sname
+        RIGHT JOIN SYS_PURVIEW sp on spg.SVALUE = sp.SPUR_NO
+        RIGHT JOIN SYS_MENU sm on sp.SPARENT_ID=sm.id
+        where SFM.IDEL_FLAG=0 AND sfm.SOPERATOR_ID =#{id,jdbcType=VARCHAR} )p
+        on f.id =p.id
+
+    </select>
+    <select id="selectMenuPathById" parameterType="java.lang.String" resultType="java.lang.String">
+        select sm.SMENU_PATH from SYS_PARAMETER_GROUP_DETAIL spgd
+        LEFT JOIN SYS_PURVIEW sp on spgd.svalue = sp.SPUR_NO
+        Left join SYS_MENU sm on sp.SPARENT_ID = sm.id
+        where spgd.id=#{id,jdbcType=VARCHAR}
+    </select>
+    <select id="isSelect" parameterType="java.util.Map" resultType="int">
+        select count(*)
+        from SYS_FAST_MENU
+        where SMENU_NAME=#{sname,jdbcType=VARCHAR} and SOPERATOR_ID=#{operatorId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SYS_FAST_MENU
+        where ID =#{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SYS_FAST_MENU where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <delete id="deleteByOperatorId" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SYS_FAST_MENU
+        where SOPERATOR_ID = #{operator,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="deleteByName" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SYS_FAST_MENU
+        where SMENU_NAME = #{name,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.FastMenu">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SYS_FAST_MENU (ID,IDEL_FLAG,SMENU_ICON,SMENU_NAME,SMENU_PATH,SOPERATOR_ID,SREMARK,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{smenuIcon,jdbcType=VARCHAR},#{smenuName,jdbcType=VARCHAR},#{smenuPath,jdbcType=VARCHAR},#{soperatorId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.FastMenu">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SYS_FAST_MENU
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="smenuIcon">
+                SMENU_ICON,
+            </if>
+            <if test="smenuName">
+                SMENU_NAME,
+            </if>
+            <if test="smenuPath">
+                SMENU_PATH,
+            </if>
+            <if test="soperatorId">
+                SOPERATOR_ID,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="smenuIcon != null and  smenuIcon != ''  ">
+                #{smenuIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="smenuName != null and  smenuName != ''  ">
+                #{smenuName,jdbcType=VARCHAR},
+            </if>
+            <if test="smenuPath != null and  smenuPath != ''  ">
+                #{smenuPath,jdbcType=VARCHAR},
+            </if>
+            <if test="soperatorId != null and  soperatorId != ''  ">
+                #{soperatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.FastMenu">
+        update SYS_FAST_MENU
+        <set>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="smenuIcon != null and  smenuIcon != ''  ">
+                SMENU_ICON=#{smenuIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="smenuName != null and  smenuName != ''  ">
+                SMENU_NAME=#{smenuName,jdbcType=VARCHAR},
+            </if>
+            <if test="smenuPath != null and  smenuPath != ''  ">
+                SMENU_PATH=#{smenuPath,jdbcType=VARCHAR},
+            </if>
+            <if test="soperatorId != null and  soperatorId != ''  ">
+                SOPERATOR_ID=#{soperatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByName" parameterType="com.cloud.cang.model.sys.FastMenu">
+        update SYS_FAST_MENU
+        <set>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="smenuIcon != null and  smenuIcon != ''  ">
+                SMENU_ICON=#{smenuIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="smenuPath != null and  smenuPath != ''  ">
+                SMENU_PATH=#{smenuPath,jdbcType=VARCHAR},
+            </if>
+            <if test="soperatorId != null and  soperatorId != ''  ">
+                SOPERATOR_ID=#{soperatorId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where SMENU_NAME=#{smenuName,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.FastMenu">
+        update SYS_FAST_MENU
+        set
+        IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,SMENU_ICON=#{smenuIcon,jdbcType=VARCHAR}
+        ,SMENU_NAME=#{smenuName,jdbcType=VARCHAR}
+        ,SMENU_PATH=#{smenuPath,jdbcType=VARCHAR}
+        ,SOPERATOR_ID=#{soperatorId,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectByOperId" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SYS_FAST_MENU
+        where SOPERATOR_ID = #{operId,jdbcType=VARCHAR}
+    </select>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	SMENU_ICON=#{smenuIcon,jdbcType=VARCHAR}
+	SMENU_NAME=#{smenuName,jdbcType=VARCHAR}
+	SMENU_PATH=#{smenuPath,jdbcType=VARCHAR}
+	SOPERATOR_ID=#{soperatorId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+    <select id="isMerchantPurview" parameterType="java.util.Map" resultType="int">
+        SELECT COUNT(*)
+        FROM SYS_MERCHANT_PURVIEW SMP
+        LEFT JOIN SYS_PURVIEW SP ON SMP.SPURVIEW_ID = SP.ID
+        WHERE SMP.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        AND SP.SPUR_CODE =#{spurCode,jdbcType=VARCHAR}
+    </select>
+</mapper>

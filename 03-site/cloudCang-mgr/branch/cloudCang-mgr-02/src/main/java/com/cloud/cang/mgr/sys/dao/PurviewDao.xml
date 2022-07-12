@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sys.dao.PurviewDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.Purview">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP"/>
+        <result column="IIS_MERCHANT_USED" property="iisMerchantUsed" jdbcType="NUMERIC"/>
+        <result column="SDESCRIPTION" property="sdescription" jdbcType="VARCHAR"/>
+        <result column="SJP_NAME" property="sjpName" jdbcType="VARCHAR"/>
+        <result column="SPARENT_ID" property="sparentId" jdbcType="VARCHAR"/>
+        <result column="SPARENT_NAME" property="sparentName" jdbcType="VARCHAR"/>
+        <result column="SPUR_CODE" property="spurCode" jdbcType="VARCHAR"/>
+        <result column="SPUR_NAME" property="spurName" jdbcType="VARCHAR"/>
+        <result column="SPUR_NO" property="spurNo" jdbcType="VARCHAR"/>
+        <result column="SPY_NAME" property="spyName" jdbcType="VARCHAR"/>
+        <result column="SSYSTEM_CODE" property="ssystemCode" jdbcType="VARCHAR"/>
+        <result column="SURL_PATH" property="surlPath" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="operatorResultEntity" type="com.cloud.cang.model.sys.Operator">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="BIS_ADMIN" property="bisAdmin" jdbcType="NUMERIC"/>
+        <result column="BIS_DELETE" property="bisDelete" jdbcType="NUMERIC"/>
+        <result column="BIS_FREEZE" property="bisFreeze" jdbcType="NUMERIC"/>
+        <result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP"/>
+        <result column="DFIRST_LOGIN_TIME" property="dfirstLoginTime" jdbcType="TIMESTAMP"/>
+        <result column="DLAST_LOGIN_TIME" property="dlastLoginTime" jdbcType="TIMESTAMP"/>
+        <result column="DMODIFY_DATE" property="dmodifyDate" jdbcType="TIMESTAMP"/>
+        <result column="IDEV_TYPE" property="idevType" jdbcType="NUMERIC"/>
+        <result column="IIS_BD" property="iisBd" jdbcType="NUMERIC"/>
+        <result column="IMER_TYPE" property="imerType" jdbcType="NUMERIC"/>
+        <result column="SADD_OPERATOR" property="saddOperator" jdbcType="VARCHAR"/>
+        <result column="SDEPARTMENT_CODE" property="sdepartmentCode" jdbcType="VARCHAR"/>
+        <result column="SDEPARTMENT_NAME" property="sdepartmentName" jdbcType="VARCHAR"/>
+        <result column="SGROUP_DEC_LIST" property="sgroupDecList" jdbcType="VARCHAR"/>
+        <result column="SMAIL" property="smail" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_NAME" property="smerchantName" jdbcType="VARCHAR"/>
+        <result column="SMER_LIST" property="smerList" jdbcType="VARCHAR"/>
+        <result column="SMOBILE" property="smobile" jdbcType="VARCHAR"/>
+        <result column="SMODIFY_OPERATOR" property="smodifyOperator" jdbcType="VARCHAR"/>
+        <result column="SOPERATOR_NO" property="soperatorNo" jdbcType="VARCHAR"/>
+        <result column="SPASSWORD" property="spassword" jdbcType="VARCHAR"/>
+        <result column="SREAL_NAME" property="srealName" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SUSER_NAME" property="suserName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+
+
+
+        ID,DADD_DATE,IIS_MERCHANT_USED,SDESCRIPTION,SJP_NAME,SPARENT_ID,SPARENT_NAME,SPUR_CODE,SPUR_NAME,SPUR_NO,SPY_NAME,SSYSTEM_CODE,SURL_PATH
+
+
+
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="daddDate != null  ">
+                    and DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="iisMerchantUsed != null  ">
+                    and IIS_MERCHANT_USED=#{iisMerchantUsed,jdbcType=NUMERIC}
+                </if>
+                <if test="sdescription != null and  sdescription != ''  ">
+                    and SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+                </if>
+                <if test="sjpName != null and  sjpName != ''  ">
+                    and SJP_NAME=#{sjpName,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentId != null and  sparentId != ''  ">
+                    and SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentName != null and  sparentName != ''  ">
+                    and SPARENT_NAME=#{sparentName,jdbcType=VARCHAR}
+                </if>
+                <if test="spurCode != null and  spurCode != ''  ">
+                    and SPUR_CODE=#{spurCode,jdbcType=VARCHAR}
+                </if>
+                <if test="spurName != null and  spurName != ''  ">
+                    and SPUR_NAME=#{spurName,jdbcType=VARCHAR}
+                </if>
+                <if test="spurNo != null and  spurNo != ''  ">
+                    and SPUR_NO=#{spurNo,jdbcType=VARCHAR}
+                </if>
+                <if test="spyName != null and  spyName != ''  ">
+                    and SPY_NAME=#{spyName,jdbcType=VARCHAR}
+                </if>
+                <if test="ssystemCode != null and  ssystemCode != ''  ">
+                    and SSYSTEM_CODE=#{ssystemCode,jdbcType=VARCHAR}
+                </if>
+                <if test="surlPath != null and  surlPath != ''  ">
+                    and SURL_PATH=#{surlPath,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id="Entity_Where_Clause_Purview">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and a.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="daddDate != null  ">
+                    and a.DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="iisMerchantUsed != null  ">
+                    and a.IIS_MERCHANT_USED=#{iisMerchantUsed,jdbcType=NUMERIC}
+                </if>
+                <if test="sdescription != null and  sdescription != ''  ">
+                    and a.SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+                </if>
+                <if test="sjpName != null and  sjpName != ''  ">
+                    and a.SJP_NAME=#{sjpName,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentId != null and  sparentId != ''  ">
+                    and a.SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+                </if>
+                <if test="sparentName != null and  sparentName != ''  ">
+                    and a.SPARENT_NAME=#{sparentName,jdbcType=VARCHAR}
+                </if>
+                <if test="spurCode != null and  spurCode != ''  ">
+                    and a.SPUR_CODE=#{spurCode,jdbcType=VARCHAR}
+                </if>
+                <if test="spurName != null and  spurName != ''  ">
+                    and a.SPUR_NAME=#{spurName,jdbcType=VARCHAR}
+                </if>
+                <if test="spurNo != null and  spurNo != ''  ">
+                    and a.SPUR_NO=#{spurNo,jdbcType=VARCHAR}
+                </if>
+                <if test="spyName != null and  spyName != ''  ">
+                    and a.SPY_NAME=#{spyName,jdbcType=VARCHAR}
+                </if>
+                <if test="ssystemCode != null and  ssystemCode != ''  ">
+                    and a.SSYSTEM_CODE=#{ssystemCode,jdbcType=VARCHAR}
+                </if>
+                <if test="surlPath != null and  surlPath != ''  ">
+                    and a.SURL_PATH=#{surlPath,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SYS_PURVIEW
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.Purview">
+        select
+        <include refid="column_List"/>
+        from SYS_PURVIEW
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SYS_PURVIEW
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+
+
+
+        delete from SYS_PURVIEW
+        where ID = #{id,jdbcType=VARCHAR}
+
+
+
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SYS_PURVIEW where id in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.Purview">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SYS_PURVIEW (ID,DADD_DATE,IIS_MERCHANT_USED,SDESCRIPTION,SJP_NAME,SPARENT_ID,SPARENT_NAME,SPUR_CODE,SPUR_NAME,SPUR_NO,SPY_NAME,SSYSTEM_CODE,SURL_PATH)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{daddDate,jdbcType=TIMESTAMP},#{iisMerchantUsed,jdbcType=NUMERIC},#{sdescription,jdbcType=VARCHAR},#{sjpName,jdbcType=VARCHAR},#{sparentId,jdbcType=VARCHAR},#{sparentName,jdbcType=VARCHAR},#{spurCode,jdbcType=VARCHAR},#{spurName,jdbcType=VARCHAR},#{spurNo,jdbcType=VARCHAR},#{spyName,jdbcType=VARCHAR},#{ssystemCode,jdbcType=VARCHAR},#{surlPath,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.Purview">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SYS_PURVIEW
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="daddDate">
+                DADD_DATE,
+            </if>
+            <if test="iisMerchantUsed">
+                IIS_MERCHANT_USED,
+            </if>
+            <if test="sdescription">
+                SDESCRIPTION,
+            </if>
+            <if test="sjpName">
+                SJP_NAME,
+            </if>
+            <if test="sparentId">
+                SPARENT_ID,
+            </if>
+            <if test="sparentName">
+                SPARENT_NAME,
+            </if>
+            <if test="spurCode">
+                SPUR_CODE,
+            </if>
+            <if test="spurName">
+                SPUR_NAME,
+            </if>
+            <if test="spurNo">
+                SPUR_NO,
+            </if>
+            <if test="spyName">
+                SPY_NAME,
+            </if>
+            <if test="ssystemCode">
+                SSYSTEM_CODE,
+            </if>
+            <if test="surlPath">
+                SURL_PATH,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="daddDate != null  ">
+                #{daddDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="iisMerchantUsed != null  ">
+                #{iisMerchantUsed,jdbcType=NUMERIC},
+            </if>
+            <if test="sdescription != null and  sdescription != ''  ">
+                #{sdescription,jdbcType=VARCHAR},
+            </if>
+            <if test="sjpName != null and  sjpName != ''  ">
+                #{sjpName,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentId != null and  sparentId != ''  ">
+                #{sparentId,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentName != null and  sparentName != ''  ">
+                #{sparentName,jdbcType=VARCHAR},
+            </if>
+            <if test="spurCode != null and  spurCode != ''  ">
+                #{spurCode,jdbcType=VARCHAR},
+            </if>
+            <if test="spurName != null and  spurName != ''  ">
+                #{spurName,jdbcType=VARCHAR},
+            </if>
+            <if test="spurNo != null and  spurNo != ''  ">
+                #{spurNo,jdbcType=VARCHAR},
+            </if>
+            <if test="spyName != null and  spyName != ''  ">
+                #{spyName,jdbcType=VARCHAR},
+            </if>
+            <if test="ssystemCode != null and  ssystemCode != ''  ">
+                #{ssystemCode,jdbcType=VARCHAR},
+            </if>
+            <if test="surlPath != null and  surlPath != ''  ">
+                #{surlPath,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.Purview">
+        update SYS_PURVIEW
+        <set>
+            <if test="daddDate != null  ">
+                DADD_DATE=#{daddDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="iisMerchantUsed != null  ">
+                IIS_MERCHANT_USED=#{iisMerchantUsed,jdbcType=NUMERIC},
+            </if>
+            <if test="sdescription != null and  sdescription != ''  ">
+                SDESCRIPTION=#{sdescription,jdbcType=VARCHAR},
+            </if>
+            <if test="sjpName != null and  sjpName != ''  ">
+                SJP_NAME=#{sjpName,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentId != null and  sparentId != ''  ">
+                SPARENT_ID=#{sparentId,jdbcType=VARCHAR},
+            </if>
+            <if test="sparentName != null and  sparentName != ''  ">
+                SPARENT_NAME=#{sparentName,jdbcType=VARCHAR},
+            </if>
+            <if test="spurCode != null and  spurCode != ''  ">
+                SPUR_CODE=#{spurCode,jdbcType=VARCHAR},
+            </if>
+            <if test="spurName != null and  spurName != ''  ">
+                SPUR_NAME=#{spurName,jdbcType=VARCHAR},
+            </if>
+            <if test="spurNo != null and  spurNo != ''  ">
+                SPUR_NO=#{spurNo,jdbcType=VARCHAR},
+            </if>
+            <if test="spyName != null and  spyName != ''  ">
+                SPY_NAME=#{spyName,jdbcType=VARCHAR},
+            </if>
+            <if test="ssystemCode != null and  ssystemCode != ''  ">
+                SSYSTEM_CODE=#{ssystemCode,jdbcType=VARCHAR},
+            </if>
+            <if test="surlPath != null and  surlPath != ''  ">
+                SURL_PATH=#{surlPath,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.Purview">
+        update SYS_PURVIEW
+        set 
+        		DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+        		,IIS_MERCHANT_USED=#{iisMerchantUsed,jdbcType=NUMERIC}
+        		,SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+        		,SJP_NAME=#{sjpName,jdbcType=VARCHAR}
+        		,SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+        		,SPARENT_NAME=#{sparentName,jdbcType=VARCHAR}
+        		,SPUR_CODE=#{spurCode,jdbcType=VARCHAR}
+        		,SPUR_NAME=#{spurName,jdbcType=VARCHAR}
+        		,SPUR_NO=#{spurNo,jdbcType=VARCHAR}
+        		,SPY_NAME=#{spyName,jdbcType=VARCHAR}
+        		,SSYSTEM_CODE=#{ssystemCode,jdbcType=VARCHAR}
+        		,SURL_PATH=#{surlPath,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByUserId" resultMap="resultEntity" parameterType="java.lang.String">
+		select p.* from sys_operatorrole orl,sys_role r,sys_rolepurview rp,sys_purview p
+		where orl.srole_id=r.id and r.id=rp.srole_id and rp.spurview_id=p.id
+		and orl.soperator_id=#{userId,jdbcType=VARCHAR}
+	</select>
+    <!--查询商家有的权限码 -->
+    <select id="selectMerchantPurview" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		sp.*
+		from SYS_PURVIEW as sp inner join SYS_MERCHANT_PURVIEW as smp
+		on  sp.ID=smp.SPURVIEW_ID
+		where smp.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	</select>
+
+    <!--判断权限编码是否存在-->
+    <select id="isNameExist" resultType="java.lang.Integer" parameterType="com.cloud.cang.model.sys.Purview">
+		select
+		count(1)
+		from sys_purview
+		where SPUR_CODE=#{spurCode,jdbcType=VARCHAR}
+	</select>
+    <select id="selectByAllPurviewByMerchantId" resultMap="resultEntity" parameterType="java.lang.String">
+		select p.* from sys_purview p ,sys_merchant_purview smp
+		where smp.spurview_id=p.id
+		and smp.smerchant_id=#{merchantId,jdbcType=VARCHAR}
+	</select>
+
+    <select id="selectPurviewByMerchant" resultType="com.cloud.cang.mgr.sh.domain.PurviewDomain"
+            parameterType="java.util.Map">
+        select
+        a.id as id,
+        a.spur_name as spurName,
+        b.sparent_id AS menuParentId,
+        b.id AS menuId,
+        b.sname AS menuName,
+        (case when c.id is null then 0 else 1 end) as isSelect
+        from sys_purview a
+        left join sys_menu b on a.sparent_id = b.id and b.bis_display=1
+        left join sys_merchant_purview c on a.id=c.spurview_id and smerchant_id = #{merchantId,jdbcType=VARCHAR}
+        <include refid="Entity_Where_Clause_Purview"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+    </select>
+    <select id="selectOperatorByPrimaryKey" resultMap="operatorResultEntity" parameterType="java.lang.String">
+		select * from SYS_OPERATOR
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+    <!--查询用户所有权限 -->
+    <select id="selectOperatorPurview" parameterType="java.lang.String" resultType="java.lang.String">
+	  select  SP.spur_code  from  SYS_OPERATORROLE so
+      LEFT JOIN SYS_ROLEPURVIEW srp on so.srole_id = srp.SROLE_ID
+      LEFT  JOIN SYS_PURVIEW SP ON  SRP.SPURVIEW_ID=SP.ID
+      WHERE  SO.SOPERATOR_ID =#{operatorId,jdbcType=VARCHAR}
+</select>
+    <!-- 删除商户权限码关联信息 -->
+    <delete id="deletePurviewMerchantByPurviewId" parameterType="java.lang.String">
+		<![CDATA[
+
+
+
+    	delete from SYS_MERCHANT_PURVIEW where spurview_id=#{purviewId,jdbcType=VARCHAR}
+
+
+
+        ]]>
+	</delete>
+    <!-- 删除角色权限关联信息 -->
+    <delete id="deleteRolePurviewByPurviewId" parameterType="java.lang.String">
+		<![CDATA[
+
+
+
+    		delete from sys_rolepurview where spurview_id=#{purviewId,jdbcType=VARCHAR}
+
+
+
+        ]]>
+	</delete>
+
+    <select id="selectPageByMap" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SYS_PURVIEW
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+	IIS_MERCHANT_USED=#{iisMerchantUsed,jdbcType=NUMERIC}
+	SDESCRIPTION=#{sdescription,jdbcType=VARCHAR}
+	SJP_NAME=#{sjpName,jdbcType=VARCHAR}
+	SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+	SPARENT_NAME=#{sparentName,jdbcType=VARCHAR}
+	SPUR_CODE=#{spurCode,jdbcType=VARCHAR}
+	SPUR_NAME=#{spurName,jdbcType=VARCHAR}
+	SPUR_NO=#{spurNo,jdbcType=VARCHAR}
+	SPY_NAME=#{spyName,jdbcType=VARCHAR}
+	SSYSTEM_CODE=#{ssystemCode,jdbcType=VARCHAR}
+	SURL_PATH=#{surlPath,jdbcType=VARCHAR}
+     -->
+
+</mapper>

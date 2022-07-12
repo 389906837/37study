@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.ac.dao.IntegralRuleDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.ac.IntegralRule">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="FBASE_INTEGRAL" property="fbaseIntegral" jdbcType="NUMERIC" />
+		<result column="FMAX_VALUE" property="fmaxValue" jdbcType="NUMERIC" />
+		<result column="FMIN_VALUE" property="fminValue" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IGIVE_METHOD" property="igiveMethod" jdbcType="NUMERIC" />
+		<result column="IIS_VALID" property="iisValid" jdbcType="NUMERIC" />
+		<result column="SACTIVITY_INSTRUCTION" property="sactivityInstruction" jdbcType="VARCHAR" />
+		<result column="SAC_CODE" property="sacCode" jdbcType="VARCHAR" />
+		<result column="SAC_ID" property="sacId" jdbcType="VARCHAR" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUPATE_USER" property="supateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,FBASE_INTEGRAL,FMAX_VALUE,FMIN_VALUE,IDEL_FLAG,IGIVE_METHOD,IIS_VALID,SACTIVITY_INSTRUCTION,SAC_CODE,SAC_ID,SADD_USER,SCODE,SREMARK,SUPATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="fbaseIntegral != null  ">
+               and  FBASE_INTEGRAL=#{fbaseIntegral,jdbcType=NUMERIC}
+           	</if>
+			<if test="fmaxValue != null  ">
+               and  FMAX_VALUE=#{fmaxValue,jdbcType=NUMERIC}
+           	</if>
+			<if test="fminValue != null  ">
+               and  FMIN_VALUE=#{fminValue,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="igiveMethod != null  ">
+               and  IGIVE_METHOD=#{igiveMethod,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisValid != null  ">
+               and  IIS_VALID=#{iisValid,jdbcType=NUMERIC}
+           	</if>
+			<if test="sactivityInstruction != null and  sactivityInstruction != ''  ">
+               and  SACTIVITY_INSTRUCTION=#{sactivityInstruction,jdbcType=VARCHAR}
+           	</if>
+			<if test="sacCode != null and  sacCode != ''  ">
+               and  SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sacId != null and  sacId != ''  ">
+               and  SAC_ID=#{sacId,jdbcType=VARCHAR}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="supateUser != null and  supateUser != ''  ">
+               and  SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from AC_INTEGRAL_RULE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.ac.IntegralRule">
+        select
+        <include refid="column_List" />
+        from AC_INTEGRAL_RULE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from AC_INTEGRAL_RULE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from AC_INTEGRAL_RULE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM AC_INTEGRAL_RULE where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.ac.IntegralRule">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into AC_INTEGRAL_RULE (ID,FBASE_INTEGRAL,FMAX_VALUE,FMIN_VALUE,IDEL_FLAG,IGIVE_METHOD,IIS_VALID,SACTIVITY_INSTRUCTION,SAC_CODE,SAC_ID,SADD_USER,SCODE,SREMARK,SUPATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{fbaseIntegral,jdbcType=NUMERIC},#{fmaxValue,jdbcType=NUMERIC},#{fminValue,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{igiveMethod,jdbcType=NUMERIC},#{iisValid,jdbcType=NUMERIC},#{sactivityInstruction,jdbcType=VARCHAR},#{sacCode,jdbcType=VARCHAR},#{sacId,jdbcType=VARCHAR},#{saddUser,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{supateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.ac.IntegralRule">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into AC_INTEGRAL_RULE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="fbaseIntegral">
+               FBASE_INTEGRAL,
+           	</if>
+			<if test="fmaxValue">
+               FMAX_VALUE,
+           	</if>
+			<if test="fminValue">
+               FMIN_VALUE,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="igiveMethod">
+               IGIVE_METHOD,
+           	</if>
+			<if test="iisValid">
+               IIS_VALID,
+           	</if>
+			<if test="sactivityInstruction">
+               SACTIVITY_INSTRUCTION,
+           	</if>
+			<if test="sacCode">
+               SAC_CODE,
+           	</if>
+			<if test="sacId">
+               SAC_ID,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="supateUser">
+               SUPATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="fbaseIntegral != null  ">
+                #{fbaseIntegral,jdbcType=NUMERIC},
+           	</if>
+			<if test="fmaxValue != null  ">
+                #{fmaxValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="fminValue != null  ">
+                #{fminValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="igiveMethod != null  ">
+                #{igiveMethod,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisValid != null  ">
+                #{iisValid,jdbcType=NUMERIC},
+           	</if>
+			<if test="sactivityInstruction != null and  sactivityInstruction != ''  ">
+                #{sactivityInstruction,jdbcType=VARCHAR},
+           	</if>
+			<if test="sacCode != null and  sacCode != ''  ">
+                #{sacCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sacId != null and  sacId != ''  ">
+                #{sacId,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="supateUser != null and  supateUser != ''  ">
+                #{supateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.ac.IntegralRule">
+        update AC_INTEGRAL_RULE
+        <set>
+			<if test="fbaseIntegral != null  ">
+                FBASE_INTEGRAL=#{fbaseIntegral,jdbcType=NUMERIC},
+           	</if>
+			<if test="fmaxValue != null  ">
+                FMAX_VALUE=#{fmaxValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="fminValue != null  ">
+                FMIN_VALUE=#{fminValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="igiveMethod != null  ">
+                IGIVE_METHOD=#{igiveMethod,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisValid != null  ">
+                IIS_VALID=#{iisValid,jdbcType=NUMERIC},
+           	</if>
+			<if test="sactivityInstruction != null and  sactivityInstruction != ''  ">
+                SACTIVITY_INSTRUCTION=#{sactivityInstruction,jdbcType=VARCHAR},
+           	</if>
+			<if test="sacCode != null and  sacCode != ''  ">
+                SAC_CODE=#{sacCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sacId != null and  sacId != ''  ">
+                SAC_ID=#{sacId,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="supateUser != null and  supateUser != ''  ">
+                SUPATE_USER=#{supateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.ac.IntegralRule">
+        update AC_INTEGRAL_RULE
+        set 
+        		FBASE_INTEGRAL=#{fbaseIntegral,jdbcType=NUMERIC}
+        		,FMAX_VALUE=#{fmaxValue,jdbcType=NUMERIC}
+        		,FMIN_VALUE=#{fminValue,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IGIVE_METHOD=#{igiveMethod,jdbcType=NUMERIC}
+        		,IIS_VALID=#{iisValid,jdbcType=NUMERIC}
+        		,SACTIVITY_INSTRUCTION=#{sactivityInstruction,jdbcType=VARCHAR}
+        		,SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+        		,SAC_ID=#{sacId,jdbcType=VARCHAR}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FBASE_INTEGRAL=#{fbaseIntegral,jdbcType=NUMERIC}
+	FMAX_VALUE=#{fmaxValue,jdbcType=NUMERIC}
+	FMIN_VALUE=#{fminValue,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IGIVE_METHOD=#{igiveMethod,jdbcType=NUMERIC}
+	IIS_VALID=#{iisValid,jdbcType=NUMERIC}
+	SACTIVITY_INSTRUCTION=#{sactivityInstruction,jdbcType=VARCHAR}
+	SAC_CODE=#{sacCode,jdbcType=VARCHAR}
+	SAC_ID=#{sacId,jdbcType=VARCHAR}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

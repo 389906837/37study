@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.xx.dao.MsgTaskDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.xx.MsgTask">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IIS_BATCH_SEND" property="iisBatchSend" jdbcType="NUMERIC" />
+		<result column="IIS_REALTIME" property="iisRealtime" jdbcType="NUMERIC" />
+		<result column="IMSG_TYPE" property="imsgType" jdbcType="NUMERIC" />
+		<result column="ISENDER_TYPE" property="isenderType" jdbcType="NUMERIC" />
+		<result column="ISTATE" property="istate" jdbcType="NUMERIC" />
+		<result column="ITIMEOUT" property="itimeout" jdbcType="NUMERIC" />
+		<result column="IUSAGE" property="iusage" jdbcType="NUMERIC" />
+		<result column="SATTACH" property="sattach" jdbcType="VARCHAR" />
+		<result column="SCONTENT" property="scontent" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SMSG_CC" property="smsgCc" jdbcType="VARCHAR" />
+		<result column="SMSG_DESC" property="smsgDesc" jdbcType="VARCHAR" />
+		<result column="SMSG_RECIPIENT" property="smsgRecipient" jdbcType="VARCHAR" />
+		<result column="SMSG_SOURCE_SYSTEM" property="smsgSourceSystem" jdbcType="VARCHAR" />
+		<result column="SSENDER_TEMPLATE_ID" property="ssenderTemplateId" jdbcType="VARCHAR" />
+		<result column="SSERIAN_NUM" property="sserianNum" jdbcType="VARCHAR" />
+		<result column="SSPARTNER_ID" property="sspartnerId" jdbcType="VARCHAR" />
+		<result column="SSUPPLIER_CODE" property="ssupplierCode" jdbcType="VARCHAR" />
+		<result column="STITLE" property="stitle" jdbcType="VARCHAR" />
+		<result column="TADDTIME" property="taddtime" jdbcType="TIMESTAMP" />
+		<result column="TBEGIN_SEND_DATETIME" property="tbeginSendDatetime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATETIME" property="tupdatetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IDEL_FLAG,IIS_BATCH_SEND,IIS_REALTIME,IMSG_TYPE,ISENDER_TYPE,ISTATE,ITIMEOUT,IUSAGE,SATTACH,SCONTENT,SMERCHANT_CODE,SMERCHANT_ID,SMSG_CC,SMSG_DESC,SMSG_RECIPIENT,SMSG_SOURCE_SYSTEM,SSENDER_TEMPLATE_ID,SSERIAN_NUM,SSPARTNER_ID,SSUPPLIER_CODE,STITLE,TADDTIME,TBEGIN_SEND_DATETIME,TUPDATETIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisBatchSend != null  ">
+               and  IIS_BATCH_SEND=#{iisBatchSend,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisRealtime != null  ">
+               and  IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+           	</if>
+			<if test="imsgType != null  ">
+               and  IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+           	</if>
+			<if test="isenderType != null  ">
+               and  ISENDER_TYPE=#{isenderType,jdbcType=NUMERIC}
+           	</if>
+			<if test="istate != null  ">
+               and  ISTATE=#{istate,jdbcType=NUMERIC}
+           	</if>
+			<if test="itimeout != null  ">
+               and  ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+           	</if>
+			<if test="iusage != null  ">
+               and  IUSAGE=#{iusage,jdbcType=NUMERIC}
+           	</if>
+			<if test="sattach != null and  sattach != ''  ">
+               and  SATTACH=#{sattach,jdbcType=VARCHAR}
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+               and  SCONTENT=#{scontent,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="smsgCc != null and  smsgCc != ''  ">
+               and  SMSG_CC=#{smsgCc,jdbcType=VARCHAR}
+           	</if>
+			<if test="smsgDesc != null and  smsgDesc != ''  ">
+               and  SMSG_DESC=#{smsgDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="smsgRecipient != null and  smsgRecipient != ''  ">
+               and  SMSG_RECIPIENT=#{smsgRecipient,jdbcType=VARCHAR}
+           	</if>
+			<if test="smsgSourceSystem != null and  smsgSourceSystem != ''  ">
+               and  SMSG_SOURCE_SYSTEM=#{smsgSourceSystem,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssenderTemplateId != null and  ssenderTemplateId != ''  ">
+               and  SSENDER_TEMPLATE_ID=#{ssenderTemplateId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sserianNum != null and  sserianNum != ''  ">
+               and  SSERIAN_NUM=#{sserianNum,jdbcType=VARCHAR}
+           	</if>
+			<if test="sspartnerId != null and  sspartnerId != ''  ">
+               and  SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssupplierCode != null and  ssupplierCode != ''  ">
+               and  SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+               and  STITLE=#{stitle,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddtime != null  ">
+               and  TADDTIME=#{taddtime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tbeginSendDatetime != null  ">
+               and  TBEGIN_SEND_DATETIME=#{tbeginSendDatetime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdatetime != null  ">
+               and  TUPDATETIME=#{tupdatetime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from XX_MSG_TASK
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.xx.MsgTask">
+        select
+        <include refid="column_List" />
+        from XX_MSG_TASK
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from XX_MSG_TASK
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from XX_MSG_TASK
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM XX_MSG_TASK where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.xx.MsgTask">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into XX_MSG_TASK (ID,IDEL_FLAG,IIS_BATCH_SEND,IIS_REALTIME,IMSG_TYPE,ISENDER_TYPE,ISTATE,ITIMEOUT,IUSAGE,SATTACH,SCONTENT,SMERCHANT_CODE,SMERCHANT_ID,SMSG_CC,SMSG_DESC,SMSG_RECIPIENT,SMSG_SOURCE_SYSTEM,SSENDER_TEMPLATE_ID,SSERIAN_NUM,SSPARTNER_ID,SSUPPLIER_CODE,STITLE,TADDTIME,TBEGIN_SEND_DATETIME,TUPDATETIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{iisBatchSend,jdbcType=NUMERIC},#{iisRealtime,jdbcType=NUMERIC},#{imsgType,jdbcType=NUMERIC},#{isenderType,jdbcType=NUMERIC},#{istate,jdbcType=NUMERIC},#{itimeout,jdbcType=NUMERIC},#{iusage,jdbcType=NUMERIC},#{sattach,jdbcType=VARCHAR},#{scontent,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{smsgCc,jdbcType=VARCHAR},#{smsgDesc,jdbcType=VARCHAR},#{smsgRecipient,jdbcType=VARCHAR},#{smsgSourceSystem,jdbcType=VARCHAR},#{ssenderTemplateId,jdbcType=VARCHAR},#{sserianNum,jdbcType=VARCHAR},#{sspartnerId,jdbcType=VARCHAR},#{ssupplierCode,jdbcType=VARCHAR},#{stitle,jdbcType=VARCHAR},#{taddtime,jdbcType=TIMESTAMP},#{tbeginSendDatetime,jdbcType=TIMESTAMP},#{tupdatetime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.xx.MsgTask">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into XX_MSG_TASK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="iisBatchSend">
+               IIS_BATCH_SEND,
+           	</if>
+			<if test="iisRealtime">
+               IIS_REALTIME,
+           	</if>
+			<if test="imsgType">
+               IMSG_TYPE,
+           	</if>
+			<if test="isenderType">
+               ISENDER_TYPE,
+           	</if>
+			<if test="istate">
+               ISTATE,
+           	</if>
+			<if test="itimeout">
+               ITIMEOUT,
+           	</if>
+			<if test="iusage">
+               IUSAGE,
+           	</if>
+			<if test="sattach">
+               SATTACH,
+           	</if>
+			<if test="scontent">
+               SCONTENT,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="smsgCc">
+               SMSG_CC,
+           	</if>
+			<if test="smsgDesc">
+               SMSG_DESC,
+           	</if>
+			<if test="smsgRecipient">
+               SMSG_RECIPIENT,
+           	</if>
+			<if test="smsgSourceSystem">
+               SMSG_SOURCE_SYSTEM,
+           	</if>
+			<if test="ssenderTemplateId">
+               SSENDER_TEMPLATE_ID,
+           	</if>
+			<if test="sserianNum">
+               SSERIAN_NUM,
+           	</if>
+			<if test="sspartnerId">
+               SSPARTNER_ID,
+           	</if>
+			<if test="ssupplierCode">
+               SSUPPLIER_CODE,
+           	</if>
+			<if test="stitle">
+               STITLE,
+           	</if>
+			<if test="taddtime">
+               TADDTIME,
+           	</if>
+			<if test="tbeginSendDatetime">
+               TBEGIN_SEND_DATETIME,
+           	</if>
+			<if test="tupdatetime">
+               TUPDATETIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisBatchSend != null  ">
+                #{iisBatchSend,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisRealtime != null  ">
+                #{iisRealtime,jdbcType=NUMERIC},
+           	</if>
+			<if test="imsgType != null  ">
+                #{imsgType,jdbcType=NUMERIC},
+           	</if>
+			<if test="isenderType != null  ">
+                #{isenderType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istate != null  ">
+                #{istate,jdbcType=NUMERIC},
+           	</if>
+			<if test="itimeout != null  ">
+                #{itimeout,jdbcType=NUMERIC},
+           	</if>
+			<if test="iusage != null  ">
+                #{iusage,jdbcType=NUMERIC},
+           	</if>
+			<if test="sattach != null and  sattach != ''  ">
+                #{sattach,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                #{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgCc != null and  smsgCc != ''  ">
+                #{smsgCc,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgDesc != null and  smsgDesc != ''  ">
+                #{smsgDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgRecipient != null and  smsgRecipient != ''  ">
+                #{smsgRecipient,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgSourceSystem != null and  smsgSourceSystem != ''  ">
+                #{smsgSourceSystem,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssenderTemplateId != null and  ssenderTemplateId != ''  ">
+                #{ssenderTemplateId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sserianNum != null and  sserianNum != ''  ">
+                #{sserianNum,jdbcType=VARCHAR},
+           	</if>
+			<if test="sspartnerId != null and  sspartnerId != ''  ">
+                #{sspartnerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                #{ssupplierCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                #{stitle,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddtime != null  ">
+                #{taddtime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tbeginSendDatetime != null  ">
+                #{tbeginSendDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdatetime != null  ">
+                #{tupdatetime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.xx.MsgTask">
+        update XX_MSG_TASK
+        <set>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisBatchSend != null  ">
+                IIS_BATCH_SEND=#{iisBatchSend,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisRealtime != null  ">
+                IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC},
+           	</if>
+			<if test="imsgType != null  ">
+                IMSG_TYPE=#{imsgType,jdbcType=NUMERIC},
+           	</if>
+			<if test="isenderType != null  ">
+                ISENDER_TYPE=#{isenderType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istate != null  ">
+                ISTATE=#{istate,jdbcType=NUMERIC},
+           	</if>
+			<if test="itimeout != null  ">
+                ITIMEOUT=#{itimeout,jdbcType=NUMERIC},
+           	</if>
+			<if test="iusage != null  ">
+                IUSAGE=#{iusage,jdbcType=NUMERIC},
+           	</if>
+			<if test="sattach != null and  sattach != ''  ">
+                SATTACH=#{sattach,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                SCONTENT=#{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgCc != null and  smsgCc != ''  ">
+                SMSG_CC=#{smsgCc,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgDesc != null and  smsgDesc != ''  ">
+                SMSG_DESC=#{smsgDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgRecipient != null and  smsgRecipient != ''  ">
+                SMSG_RECIPIENT=#{smsgRecipient,jdbcType=VARCHAR},
+           	</if>
+			<if test="smsgSourceSystem != null and  smsgSourceSystem != ''  ">
+                SMSG_SOURCE_SYSTEM=#{smsgSourceSystem,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssenderTemplateId != null and  ssenderTemplateId != ''  ">
+                SSENDER_TEMPLATE_ID=#{ssenderTemplateId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sserianNum != null and  sserianNum != ''  ">
+                SSERIAN_NUM=#{sserianNum,jdbcType=VARCHAR},
+           	</if>
+			<if test="sspartnerId != null and  sspartnerId != ''  ">
+                SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="stitle != null and  stitle != ''  ">
+                STITLE=#{stitle,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddtime != null  ">
+                TADDTIME=#{taddtime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tbeginSendDatetime != null  ">
+                TBEGIN_SEND_DATETIME=#{tbeginSendDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdatetime != null  ">
+                TUPDATETIME=#{tupdatetime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.xx.MsgTask">
+        update XX_MSG_TASK
+        set 
+        		IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IIS_BATCH_SEND=#{iisBatchSend,jdbcType=NUMERIC}
+        		,IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+        		,IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+        		,ISENDER_TYPE=#{isenderType,jdbcType=NUMERIC}
+        		,ISTATE=#{istate,jdbcType=NUMERIC}
+        		,ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+        		,IUSAGE=#{iusage,jdbcType=NUMERIC}
+        		,SATTACH=#{sattach,jdbcType=VARCHAR}
+        		,SCONTENT=#{scontent,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SMSG_CC=#{smsgCc,jdbcType=VARCHAR}
+        		,SMSG_DESC=#{smsgDesc,jdbcType=VARCHAR}
+        		,SMSG_RECIPIENT=#{smsgRecipient,jdbcType=VARCHAR}
+        		,SMSG_SOURCE_SYSTEM=#{smsgSourceSystem,jdbcType=VARCHAR}
+        		,SSENDER_TEMPLATE_ID=#{ssenderTemplateId,jdbcType=VARCHAR}
+        		,SSERIAN_NUM=#{sserianNum,jdbcType=VARCHAR}
+        		,SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR}
+        		,SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+        		,STITLE=#{stitle,jdbcType=VARCHAR}
+        		,TADDTIME=#{taddtime,jdbcType=TIMESTAMP}
+        		,TBEGIN_SEND_DATETIME=#{tbeginSendDatetime,jdbcType=TIMESTAMP}
+        		,TUPDATETIME=#{tupdatetime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--模糊查询-->
+	<sql id="VO_Where_Clause">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+
+				<if test="smerchantCode != null and  smerchantCode != ''  ">
+					and  A.SMERCHANT_CODE LIKE CONCAT('%',#{smerchantCode},'%')
+				</if>
+				<if test="smerchantId != null and  smerchantId != ''  ">
+					and  A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+				</if>
+				<if test="id != null and  id != ''   ">
+					and A.ID = #{id,jdbcType=VARCHAR}
+				</if>
+				<if test="smsgRecipient != null and  smsgRecipient != ''   ">
+					and A.SMSG_RECIPIENT LIKE CONCAT('%',#{smsgRecipient},'%')
+				</if>
+				<if test="iisRealtime != null ">
+					and A.IIS_REALTIME = #{iisRealtime,jdbcType=NUMERIC}
+				</if>
+				<if test="istate != null ">
+					and A.ISTATE = #{istate,jdbcType=NUMERIC}
+				</if>
+				<if test="toperateStartDate != null ">
+					and  A.TBEGIN_SEND_DATETIME&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="toperateEndDate != null ">
+					and  A.TBEGIN_SEND_DATETIME&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="scontent != null and  scontent != ''   ">
+					and A.SCONTENT  LIKE CONCAT('%',#{scontent},'%')
+				</if>
+				<if test="taddtimeStart != null ">
+					and A.TADDTIME &gt;= #{taddtimeStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="taddtimeEnd != null ">
+					and A.TADDTIME &lt;date_add(#{taddtimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="smsgSourceSystem != null and  smsgSourceSystem != ''   ">
+					and A.SMSG_SOURCE_SYSTEM LIKE CONCAT('%',#{smsgSourceSystem},'%')
+				</if>
+				<if test="smsgCc != null and  smsgCc != ''   ">
+					and A.SMSG_CC LIKE CONCAT('%',#{smsgCc},'%')
+				</if>
+				<if test="smsgDesc != null and  smsgDesc != ''   ">
+					and A.SMSG_DESC  LIKE CONCAT('%',#{smsgDesc},'%')
+				</if>
+				<if test="itimeout != null ">
+					and A.ITIMEOUT = #{itimeout,jdbcType=NUMERIC}
+				</if>
+				<if test="ssupplierCode != null and  ssupplierCode != ''   ">
+					and A.SSUPPLIER_CODE  LIKE CONCAT('%',#{ssupplierCode},'%')
+				</if>
+				<if test="sserianNum != null and  sserianNum != ''   ">
+					and A.SSERIAN_NUM  LIKE CONCAT('%',#{sserianNum},'%')
+				</if>
+				<if test="iisBatchSend != null ">
+					and A.IIS_BATCH_SEND = #{iisBatchSend,jdbcType=NUMERIC}
+				</if>
+				<if test="isenderType != null ">
+					and A.ISENDER_TYPE = #{isenderType,jdbcType=NUMERIC}
+				</if>
+				<if test="imsgType != null ">
+					and A.IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+				</if>
+				<if test="iusage != null ">
+					and A.IUSAGE=#{iusage,jdbcType=NUMERIC}
+				</if>
+				<if test="merchantName != null and merchantName != ''  ">
+					and  C.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="condition != null and  condition != ''  ">
+					and  ${condition}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--查询所有SQL-->
+	<select id="selectAllSendMsg" resultType="java.util.HashMap" parameterType="com.cloud.cang.mgr.xx.vo.MsgTaskVo">
+		select
+		A.ID,A.SMSG_RECIPIENT,A.IIS_REALTIME,A.ISTATE,A.SMERCHANT_ID,A.SMERCHANT_CODE AS SHCODE,C.SNAME AS MERCHANTNAME,
+		cast(A.TBEGIN_SEND_DATETIME AS DATETIME) as TBEGIN_SEND_DATETIME,
+		A.SCONTENT,
+		cast(A.Taddtime AS DATETIME) as TADDTIME,
+		A.SMSG_SOURCE_SYSTEM,A.SMSG_CC,A.SMSG_DESC,A.ITIMEOUT,
+		B.SNAME as SSUPPLIER_CODE,
+		A.SSERIAN_NUM,A.IIS_BATCH_SEND,A.ISENDER_TYPE,A.IMSG_TYPE,
+		cast(A.TUPDATETIME AS DATETIME) as TUPDATETIME,
+		A.IDEL_FLAG,A.STITLE,A.SATTACH,A.IUSAGE,A.SSENDER_TEMPLATE_ID,A.SSPARTNER_ID
+		from XX_MSG_TASK A
+		LEFT JOIN XX_SUPPLIER_INFO B
+		on A.SSPARTNER_ID=B.ID
+		LEFT JOIN SH_MERCHANT_INFO C ON A.SMERCHANT_ID = C.ID
+		<include refid="VO_Where_Clause" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		A.TADDTIME DESC
+	</select>
+
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_BATCH_SEND=#{iisBatchSend,jdbcType=NUMERIC}
+	IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+	IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+	ISENDER_TYPE=#{isenderType,jdbcType=NUMERIC}
+	ISTATE=#{istate,jdbcType=NUMERIC}
+	ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+	IUSAGE=#{iusage,jdbcType=NUMERIC}
+	SATTACH=#{sattach,jdbcType=VARCHAR}
+	SCONTENT=#{scontent,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SMSG_CC=#{smsgCc,jdbcType=VARCHAR}
+	SMSG_DESC=#{smsgDesc,jdbcType=VARCHAR}
+	SMSG_RECIPIENT=#{smsgRecipient,jdbcType=VARCHAR}
+	SMSG_SOURCE_SYSTEM=#{smsgSourceSystem,jdbcType=VARCHAR}
+	SSENDER_TEMPLATE_ID=#{ssenderTemplateId,jdbcType=VARCHAR}
+	SSERIAN_NUM=#{sserianNum,jdbcType=VARCHAR}
+	SSPARTNER_ID=#{sspartnerId,jdbcType=VARCHAR}
+	SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+	STITLE=#{stitle,jdbcType=VARCHAR}
+	TADDTIME=#{taddtime,jdbcType=TIMESTAMP}
+	TBEGIN_SEND_DATETIME=#{tbeginSendDatetime,jdbcType=TIMESTAMP}
+	TUPDATETIME=#{tupdatetime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

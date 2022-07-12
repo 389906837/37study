@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sb.dao.GroupManageDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sb.GroupManage">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="ISORT" property="isort" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SGROUP_NAME" property="sgroupName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,ISORT,SADD_USER,SGROUP_NAME,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="isort != null  ">
+                    and ISORT=#{isort,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="sgroupName != null and  sgroupName != ''  ">
+                    and SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SB_GROUP_MANAGE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sb.GroupManage">
+        select
+        <include refid="column_List"/>
+        from SB_GROUP_MANAGE
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SB_GROUP_MANAGE
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SB_GROUP_MANAGE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SB_GROUP_MANAGE where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sb.GroupManage">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SB_GROUP_MANAGE (ID,ISORT,SADD_USER,SGROUP_NAME,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{isort,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sgroupName,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sb.GroupManage">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SB_GROUP_MANAGE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="isort">
+                ISORT,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="sgroupName">
+                SGROUP_NAME,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sgroupName != null and  sgroupName != ''  ">
+                #{sgroupName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sb.GroupManage">
+        update SB_GROUP_MANAGE
+        <set>
+            <if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sgroupName != null and  sgroupName != ''  ">
+                SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sb.GroupManage">
+        update SB_GROUP_MANAGE
+        set
+        ISORT=#{isort,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!--新增SQL开始-->
+    <update id="updateByIdSelectiveVo" parameterType="com.cloud.cang.model.sb.GroupManage">
+        update SB_GROUP_MANAGE
+        <set>
+            SREMARK=#{sremark,jdbcType=VARCHAR},
+            ISORT=#{isort,jdbcType=NUMERIC},
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sgroupName != null and  sgroupName != ''  ">
+                SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+    <resultMap id="resultEntityVo" type="com.cloud.cang.mgr.sb.domain.GroupManageDomain">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="ISORT" property="isort" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SGROUP_NAME" property="sgroupName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+        <result column="merchantName" property="merchantName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Entity_Where_ClauseLike">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and A.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="isort != null  ">
+                    and A.ISORT=#{isort,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and A.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="sgroupName != null and  sgroupName != ''  ">
+                    and A.SGROUP_NAME like CONCAT('%',#{sgroupName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and A.SMERCHANT_CODE like CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and A.SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and A.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="merchantName != null and merchantName != ''  ">
+                    and D.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="queryCondition != null and  queryCondition != ''  ">
+                    and ${queryCondition}
+                </if>
+            </trim>
+        </where>
+    </sql>
+    <!--分页查询-->
+    <select id="selectByDomainWhere" resultMap="resultEntityVo" parameterType="com.cloud.cang.mgr.sb.vo.GroupManageVo">
+        select
+        A.ID,A.ISORT,A.SADD_USER,A.SGROUP_NAME,A.SMERCHANT_CODE,A.SMERCHANT_ID,A.SREMARK,A.SUPDATE_USER,
+        A.TADD_TIME,A.TUPDATE_TIME,
+        D.SNAME as merchantName
+        from SB_GROUP_MANAGE A
+        left join SH_MERCHANT_INFO D on A.SMERCHANT_ID=D.ID
+        LEFT JOIN SB_GROUP_RELATIONSHIP SGR ON A.ID = SGR.SGROUP_ID
+        <include refid="Entity_Where_ClauseLike"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        TADD_TIME
+        desc
+    </select>
+
+    <!--查询所有分组-->
+    <select id="selectAll" resultMap="resultEntity">
+        select
+        <include refid="column_List"/>
+        from
+        SB_GROUP_MANAGE
+        order by
+        TADD_TIME
+        DESC
+    </select>
+
+    <!--查询该设备所属商户的分组信息-->
+    <select id="selectDeviceGroup" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from
+        SB_GROUP_MANAGE
+        where SMERCHANT_ID=#{merchantId,jdbcType=VARCHAR}
+        order by
+        TADD_TIME
+        desc
+    </select>
+
+    <!--新增SQL结束-->
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SGROUP_NAME=#{sgroupName,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+</mapper>

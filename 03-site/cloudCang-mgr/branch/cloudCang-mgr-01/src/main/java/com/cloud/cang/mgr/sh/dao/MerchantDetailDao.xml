@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sh.dao.MerchantDetailDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sh.MerchantDetail">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="SACCOUNT_BANK" property="saccountBank" jdbcType="VARCHAR" />
+		<result column="SACCOUNT_NAME" property="saccountName" jdbcType="VARCHAR" />
+		<result column="SACCOUNT_NUMBER" property="saccountNumber" jdbcType="VARCHAR" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SFAX" property="sfax" jdbcType="VARCHAR" />
+		<result column="SID_CARD" property="sidCard" jdbcType="VARCHAR" />
+		<result column="SLEGAL_PERSON" property="slegalPerson" jdbcType="VARCHAR" />
+		<result column="SPHONE" property="sphone" jdbcType="VARCHAR" />
+		<result column="SREGISTER_ADDRESS" property="sregisterAddress" jdbcType="VARCHAR" />
+		<result column="STAX_ID" property="staxId" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="SWEBSITE_URL" property="swebsiteUrl" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,SACCOUNT_BANK,SACCOUNT_NAME,SACCOUNT_NUMBER,SADD_USER,SFAX,SID_CARD,SLEGAL_PERSON,SPHONE,SREGISTER_ADDRESS,STAX_ID,SUPDATE_USER,SWEBSITE_URL,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="saccountBank != null and  saccountBank != ''  ">
+               and  SACCOUNT_BANK=#{saccountBank,jdbcType=VARCHAR}
+           	</if>
+			<if test="saccountName != null and  saccountName != ''  ">
+               and  SACCOUNT_NAME=#{saccountName,jdbcType=VARCHAR}
+           	</if>
+			<if test="saccountNumber != null and  saccountNumber != ''  ">
+               and  SACCOUNT_NUMBER=#{saccountNumber,jdbcType=VARCHAR}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sfax != null and  sfax != ''  ">
+               and  SFAX=#{sfax,jdbcType=VARCHAR}
+           	</if>
+			<if test="sidCard != null and  sidCard != ''  ">
+               and  SID_CARD=#{sidCard,jdbcType=VARCHAR}
+           	</if>
+			<if test="slegalPerson != null and  slegalPerson != ''  ">
+               and  SLEGAL_PERSON=#{slegalPerson,jdbcType=VARCHAR}
+           	</if>
+			<if test="sphone != null and  sphone != ''  ">
+               and  SPHONE=#{sphone,jdbcType=VARCHAR}
+           	</if>
+			<if test="sregisterAddress != null and  sregisterAddress != ''  ">
+               and  SREGISTER_ADDRESS=#{sregisterAddress,jdbcType=VARCHAR}
+           	</if>
+			<if test="staxId != null and  staxId != ''  ">
+               and  STAX_ID=#{staxId,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="swebsiteUrl != null and  swebsiteUrl != ''  ">
+               and  SWEBSITE_URL=#{swebsiteUrl,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SH_MERCHANT_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sh.MerchantDetail">
+        select
+        <include refid="column_List" />
+        from SH_MERCHANT_DETAIL
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SH_MERCHANT_DETAIL
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SH_MERCHANT_DETAIL
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SH_MERCHANT_DETAIL where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sh.MerchantDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SH_MERCHANT_DETAIL (ID,SACCOUNT_BANK,SACCOUNT_NAME,SACCOUNT_NUMBER,SADD_USER,SFAX,SID_CARD,SLEGAL_PERSON,SPHONE,SREGISTER_ADDRESS,STAX_ID,SUPDATE_USER,SWEBSITE_URL,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{saccountBank,jdbcType=VARCHAR},#{saccountName,jdbcType=VARCHAR},#{saccountNumber,jdbcType=VARCHAR},#{saddUser,jdbcType=VARCHAR},#{sfax,jdbcType=VARCHAR},#{sidCard,jdbcType=VARCHAR},#{slegalPerson,jdbcType=VARCHAR},#{sphone,jdbcType=VARCHAR},#{sregisterAddress,jdbcType=VARCHAR},#{staxId,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{swebsiteUrl,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sh.MerchantDetail">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SH_MERCHANT_DETAIL
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="saccountBank">
+               SACCOUNT_BANK,
+           	</if>
+			<if test="saccountName">
+               SACCOUNT_NAME,
+           	</if>
+			<if test="saccountNumber">
+               SACCOUNT_NUMBER,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="sfax">
+               SFAX,
+           	</if>
+			<if test="sidCard">
+               SID_CARD,
+           	</if>
+			<if test="slegalPerson">
+               SLEGAL_PERSON,
+           	</if>
+			<if test="sphone">
+               SPHONE,
+           	</if>
+			<if test="sregisterAddress">
+               SREGISTER_ADDRESS,
+           	</if>
+			<if test="staxId">
+               STAX_ID,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="swebsiteUrl">
+               SWEBSITE_URL,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="saccountBank != null and  saccountBank != ''  ">
+                #{saccountBank,jdbcType=VARCHAR},
+           	</if>
+			<if test="saccountName != null and  saccountName != ''  ">
+                #{saccountName,jdbcType=VARCHAR},
+           	</if>
+			<if test="saccountNumber != null and  saccountNumber != ''  ">
+                #{saccountNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfax != null and  sfax != ''  ">
+                #{sfax,jdbcType=VARCHAR},
+           	</if>
+			<if test="sidCard != null and  sidCard != ''  ">
+                #{sidCard,jdbcType=VARCHAR},
+           	</if>
+			<if test="slegalPerson != null and  slegalPerson != ''  ">
+                #{slegalPerson,jdbcType=VARCHAR},
+           	</if>
+			<if test="sphone != null and  sphone != ''  ">
+                #{sphone,jdbcType=VARCHAR},
+           	</if>
+			<if test="sregisterAddress != null and  sregisterAddress != ''  ">
+                #{sregisterAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="staxId != null and  staxId != ''  ">
+                #{staxId,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="swebsiteUrl != null and  swebsiteUrl != ''  ">
+                #{swebsiteUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+	<!--插入商户详情表-->
+	<insert id="insertAll" parameterType="com.cloud.cang.model.sh.MerchantDetail">
+		insert into SH_MERCHANT_DETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and  id != ''   ">
+				ID,
+			</if>
+			<if test="saccountBank  != null and  saccountBank != '' ">
+				SACCOUNT_BANK,
+			</if>
+			<if test="saccountName  != null and  saccountName != '' ">
+				SACCOUNT_NAME,
+			</if>
+			<if test="saccountNumber != null and  saccountNumber != '' ">
+				SACCOUNT_NUMBER,
+			</if>
+			<if test="saddUser != null and  saddUser != '' ">
+				SADD_USER,
+			</if>
+			<if test="sfax != null and  sfax != '' ">
+				SFAX,
+			</if>
+			<if test="sidCard != null and  sidCard != '' ">
+				SID_CARD,
+			</if>
+			<if test="slegalPerson != null and  slegalPerson != '' ">
+				SLEGAL_PERSON,
+			</if>
+			<if test="sphone != null and  sphone != '' ">
+				SPHONE,
+			</if>
+			<if test="sregisterAddress != null and  sregisterAddress != '' ">
+				SREGISTER_ADDRESS,
+			</if>
+			<if test="staxId != null and  staxId != '' ">
+				STAX_ID,
+			</if>
+			<if test="supdateUser  != null and  supdateUser != '' ">
+				SUPDATE_USER,
+			</if>
+			<if test="swebsiteUrl  != null and  swebsiteUrl != '' ">
+				SWEBSITE_URL,
+			</if>
+			<if test="taddTime != null and  taddTime != '' ">
+				TADD_TIME,
+			</if>
+			<if test="tupdateTime != null and  tupdateTime != '' ">
+				TUPDATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and  id != ''  ">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="saccountBank != null and  saccountBank != ''  ">
+				#{saccountBank,jdbcType=VARCHAR},
+			</if>
+			<if test="saccountName != null and  saccountName != ''  ">
+				#{saccountName,jdbcType=VARCHAR},
+			</if>
+			<if test="saccountNumber != null and  saccountNumber != ''  ">
+				#{saccountNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+				#{saddUser,jdbcType=VARCHAR},
+			</if>
+			<if test="sfax != null and  sfax != ''  ">
+				#{sfax,jdbcType=VARCHAR},
+			</if>
+			<if test="sidCard != null and  sidCard != ''  ">
+				#{sidCard,jdbcType=VARCHAR},
+			</if>
+			<if test="slegalPerson != null and  slegalPerson != ''  ">
+				#{slegalPerson,jdbcType=VARCHAR},
+			</if>
+			<if test="sphone != null and  sphone != ''  ">
+				#{sphone,jdbcType=VARCHAR},
+			</if>
+			<if test="sregisterAddress != null and  sregisterAddress != ''  ">
+				#{sregisterAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="staxId != null and  staxId != ''  ">
+				#{staxId,jdbcType=VARCHAR},
+			</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+				#{supdateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="swebsiteUrl != null and  swebsiteUrl != ''  ">
+				#{swebsiteUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="taddTime != null  ">
+				#{taddTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tupdateTime != null  ">
+				#{tupdateTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sh.MerchantDetail">
+        update SH_MERCHANT_DETAIL
+        <set>
+			<if test="saccountBank != null">
+                SACCOUNT_BANK=#{saccountBank,jdbcType=VARCHAR},
+           	</if>
+			<if test="saccountName != null ">
+                SACCOUNT_NAME=#{saccountName,jdbcType=VARCHAR},
+           	</if>
+			<if test="saccountNumber != null">
+                SACCOUNT_NUMBER=#{saccountNumber,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddUser != null ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sfax != null">
+                SFAX=#{sfax,jdbcType=VARCHAR},
+           	</if>
+			<if test="sidCard != null">
+                SID_CARD=#{sidCard,jdbcType=VARCHAR},
+           	</if>
+			<if test="slegalPerson != null">
+                SLEGAL_PERSON=#{slegalPerson,jdbcType=VARCHAR},
+           	</if>
+			<if test="sphone != null">
+                SPHONE=#{sphone,jdbcType=VARCHAR},
+           	</if>
+			<if test="sregisterAddress != null">
+                SREGISTER_ADDRESS=#{sregisterAddress,jdbcType=VARCHAR},
+           	</if>
+			<if test="staxId != null">
+                STAX_ID=#{staxId,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="swebsiteUrl != null">
+                SWEBSITE_URL=#{swebsiteUrl,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sh.MerchantDetail">
+        update SH_MERCHANT_DETAIL
+        set 
+        		SACCOUNT_BANK=#{saccountBank,jdbcType=VARCHAR}
+        		,SACCOUNT_NAME=#{saccountName,jdbcType=VARCHAR}
+        		,SACCOUNT_NUMBER=#{saccountNumber,jdbcType=VARCHAR}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SFAX=#{sfax,jdbcType=VARCHAR}
+        		,SID_CARD=#{sidCard,jdbcType=VARCHAR}
+        		,SLEGAL_PERSON=#{slegalPerson,jdbcType=VARCHAR}
+        		,SPHONE=#{sphone,jdbcType=VARCHAR}
+        		,SREGISTER_ADDRESS=#{sregisterAddress,jdbcType=VARCHAR}
+        		,STAX_ID=#{staxId,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,SWEBSITE_URL=#{swebsiteUrl,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SACCOUNT_BANK=#{saccountBank,jdbcType=VARCHAR}
+	SACCOUNT_NAME=#{saccountName,jdbcType=VARCHAR}
+	SACCOUNT_NUMBER=#{saccountNumber,jdbcType=VARCHAR}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SFAX=#{sfax,jdbcType=VARCHAR}
+	SID_CARD=#{sidCard,jdbcType=VARCHAR}
+	SLEGAL_PERSON=#{slegalPerson,jdbcType=VARCHAR}
+	SPHONE=#{sphone,jdbcType=VARCHAR}
+	SREGISTER_ADDRESS=#{sregisterAddress,jdbcType=VARCHAR}
+	STAX_ID=#{staxId,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	SWEBSITE_URL=#{swebsiteUrl,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

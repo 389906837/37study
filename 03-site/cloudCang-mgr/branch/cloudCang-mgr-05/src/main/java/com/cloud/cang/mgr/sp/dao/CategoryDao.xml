@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sp.dao.CategoryDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sp.Category">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IIS_DISPLAY" property="iisDisplay" jdbcType="NUMERIC" />
+		<result column="IIS_HOT" property="iisHot" jdbcType="NUMERIC" />
+		<result column="IIS_PARENT" property="iisParent" jdbcType="NUMERIC" />
+		<result column="ISORT" property="isort" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SCATEGORY_CODE" property="scategoryCode" jdbcType="VARCHAR" />
+		<result column="SCATEGORY_NAME" property="scategoryName" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SICON" property="sicon" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SPARENT_ID" property="sparentId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IDEL_FLAG,IIS_DISPLAY,IIS_HOT,IIS_PARENT,ISORT,ITYPE,SADD_USER,SCATEGORY_CODE,SCATEGORY_NAME,SCODE,SICON,SMERCHANT_CODE,SMERCHANT_ID,SNAME,SPARENT_ID,SREMARK,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisDisplay != null  ">
+               and  IIS_DISPLAY=#{iisDisplay,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisHot != null  ">
+               and  IIS_HOT=#{iisHot,jdbcType=NUMERIC}
+           	</if>
+			<if test="iisParent != null  ">
+               and  IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+           	</if>
+			<if test="isort != null  ">
+               and  ISORT=#{isort,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="scategoryCode != null and  scategoryCode != ''  ">
+               and  SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="scategoryName != null and  scategoryName != ''  ">
+               and  SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+               and  SCODE=#{scode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sicon != null and  sicon != ''  ">
+               and  SICON=#{sicon,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+               and  SNAME=#{sname,jdbcType=VARCHAR}
+           	</if>
+			<if test="sparentId != null and  sparentId != ''  ">
+               and  SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+               and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SP_CATEGORY
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sp.Category">
+        select
+        <include refid="column_List" />
+        from SP_CATEGORY
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SP_CATEGORY
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SP_CATEGORY
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SP_CATEGORY where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sp.Category">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SP_CATEGORY (ID,IDEL_FLAG,IIS_DISPLAY,IIS_HOT,IIS_PARENT,ISORT,ITYPE,SADD_USER,SCATEGORY_CODE,SCATEGORY_NAME,SCODE,SICON,SMERCHANT_CODE,SMERCHANT_ID,SNAME,SPARENT_ID,SREMARK,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{iisDisplay,jdbcType=NUMERIC},#{iisHot,jdbcType=NUMERIC},#{iisParent,jdbcType=NUMERIC},#{isort,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{scategoryCode,jdbcType=VARCHAR},#{scategoryName,jdbcType=VARCHAR},#{scode,jdbcType=VARCHAR},#{sicon,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sparentId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sp.Category">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SP_CATEGORY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="iisDisplay">
+               IIS_DISPLAY,
+           	</if>
+			<if test="iisHot">
+               IIS_HOT,
+           	</if>
+			<if test="iisParent">
+               IIS_PARENT,
+           	</if>
+			<if test="isort">
+               ISORT,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="scategoryCode">
+               SCATEGORY_CODE,
+           	</if>
+			<if test="scategoryName">
+               SCATEGORY_NAME,
+           	</if>
+			<if test="scode">
+               SCODE,
+           	</if>
+			<if test="sicon">
+               SICON,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="sname">
+               SNAME,
+           	</if>
+			<if test="sparentId">
+               SPARENT_ID,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="supdateUser">
+               SUPDATE_USER,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisDisplay != null  ">
+                #{iisDisplay,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisHot != null  ">
+                #{iisHot,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisParent != null  ">
+                #{iisParent,jdbcType=NUMERIC},
+           	</if>
+			<if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scategoryCode != null and  scategoryCode != ''  ">
+                #{scategoryCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scategoryName != null and  scategoryName != ''  ">
+                #{scategoryName,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                #{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sicon != null and  sicon != ''  ">
+                #{sicon,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sparentId != null and  sparentId != ''  ">
+                #{sparentId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sp.Category">
+        update SP_CATEGORY
+        <set>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisDisplay != null  ">
+                IIS_DISPLAY=#{iisDisplay,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisHot != null  ">
+                IIS_HOT=#{iisHot,jdbcType=NUMERIC},
+           	</if>
+			<if test="iisParent != null  ">
+                IIS_PARENT=#{iisParent,jdbcType=NUMERIC},
+           	</if>
+			<if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="scategoryCode != null and  scategoryCode != ''  ">
+                SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="scategoryName != null and  scategoryName != ''  ">
+                SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR},
+           	</if>
+			<if test="scode != null and  scode != ''  ">
+                SCODE=#{scode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sicon != null and  sicon != ''  ">
+                SICON=#{sicon,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+           	</if>
+			<if test="sparentId != null and  sparentId != ''  ">
+                SPARENT_ID=#{sparentId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sp.Category">
+        update SP_CATEGORY
+        set 
+        		IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IIS_DISPLAY=#{iisDisplay,jdbcType=NUMERIC}
+        		,IIS_HOT=#{iisHot,jdbcType=NUMERIC}
+        		,IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+        		,ISORT=#{isort,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+        		,SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+        		,SCODE=#{scode,jdbcType=VARCHAR}
+        		,SICON=#{sicon,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SNAME=#{sname,jdbcType=VARCHAR}
+        		,SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--新增SQL开始-->
+
+	<select id="selectByMerchantId" resultType="com.cloud.cang.mgr.common.vo.SelectVo" parameterType="java.lang.String">
+		select
+		A.id as id,A.sname as text,
+		B.sname as parentName
+		from sp_category A left join sp_category B on a.sparent_id=b.id
+		where A.itype=10 and A.smerchant_id = #{smerchantId,jdbcType=VARCHAR}
+		and A.iis_parent=0 and A.idel_flag=0 order by B.isort,B.id desc, A.isort, A.iis_hot desc
+	</select>
+
+	<update id="updateByIdSelectiveVo" parameterType="com.cloud.cang.model.sp.Category">
+		update SP_CATEGORY
+		<set>
+			ISORT=#{isort,jdbcType=NUMERIC},
+			IIS_DISPLAY=#{iisDisplay,jdbcType=NUMERIC},
+			IIS_HOT=#{iisHot,jdbcType=NUMERIC},
+			SREMARK=#{sremark,jdbcType=VARCHAR},
+			<if test="itype != null  ">
+				ITYPE=#{itype,jdbcType=NUMERIC},
+			</if>
+			<if test="idelFlag != null  ">
+				IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+			</if>
+			<if test="iisParent != null  ">
+				IIS_PARENT=#{iisParent,jdbcType=NUMERIC},
+			</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+				SADD_USER=#{saddUser,jdbcType=VARCHAR},
+			</if>
+			<if test="scategoryCode != null and  scategoryCode != ''  ">
+				SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR},
+			</if>
+			<if test="scategoryName != null and  scategoryName != ''  ">
+				SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR},
+			</if>
+			<if test="scode != null and  scode != ''  ">
+				SCODE=#{scode,jdbcType=VARCHAR},
+			</if>
+			<if test="sicon != null and  sicon != ''  ">
+				SICON=#{sicon,jdbcType=VARCHAR},
+			</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+				SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+			</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+				SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+			</if>
+			<if test="sname != null and  sname != ''  ">
+				SNAME=#{sname,jdbcType=VARCHAR},
+			</if>
+			<if test="sparentId != null and  sparentId != ''  ">
+				SPARENT_ID=#{sparentId,jdbcType=VARCHAR},
+			</if>
+			<if test="supdateUser != null and  supdateUser != ''  ">
+				SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+			</if>
+			<if test="taddTime != null  ">
+				TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="tupdateTime != null  ">
+				TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where  ID= #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!--返回结果集-->
+	<resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.sp.domain.CategoryDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IIS_DISPLAY" property="iisDisplay" jdbcType="NUMERIC" />
+		<result column="IIS_HOT" property="iisHot" jdbcType="NUMERIC" />
+		<result column="IIS_PARENT" property="iisParent" jdbcType="NUMERIC" />
+		<result column="ISORT" property="isort" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SCATEGORY_CODE" property="scategoryCode" jdbcType="VARCHAR" />
+		<result column="SCATEGORY_NAME" property="scategoryName" jdbcType="VARCHAR" />
+		<result column="SCODE" property="scode" jdbcType="VARCHAR" />
+		<result column="SICON" property="sicon" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SNAME" property="sname" jdbcType="VARCHAR" />
+		<result column="SPARENT_ID" property="sparentId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+		<result column="merchantName" property="merchantName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--模糊查询条件-->
+	<sql id="Entity_Where_Clause_Like">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and A.ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="idelFlag != null  ">
+					and  A.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+				</if>
+				<if test="iisDisplay != null  ">
+					and  A.IIS_DISPLAY=#{iisDisplay,jdbcType=NUMERIC}
+				</if>
+				<if test="iisHot != null  ">
+					and  A.IIS_HOT=#{iisHot,jdbcType=NUMERIC}
+				</if>
+				<if test="iisParent != null  ">
+					and  A.IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+				</if>
+				<if test="isort != null  ">
+					and  A.ISORT=#{isort,jdbcType=NUMERIC}
+				</if>
+				<if test="itype != null  ">
+					and  A.ITYPE=#{itype,jdbcType=NUMERIC}
+				</if>
+				<if test="saddUser != null and  saddUser != ''  ">
+					and  A.SADD_USER=#{saddUser,jdbcType=VARCHAR}
+				</if>
+				<if test="scategoryCode != null and  scategoryCode != ''  ">
+					and  A.SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+				</if>
+				<if test="scategoryName != null and  scategoryName != ''  ">
+					and  A.SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+				</if>
+				<if test="scode != null and  scode != ''  ">
+					and  A.SCODE=#{scode,jdbcType=VARCHAR}
+				</if>
+				<if test="sicon != null and  sicon != ''  ">
+					and  A.SICON=#{sicon,jdbcType=VARCHAR}
+				</if>
+				<if test="smerchantCode != null and  smerchantCode != ''  ">
+					and  A.SMERCHANT_CODE like CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="smerchantId != null and  smerchantId != ''  ">
+					and  A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+				</if>
+				<if test="sname != null and  sname != ''  ">
+					and  A.SNAME like CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sparentId != null and  sparentId != ''  ">
+					and  A.SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+				</if>
+				<if test="sremark != null and  sremark != ''  ">
+					and  A.SREMARK=#{sremark,jdbcType=VARCHAR}
+				</if>
+				<if test="supdateUser != null and  supdateUser != ''  ">
+					and  A.SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+				</if>
+				<if test="taddTime != null  ">
+					and  A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tupdateTime != null  ">
+					and  A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="merchantName != null and merchantName != ''  ">
+					and  D.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="queryCondition != null and  queryCondition != ''  ">
+					and  ${queryCondition}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--模糊查询-->
+	<sql id="Entity_Where_Clause_Vo">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="id != null and  id != ''   ">
+					and ID=#{id,jdbcType=VARCHAR}
+				</if>
+				<if test="idelFlag != null  ">
+					and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+				</if>
+				<if test="iisDisplay != null  ">
+					and  IIS_DISPLAY=#{iisDisplay,jdbcType=NUMERIC}
+				</if>
+				<if test="iisHot != null  ">
+					and  IIS_HOT=#{iisHot,jdbcType=NUMERIC}
+				</if>
+				<if test="iisParent != null  ">
+					and  IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+				</if>
+				<if test="isort != null  ">
+					and  ISORT=#{isort,jdbcType=NUMERIC}
+				</if>
+				<if test="itype != null  ">
+					and  ITYPE=#{itype,jdbcType=NUMERIC}
+				</if>
+				<if test="saddUser != null and  saddUser != ''  ">
+					and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+				</if>
+				<if test="scategoryCode != null and  scategoryCode != ''  ">
+					and  SCATEGORY_CODE like CONCAT('%',#{scategoryCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="scategoryName != null and  scategoryName != ''  ">
+					and  SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+				</if>
+				<if test="scode != null and  scode != ''  ">
+					and  SCODE like CONCAT('%',#{scode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sicon != null and  sicon != ''  ">
+					and  SICON=#{sicon,jdbcType=VARCHAR}
+				</if>
+				<if test="smerchantCode != null and  smerchantCode != ''  ">
+					and  SMERCHANT_CODE like CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="smerchantId != null and  smerchantId != ''  ">
+					and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+				</if>
+				<if test="sname != null and  sname != ''  ">
+					and  SNAME like CONCAT('%',#{sname,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sparentId != null and  sparentId != ''  ">
+					and  (SPARENT_ID=#{sparentId,jdbcType=VARCHAR} or ID=#{sparentId,jdbcType=VARCHAR})
+				</if>
+				<if test="sremark != null and  sremark != ''  ">
+					and  SREMARK=#{sremark,jdbcType=VARCHAR}
+				</if>
+				<if test="supdateUser != null and  supdateUser != ''  ">
+					and  SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+				</if>
+				<if test="taddTime != null  ">
+					and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tupdateTime != null  ">
+					and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--分页查询-->
+	<select id="selectByDomainWhere" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.sp.vo.CategoryVo">
+		select
+		A.ID,A.IDEL_FLAG,A.IIS_DISPLAY,A.IIS_HOT,A.IIS_PARENT,A.ISORT,A.ITYPE,A.SADD_USER,A.SCATEGORY_CODE,A.SCATEGORY_NAME,
+		A.SCODE,A.SICON,A.SMERCHANT_CODE,A.SMERCHANT_ID,A.SNAME,A.SPARENT_ID,A.SREMARK,A.SUPDATE_USER,A.TADD_TIME,A.TUPDATE_TIME,
+		D.SNAME as merchantName
+		from SP_CATEGORY A
+		INNER JOIN SH_MERCHANT_INFO D ON  A.SMERCHANT_ID = D.ID
+		<include refid="Entity_Where_Clause_Like" />
+		order by
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		TUPDATE_TIME
+		desc
+	</select>
+
+	<!--根据商户ID查询商品父类集合-->
+	<select id="selectBigCategoryByMerchantId" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR} AND IIS_PARENT=1 AND IDEL_FLAG=0 AND IIS_DISPLAY= 1
+	</select>
+
+
+	<!--根据商户ID查询商品子类集合-->
+	<select id="selectSmallCategoryByMerchantId" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR} AND IIS_PARENT=0 AND IDEL_FLAG=0 AND IIS_DISPLAY= 1
+	</select>
+
+	<!--根据大类ID查询小类-->
+	<select id="selectSmallCategoryByPid" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List"/>
+		from SP_CATEGORY
+		where SPARENT_ID=#{sparentId,jdbcType=VARCHAR} AND IIS_PARENT=0 AND IDEL_FLAG=0 AND IIS_DISPLAY= 1
+	</select>
+
+	<!--查询所有商品分类信息-->
+	<select id="selectValidBigCategory" resultMap="resultEntity" parameterType="com.cloud.cang.model.sp.Category">
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		<include refid="Entity_Where_Clause" />
+	</select>
+
+	<!--查询所有有效商品子类集合-->
+	<select id="selectAllValidSmallCategory" resultMap="resultEntity"  >
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where  IIS_PARENT=0 AND IDEL_FLAG=0 AND IIS_DISPLAY= 1
+	</select>
+
+	<!--根据商品主分类查询商品大类信息-->
+	<select id="selectBigCategoryByCategoryCode" resultMap="resultEntity"  parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where  SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+		and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+		and IDEL_FLAG=0
+	</select>
+
+	<!--根据商品大类查询商品小类信息-->
+	<select id="selectSmallCategoryByBigCategory" resultMap="resultEntity"  parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where  SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+		and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+		and IDEL_FLAG=0
+	</select>
+
+
+	<select id="queryBigCategor" resultMap="resultEntity"  >
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where  IIS_PARENT=1 AND IDEL_FLAG=0 AND IIS_DISPLAY= 1
+	</select>
+
+
+	<!--查询所有有效的大类信息（不区分商户）-->
+	<select id="selectAllValidBigCategory" resultMap="resultEntity"  >
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where  IIS_PARENT=1
+		AND IDEL_FLAG=0
+		AND IIS_DISPLAY= 1
+	</select>
+	<!--新增SQL结束-->
+
+	<!--查询商品分类表-->
+	<select id="queryData" resultMap="resultEntity" parameterType="java.lang.String">
+		select
+		<include refid="column_List" />
+		from SP_CATEGORY
+		where  SCATEGORY_NAME = #{scategoryName,jdbcType=VARCHAR} AND IIS_PARENT=1 AND IDEL_FLAG=0 AND IIS_DISPLAY= 1
+	</select>
+
+
+
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IIS_DISPLAY=#{iisDisplay,jdbcType=NUMERIC}
+	IIS_HOT=#{iisHot,jdbcType=NUMERIC}
+	IIS_PARENT=#{iisParent,jdbcType=NUMERIC}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SCATEGORY_CODE=#{scategoryCode,jdbcType=VARCHAR}
+	SCATEGORY_NAME=#{scategoryName,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=VARCHAR}
+	SICON=#{sicon,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SPARENT_ID=#{sparentId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

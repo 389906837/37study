@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.hy.dao.MbrRoleDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.hy.MbrRole">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP" />
+		<result column="DMODIFY_DATE" property="dmodifyDate" jdbcType="TIMESTAMP" />
+		<result column="ISORT_NO" property="isortNo" jdbcType="NUMERIC" />
+		<result column="SADD_OPERATOR" property="saddOperator" jdbcType="VARCHAR" />
+		<result column="SMODIFY_OPERATOR" property="smodifyOperator" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SROLE_NAME" property="sroleName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,DADD_DATE,DMODIFY_DATE,ISORT_NO,SADD_OPERATOR,SMODIFY_OPERATOR,SREMARK,SROLE_NAME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="daddDate != null  ">
+               and  DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="dmodifyDate != null  ">
+               and  DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="isortNo != null  ">
+               and  ISORT_NO=#{isortNo,jdbcType=NUMERIC}
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+               and  SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+               and  SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="sroleName != null and  sroleName != ''  ">
+               and  SROLE_NAME=#{sroleName,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from HY_MBR_ROLE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.MbrRole">
+        select
+        <include refid="column_List" />
+        from HY_MBR_ROLE
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from HY_MBR_ROLE
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+
+    <select id="selectPageAllRole"  resultMap="resultEntity"  parameterType="com.cloud.cang.mgr.hy.vo.MbrRoleVo">
+        select
+        <![CDATA[
+    A.ID,A.SROLE_NAME,A.SREMARK,A.ISORT_NO,A.DADD_DATE as DADD_DATE,A.SADD_OPERATOR,A.DMODIFY_DATE as DMODIFY_DATE,A.SMODIFY_OPERATOR
+    ]]>
+        from HY_MBR_ROLE A
+        <include refid="VO_Where_Clause" />
+        ORDER  BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        DADD_DATE DESC
+    </select>
+
+    <sql id="VO_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+
+                <if test="sroleName != null and  sroleName != ''   ">
+                    and A.SROLE_NAME like CONCAT('%',#{sroleName},'%')
+                </if>
+                <if test="sremark != null and  sremark != ''   ">
+                    and A.SREMARK like CONCAT('%',#{sremark},'%')
+                </if>
+                <if test="isortNo != null ">
+                    and A.ISORT_NO = #{isortNo,jdbcType=NUMERIC}
+                </if>
+                <if test="daddDateStart != null ">
+                    and A.DADD_DATE &gt;= #{daddDateStart,jdbcType=TIMESTAMP}
+                </if>
+                <if test="daddDateEnd != null ">
+                    and A.DADD_DATE &lt;date_add(#{daddDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+                <if test="saddOperator != null and  saddOperator != ''   ">
+                    and A.SADD_OPERATOR like CONCAT('%',#{saddOperator},'%')
+                </if>
+                <if test="dmodifyDateStart != null ">
+                    and A.DMODIFY_DATE &gt;= #{dmodifyDateStart,jdbcType=TIMESTAMP}
+                </if>
+                <if test="dmodifyDateEnd != null ">
+                    and A.DMODIFY_DATE &lt; #{dmodifyDateEnd,jdbcType=TIMESTAMP}+1
+                </if>
+                <if test="smodifyOperator != null and  smodifyOperator != ''   ">
+                    and A.SMODIFY_OPERATOR like CONCAT('%',#{smodifyOperator},'%')
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 判断用户是否存在 -->
+    <select id="selectByExist" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.MbrRole">
+        select
+        <include refid="column_List" />
+        from HY_MBR_ROLE A where
+        A.SROLE_NAME=#{sroleName,jdbcType=VARCHAR}
+        <if test="id != null and  id != ''   ">
+            and A.ID!=#{id,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from HY_MBR_ROLE
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM HY_MBR_ROLE where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.hy.MbrRole">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into HY_MBR_ROLE (ID,DADD_DATE,DMODIFY_DATE,ISORT_NO,SADD_OPERATOR,SMODIFY_OPERATOR,SREMARK,SROLE_NAME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{daddDate,jdbcType=TIMESTAMP},#{dmodifyDate,jdbcType=TIMESTAMP},#{isortNo,jdbcType=NUMERIC},#{saddOperator,jdbcType=VARCHAR},#{smodifyOperator,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{sroleName,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.hy.MbrRole">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into HY_MBR_ROLE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="daddDate">
+               DADD_DATE,
+           	</if>
+			<if test="dmodifyDate">
+               DMODIFY_DATE,
+           	</if>
+			<if test="isortNo">
+               ISORT_NO,
+           	</if>
+			<if test="saddOperator">
+               SADD_OPERATOR,
+           	</if>
+			<if test="smodifyOperator">
+               SMODIFY_OPERATOR,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="sroleName">
+               SROLE_NAME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="daddDate != null  ">
+                #{daddDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dmodifyDate != null  ">
+                #{dmodifyDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="isortNo != null  ">
+                #{isortNo,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+                #{saddOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                #{smodifyOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="sroleName != null and  sroleName != ''  ">
+                #{sroleName,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.hy.MbrRole">
+        update HY_MBR_ROLE
+        <set>
+			<if test="daddDate != null  ">
+                DADD_DATE=#{daddDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dmodifyDate != null  ">
+                DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="isortNo != null  ">
+                ISORT_NO=#{isortNo,jdbcType=NUMERIC},
+           	</if>
+			<if test="saddOperator != null and  saddOperator != ''  ">
+                SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR},
+           	</if>
+			<if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR},
+           	</if>
+			<!--<if test="sremark != null and  sremark != ''  ">-->
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	<!--</if>-->
+			<if test="sroleName != null and  sroleName != ''  ">
+                SROLE_NAME=#{sroleName,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.hy.MbrRole">
+        update HY_MBR_ROLE
+        set 
+        		DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+        		,DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+        		,ISORT_NO=#{isortNo,jdbcType=NUMERIC}
+        		,SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+        		,SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SROLE_NAME=#{sroleName,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+	DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+	ISORT_NO=#{isortNo,jdbcType=NUMERIC}
+	SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+	SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SROLE_NAME=#{sroleName,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

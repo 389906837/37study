@@ -1,0 +1,1150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.om.dao.OrderRecordDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.om.OrderRecord">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="FACTUAL_PAY_AMOUNT" property="factualPayAmount" jdbcType="NUMERIC"/>
+        <result column="FACTUAL_REFUND_AMOUNT" property="factualRefundAmount" jdbcType="NUMERIC"/>
+        <result column="FCOUPON_DEDUCTION_AMOUNT" property="fcouponDeductionAmount" jdbcType="NUMERIC"/>
+        <result column="FDISCOUNT_AMOUNT" property="fdiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FFIRST_DISCOUNT_AMOUNT" property="ffirstDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FOTHER_DISCOUNT_AMOUNT" property="fotherDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FPOINT_DISCOUNT_AMOUNT" property="fpointDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FPROMOTION_DISCOUNT_AMOUNT" property="fpromotionDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FTOTAL_AMOUNT" property="ftotalAmount" jdbcType="NUMERIC"/>
+        <result column="FTOTAL_COST_AMOUNT" property="ftotalCostAmount" jdbcType="NUMERIC"/>
+        <result column="ICHARGEBACK_WAY" property="ichargebackWay" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IDISMANTLING_TYPE" property="idismantlingType" jdbcType="NUMERIC"/>
+        <result column="IIS_DISMANTLING" property="iisDismantling" jdbcType="NUMERIC"/>
+        <result column="IPAY_TYPE" property="ipayType" jdbcType="NUMERIC"/>
+        <result column="IPAY_WAY" property="ipayWay" jdbcType="NUMERIC"/>
+        <result column="IPOINT" property="ipoint" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_CLIENT_TYPE" property="isourceClientType" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY" property="isourceWay" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_CODE" property="isourceWayCode" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_NAME" property="isourceWayName" jdbcType="VARCHAR"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="IVERSION" property="iversion" jdbcType="NUMERIC"/>
+        <result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_NAME" property="sdeviceName" jdbcType="VARCHAR"/>
+        <result column="SDISMANTLING_CODE" property="sdismantlingCode" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_REMARK" property="shandlerRemark" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERID" property="shandlerUserid" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERNAME" property="shandlerUsername" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR"/>
+        <result column="SPAY_APPLY_ID" property="spayApplyId" jdbcType="VARCHAR"/>
+        <result column="SPAY_FAILURE_REASON" property="spayFailureReason" jdbcType="VARCHAR"/>
+        <result column="SPAY_SERIAL_NUMBER" property="spaySerialNumber" jdbcType="VARCHAR"/>
+        <result column="SREADER_SERIAL_NUMBER" property="sreaderSerialNumber" jdbcType="VARCHAR"/>
+        <result column="SUSED_COUPON_CODE" property="susedCouponCode" jdbcType="VARCHAR"/>
+        <result column="SUSED_COUPON_ID" property="susedCouponId" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="THANDLER_TIME" property="thandlerTime" jdbcType="TIMESTAMP"/>
+        <result column="TORDER_TIME" property="torderTime" jdbcType="TIMESTAMP"/>
+        <result column="TPAY_COMPLETE_TIME" property="tpayCompleteTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap id="resultEntityVo" type="com.cloud.cang.mgr.om.vo.OrderRecordVo">
+        <result column="FACTUAL_PAY_AMOUNT" property="factualPayAmount" jdbcType="NUMERIC"/>
+        <result column="FACTUAL_REFUND_AMOUNT" property="factualRefundAmount" jdbcType="NUMERIC"/>
+        <result column="FCOUPON_DEDUCTION_AMOUNT" property="fcouponDeductionAmount" jdbcType="NUMERIC"/>
+        <result column="FDISCOUNT_AMOUNT" property="fdiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FFIRST_DISCOUNT_AMOUNT" property="ffirstDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FOTHER_DISCOUNT_AMOUNT" property="fotherDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FPOINT_DISCOUNT_AMOUNT" property="fpointDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FPROMOTION_DISCOUNT_AMOUNT" property="fpromotionDiscountAmount" jdbcType="NUMERIC"/>
+        <result column="FTOTAL_AMOUNT" property="ftotalAmount" jdbcType="NUMERIC"/>
+        <result column="FTOTAL_COST_AMOUNT" property="ftotalCostAmount" jdbcType="NUMERIC"/>
+        <result column="ICHARGEBACK_WAY" property="ichargebackWay" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="IDISMANTLING_TYPE" property="idismantlingType" jdbcType="NUMERIC"/>
+        <result column="IIS_DISMANTLING" property="iisDismantling" jdbcType="NUMERIC"/>
+        <result column="IPAY_TYPE" property="ipayType" jdbcType="NUMERIC"/>
+        <result column="IPAY_WAY" property="ipayWay" jdbcType="NUMERIC"/>
+        <result column="IPOINT" property="ipoint" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_CLIENT_TYPE" property="isourceClientType" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY" property="isourceWay" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_CODE" property="isourceWayCode" jdbcType="NUMERIC"/>
+        <result column="ISOURCE_WAY_NAME" property="isourceWayName" jdbcType="VARCHAR"/>
+        <result column="ISTATUS" property="istatus" jdbcType="NUMERIC"/>
+        <result column="IVERSION" property="iversion" jdbcType="NUMERIC"/>
+        <result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_CODE" property="sdeviceCode" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_ID" property="sdeviceId" jdbcType="VARCHAR"/>
+        <result column="SDEVICE_NAME" property="sdeviceName" jdbcType="VARCHAR"/>
+        <result column="SDISMANTLING_CODE" property="sdismantlingCode" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_REMARK" property="shandlerRemark" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERID" property="shandlerUserid" jdbcType="VARCHAR"/>
+        <result column="SHANDLER_USERNAME" property="shandlerUsername" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SORDER_CODE" property="sorderCode" jdbcType="VARCHAR"/>
+        <result column="SPAY_APPLY_ID" property="spayApplyId" jdbcType="VARCHAR"/>
+        <result column="SPAY_FAILURE_REASON" property="spayFailureReason" jdbcType="VARCHAR"/>
+        <result column="SPAY_SERIAL_NUMBER" property="spaySerialNumber" jdbcType="VARCHAR"/>
+        <result column="SREADER_SERIAL_NUMBER" property="sreaderSerialNumber" jdbcType="VARCHAR"/>
+        <result column="SUSED_COUPON_CODE" property="susedCouponCode" jdbcType="VARCHAR"/>
+        <result column="SUSED_COUPON_ID" property="susedCouponId" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="THANDLER_TIME" property="thandlerTime" jdbcType="TIMESTAMP"/>
+        <result column="TORDER_TIME" property="torderTime" jdbcType="TIMESTAMP"/>
+        <result column="TPAY_COMPLETE_TIME" property="tpayCompleteTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+        <result column="MERCHANT_NAME" property="merchantName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <resultMap id="resultEntityMoneyStaVo" type="com.cloud.cang.mgr.om.vo.OrderRecordMoneyStaVo">
+        <result column="FTOTAL_AMOUNT_STA" property="ftotalAmountSta" jdbcType="NUMERIC"/>
+        <result column="FDISCOUNT_AMOUNT_STA" property="fdiscountAmountSta" jdbcType="NUMERIC"/>
+        <result column="FFIRST_DISCOUNT_AMOUNT_STA" property="ffirstDiscountAmountSta" jdbcType="NUMERIC"/>
+        <result column="FPROMOTION_DISCOUNT_AMOUNT_STA" property="fpromotionDiscountAmountSta" jdbcType="NUMERIC"/>
+        <result column="FCOUPON_DEDUCTION_AMOUNT_STA" property="fcouponDeductionAmountSta" jdbcType="NUMERIC"/>
+        <result column="FACTUAL_PAY_AMOUNT_STA" property="factualPayAmountSta" jdbcType="NUMERIC"/>
+        <result column="FACTUAL_REFUND_AMOUNT_STA" property="factualRefundAmountSta" jdbcType="NUMERIC"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,FACTUAL_PAY_AMOUNT,FACTUAL_REFUND_AMOUNT,FCOUPON_DEDUCTION_AMOUNT,FDISCOUNT_AMOUNT,FFIRST_DISCOUNT_AMOUNT,FOTHER_DISCOUNT_AMOUNT,FPOINT_DISCOUNT_AMOUNT,FPROMOTION_DISCOUNT_AMOUNT,FTOTAL_AMOUNT,FTOTAL_COST_AMOUNT,ICHARGEBACK_WAY,IDEL_FLAG,IDISMANTLING_TYPE,IIS_DISMANTLING,IPAY_TYPE,IPAY_WAY,IPOINT,ISOURCE_CLIENT_TYPE,ISOURCE_WAY,ISOURCE_WAY_CODE,ISOURCE_WAY_NAME,ISTATUS,IVERSION,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SDEVICE_NAME,SDISMANTLING_CODE,SHANDLER_REMARK,SHANDLER_USERID,SHANDLER_USERNAME,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SMERCHANT_CODE,SMERCHANT_ID,SORDER_CODE,SPAY_APPLY_ID,SPAY_FAILURE_REASON,SPAY_SERIAL_NUMBER,SREADER_SERIAL_NUMBER,SUSED_COUPON_CODE,SUSED_COUPON_ID,TADD_TIME,THANDLER_TIME,TORDER_TIME,TPAY_COMPLETE_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="factualPayAmount != null  ">
+                    and FACTUAL_PAY_AMOUNT=#{factualPayAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="factualRefundAmount != null  ">
+                    and FACTUAL_REFUND_AMOUNT=#{factualRefundAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fcouponDeductionAmount != null  ">
+                    and FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fdiscountAmount != null  ">
+                    and FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="ffirstDiscountAmount != null  ">
+                    and FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fotherDiscountAmount != null  ">
+                    and FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fpointDiscountAmount != null  ">
+                    and FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fpromotionDiscountAmount != null  ">
+                    and FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="ftotalAmount != null  ">
+                    and FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="ftotalCostAmount != null  ">
+                    and FTOTAL_COST_AMOUNT=#{ftotalCostAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="ichargebackWay != null  ">
+                    and ICHARGEBACK_WAY=#{ichargebackWay,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="idismantlingType != null  ">
+                    and IDISMANTLING_TYPE=#{idismantlingType,jdbcType=NUMERIC}
+                </if>
+                <if test="iisDismantling != null  ">
+                    and IIS_DISMANTLING=#{iisDismantling,jdbcType=NUMERIC}
+                </if>
+                <if test="ipayType != null  ">
+                    and IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+                </if>
+                <if test="ipayWay != null  ">
+                    and IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+                </if>
+                <if test="ipoint != null  ">
+                    and IPOINT=#{ipoint,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceClientType != null  ">
+                    and ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWay != null  ">
+                    and ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayCode != null  ">
+                    and ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayName != null and  isourceWayName != ''  ">
+                    and ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+                </if>
+                <if test="istatus != null  ">
+                    and ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="iversion != null  ">
+                    and IVERSION=#{iversion,jdbcType=NUMERIC}
+                </if>
+                <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                    and SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                    and SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceId != null and  sdeviceId != ''  ">
+                    and SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceName != null and  sdeviceName != ''  ">
+                    and SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR}
+                </if>
+                <if test="sdismantlingCode != null and  sdismantlingCode != ''  ">
+                    and SDISMANTLING_CODE=#{sdismantlingCode,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                    and SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                    and SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                    and SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberCode != null and  smemberCode != ''  ">
+                    and SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberId != null and  smemberId != ''  ">
+                    and SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberName != null and  smemberName != ''  ">
+                    and SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sorderCode != null and  sorderCode != ''  ">
+                    and SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+                </if>
+                <if test="spayApplyId != null and  spayApplyId != ''  ">
+                    and SPAY_APPLY_ID=#{spayApplyId,jdbcType=VARCHAR}
+                </if>
+                <if test="spayFailureReason != null and  spayFailureReason != ''  ">
+                    and SPAY_FAILURE_REASON=#{spayFailureReason,jdbcType=VARCHAR}
+                </if>
+                <if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                    and SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+                </if>
+                <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                    and SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+                </if>
+                <if test="susedCouponCode != null and  susedCouponCode != ''  ">
+                    and SUSED_COUPON_CODE=#{susedCouponCode,jdbcType=VARCHAR}
+                </if>
+                <if test="susedCouponId != null and  susedCouponId != ''  ">
+                    and SUSED_COUPON_ID=#{susedCouponId,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="thandlerTime != null  ">
+                    and THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="torderTime != null  ">
+                    and TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tpayCompleteTime != null  ">
+                    and TPAY_COMPLETE_TIME=#{tpayCompleteTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <sql id="Entity_Where_ClauseLike">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="queryCondition != null and  queryCondition != ''  ">
+                    and ${queryCondition}
+                </if>
+                <if test="isAudit != null and  isAudit != ''   ">
+                    and A.ISTATUS in(${isAudit})
+                </if>
+                <if test="id != null and  id != ''   ">
+                    and A.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="factualPayAmount != null  ">
+                    and A.FACTUAL_PAY_AMOUNT=#{factualPayAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="factualRefundAmount != null  ">
+                    and A.FACTUAL_REFUND_AMOUNT=#{factualRefundAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fcouponDeductionAmount != null  ">
+                    and A.FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fdiscountAmount != null  ">
+                    and A.FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="ffirstDiscountAmount != null  ">
+                    and A.FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fotherDiscountAmount != null  ">
+                    and A.FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fpointDiscountAmount != null  ">
+                    and A.FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="fpromotionDiscountAmount != null  ">
+                    and A.FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC}
+                </if>
+                <if test="ftotalAmountBegin != null ">
+                    and A.FTOTAL_AMOUNT >= #{ftotalAmountBegin,jdbcType=NUMERIC}
+                </if>
+                <if test="ftotalAmountEnd != null ">
+                    and A.FTOTAL_AMOUNT <![CDATA[ <= ]]> #{ftotalAmountEnd,jdbcType=NUMERIC}
+                </if>
+                <if test="ichargebackWay != null  ">
+                    and A.ICHARGEBACK_WAY=#{ichargebackWay,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and A.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="ipayType != null  ">
+                    and A.IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+                </if>
+                <if test="ipayWay != null  ">
+                    and A.IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+                </if>
+                <if test="ipoint != null  ">
+                    and A.IPOINT=#{ipoint,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceClientType != null  ">
+                    and A.ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWay != null  ">
+                    and A.ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayCode != null  ">
+                    and A.ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+                </if>
+                <if test="isourceWayName != null and  isourceWayName != ''  ">
+                    and A.ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+                </if>
+                <if test="istatus != null  ">
+                    and A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+                </if>
+                <if test="iversion != null  ">
+                    and A.IVERSION=#{iversion,jdbcType=NUMERIC}
+                </if>
+                <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                    and A.SDEVICE_ADDRESS LIKE CONCAT('%',#{sdeviceAddress},'%')
+                </if>
+                <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                    and A.SDEVICE_CODE LIKE CONCAT('%',#{sdeviceCode},'%')
+                </if>
+                <if test="sdeviceId != null and  sdeviceId != ''  ">
+                    and A.SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+                </if>
+                <if test="sdeviceName != null and  sdeviceName != ''  ">
+                    and A.SDEVICE_NAME LIKE CONCAT('%',#{sdeviceName},'%')
+                </if>
+                <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                    and A.SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                    and A.SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+                </if>
+                <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                    and A.SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberCode != null and  smemberCode != ''  ">
+                    and A.SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberId != null and  smemberId != ''  ">
+                    and A.SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberName != null and  smemberName != ''  ">
+                    and A.SMEMBER_NAME like CONCAT('%',#{smemberName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and A.SMERCHANT_CODE like CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and A.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sorderCode != null and  sorderCode != ''  ">
+                    and A.SORDER_CODE LIKE CONCAT('%',#{sorderCode},'%')
+                </if>
+                <if test="spayApplyId != null and  spayApplyId != ''  ">
+                    and A.SPAY_APPLY_ID=#{spayApplyId,jdbcType=VARCHAR}
+                </if>
+                <if test="spayFailureReason != null and  spayFailureReason != ''  ">
+                    and A.SPAY_FAILURE_REASON=#{spayFailureReason,jdbcType=VARCHAR}
+                </if>
+                <if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                    and A.SPAY_SERIAL_NUMBER LIKE CONCAT('%',#{spaySerialNumber},'%')
+                </if>
+                <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                    and A.SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+                </if>
+                <if test="susedCouponCode != null and  susedCouponCode != ''  ">
+                    and A.SUSED_COUPON_CODE=#{susedCouponCode,jdbcType=VARCHAR}
+                </if>
+                <if test="susedCouponId != null and  susedCouponId != ''  ">
+                    and A.SUSED_COUPON_ID=#{susedCouponId,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and A.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="thandlerTime != null  ">
+                    and A.THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+                </if>
+                <!--   <if test="torderTime != null  ">
+                       and A.TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP}
+                   </if>-->
+                <if test="toperateStartDate != null ">
+                    and A.TORDER_TIME&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="toperateEndDate != null ">
+                    and A.TORDER_TIME&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+
+                <!--  <if test="tpayCompleteTime != null  ">
+                      and A.TPAY_COMPLETE_TIME=#{tpayCompleteTime,jdbcType=TIMESTAMP}
+                  </if>-->
+                <if test="payStartDate != null ">
+                    and A.TPAY_COMPLETE_TIME&gt;=#{payStartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="payEndDate != null ">
+                    and A.TPAY_COMPLETE_TIME&lt;date_add(#{payEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+
+                <if test="tupdateTime != null  ">
+                    and A.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="merchantName != null and  merchantName != '' ">
+                    and SMI.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.om.OrderRecord">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_RECORD
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from OM_ORDER_RECORD
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from OM_ORDER_RECORD
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM OM_ORDER_RECORD where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.om.OrderRecord">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into OM_ORDER_RECORD (ID,FACTUAL_PAY_AMOUNT,FACTUAL_REFUND_AMOUNT,FCOUPON_DEDUCTION_AMOUNT,FDISCOUNT_AMOUNT,FFIRST_DISCOUNT_AMOUNT,FOTHER_DISCOUNT_AMOUNT,FPOINT_DISCOUNT_AMOUNT,FPROMOTION_DISCOUNT_AMOUNT,FTOTAL_AMOUNT,FTOTAL_COST_AMOUNT,ICHARGEBACK_WAY,IDEL_FLAG,IDISMANTLING_TYPE,IIS_DISMANTLING,IPAY_TYPE,IPAY_WAY,IPOINT,ISOURCE_CLIENT_TYPE,ISOURCE_WAY,ISOURCE_WAY_CODE,ISOURCE_WAY_NAME,ISTATUS,IVERSION,SDEVICE_ADDRESS,SDEVICE_CODE,SDEVICE_ID,SDEVICE_NAME,SDISMANTLING_CODE,SHANDLER_REMARK,SHANDLER_USERID,SHANDLER_USERNAME,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SMERCHANT_CODE,SMERCHANT_ID,SORDER_CODE,SPAY_APPLY_ID,SPAY_FAILURE_REASON,SPAY_SERIAL_NUMBER,SREADER_SERIAL_NUMBER,SUSED_COUPON_CODE,SUSED_COUPON_ID,TADD_TIME,THANDLER_TIME,TORDER_TIME,TPAY_COMPLETE_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{factualPayAmount,jdbcType=NUMERIC},#{factualRefundAmount,jdbcType=NUMERIC},#{fcouponDeductionAmount,jdbcType=NUMERIC},#{fdiscountAmount,jdbcType=NUMERIC},#{ffirstDiscountAmount,jdbcType=NUMERIC},#{fotherDiscountAmount,jdbcType=NUMERIC},#{fpointDiscountAmount,jdbcType=NUMERIC},#{fpromotionDiscountAmount,jdbcType=NUMERIC},#{ftotalAmount,jdbcType=NUMERIC},#{ftotalCostAmount,jdbcType=NUMERIC},#{ichargebackWay,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{idismantlingType,jdbcType=NUMERIC},#{iisDismantling,jdbcType=NUMERIC},#{ipayType,jdbcType=NUMERIC},#{ipayWay,jdbcType=NUMERIC},#{ipoint,jdbcType=NUMERIC},#{isourceClientType,jdbcType=NUMERIC},#{isourceWay,jdbcType=NUMERIC},#{isourceWayCode,jdbcType=NUMERIC},#{isourceWayName,jdbcType=VARCHAR},#{istatus,jdbcType=NUMERIC},#{iversion,jdbcType=NUMERIC},#{sdeviceAddress,jdbcType=VARCHAR},#{sdeviceCode,jdbcType=VARCHAR},#{sdeviceId,jdbcType=VARCHAR},#{sdeviceName,jdbcType=VARCHAR},#{sdismantlingCode,jdbcType=VARCHAR},#{shandlerRemark,jdbcType=VARCHAR},#{shandlerUserid,jdbcType=VARCHAR},#{shandlerUsername,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sorderCode,jdbcType=VARCHAR},#{spayApplyId,jdbcType=VARCHAR},#{spayFailureReason,jdbcType=VARCHAR},#{spaySerialNumber,jdbcType=VARCHAR},#{sreaderSerialNumber,jdbcType=VARCHAR},#{susedCouponCode,jdbcType=VARCHAR},#{susedCouponId,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{thandlerTime,jdbcType=TIMESTAMP},#{torderTime,jdbcType=TIMESTAMP},#{tpayCompleteTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.om.OrderRecord">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into OM_ORDER_RECORD
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="factualPayAmount">
+                FACTUAL_PAY_AMOUNT,
+            </if>
+            <if test="factualRefundAmount">
+                FACTUAL_REFUND_AMOUNT,
+            </if>
+            <if test="fcouponDeductionAmount">
+                FCOUPON_DEDUCTION_AMOUNT,
+            </if>
+            <if test="fdiscountAmount">
+                FDISCOUNT_AMOUNT,
+            </if>
+            <if test="ffirstDiscountAmount">
+                FFIRST_DISCOUNT_AMOUNT,
+            </if>
+            <if test="fotherDiscountAmount">
+                FOTHER_DISCOUNT_AMOUNT,
+            </if>
+            <if test="fpointDiscountAmount">
+                FPOINT_DISCOUNT_AMOUNT,
+            </if>
+            <if test="fpromotionDiscountAmount">
+                FPROMOTION_DISCOUNT_AMOUNT,
+            </if>
+            <if test="ftotalAmount">
+                FTOTAL_AMOUNT,
+            </if>
+            <if test="ftotalCostAmount">
+                FTOTAL_COST_AMOUNT,
+            </if>
+            <if test="ichargebackWay">
+                ICHARGEBACK_WAY,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="idismantlingType">
+                IDISMANTLING_TYPE,
+            </if>
+            <if test="iisDismantling">
+                IIS_DISMANTLING,
+            </if>
+            <if test="ipayType">
+                IPAY_TYPE,
+            </if>
+            <if test="ipayWay">
+                IPAY_WAY,
+            </if>
+            <if test="ipoint">
+                IPOINT,
+            </if>
+            <if test="isourceClientType">
+                ISOURCE_CLIENT_TYPE,
+            </if>
+            <if test="isourceWay">
+                ISOURCE_WAY,
+            </if>
+            <if test="isourceWayCode">
+                ISOURCE_WAY_CODE,
+            </if>
+            <if test="isourceWayName">
+                ISOURCE_WAY_NAME,
+            </if>
+            <if test="istatus">
+                ISTATUS,
+            </if>
+            <if test="iversion">
+                IVERSION,
+            </if>
+            <if test="sdeviceAddress">
+                SDEVICE_ADDRESS,
+            </if>
+            <if test="sdeviceCode">
+                SDEVICE_CODE,
+            </if>
+            <if test="sdeviceId">
+                SDEVICE_ID,
+            </if>
+            <if test="sdeviceName">
+                SDEVICE_NAME,
+            </if>
+            <if test="sdismantlingCode">
+                SDISMANTLING_CODE,
+            </if>
+            <if test="shandlerRemark">
+                SHANDLER_REMARK,
+            </if>
+            <if test="shandlerUserid">
+                SHANDLER_USERID,
+            </if>
+            <if test="shandlerUsername">
+                SHANDLER_USERNAME,
+            </if>
+            <if test="smemberCode">
+                SMEMBER_CODE,
+            </if>
+            <if test="smemberId">
+                SMEMBER_ID,
+            </if>
+            <if test="smemberName">
+                SMEMBER_NAME,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="sorderCode">
+                SORDER_CODE,
+            </if>
+            <if test="spayApplyId">
+                SPAY_APPLY_ID,
+            </if>
+            <if test="spayFailureReason">
+                SPAY_FAILURE_REASON,
+            </if>
+            <if test="spaySerialNumber">
+                SPAY_SERIAL_NUMBER,
+            </if>
+            <if test="sreaderSerialNumber">
+                SREADER_SERIAL_NUMBER,
+            </if>
+            <if test="susedCouponCode">
+                SUSED_COUPON_CODE,
+            </if>
+            <if test="susedCouponId">
+                SUSED_COUPON_ID,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="thandlerTime">
+                THANDLER_TIME,
+            </if>
+            <if test="torderTime">
+                TORDER_TIME,
+            </if>
+            <if test="tpayCompleteTime">
+                TPAY_COMPLETE_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="factualPayAmount != null  ">
+                #{factualPayAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="factualRefundAmount != null  ">
+                #{factualRefundAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fcouponDeductionAmount != null  ">
+                #{fcouponDeductionAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscountAmount != null  ">
+                #{fdiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ffirstDiscountAmount != null  ">
+                #{ffirstDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fotherDiscountAmount != null  ">
+                #{fotherDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fpointDiscountAmount != null  ">
+                #{fpointDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fpromotionDiscountAmount != null  ">
+                #{fpromotionDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ftotalAmount != null  ">
+                #{ftotalAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ftotalCostAmount != null  ">
+                #{ftotalCostAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ichargebackWay != null  ">
+                #{ichargebackWay,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="idismantlingType != null  ">
+                #{idismantlingType,jdbcType=NUMERIC},
+            </if>
+            <if test="iisDismantling != null  ">
+                #{iisDismantling,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayType != null  ">
+                #{ipayType,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayWay != null  ">
+                #{ipayWay,jdbcType=NUMERIC},
+            </if>
+            <if test="ipoint != null  ">
+                #{ipoint,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceClientType != null  ">
+                #{isourceClientType,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWay != null  ">
+                #{isourceWay,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayCode != null  ">
+                #{isourceWayCode,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayName != null and  isourceWayName != ''  ">
+                #{isourceWayName,jdbcType=VARCHAR},
+            </if>
+            <if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="iversion != null  ">
+                #{iversion,jdbcType=NUMERIC},
+            </if>
+            <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                #{sdeviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                #{sdeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceId != null and  sdeviceId != ''  ">
+                #{sdeviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceName != null and  sdeviceName != ''  ">
+                #{sdeviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="sdismantlingCode != null and  sdismantlingCode != ''  ">
+                #{sdismantlingCode,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                #{shandlerRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                #{shandlerUserid,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                #{shandlerUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderCode != null and  sorderCode != ''  ">
+                #{sorderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="spayApplyId != null and  spayApplyId != ''  ">
+                #{spayApplyId,jdbcType=VARCHAR},
+            </if>
+            <if test="spayFailureReason != null and  spayFailureReason != ''  ">
+                #{spayFailureReason,jdbcType=VARCHAR},
+            </if>
+            <if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                #{spaySerialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                #{sreaderSerialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="susedCouponCode != null and  susedCouponCode != ''  ">
+                #{susedCouponCode,jdbcType=VARCHAR},
+            </if>
+            <if test="susedCouponId != null and  susedCouponId != ''  ">
+                #{susedCouponId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="thandlerTime != null  ">
+                #{thandlerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="torderTime != null  ">
+                #{torderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tpayCompleteTime != null  ">
+                #{tpayCompleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.om.OrderRecord">
+        update OM_ORDER_RECORD
+        <set>
+            <if test="factualPayAmount != null  ">
+                FACTUAL_PAY_AMOUNT=#{factualPayAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="factualRefundAmount != null  ">
+                FACTUAL_REFUND_AMOUNT=#{factualRefundAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fcouponDeductionAmount != null  ">
+                FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fdiscountAmount != null  ">
+                FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ffirstDiscountAmount != null  ">
+                FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fotherDiscountAmount != null  ">
+                FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fpointDiscountAmount != null  ">
+                FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="fpromotionDiscountAmount != null  ">
+                FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ftotalAmount != null  ">
+                FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ftotalCostAmount != null  ">
+                FTOTAL_COST_AMOUNT=#{ftotalCostAmount,jdbcType=NUMERIC},
+            </if>
+            <if test="ichargebackWay != null  ">
+                ICHARGEBACK_WAY=#{ichargebackWay,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="idismantlingType != null  ">
+                IDISMANTLING_TYPE=#{idismantlingType,jdbcType=NUMERIC},
+            </if>
+            <if test="iisDismantling != null  ">
+                IIS_DISMANTLING=#{iisDismantling,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayType != null  ">
+                IPAY_TYPE=#{ipayType,jdbcType=NUMERIC},
+            </if>
+            <if test="ipayWay != null  ">
+                IPAY_WAY=#{ipayWay,jdbcType=NUMERIC},
+            </if>
+            <if test="ipoint != null  ">
+                IPOINT=#{ipoint,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceClientType != null  ">
+                ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWay != null  ">
+                ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayCode != null  ">
+                ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC},
+            </if>
+            <if test="isourceWayName != null and  isourceWayName != ''  ">
+                ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR},
+            </if>
+            <if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+            </if>
+            <if test="iversion != null  ">
+                IVERSION=#{iversion,jdbcType=NUMERIC},
+            </if>
+            <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceCode != null and  sdeviceCode != ''  ">
+                SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceId != null and  sdeviceId != ''  ">
+                SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR},
+            </if>
+            <if test="sdeviceName != null and  sdeviceName != ''  ">
+                SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR},
+            </if>
+            <if test="sdismantlingCode != null and  sdismantlingCode != ''  ">
+                SDISMANTLING_CODE=#{sdismantlingCode,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerRemark != null and  shandlerRemark != ''  ">
+                SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUserid != null and  shandlerUserid != ''  ">
+                SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR},
+            </if>
+            <if test="shandlerUsername != null and  shandlerUsername != ''  ">
+                SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sorderCode != null and  sorderCode != ''  ">
+                SORDER_CODE=#{sorderCode,jdbcType=VARCHAR},
+            </if>
+            <if test="spayApplyId != null and  spayApplyId != ''  ">
+                SPAY_APPLY_ID=#{spayApplyId,jdbcType=VARCHAR},
+            </if>
+            <if test="spayFailureReason != null and  spayFailureReason != ''  ">
+                SPAY_FAILURE_REASON=#{spayFailureReason,jdbcType=VARCHAR},
+            </if>
+            <if test="spaySerialNumber != null and  spaySerialNumber != ''  ">
+                SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="sreaderSerialNumber != null and  sreaderSerialNumber != ''  ">
+                SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="susedCouponCode != null and  susedCouponCode != ''  ">
+                SUSED_COUPON_CODE=#{susedCouponCode,jdbcType=VARCHAR},
+            </if>
+            <if test="susedCouponId != null and  susedCouponId != ''  ">
+                SUSED_COUPON_ID=#{susedCouponId,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="thandlerTime != null  ">
+                THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="torderTime != null  ">
+                TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tpayCompleteTime != null  ">
+                TPAY_COMPLETE_TIME=#{tpayCompleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.om.OrderRecord">
+        update OM_ORDER_RECORD
+        set
+        FACTUAL_PAY_AMOUNT=#{factualPayAmount,jdbcType=NUMERIC}
+        ,FACTUAL_REFUND_AMOUNT=#{factualRefundAmount,jdbcType=NUMERIC}
+        ,FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC}
+        ,FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC}
+        ,FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC}
+        ,FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC}
+        ,FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC}
+        ,FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC}
+        ,FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+        ,FTOTAL_COST_AMOUNT=#{ftotalCostAmount,jdbcType=NUMERIC}
+        ,ICHARGEBACK_WAY=#{ichargebackWay,jdbcType=NUMERIC}
+        ,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,IDISMANTLING_TYPE=#{idismantlingType,jdbcType=NUMERIC}
+        ,IIS_DISMANTLING=#{iisDismantling,jdbcType=NUMERIC}
+        ,IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+        ,IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+        ,IPOINT=#{ipoint,jdbcType=NUMERIC}
+        ,ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+        ,ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+        ,ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+        ,ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+        ,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        ,IVERSION=#{iversion,jdbcType=NUMERIC}
+        ,SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+        ,SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+        ,SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        ,SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR}
+        ,SDISMANTLING_CODE=#{sdismantlingCode,jdbcType=VARCHAR}
+        ,SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+        ,SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+        ,SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR}
+        ,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        ,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        ,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        ,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+        ,SPAY_APPLY_ID=#{spayApplyId,jdbcType=VARCHAR}
+        ,SPAY_FAILURE_REASON=#{spayFailureReason,jdbcType=VARCHAR}
+        ,SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+        ,SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+        ,SUSED_COUPON_CODE=#{susedCouponCode,jdbcType=VARCHAR}
+        ,SUSED_COUPON_ID=#{susedCouponId,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+        ,TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP}
+        ,TPAY_COMPLETE_TIME=#{tpayCompleteTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	FACTUAL_PAY_AMOUNT=#{factualPayAmount,jdbcType=NUMERIC}
+	FACTUAL_REFUND_AMOUNT=#{factualRefundAmount,jdbcType=NUMERIC}
+	FCOUPON_DEDUCTION_AMOUNT=#{fcouponDeductionAmount,jdbcType=NUMERIC}
+	FDISCOUNT_AMOUNT=#{fdiscountAmount,jdbcType=NUMERIC}
+	FFIRST_DISCOUNT_AMOUNT=#{ffirstDiscountAmount,jdbcType=NUMERIC}
+	FOTHER_DISCOUNT_AMOUNT=#{fotherDiscountAmount,jdbcType=NUMERIC}
+	FPOINT_DISCOUNT_AMOUNT=#{fpointDiscountAmount,jdbcType=NUMERIC}
+	FPROMOTION_DISCOUNT_AMOUNT=#{fpromotionDiscountAmount,jdbcType=NUMERIC}
+	FTOTAL_AMOUNT=#{ftotalAmount,jdbcType=NUMERIC}
+	FTOTAL_COST_AMOUNT=#{ftotalCostAmount,jdbcType=NUMERIC}
+	ICHARGEBACK_WAY=#{ichargebackWay,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IDISMANTLING_TYPE=#{idismantlingType,jdbcType=NUMERIC}
+	IIS_DISMANTLING=#{iisDismantling,jdbcType=NUMERIC}
+	IPAY_TYPE=#{ipayType,jdbcType=NUMERIC}
+	IPAY_WAY=#{ipayWay,jdbcType=NUMERIC}
+	IPOINT=#{ipoint,jdbcType=NUMERIC}
+	ISOURCE_CLIENT_TYPE=#{isourceClientType,jdbcType=NUMERIC}
+	ISOURCE_WAY=#{isourceWay,jdbcType=NUMERIC}
+	ISOURCE_WAY_CODE=#{isourceWayCode,jdbcType=NUMERIC}
+	ISOURCE_WAY_NAME=#{isourceWayName,jdbcType=VARCHAR}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	IVERSION=#{iversion,jdbcType=NUMERIC}
+	SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+	SDEVICE_CODE=#{sdeviceCode,jdbcType=VARCHAR}
+	SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+	SDEVICE_NAME=#{sdeviceName,jdbcType=VARCHAR}
+	SDISMANTLING_CODE=#{sdismantlingCode,jdbcType=VARCHAR}
+	SHANDLER_REMARK=#{shandlerRemark,jdbcType=VARCHAR}
+	SHANDLER_USERID=#{shandlerUserid,jdbcType=VARCHAR}
+	SHANDLER_USERNAME=#{shandlerUsername,jdbcType=VARCHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SORDER_CODE=#{sorderCode,jdbcType=VARCHAR}
+	SPAY_APPLY_ID=#{spayApplyId,jdbcType=VARCHAR}
+	SPAY_FAILURE_REASON=#{spayFailureReason,jdbcType=VARCHAR}
+	SPAY_SERIAL_NUMBER=#{spaySerialNumber,jdbcType=VARCHAR}
+	SREADER_SERIAL_NUMBER=#{sreaderSerialNumber,jdbcType=VARCHAR}
+	SUSED_COUPON_CODE=#{susedCouponCode,jdbcType=VARCHAR}
+	SUSED_COUPON_ID=#{susedCouponId,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	THANDLER_TIME=#{thandlerTime,jdbcType=TIMESTAMP}
+	TORDER_TIME=#{torderTime,jdbcType=TIMESTAMP}
+	TPAY_COMPLETE_TIME=#{tpayCompleteTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <!--订单列表 -->
+    <select id="selectPageByDomainWhere" parameterType="com.cloud.cang.mgr.om.domain.OrderRecordDomain"
+            resultMap="resultEntityVo">
+
+        select A.*,smi.SNAME as MERCHANT_NAME
+        from OM_ORDER_RECORD AS A
+        LEFT JOIN sh_merchant_info AS SMI on A.SMERCHANT_ID=smi.ID
+        <include refid="Entity_Where_ClauseLike"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.id
+    </select>
+    <select id="queryTotalData" parameterType="com.cloud.cang.mgr.om.domain.OrderRecordDomain"
+            resultMap="resultEntityMoneyStaVo">
+        SELECT
+        sum(IFNULL(FTOTAL_AMOUNT,0)) FTOTAL_AMOUNT_STA ,
+        sum(IFNULL(FDISCOUNT_AMOUNT,0)) FDISCOUNT_AMOUNT_STA ,
+        sum(IFNULL(FFIRST_DISCOUNT_AMOUNT,0)) FFIRST_DISCOUNT_AMOUNT_STA ,
+        sum(IFNULL(FPROMOTION_DISCOUNT_AMOUNT,0)) FPROMOTION_DISCOUNT_AMOUNT_STA ,
+        sum(IFNULL(FCOUPON_DEDUCTION_AMOUNT,0)) FCOUPON_DEDUCTION_AMOUNT_STA ,
+        sum(IFNULL(FACTUAL_PAY_AMOUNT,0)) FACTUAL_PAY_AMOUNT_STA ,
+        sum(IFNULL(FACTUAL_REFUND_AMOUNT,0)) FACTUAL_REFUND_AMOUNT_STA
+        FROM OM_ORDER_RECORD A
+        LEFT JOIN SH_MERCHANT_INFO AS SMI ON A.SMERCHANT_ID=SMI.ID
+        <include refid="Entity_Where_ClauseLike"/>
+    </select>
+
+
+    <select id="selectSalesNumByDeviceIdAndCommodityId" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select sum(B.FORDER_COUNT)
+        from OM_ORDER_RECORD AS A
+        INNER JOIN OM_ORDER_COMMODITY AS B on A.ID=B.SORDER_ID
+        WHERE A.SDEVICE_ID=#{sdeviceId,jdbcType=VARCHAR}
+        AND B.SCOMMODITY_ID=#{scommodityId,jdbcType=VARCHAR}
+        AND A.ISTATUS=10
+        AND A.SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+    </select>
+    <select id="selectDownloadExcelData" parameterType="com.cloud.cang.mgr.om.domain.OrderRecordDomain"
+            resultType="java.util.HashMap">
+        SELECT
+        A.SMERCHANT_CODE,
+        SMI.SNAME MERCHANT_NAME,
+        A.SORDER_CODE,
+        A.SPAY_SERIAL_NUMBER,
+        A.SDEVICE_CODE,
+        A.SDEVICE_NAME,
+        A.SDEVICE_ADDRESS,
+        OOC.SCOMMODITY_CODE,
+        SCI.SNAME COMMODITY_NAME,
+        SCI.SBRAND_NAME,
+        SCI.STASTE,
+        SCI.ISPEC_WEIGHT,
+        SCI.SSPEC_UNIT,
+        SCI.SPACKAGE_UNIT,
+        OOC.FCOST_AMOUNT,
+        OOC.FCOMMODITY_PRICE,
+        OOC.FORDER_COUNT,
+        OOC.FCOMMODITY_AMOUNT,
+        OOC.FDISCOUNT_AMOUNT,
+        OOC.FFIRST_DISCOUNT_AMOUNT,
+        OOC.FPROMOTION_DISCOUNT_AMOUNT,
+        OOC.FCOUPON_DEDUCTION_AMOUNT,
+        OOC.FACTUAL_AMOUNT,
+        OOC.FREFUND_COUNT,
+        OOC.FREFUND_AMOUNT,
+        A.SMEMBER_NAME,
+        A.FTOTAL_AMOUNT,
+        A.FDISCOUNT_AMOUNT ORDER_FDISCOUNT_AMOUNT,
+        A.FFIRST_DISCOUNT_AMOUNT ORDER_FFIRST_DISCOUNT_AMOUNT,
+        A.FPROMOTION_DISCOUNT_AMOUNT ORDER_FPROMOTION_DISCOUNT_AMOUNT,
+        A.FCOUPON_DEDUCTION_AMOUNT ORDER_FCOUPON_DEDUCTION_AMOUNT,
+        A.FACTUAL_PAY_AMOUNT,
+        A.FACTUAL_REFUND_AMOUNT,
+        A.TORDER_TIME,
+        A.ICHARGEBACK_WAY,
+        A.IPAY_TYPE,
+        A.ISTATUS,
+        A.TPAY_COMPLETE_TIME,
+        A.SPAY_FAILURE_REASON,
+        A.IIS_DISMANTLING,
+        A.SDISMANTLING_CODE,
+        A.IDISMANTLING_TYPE,
+        SCI.SSHORT_NAME
+        from OM_ORDER_RECORD AS A
+        LEFT JOIN sh_merchant_info AS SMI on A.SMERCHANT_ID=smi.ID
+        LEFT JOIN om_order_commodity OOC ON A.ID =OOC.SORDER_ID
+        LEFT JOIN SP_COMMODITY_INFO SCI ON OOC.SCOMMODITY_ID =SCI.ID
+        <include refid="Entity_Where_ClauseLike"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.TORDER_TIME DESC,
+        A.ID,
+        OOC.TADD_TIME DESC,
+        OOC.ID
+    </select>
+</mapper>

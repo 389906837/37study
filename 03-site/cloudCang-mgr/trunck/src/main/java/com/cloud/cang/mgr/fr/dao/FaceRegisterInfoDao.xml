@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.fr.dao.FaceRegisterInfoDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.fr.FaceRegisterInfo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IBIND_PAY_TYPE" property="ibindPayType" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR"/>
+        <result column="SFACE_CODE" property="sfaceCode" jdbcType="VARCHAR"/>
+        <result column="SFACE_TOKEN" property="sfaceToken" jdbcType="VARCHAR"/>
+        <result column="SGROUP_ID" property="sgroupId" jdbcType="VARCHAR"/>
+        <result column="SHEIGHT" property="sheight" jdbcType="VARCHAR"/>
+        <result column="SLEFT" property="sleft" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SRATATION" property="sratation" jdbcType="VARCHAR"/>
+        <result column="SREGISTER_FACE_ADDRESS" property="sregisterFaceAddress" jdbcType="VARCHAR"/>
+        <result column="SREG_AI_CODE" property="sregAiCode" jdbcType="VARCHAR"/>
+        <result column="SREG_IP" property="sregIp" jdbcType="VARCHAR"/>
+        <result column="STOP" property="stop" jdbcType="VARCHAR"/>
+        <result column="SUSER_INFO" property="suserInfo" jdbcType="VARCHAR"/>
+        <result column="SVERSION" property="sversion" jdbcType="VARCHAR"/>
+        <result column="SWIDTH" property="swidth" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TBIND_TIME" property="tbindTime" jdbcType="TIMESTAMP"/>
+        <result column="TDELETE_TIME" property="tdeleteTime" jdbcType="TIMESTAMP"/>
+        <result column="TREGISTER_TIME" property="tregisterTime" jdbcType="TIMESTAMP"/>
+        <result column="TUNBIND_TIME" property="tunbindTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+
+        ID,IBIND_PAY_TYPE,IDEL_FLAG,ITYPE,SDEVICE_ADDRESS,SFACE_CODE,SFACE_TOKEN,SGROUP_ID,SHEIGHT,SLEFT,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SMERCHANT_CODE,SMERCHANT_ID,SRATATION,SREGISTER_FACE_ADDRESS,SREG_AI_CODE,SREG_IP,STOP,SUSER_INFO,SVERSION,SWIDTH,TADD_TIME,TBIND_TIME,TDELETE_TIME,TREGISTER_TIME,TUNBIND_TIME,TUPDATE_TIME
+
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="ibindPayType != null  ">
+                    and IBIND_PAY_TYPE=#{ibindPayType,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                    and SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="sfaceCode != null and  sfaceCode != ''  ">
+                    and SFACE_CODE=#{sfaceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sfaceToken != null and  sfaceToken != ''  ">
+                    and SFACE_TOKEN=#{sfaceToken,jdbcType=VARCHAR}
+                </if>
+                <if test="sgroupId != null and  sgroupId != ''  ">
+                    and SGROUP_ID=#{sgroupId,jdbcType=VARCHAR}
+                </if>
+                <if test="sheight != null and  sheight != ''  ">
+                    and SHEIGHT=#{sheight,jdbcType=VARCHAR}
+                </if>
+                <if test="sleft != null and  sleft != ''  ">
+                    and SLEFT=#{sleft,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberCode != null and  smemberCode != ''  ">
+                    and SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberId != null and  smemberId != ''  ">
+                    and SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberName != null and  smemberName != ''  ">
+                    and SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sratation != null and  sratation != ''  ">
+                    and SRATATION=#{sratation,jdbcType=VARCHAR}
+                </if>
+                <if test="sregisterFaceAddress != null and  sregisterFaceAddress != ''  ">
+                    and SREGISTER_FACE_ADDRESS=#{sregisterFaceAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="sregAiCode != null and  sregAiCode != ''  ">
+                    and SREG_AI_CODE=#{sregAiCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sregIp != null and  sregIp != ''  ">
+                    and SREG_IP=#{sregIp,jdbcType=VARCHAR}
+                </if>
+                <if test="stop != null and  stop != ''  ">
+                    and STOP=#{stop,jdbcType=VARCHAR}
+                </if>
+                <if test="suserInfo != null and  suserInfo != ''  ">
+                    and SUSER_INFO=#{suserInfo,jdbcType=VARCHAR}
+                </if>
+                <if test="sversion != null and  sversion != ''  ">
+                    and SVERSION=#{sversion,jdbcType=VARCHAR}
+                </if>
+                <if test="swidth != null and  swidth != ''  ">
+                    and SWIDTH=#{swidth,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tbindTime != null  ">
+                    and TBIND_TIME=#{tbindTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tdeleteTime != null  ">
+                    and TDELETE_TIME=#{tdeleteTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tregisterTime != null  ">
+                    and TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tunbindTime != null  ">
+                    and TUNBIND_TIME=#{tunbindTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from FR_FACE_REGISTER_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.fr.FaceRegisterInfo">
+        select
+        <include refid="column_List"/>
+        from FR_FACE_REGISTER_INFO
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from FR_FACE_REGISTER_INFO
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+
+        delete from FR_FACE_REGISTER_INFO
+        where ID = #{id,jdbcType=VARCHAR}
+
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM FR_FACE_REGISTER_INFO where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.fr.FaceRegisterInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into FR_FACE_REGISTER_INFO (ID,IBIND_PAY_TYPE,IDEL_FLAG,ITYPE,SDEVICE_ADDRESS,SFACE_CODE,SFACE_TOKEN,SGROUP_ID,SHEIGHT,SLEFT,SMEMBER_CODE,SMEMBER_ID,SMEMBER_NAME,SMERCHANT_CODE,SMERCHANT_ID,SRATATION,SREGISTER_FACE_ADDRESS,SREG_AI_CODE,SREG_IP,STOP,SUSER_INFO,SVERSION,SWIDTH,TADD_TIME,TBIND_TIME,TDELETE_TIME,TREGISTER_TIME,TUNBIND_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{ibindPayType,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{sdeviceAddress,jdbcType=VARCHAR},#{sfaceCode,jdbcType=VARCHAR},#{sfaceToken,jdbcType=VARCHAR},#{sgroupId,jdbcType=VARCHAR},#{sheight,jdbcType=VARCHAR},#{sleft,jdbcType=VARCHAR},#{smemberCode,jdbcType=VARCHAR},#{smemberId,jdbcType=VARCHAR},#{smemberName,jdbcType=VARCHAR},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sratation,jdbcType=VARCHAR},#{sregisterFaceAddress,jdbcType=VARCHAR},#{sregAiCode,jdbcType=VARCHAR},#{sregIp,jdbcType=VARCHAR},#{stop,jdbcType=VARCHAR},#{suserInfo,jdbcType=VARCHAR},#{sversion,jdbcType=VARCHAR},#{swidth,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tbindTime,jdbcType=TIMESTAMP},#{tdeleteTime,jdbcType=TIMESTAMP},#{tregisterTime,jdbcType=TIMESTAMP},#{tunbindTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.fr.FaceRegisterInfo">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into FR_FACE_REGISTER_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="ibindPayType">
+                IBIND_PAY_TYPE,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="itype">
+                ITYPE,
+            </if>
+            <if test="sdeviceAddress">
+                SDEVICE_ADDRESS,
+            </if>
+            <if test="sfaceCode">
+                SFACE_CODE,
+            </if>
+            <if test="sfaceToken">
+                SFACE_TOKEN,
+            </if>
+            <if test="sgroupId">
+                SGROUP_ID,
+            </if>
+            <if test="sheight">
+                SHEIGHT,
+            </if>
+            <if test="sleft">
+                SLEFT,
+            </if>
+            <if test="smemberCode">
+                SMEMBER_CODE,
+            </if>
+            <if test="smemberId">
+                SMEMBER_ID,
+            </if>
+            <if test="smemberName">
+                SMEMBER_NAME,
+            </if>
+            <if test="smerchantCode">
+                SMERCHANT_CODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="sratation">
+                SRATATION,
+            </if>
+            <if test="sregisterFaceAddress">
+                SREGISTER_FACE_ADDRESS,
+            </if>
+            <if test="sregAiCode">
+                SREG_AI_CODE,
+            </if>
+            <if test="sregIp">
+                SREG_IP,
+            </if>
+            <if test="stop">
+                STOP,
+            </if>
+            <if test="suserInfo">
+                SUSER_INFO,
+            </if>
+            <if test="sversion">
+                SVERSION,
+            </if>
+            <if test="swidth">
+                SWIDTH,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tbindTime">
+                TBIND_TIME,
+            </if>
+            <if test="tdeleteTime">
+                TDELETE_TIME,
+            </if>
+            <if test="tregisterTime">
+                TREGISTER_TIME,
+            </if>
+            <if test="tunbindTime">
+                TUNBIND_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="ibindPayType != null  ">
+                #{ibindPayType,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                #{sdeviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sfaceCode != null and  sfaceCode != ''  ">
+                #{sfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sfaceToken != null and  sfaceToken != ''  ">
+                #{sfaceToken,jdbcType=VARCHAR},
+            </if>
+            <if test="sgroupId != null and  sgroupId != ''  ">
+                #{sgroupId,jdbcType=VARCHAR},
+            </if>
+            <if test="sheight != null and  sheight != ''  ">
+                #{sheight,jdbcType=VARCHAR},
+            </if>
+            <if test="sleft != null and  sleft != ''  ">
+                #{sleft,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberCode != null and  smemberCode != ''  ">
+                #{smemberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberId != null and  smemberId != ''  ">
+                #{smemberId,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberName != null and  smemberName != ''  ">
+                #{smemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sratation != null and  sratation != ''  ">
+                #{sratation,jdbcType=VARCHAR},
+            </if>
+            <if test="sregisterFaceAddress != null and  sregisterFaceAddress != ''  ">
+                #{sregisterFaceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sregAiCode != null and  sregAiCode != ''  ">
+                #{sregAiCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sregIp != null and  sregIp != ''  ">
+                #{sregIp,jdbcType=VARCHAR},
+            </if>
+            <if test="stop != null and  stop != ''  ">
+                #{stop,jdbcType=VARCHAR},
+            </if>
+            <if test="suserInfo != null and  suserInfo != ''  ">
+                #{suserInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="sversion != null and  sversion != ''  ">
+                #{sversion,jdbcType=VARCHAR},
+            </if>
+            <if test="swidth != null and  swidth != ''  ">
+                #{swidth,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tbindTime != null  ">
+                #{tbindTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tdeleteTime != null  ">
+                #{tdeleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tregisterTime != null  ">
+                #{tregisterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tunbindTime != null  ">
+                #{tunbindTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.fr.FaceRegisterInfo">
+        update FR_FACE_REGISTER_INFO
+        <set>
+            <if test="ibindPayType != null  ">
+                IBIND_PAY_TYPE=#{ibindPayType,jdbcType=NUMERIC},
+            </if>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+            </if>
+            <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sfaceCode != null and  sfaceCode != ''  ">
+                SFACE_CODE=#{sfaceCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sfaceToken != null and  sfaceToken != ''  ">
+                SFACE_TOKEN=#{sfaceToken,jdbcType=VARCHAR},
+            </if>
+            <if test="sgroupId != null and  sgroupId != ''  ">
+                SGROUP_ID=#{sgroupId,jdbcType=VARCHAR},
+            </if>
+            <if test="sheight != null and  sheight != ''  ">
+                SHEIGHT=#{sheight,jdbcType=VARCHAR},
+            </if>
+            <if test="sleft != null and  sleft != ''  ">
+                SLEFT=#{sleft,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberCode != null and  smemberCode != ''  ">
+                SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberId != null and  smemberId != ''  ">
+                SMEMBER_ID=#{smemberId,jdbcType=VARCHAR},
+            </if>
+            <if test="smemberName != null and  smemberName != ''  ">
+                SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sratation != null and  sratation != ''  ">
+                SRATATION=#{sratation,jdbcType=VARCHAR},
+            </if>
+            <if test="sregisterFaceAddress != null and  sregisterFaceAddress != ''  ">
+                SREGISTER_FACE_ADDRESS=#{sregisterFaceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sregAiCode != null and  sregAiCode != ''  ">
+                SREG_AI_CODE=#{sregAiCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sregIp != null and  sregIp != ''  ">
+                SREG_IP=#{sregIp,jdbcType=VARCHAR},
+            </if>
+            <if test="stop != null and  stop != ''  ">
+                STOP=#{stop,jdbcType=VARCHAR},
+            </if>
+            <if test="suserInfo != null and  suserInfo != ''  ">
+                SUSER_INFO=#{suserInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="sversion != null and  sversion != ''  ">
+                SVERSION=#{sversion,jdbcType=VARCHAR},
+            </if>
+            <if test="swidth != null and  swidth != ''  ">
+                SWIDTH=#{swidth,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tbindTime != null  ">
+                TBIND_TIME=#{tbindTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tdeleteTime != null  ">
+                TDELETE_TIME=#{tdeleteTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tregisterTime != null  ">
+                TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tunbindTime != null  ">
+                TUNBIND_TIME=#{tunbindTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.fr.FaceRegisterInfo">
+        update FR_FACE_REGISTER_INFO
+        set 
+        		IBIND_PAY_TYPE=#{ibindPayType,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+        		,SFACE_CODE=#{sfaceCode,jdbcType=VARCHAR}
+        		,SFACE_TOKEN=#{sfaceToken,jdbcType=VARCHAR}
+        		,SGROUP_ID=#{sgroupId,jdbcType=VARCHAR}
+        		,SHEIGHT=#{sheight,jdbcType=VARCHAR}
+        		,SLEFT=#{sleft,jdbcType=VARCHAR}
+        		,SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+        		,SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+        		,SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SRATATION=#{sratation,jdbcType=VARCHAR}
+        		,SREGISTER_FACE_ADDRESS=#{sregisterFaceAddress,jdbcType=VARCHAR}
+        		,SREG_AI_CODE=#{sregAiCode,jdbcType=VARCHAR}
+        		,SREG_IP=#{sregIp,jdbcType=VARCHAR}
+        		,STOP=#{stop,jdbcType=VARCHAR}
+        		,SUSER_INFO=#{suserInfo,jdbcType=VARCHAR}
+        		,SVERSION=#{sversion,jdbcType=VARCHAR}
+        		,SWIDTH=#{swidth,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TBIND_TIME=#{tbindTime,jdbcType=TIMESTAMP}
+        		,TDELETE_TIME=#{tdeleteTime,jdbcType=TIMESTAMP}
+        		,TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+        		,TUNBIND_TIME=#{tunbindTime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+    <!--新增SQL开始-->
+    <resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.fr.domain.FaceRegisterInfoDomain">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IBIND_PAY_TYPE" property="ibindPayType" jdbcType="NUMERIC"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ITYPE" property="itype" jdbcType="NUMERIC"/>
+        <result column="SDEVICE_ADDRESS" property="sdeviceAddress" jdbcType="VARCHAR"/>
+        <result column="SFACE_CODE" property="sfaceCode" jdbcType="VARCHAR"/>
+        <result column="SFACE_TOKEN" property="sfaceToken" jdbcType="VARCHAR"/>
+        <result column="SGROUP_ID" property="sgroupId" jdbcType="VARCHAR"/>
+        <result column="SHEIGHT" property="sheight" jdbcType="VARCHAR"/>
+        <result column="SLEFT" property="sleft" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_CODE" property="smemberCode" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_ID" property="smemberId" jdbcType="VARCHAR"/>
+        <result column="SMEMBER_NAME" property="smemberName" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SRATATION" property="sratation" jdbcType="VARCHAR"/>
+        <result column="SREGISTER_FACE_ADDRESS" property="sregisterFaceAddress" jdbcType="VARCHAR"/>
+        <result column="SREG_AI_CODE" property="sregAiCode" jdbcType="VARCHAR"/>
+        <result column="SREG_IP" property="sregIp" jdbcType="VARCHAR"/>
+        <result column="STOP" property="stop" jdbcType="VARCHAR"/>
+        <result column="SUSER_INFO" property="suserInfo" jdbcType="VARCHAR"/>
+        <result column="SWIDTH" property="swidth" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TBIND_TIME" property="tbindTime" jdbcType="TIMESTAMP"/>
+        <result column="TDELETE_TIME" property="tdeleteTime" jdbcType="TIMESTAMP"/>
+        <result column="TREGISTER_TIME" property="tregisterTime" jdbcType="TIMESTAMP"/>
+        <result column="TUNBIND_TIME" property="tunbindTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+        <result column="deviceCode" property="deviceCode" jdbcType="VARCHAR"/>
+        <result column="deviceName" property="deviceName" jdbcType="VARCHAR"/>
+        <result column="merchantName" property="merchantName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and B.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="ibindPayType != null  ">
+                    and B.IBIND_PAY_TYPE=#{ibindPayType,jdbcType=NUMERIC}
+                </if>
+                <if test="idelFlag != null  ">
+                    and B.IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="itype != null  ">
+                    and B.ITYPE=#{itype,jdbcType=NUMERIC}
+                </if>
+                <if test="sdeviceAddress != null and  sdeviceAddress != ''  ">
+                    and B.SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="sfaceCode != null and  sfaceCode != ''  ">
+                    and B.SFACE_CODE like CONCAT('%',#{sfaceCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="sfaceToken != null and  sfaceToken != ''  ">
+                    and B.SFACE_TOKEN=#{sfaceToken,jdbcType=VARCHAR}
+                </if>
+                <if test="sgroupId != null and  sgroupId != ''  ">
+                    and B.SGROUP_ID=#{sgroupId,jdbcType=VARCHAR}
+                </if>
+                <if test="sheight != null and  sheight != ''  ">
+                    and B.SHEIGHT=#{sheight,jdbcType=VARCHAR}
+                </if>
+                <if test="sleft != null and  sleft != ''  ">
+                    and B.SLEFT=#{sleft,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberCode != null and  smemberCode != ''  ">
+                    and B.SMEMBER_CODE like CONCAT('%',#{smemberCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smemberId != null and  smemberId != ''  ">
+                    and B.SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+                </if>
+                <if test="smemberName != null and  smemberName != ''  ">
+                    and B.SMEMBER_NAME like CONCAT('%',#{smemberName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantCode != null and  smerchantCode != ''  ">
+                    and B.SMERCHANT_CODE like CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and B.SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sratation != null and  sratation != ''  ">
+                    and B.SRATATION=#{sratation,jdbcType=VARCHAR}
+                </if>
+                <if test="sregisterFaceAddress != null and  sregisterFaceAddress != ''  ">
+                    and B.SREGISTER_FACE_ADDRESS=#{sregisterFaceAddress,jdbcType=VARCHAR}
+                </if>
+                <if test="sregAiCode != null and  sregAiCode != ''  ">
+                    and B.SREG_AI_CODE=#{sregAiCode,jdbcType=VARCHAR}
+                </if>
+                <if test="sregIp != null and  sregIp != ''  ">
+                    and B.SREG_IP=#{sregIp,jdbcType=VARCHAR}
+                </if>
+                <if test="stop != null and  stop != ''  ">
+                    and B.STOP=#{stop,jdbcType=VARCHAR}
+                </if>
+                <if test="suserInfo != null and  suserInfo != ''  ">
+                    and B.SUSER_INFO=#{suserInfo,jdbcType=VARCHAR}
+                </if>
+                <if test="swidth != null and  swidth != ''  ">
+                    and B.SWIDTH=#{swidth,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and B.TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tbindTime != null  ">
+                    and B.TBIND_TIME=#{tbindTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tdeleteTime != null  ">
+                    and B.TDELETE_TIME=#{tdeleteTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tregisterTime != null  ">
+                    and B.TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tunbindTime != null  ">
+                    and B.TUNBIND_TIME=#{tunbindTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and B.TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="merchantName != null and merchantName != ''  ">
+                    and A.SNAME like CONCAT('%',#{merchantName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="deviceName != null and deviceName != ''  ">
+                    and C.SNAME like CONCAT('%',#{deviceName,jdbcType=VARCHAR},'%')
+                </if>
+                <if test="deviceCode != null and deviceCode != ''  ">
+                    and C.SCODE=#{deviceCode,jdbcType=VARCHAR}
+                </if>
+                <if test="queryCondition != null and  queryCondition != ''  ">
+                    and ${queryCondition}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!--人脸注册信息分页查询-->
+    <select id="selectByDomainWhere" resultMap="resultEntityDomain"
+            parameterType="com.cloud.cang.mgr.fr.vo.FaceRegisterInfoVo">
+        select
+        B.ID,B.IBIND_PAY_TYPE,B.IDEL_FLAG,B.ITYPE,B.SDEVICE_ADDRESS,B.SFACE_CODE,B.SFACE_TOKEN,B.SGROUP_ID,B.SHEIGHT,B.SLEFT,B.SMEMBER_CODE,
+        B.SMEMBER_ID,B.SMEMBER_NAME,B.SMERCHANT_CODE,B.SMERCHANT_ID,B.SRATATION,B.SREGISTER_FACE_ADDRESS,B.SREG_AI_CODE,B.SREG_IP,B.STOP,
+        B.SUSER_INFO,B.SWIDTH,B.TADD_TIME,B.TBIND_TIME,B.TDELETE_TIME,B.TREGISTER_TIME,B.TUNBIND_TIME,B.TUPDATE_TIME,
+        C.SCODE as deviceCode,C.SNAME as deviceName,
+        A.SNAME as merchantName
+        from FR_FACE_REGISTER_INFO B
+        INNER JOIN SB_DEVICE_INFO C ON B.SREG_AI_CODE = C.SAI_CODE
+        INNER JOIN SH_MERCHANT_INFO A ON B.SMERCHANT_ID = A.ID
+        <include refid="Entity_Where_Clause_Like"/>
+        order by
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        B.TADD_TIME desc
+    </select>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IBIND_PAY_TYPE=#{ibindPayType,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	SDEVICE_ADDRESS=#{sdeviceAddress,jdbcType=VARCHAR}
+	SFACE_CODE=#{sfaceCode,jdbcType=VARCHAR}
+	SFACE_TOKEN=#{sfaceToken,jdbcType=VARCHAR}
+	SGROUP_ID=#{sgroupId,jdbcType=VARCHAR}
+	SHEIGHT=#{sheight,jdbcType=VARCHAR}
+	SLEFT=#{sleft,jdbcType=VARCHAR}
+	SMEMBER_CODE=#{smemberCode,jdbcType=VARCHAR}
+	SMEMBER_ID=#{smemberId,jdbcType=VARCHAR}
+	SMEMBER_NAME=#{smemberName,jdbcType=VARCHAR}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SRATATION=#{sratation,jdbcType=VARCHAR}
+	SREGISTER_FACE_ADDRESS=#{sregisterFaceAddress,jdbcType=VARCHAR}
+	SREG_AI_CODE=#{sregAiCode,jdbcType=VARCHAR}
+	SREG_IP=#{sregIp,jdbcType=VARCHAR}
+	STOP=#{stop,jdbcType=VARCHAR}
+	SUSER_INFO=#{suserInfo,jdbcType=VARCHAR}
+	SVERSION=#{sversion,jdbcType=VARCHAR}
+	SWIDTH=#{swidth,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TBIND_TIME=#{tbindTime,jdbcType=TIMESTAMP}
+	TDELETE_TIME=#{tdeleteTime,jdbcType=TIMESTAMP}
+	TREGISTER_TIME=#{tregisterTime,jdbcType=TIMESTAMP}
+	TUNBIND_TIME=#{tunbindTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+    <select id="selectByYSSelectTive" parameterType="com.cloud.cang.model.fr.FaceRegisterInfo"  resultMap="resultEntity">
+        select
+        <include refid="column_List"/>
+        from FR_FACE_REGISTER_INFO
+        <include refid="Entity_Where_Clause"/>
+    </select>
+</mapper>

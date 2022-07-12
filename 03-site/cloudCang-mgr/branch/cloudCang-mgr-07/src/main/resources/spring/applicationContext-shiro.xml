@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <description>apache shiro配置</description>
+    <!-- shiro缓存配置 -->
+    <bean id="shiroCache" class="com.cloud.cang.security.core.ShiroRedisCache">
+        <property name="cached" ref="cacheUtils"/>
+        <property name="name" value="shiro-"/>
+    </bean>
+    <bean id="shiroCacheManager" class="com.cloud.cang.security.core.ShiroRedisCacheManager">
+        <property name="shiroRedisCache" ref="shiroCache"/>
+    </bean>
+
+    <!-- session管理器 -->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.ServletContainerSessionManager"/>
+    <!-- 默认过滤定义 -->
+    <bean id="shiroChainUpdate" class="com.cloud.cang.security.listener.ShiroChainUpdate">
+        <property name="filterChainDefinitions">
+            <value>
+                /Kaptcha= anon
+                /favicon.ico = anon
+                /resources/** = anon
+                /common/error/** = anon
+                /mgr/getMsgCode = anon
+                /mgr/unauthorized = anon
+                /face/register = anon
+                /face/detect = anon
+                /gesture/recognition = anon
+                /traffic/statistics = anon
+                /traffic/dynamicStatistics = anon
+                /init/cached = anon
+                /mgr/login = authc
+                /mgr/logout* = logout
+                /mgr/main=user
+            </value>
+        </property>
+        <property name="alluserLogin">
+            <value>true</value>
+        </property>
+    </bean>
+    <!-- 并发登录控制 -->
+    <bean id="concurrentLoginControlFilter" class="com.cloud.cang.security.filter.ConcurrentLoginControlFilter">
+        <property name="cacheManager" ref="shiroCacheManager"/>
+        <property name="sessionRepository" ref="redisSessionRepository"></property>
+        <!-- 默认剔除前者 -->
+        <property name="kickoutAfter" value="false"/>
+        <!-- 地址 -->
+        <property name="kickoutUrl" value="${shiro.loginUrl}"/>
+
+    </bean>
+
+    <!-- 項目自定义的Realm -->
+    <bean id="custShiroRealm" class="com.cloud.cang.security.realm.ShiroDbRealm">
+        <property name="credentialsMatcher" ref="hashedCredentialsMatcher"/>
+        <property name="cacheManager" ref="shiroCacheManager"></property>
+    </bean>
+    <bean id="hashedCredentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="MD5"/>
+        <property name="storedCredentialsHexEncoded" value="true"/>
+        <property name="hashIterations" value="1"/>
+    </bean>
+    <bean id="modelAuthricator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+        <property name="authenticationListeners">
+            <list>
+                <bean class="com.cloud.cang.security.listener.LoginListener"></bean>
+            </list>
+        </property>
+        <property name="realms">
+            <list>
+                <!-- 項目自定义的Realm -->
+                <ref bean="custShiroRealm"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="modelAuthorizer" class="org.apache.shiro.authz.ModularRealmAuthorizer">
+        <property name="realms">
+            <list>
+                <!-- 項目自定义的Realm -->
+                <ref bean="custShiroRealm"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="firstSuccess" class="org.apache.shiro.authc.pam.FirstSuccessfulStrategy"/>
+
+    <!-- 权限管理器 -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+
+        <!-- session 管理器 -->
+        <property name="sessionManager" ref="sessionManager"/>
+        <!-- 缓存管理器 -->
+        <property name="cacheManager" ref="shiroCacheManager"/>
+        <!-- 数据库认证的实现 org.springrain.frame.shiro.ShiroDbRealm -->
+        <property name="authenticator" ref="modelAuthricator"/>
+        <!-- 数据库认证的实现 权限用的 -->
+        <property name="authorizer" ref="modelAuthorizer"/>
+    </bean>
+    <bean id="captchaAuthen" class="com.cloud.cang.mgr.common.filter.CaptchaFormAuthenticationFilter"/>
+    <bean id="perms" class="com.cloud.cang.security.filter.PermissionsAuthorizationFilter"></bean>
+    <bean id="userFilter" class="com.cloud.cang.security.filter.UserFilter"/>
+    <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/mgr/main"></property>
+    </bean>
+    <!-- Shiro Filter -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/mgr/login"/><!-- ${shiro.loginUrl} -->
+        <property name="successUrl" value="/mgr/main"/>
+        <property name="unauthorizedUrl" value="/mgr/unauthorized"/>
+        <property name="filters">
+            <map>
+                <entry key="authc" value-ref="captchaAuthen"/>
+                <entry key="user" value-ref="userFilter"/>
+                <entry key="perms" value-ref="perms"/>
+                <entry key="concurrentlogin" value-ref="concurrentLoginControlFilter"/>
+            </map>
+        </property>
+    </bean>
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!-- AOP式方法级权限检查 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+</beans>

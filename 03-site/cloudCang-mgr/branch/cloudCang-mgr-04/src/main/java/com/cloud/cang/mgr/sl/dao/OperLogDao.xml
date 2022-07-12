@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sl.dao.OperLogDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sl.OperLog">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="IACTION" property="iaction" jdbcType="NUMERIC" />
+		<result column="SACTIONPATH" property="sactionpath" jdbcType="VARCHAR" />
+		<result column="SCONTENT" property="scontent" jdbcType="VARCHAR" />
+		<result column="SIP" property="sip" jdbcType="VARCHAR" />
+		<result column="SREAL_NAME" property="srealName" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SSOURCE_SYSTEM" property="ssourceSystem" jdbcType="VARCHAR" />
+		<result column="SUER_ID" property="suerId" jdbcType="VARCHAR" />
+		<result column="SUSERNAME" property="susername" jdbcType="VARCHAR" />
+		<result column="TOPERATE_DATE" property="toperateDate" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,IACTION,SACTIONPATH,SCONTENT,SIP,SREAL_NAME,SREMARK,SSOURCE_SYSTEM,SUER_ID,SUSERNAME,TOPERATE_DATE
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="iaction != null  ">
+               and  IACTION=#{iaction,jdbcType=NUMERIC}
+           	</if>
+			<if test="sactionpath != null and  sactionpath != ''  ">
+               and  SACTIONPATH LIKE CONCAT('%',#{sactionpath},'%')
+           	</if>
+			  <if test="ssourceSystem != null and  ssourceSystem != ''  ">
+				  and  SSOURCE_SYSTEM LIKE CONCAT('%',#{ssourceSystem},'%')
+			  </if>
+			<if test="scontent != null and  scontent != ''  ">
+               and  SCONTENT LIKE CONCAT('%',#{scontent},'%')
+			</if>
+			<if test="sip != null and  sip != ''  ">
+               and  SIP=#{sip,jdbcType=VARCHAR}
+           	</if>
+			<if test="srealName != null and  srealName != ''  ">
+               and  SREAL_NAME LIKE CONCAT('%',#{srealName},'%')
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="suerId != null and  suerId != ''  ">
+               and  SUER_ID=#{suerId,jdbcType=VARCHAR}
+           	</if>
+			<if test="susername != null and  susername != ''  ">
+               and  SUSERNAME LIKE CONCAT('%',#{susername},'%')
+           	</if>
+			<if test="toperateStartDate != null ">
+			   and  TOPERATE_DATE&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="toperateEndDate != null ">
+			   and  TOPERATE_DATE&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+			</if>
+			  <if test="condition != null and  condition != ''  ">
+				  and ${condition}
+			  </if>
+          </trim>
+        </where>
+    </sql>
+	<sql id="Entity_Where_Clause_Like">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and SOL.ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="iaction != null  ">
+               and  SOL.IACTION=#{iaction,jdbcType=NUMERIC}
+           	</if>
+			<if test="sactionpath != null and  sactionpath != ''  ">
+               and  SOL.SACTIONPATH LIKE CONCAT('%',#{sactionpath},'%')
+           	</if>
+			  <if test="ssourceSystem != null and  ssourceSystem != ''  ">
+				  and  SOL.SSOURCE_SYSTEM LIKE CONCAT('%',#{ssourceSystem},'%')
+			  </if>
+			<if test="scontent != null and  scontent != ''  ">
+               and  SOL.SCONTENT LIKE CONCAT('%',#{scontent},'%')
+			</if>
+			<if test="sip != null and  sip != ''  ">
+               and  SOL.SIP=#{sip,jdbcType=VARCHAR}
+           	</if>
+			<if test="srealName != null and  srealName != ''  ">
+               and  SOL.SREAL_NAME LIKE CONCAT('%',#{srealName},'%')
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SOL.SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="suerId != null and  suerId != ''  ">
+               and  SOL.SUER_ID=#{suerId,jdbcType=VARCHAR}
+           	</if>
+			<if test="susername != null and  susername != ''  ">
+               and  SOL.SUSERNAME LIKE CONCAT('%',#{susername},'%')
+           	</if>
+			<if test="toperateStartDate != null ">
+			   and  SOL.TOPERATE_DATE&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+			</if>
+			<if test="toperateEndDate != null ">
+			   and  SOL.TOPERATE_DATE&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+			</if>
+			  <if test="condition != null and  condition != ''  ">
+				  and ${condition}
+			  </if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SL_OPER_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sl.OperLog">
+        select
+        <include refid="column_List" />
+        from SL_OPER_LOG
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SL_OPER_LOG
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SL_OPER_LOG
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SL_OPER_LOG where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sl.OperLog">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SL_OPER_LOG (ID,IACTION,SACTIONPATH,SCONTENT,SIP,SREAL_NAME,SREMARK,SSOURCE_SYSTEM,SUER_ID,SUSERNAME,TOPERATE_DATE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{iaction,jdbcType=NUMERIC},#{sactionpath,jdbcType=VARCHAR},#{scontent,jdbcType=VARCHAR},#{sip,jdbcType=VARCHAR},#{srealName,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{ssourceSystem,jdbcType=VARCHAR},#{suerId,jdbcType=VARCHAR},#{susername,jdbcType=VARCHAR},#{toperateDate,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sl.OperLog">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SL_OPER_LOG
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="iaction">
+               IACTION,
+           	</if>
+			<if test="sactionpath">
+               SACTIONPATH,
+           	</if>
+			<if test="scontent">
+               SCONTENT,
+           	</if>
+			<if test="sip">
+               SIP,
+           	</if>
+			<if test="srealName">
+               SREAL_NAME,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="ssourceSystem">
+               SSOURCE_SYSTEM,
+           	</if>
+			<if test="suerId">
+               SUER_ID,
+           	</if>
+			<if test="susername">
+               SUSERNAME,
+           	</if>
+			<if test="toperateDate">
+               TOPERATE_DATE,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="iaction != null  ">
+                #{iaction,jdbcType=NUMERIC},
+           	</if>
+			<if test="sactionpath != null and  sactionpath != ''  ">
+                #{sactionpath,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                #{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="sip != null and  sip != ''  ">
+                #{sip,jdbcType=VARCHAR},
+           	</if>
+			<if test="srealName != null and  srealName != ''  ">
+                #{srealName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssourceSystem != null and  ssourceSystem != ''  ">
+                #{ssourceSystem,jdbcType=VARCHAR},
+           	</if>
+			<if test="suerId != null and  suerId != ''  ">
+                #{suerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="susername != null and  susername != ''  ">
+                #{susername,jdbcType=VARCHAR},
+           	</if>
+			<if test="toperateDate != null  ">
+                #{toperateDate,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sl.OperLog">
+        update SL_OPER_LOG
+        <set>
+			<if test="iaction != null  ">
+                IACTION=#{iaction,jdbcType=NUMERIC},
+           	</if>
+			<if test="sactionpath != null and  sactionpath != ''  ">
+                SACTIONPATH=#{sactionpath,jdbcType=VARCHAR},
+           	</if>
+			<if test="scontent != null and  scontent != ''  ">
+                SCONTENT=#{scontent,jdbcType=VARCHAR},
+           	</if>
+			<if test="sip != null and  sip != ''  ">
+                SIP=#{sip,jdbcType=VARCHAR},
+           	</if>
+			<if test="srealName != null and  srealName != ''  ">
+                SREAL_NAME=#{srealName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssourceSystem != null and  ssourceSystem != ''  ">
+                SSOURCE_SYSTEM=#{ssourceSystem,jdbcType=VARCHAR},
+           	</if>
+			<if test="suerId != null and  suerId != ''  ">
+                SUER_ID=#{suerId,jdbcType=VARCHAR},
+           	</if>
+			<if test="susername != null and  susername != ''  ">
+                SUSERNAME=#{susername,jdbcType=VARCHAR},
+           	</if>
+			<if test="toperateDate != null  ">
+                TOPERATE_DATE=#{toperateDate,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sl.OperLog">
+        update SL_OPER_LOG
+        set 
+        		IACTION=#{iaction,jdbcType=NUMERIC}
+        		,SACTIONPATH=#{sactionpath,jdbcType=VARCHAR}
+        		,SCONTENT=#{scontent,jdbcType=VARCHAR}
+        		,SIP=#{sip,jdbcType=VARCHAR}
+        		,SREAL_NAME=#{srealName,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SSOURCE_SYSTEM=#{ssourceSystem,jdbcType=VARCHAR}
+        		,SUER_ID=#{suerId,jdbcType=VARCHAR}
+        		,SUSERNAME=#{susername,jdbcType=VARCHAR}
+        		,TOPERATE_DATE=#{toperateDate,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+
+	<!--新增操作日志查询-->
+	<select id="queryOperLog" resultMap="resultEntity" parameterType="com.cloud.cang.mgr.sl.vo.VistLogVo">
+		select
+		SOL.ID,SOL.IACTION,SOL.SACTIONPATH,SOL.SCONTENT,SOL.SIP,SOL.SREAL_NAME,SOL.SREMARK,SOL.SSOURCE_SYSTEM,SOL.SUER_ID,SOL.SUSERNAME,SOL.TOPERATE_DATE
+		from SL_OPER_LOG SOL
+		LEFT JOIN SYS_OPERATOR A ON  SOL.SUER_ID = A.ID
+		<include refid="Entity_Where_Clause_Like" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		SOL.TOPERATE_DATE DESC
+	</select>
+
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IACTION=#{iaction,jdbcType=NUMERIC}
+	SACTIONPATH=#{sactionpath,jdbcType=VARCHAR}
+	SCONTENT=#{scontent,jdbcType=VARCHAR}
+	SIP=#{sip,jdbcType=VARCHAR}
+	SREAL_NAME=#{srealName,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSOURCE_SYSTEM=#{ssourceSystem,jdbcType=VARCHAR}
+	SUER_ID=#{suerId,jdbcType=VARCHAR}
+	SUSERNAME=#{susername,jdbcType=VARCHAR}
+	TOPERATE_DATE=#{toperateDate,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

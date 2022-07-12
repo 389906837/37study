@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sh.dao.MerchantAttachDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sh.MerchantAttach">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC"/>
+        <result column="ISORT" property="isort" jdbcType="NUMERIC"/>
+        <result column="SADD_USER" property="saddUser" jdbcType="VARCHAR"/>
+        <result column="SATTACH_PATH" property="sattachPath" jdbcType="VARCHAR"/>
+        <result column="SCODE" property="scode" jdbcType="NUMERIC"/>
+        <result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR"/>
+        <result column="SNAME" property="sname" jdbcType="VARCHAR"/>
+        <result column="SREMARK" property="sremark" jdbcType="VARCHAR"/>
+        <result column="SUPDATE_USER" property="supdateUser" jdbcType="VARCHAR"/>
+        <result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP"/>
+        <result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="column_List">
+        <![CDATA[
+        ID,IDEL_FLAG,ISORT,SADD_USER,SATTACH_PATH,SCODE,SMERCHANT_ID,SNAME,SREMARK,SUPDATE_USER,TADD_TIME,TUPDATE_TIME
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="idelFlag != null  ">
+                    and IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+                </if>
+                <if test="isort != null  ">
+                    and ISORT=#{isort,jdbcType=NUMERIC}
+                </if>
+                <if test="saddUser != null and  saddUser != ''  ">
+                    and SADD_USER=#{saddUser,jdbcType=VARCHAR}
+                </if>
+                <if test="sattachPath != null and  sattachPath != ''  ">
+                    and SATTACH_PATH=#{sattachPath,jdbcType=VARCHAR}
+                </if>
+                <if test="scode != null  ">
+                    and SCODE=#{scode,jdbcType=NUMERIC}
+                </if>
+                <if test="smerchantId != null and  smerchantId != ''  ">
+                    and SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+                </if>
+                <if test="sname != null and  sname != ''  ">
+                    and SNAME=#{sname,jdbcType=VARCHAR}
+                </if>
+                <if test="sremark != null and  sremark != ''  ">
+                    and SREMARK=#{sremark,jdbcType=VARCHAR}
+                </if>
+                <if test="supdateUser != null and  supdateUser != ''  ">
+                    and SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+                </if>
+                <if test="taddTime != null  ">
+                    and TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+                </if>
+                <if test="tupdateTime != null  ">
+                    and TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_ATTACH
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sh.MerchantAttach">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_ATTACH
+        <include refid="Entity_Where_Clause"/>
+        order by
+        isort
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from SH_MERCHANT_ATTACH
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        <![CDATA[
+        delete from SH_MERCHANT_ATTACH
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM SH_MERCHANT_ATTACH where guid in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sh.MerchantAttach">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into SH_MERCHANT_ATTACH (ID,IDEL_FLAG,ISORT,SADD_USER,SATTACH_PATH,SCODE,SMERCHANT_ID,SNAME,SREMARK,SUPDATE_USER,TADD_TIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{idelFlag,jdbcType=NUMERIC},#{isort,jdbcType=NUMERIC},#{saddUser,jdbcType=VARCHAR},#{sattachPath,jdbcType=VARCHAR},#{scode,jdbcType=NUMERIC},#{smerchantId,jdbcType=VARCHAR},#{sname,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{supdateUser,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sh.MerchantAttach">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into SH_MERCHANT_ATTACH
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="idelFlag">
+                IDEL_FLAG,
+            </if>
+            <if test="isort">
+                ISORT,
+            </if>
+            <if test="saddUser">
+                SADD_USER,
+            </if>
+            <if test="sattachPath">
+                SATTACH_PATH,
+            </if>
+            <if test="scode">
+                SCODE,
+            </if>
+            <if test="smerchantId">
+                SMERCHANT_ID,
+            </if>
+            <if test="sname">
+                SNAME,
+            </if>
+            <if test="sremark">
+                SREMARK,
+            </if>
+            <if test="supdateUser">
+                SUPDATE_USER,
+            </if>
+            <if test="taddTime">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sattachPath != null and  sattachPath != ''  ">
+                #{sattachPath,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null  ">
+                #{scode,jdbcType=NUMERIC},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!--插入商户详情表-->
+    <insert id="insertAll" parameterType="com.cloud.cang.model.sh.MerchantAttach">
+        insert into SH_MERCHANT_ATTACH
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="idelFlag != null ">
+                IDEL_FLAG,
+            </if>
+            <if test="isort  != null and  isort != '' ">
+                ISORT,
+            </if>
+            <if test="saddUser  != null and  saddUser != '' ">
+                SADD_USER,
+            </if>
+            <if test="sattachPath != null and  sattachPath != '' ">
+                SATTACH_PATH,
+            </if>
+            <if test="scode  != null and  scode != ''">
+                SCODE,
+            </if>
+            <if test="smerchantId != null and  smerchantId != '' ">
+                SMERCHANT_ID,
+            </if>
+            <if test="sname != null and  sname != '' ">
+                SNAME,
+            </if>
+            <if test="sremark != null and  sremark != '' ">
+                SREMARK,
+            </if>
+            <if test="supdateUser != null and  supdateUser != '' ">
+                SUPDATE_USER,
+            </if>
+            <if test="taddTime != null and  taddTime != '' ">
+                TADD_TIME,
+            </if>
+            <if test="tupdateTime != null and  tupdateTime != '' ">
+                TUPDATE_TIME,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                #{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sattachPath != null and  sattachPath != ''  ">
+                #{sattachPath,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null  ">
+                #{scode,jdbcType=NUMERIC},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                #{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                #{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sh.MerchantAttach">
+        update SH_MERCHANT_ATTACH
+        <set>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sattachPath != null and  sattachPath != ''  ">
+                SATTACH_PATH=#{sattachPath,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null  ">
+                SCODE=#{scode,jdbcType=NUMERIC},
+            </if>
+            <if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <!--<if test="sremark != null and  sremark != ''  ">-->
+            <if test="sremark != null ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sh.MerchantAttach">
+        update SH_MERCHANT_ATTACH
+        set
+        IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        ,ISORT=#{isort,jdbcType=NUMERIC}
+        ,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        ,SATTACH_PATH=#{sattachPath,jdbcType=VARCHAR}
+        ,SCODE=#{scode,jdbcType=NUMERIC}
+        ,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        ,SNAME=#{sname,jdbcType=VARCHAR}
+        ,SREMARK=#{sremark,jdbcType=VARCHAR}
+        ,SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+        ,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        ,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!--删除商户时删除其商户资质附件信息表 -->
+    <update id="upBymerchantId" parameterType="com.cloud.cang.model.sh.MerchantAttach">
+        update SH_MERCHANT_ATTACH
+        <set>
+            <if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+            </if>
+            <if test="isort != null  ">
+                ISORT=#{isort,jdbcType=NUMERIC},
+            </if>
+            <if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+            </if>
+            <if test="sattachPath != null and  sattachPath != ''  ">
+                SATTACH_PATH=#{sattachPath,jdbcType=VARCHAR},
+            </if>
+            <if test="scode != null  ">
+                SCODE=#{scode,jdbcType=NUMERIC},
+            </if>
+            <if test="sname != null and  sname != ''  ">
+                SNAME=#{sname,jdbcType=VARCHAR},
+            </if>
+            <if test="sremark != null ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+            </if>
+            <if test="supdateUser != null and  supdateUser != ''  ">
+                SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+    </update>
+    <!--
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	ISORT=#{isort,jdbcType=NUMERIC}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SATTACH_PATH=#{sattachPath,jdbcType=VARCHAR}
+	SCODE=#{scode,jdbcType=NUMERIC}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SNAME=#{sname,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SUPDATE_USER=#{supdateUser,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+
+</mapper>

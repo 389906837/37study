@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.ac.dao.CouponBatchDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.ac.CouponBatch">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="DCOUPON_EFFECTIVE_DATE" property="dcouponEffectiveDate" jdbcType="TIMESTAMP" />
+		<result column="DCOUPON_EXPIRY_DATE" property="dcouponExpiryDate" jdbcType="TIMESTAMP" />
+		<result column="FCOUPON_VALUE" property="fcouponValue" jdbcType="NUMERIC" />
+		<result column="FUSE_LIMIT_AMOUNT" property="fuseLimitAmount" jdbcType="NUMERIC" />
+		<result column="IBATCH_NUMBER" property="ibatchNumber" jdbcType="NUMERIC" />
+		<result column="ICOUPON_CODE_USE_TYPE" property="icouponCodeUseType" jdbcType="NUMERIC" />
+		<result column="ICOUPON_TYPE" property="icouponType" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IMEMBER_JOIN_TYPE" property="imemberJoinType" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="IVERSION" property="iversion" jdbcType="NUMERIC" />
+		<result column="SACTIVITY_CODE" property="sactivityCode" jdbcType="VARCHAR" />
+		<result column="SACTIVITY_NAME" property="sactivityName" jdbcType="VARCHAR" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SAUDIT_OPERATOR_NAME" property="sauditOperatorName" jdbcType="VARCHAR" />
+		<result column="SAUDIT_OPINION" property="sauditOpinion" jdbcType="VARCHAR" />
+		<result column="SBATCH_CODE" property="sbatchCode" jdbcType="VARCHAR" />
+		<result column="SBRIEF_DESC" property="sbriefDesc" jdbcType="VARCHAR" />
+		<result column="SCOUPON_INSTRUCTION" property="scouponInstruction" jdbcType="VARCHAR" />
+		<result column="SCOUPON_TYPE_NAME" property="scouponTypeName" jdbcType="VARCHAR" />
+		<result column="SCOUPON_VALIDITY_VALUE" property="scouponValidityValue" jdbcType="NUMERIC" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SSUBMIT_OPERATOR_ID" property="ssubmitOperatorId" jdbcType="VARCHAR" />
+		<result column="SUPATE_USER" property="supateUser" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_BRAND" property="suseLimitBrand" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_CATEGORY" property="suseLimitCategory" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_COMMODITY" property="suseLimitCommodity" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_DEVICE" property="suseLimitDevice" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TAUDIT_DATETIME" property="tauditDatetime" jdbcType="TIMESTAMP" />
+		<result column="TEX_ENDTIME" property="texEndtime" jdbcType="TIMESTAMP" />
+		<result column="TEX_STARTTIME" property="texStarttime" jdbcType="TIMESTAMP" />
+		<result column="TSUBMIT_DATETIME" property="tsubmitDatetime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,DCOUPON_EFFECTIVE_DATE,DCOUPON_EXPIRY_DATE,FCOUPON_VALUE,FUSE_LIMIT_AMOUNT,IBATCH_NUMBER,ICOUPON_CODE_USE_TYPE,ICOUPON_TYPE,IDEL_FLAG,IMEMBER_JOIN_TYPE,ISTATUS,ITYPE,IVERSION,SACTIVITY_CODE,SACTIVITY_NAME,SADD_USER,SAUDIT_OPERATOR_NAME,SAUDIT_OPINION,SBATCH_CODE,SBRIEF_DESC,SCOUPON_INSTRUCTION,SCOUPON_TYPE_NAME,SCOUPON_VALIDITY_VALUE,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SSUBMIT_OPERATOR_ID,SUPATE_USER,SUSE_LIMIT_BRAND,SUSE_LIMIT_CATEGORY,SUSE_LIMIT_COMMODITY,SUSE_LIMIT_DEVICE,TADD_TIME,TAUDIT_DATETIME,TEX_ENDTIME,TEX_STARTTIME,TSUBMIT_DATETIME,TUPDATE_TIME
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="dcouponEffectiveDate != null  ">
+               and  DCOUPON_EFFECTIVE_DATE=#{dcouponEffectiveDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="dcouponExpiryDate != null  ">
+               and  DCOUPON_EXPIRY_DATE=#{dcouponExpiryDate,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="fcouponValue != null  ">
+               and  FCOUPON_VALUE=#{fcouponValue,jdbcType=NUMERIC}
+           	</if>
+			<if test="fuseLimitAmount != null  ">
+               and  FUSE_LIMIT_AMOUNT=#{fuseLimitAmount,jdbcType=NUMERIC}
+           	</if>
+			<if test="ibatchNumber != null  ">
+               and  IBATCH_NUMBER=#{ibatchNumber,jdbcType=NUMERIC}
+           	</if>
+			<if test="icouponCodeUseType != null  ">
+               and  ICOUPON_CODE_USE_TYPE=#{icouponCodeUseType,jdbcType=NUMERIC}
+           	</if>
+			<if test="icouponType != null  ">
+               and  ICOUPON_TYPE=#{icouponType,jdbcType=NUMERIC}
+           	</if>
+			<if test="idelFlag != null  ">
+               and  IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+           	</if>
+			<if test="imemberJoinType != null  ">
+               and  IMEMBER_JOIN_TYPE=#{imemberJoinType,jdbcType=NUMERIC}
+           	</if>
+			<if test="istatus != null  ">
+               and  ISTATUS=#{istatus,jdbcType=NUMERIC}
+           	</if>
+			<if test="itype != null  ">
+               and  ITYPE=#{itype,jdbcType=NUMERIC}
+           	</if>
+			<if test="iversion != null  ">
+               and  IVERSION=#{iversion,jdbcType=NUMERIC}
+           	</if>
+			<if test="sactivityCode != null and  sactivityCode != ''  ">
+               and  SACTIVITY_CODE=#{sactivityCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sactivityName != null and  sactivityName != ''  ">
+               and  SACTIVITY_NAME=#{sactivityName,jdbcType=VARCHAR}
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+               and  SADD_USER=#{saddUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="sauditOperatorName != null and  sauditOperatorName != ''  ">
+               and  SAUDIT_OPERATOR_NAME=#{sauditOperatorName,jdbcType=VARCHAR}
+           	</if>
+			<if test="sauditOpinion != null and  sauditOpinion != ''  ">
+               and  SAUDIT_OPINION=#{sauditOpinion,jdbcType=VARCHAR}
+           	</if>
+			<if test="sbatchCode != null and  sbatchCode != ''  ">
+               and  SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="sbriefDesc != null and  sbriefDesc != ''  ">
+               and  SBRIEF_DESC=#{sbriefDesc,jdbcType=VARCHAR}
+           	</if>
+			<if test="scouponInstruction != null and  scouponInstruction != ''  ">
+               and  SCOUPON_INSTRUCTION=#{scouponInstruction,jdbcType=VARCHAR}
+           	</if>
+			<if test="scouponTypeName != null and  scouponTypeName != ''  ">
+               and  SCOUPON_TYPE_NAME=#{scouponTypeName,jdbcType=VARCHAR}
+           	</if>
+			<if test="scouponValidityValue != null  ">
+               and  SCOUPON_VALIDITY_VALUE=#{scouponValidityValue,jdbcType=NUMERIC}
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+               and  SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+               and  SREMARK=#{sremark,jdbcType=VARCHAR}
+           	</if>
+			<if test="ssubmitOperatorId != null and  ssubmitOperatorId != ''  ">
+               and  SSUBMIT_OPERATOR_ID=#{ssubmitOperatorId,jdbcType=VARCHAR}
+           	</if>
+			<if test="supateUser != null and  supateUser != ''  ">
+               and  SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+           	</if>
+			<if test="suseLimitBrand != null and  suseLimitBrand != ''  ">
+               and  SUSE_LIMIT_BRAND=#{suseLimitBrand,jdbcType=VARCHAR}
+           	</if>
+			<if test="suseLimitCategory != null and  suseLimitCategory != ''  ">
+               and  SUSE_LIMIT_CATEGORY=#{suseLimitCategory,jdbcType=VARCHAR}
+           	</if>
+			<if test="suseLimitCommodity != null and  suseLimitCommodity != ''  ">
+               and  SUSE_LIMIT_COMMODITY=#{suseLimitCommodity,jdbcType=VARCHAR}
+           	</if>
+			<if test="suseLimitDevice != null and  suseLimitDevice != ''  ">
+               and  SUSE_LIMIT_DEVICE=#{suseLimitDevice,jdbcType=VARCHAR}
+           	</if>
+			<if test="taddTime != null  ">
+               and  TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tauditDatetime != null  ">
+               and  TAUDIT_DATETIME=#{tauditDatetime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="texEndtime != null  ">
+               and  TEX_ENDTIME=#{texEndtime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="texStarttime != null  ">
+               and  TEX_STARTTIME=#{texStarttime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tsubmitDatetime != null  ">
+               and  TSUBMIT_DATETIME=#{tsubmitDatetime,jdbcType=TIMESTAMP}
+           	</if>
+			<if test="tupdateTime != null  ">
+               and  TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from AC_COUPON_BATCH
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.ac.CouponBatch">
+        select
+        <include refid="column_List" />
+        from AC_COUPON_BATCH
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from AC_COUPON_BATCH
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from AC_COUPON_BATCH
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM AC_COUPON_BATCH where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.ac.CouponBatch">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into AC_COUPON_BATCH (ID,DCOUPON_EFFECTIVE_DATE,DCOUPON_EXPIRY_DATE,FCOUPON_VALUE,FUSE_LIMIT_AMOUNT,IBATCH_NUMBER,ICOUPON_CODE_USE_TYPE,ICOUPON_TYPE,IDEL_FLAG,IMEMBER_JOIN_TYPE,ISTATUS,ITYPE,IVERSION,SACTIVITY_CODE,SACTIVITY_NAME,SADD_USER,SAUDIT_OPERATOR_NAME,SAUDIT_OPINION,SBATCH_CODE,SBRIEF_DESC,SCOUPON_INSTRUCTION,SCOUPON_TYPE_NAME,SCOUPON_VALIDITY_VALUE,SMERCHANT_CODE,SMERCHANT_ID,SREMARK,SSUBMIT_OPERATOR_ID,SUPATE_USER,SUSE_LIMIT_BRAND,SUSE_LIMIT_CATEGORY,SUSE_LIMIT_COMMODITY,SUSE_LIMIT_DEVICE,TADD_TIME,TAUDIT_DATETIME,TEX_ENDTIME,TEX_STARTTIME,TSUBMIT_DATETIME,TUPDATE_TIME)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{dcouponEffectiveDate,jdbcType=TIMESTAMP},#{dcouponExpiryDate,jdbcType=TIMESTAMP},#{fcouponValue,jdbcType=NUMERIC},#{fuseLimitAmount,jdbcType=NUMERIC},#{ibatchNumber,jdbcType=NUMERIC},#{icouponCodeUseType,jdbcType=NUMERIC},#{icouponType,jdbcType=NUMERIC},#{idelFlag,jdbcType=NUMERIC},#{imemberJoinType,jdbcType=NUMERIC},#{istatus,jdbcType=NUMERIC},#{itype,jdbcType=NUMERIC},#{iversion,jdbcType=NUMERIC},#{sactivityCode,jdbcType=VARCHAR},#{sactivityName,jdbcType=VARCHAR},#{saddUser,jdbcType=VARCHAR},#{sauditOperatorName,jdbcType=VARCHAR},#{sauditOpinion,jdbcType=VARCHAR},#{sbatchCode,jdbcType=VARCHAR},#{sbriefDesc,jdbcType=VARCHAR},#{scouponInstruction,jdbcType=VARCHAR},#{scouponTypeName,jdbcType=VARCHAR},#{scouponValidityValue,jdbcType=NUMERIC},#{smerchantCode,jdbcType=VARCHAR},#{smerchantId,jdbcType=VARCHAR},#{sremark,jdbcType=VARCHAR},#{ssubmitOperatorId,jdbcType=VARCHAR},#{supateUser,jdbcType=VARCHAR},#{suseLimitBrand,jdbcType=VARCHAR},#{suseLimitCategory,jdbcType=VARCHAR},#{suseLimitCommodity,jdbcType=VARCHAR},#{suseLimitDevice,jdbcType=VARCHAR},#{taddTime,jdbcType=TIMESTAMP},#{tauditDatetime,jdbcType=TIMESTAMP},#{texEndtime,jdbcType=TIMESTAMP},#{texStarttime,jdbcType=TIMESTAMP},#{tsubmitDatetime,jdbcType=TIMESTAMP},#{tupdateTime,jdbcType=TIMESTAMP}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.ac.CouponBatch">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into AC_COUPON_BATCH
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="dcouponEffectiveDate">
+               DCOUPON_EFFECTIVE_DATE,
+           	</if>
+			<if test="dcouponExpiryDate">
+               DCOUPON_EXPIRY_DATE,
+           	</if>
+			<if test="fcouponValue">
+               FCOUPON_VALUE,
+           	</if>
+			<if test="fuseLimitAmount">
+               FUSE_LIMIT_AMOUNT,
+           	</if>
+			<if test="ibatchNumber">
+               IBATCH_NUMBER,
+           	</if>
+			<if test="icouponCodeUseType">
+               ICOUPON_CODE_USE_TYPE,
+           	</if>
+			<if test="icouponType">
+               ICOUPON_TYPE,
+           	</if>
+			<if test="idelFlag">
+               IDEL_FLAG,
+           	</if>
+			<if test="imemberJoinType">
+               IMEMBER_JOIN_TYPE,
+           	</if>
+			<if test="istatus">
+               ISTATUS,
+           	</if>
+			<if test="itype">
+               ITYPE,
+           	</if>
+			<if test="iversion">
+               IVERSION,
+           	</if>
+			<if test="sactivityCode">
+               SACTIVITY_CODE,
+           	</if>
+			<if test="sactivityName">
+               SACTIVITY_NAME,
+           	</if>
+			<if test="saddUser">
+               SADD_USER,
+           	</if>
+			<if test="sauditOperatorName">
+               SAUDIT_OPERATOR_NAME,
+           	</if>
+			<if test="sauditOpinion">
+               SAUDIT_OPINION,
+           	</if>
+			<if test="sbatchCode">
+               SBATCH_CODE,
+           	</if>
+			<if test="sbriefDesc">
+               SBRIEF_DESC,
+           	</if>
+			<if test="scouponInstruction">
+               SCOUPON_INSTRUCTION,
+           	</if>
+			<if test="scouponTypeName">
+               SCOUPON_TYPE_NAME,
+           	</if>
+			<if test="scouponValidityValue">
+               SCOUPON_VALIDITY_VALUE,
+           	</if>
+			<if test="smerchantCode">
+               SMERCHANT_CODE,
+           	</if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="sremark">
+               SREMARK,
+           	</if>
+			<if test="ssubmitOperatorId">
+               SSUBMIT_OPERATOR_ID,
+           	</if>
+			<if test="supateUser">
+               SUPATE_USER,
+           	</if>
+			<if test="suseLimitBrand">
+               SUSE_LIMIT_BRAND,
+           	</if>
+			<if test="suseLimitCategory">
+               SUSE_LIMIT_CATEGORY,
+           	</if>
+			<if test="suseLimitCommodity">
+               SUSE_LIMIT_COMMODITY,
+           	</if>
+			<if test="suseLimitDevice">
+               SUSE_LIMIT_DEVICE,
+           	</if>
+			<if test="taddTime">
+               TADD_TIME,
+           	</if>
+			<if test="tauditDatetime">
+               TAUDIT_DATETIME,
+           	</if>
+			<if test="texEndtime">
+               TEX_ENDTIME,
+           	</if>
+			<if test="texStarttime">
+               TEX_STARTTIME,
+           	</if>
+			<if test="tsubmitDatetime">
+               TSUBMIT_DATETIME,
+           	</if>
+			<if test="tupdateTime">
+               TUPDATE_TIME,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="dcouponEffectiveDate != null  ">
+                #{dcouponEffectiveDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dcouponExpiryDate != null  ">
+                #{dcouponExpiryDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="fcouponValue != null  ">
+                #{fcouponValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="fuseLimitAmount != null  ">
+                #{fuseLimitAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="ibatchNumber != null  ">
+                #{ibatchNumber,jdbcType=NUMERIC},
+           	</if>
+			<if test="icouponCodeUseType != null  ">
+                #{icouponCodeUseType,jdbcType=NUMERIC},
+           	</if>
+			<if test="icouponType != null  ">
+                #{icouponType,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                #{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="imemberJoinType != null  ">
+                #{imemberJoinType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                #{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                #{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                #{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="sactivityCode != null and  sactivityCode != ''  ">
+                #{sactivityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sactivityName != null and  sactivityName != ''  ">
+                #{sactivityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                #{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOperatorName != null and  sauditOperatorName != ''  ">
+                #{sauditOperatorName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOpinion != null and  sauditOpinion != ''  ">
+                #{sauditOpinion,jdbcType=VARCHAR},
+           	</if>
+			<if test="sbatchCode != null and  sbatchCode != ''  ">
+                #{sbatchCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sbriefDesc != null and  sbriefDesc != ''  ">
+                #{sbriefDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="scouponInstruction != null and  scouponInstruction != ''  ">
+                #{scouponInstruction,jdbcType=VARCHAR},
+           	</if>
+			<if test="scouponTypeName != null and  scouponTypeName != ''  ">
+                #{scouponTypeName,jdbcType=VARCHAR},
+           	</if>
+			<if test="scouponValidityValue != null  ">
+                #{scouponValidityValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                #{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                #{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssubmitOperatorId != null and  ssubmitOperatorId != ''  ">
+                #{ssubmitOperatorId,jdbcType=VARCHAR},
+           	</if>
+			<if test="supateUser != null and  supateUser != ''  ">
+                #{supateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitBrand != null and  suseLimitBrand != ''  ">
+                #{suseLimitBrand,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitCategory != null and  suseLimitCategory != ''  ">
+                #{suseLimitCategory,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitCommodity != null and  suseLimitCommodity != ''  ">
+                #{suseLimitCommodity,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitDevice != null and  suseLimitDevice != ''  ">
+                #{suseLimitDevice,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                #{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tauditDatetime != null  ">
+                #{tauditDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="texEndtime != null  ">
+                #{texEndtime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="texStarttime != null  ">
+                #{texStarttime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tsubmitDatetime != null  ">
+                #{tsubmitDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                #{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.ac.CouponBatch">
+        update AC_COUPON_BATCH
+        <set>
+			<if test="dcouponEffectiveDate != null  ">
+                DCOUPON_EFFECTIVE_DATE=#{dcouponEffectiveDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="dcouponExpiryDate != null  ">
+                DCOUPON_EXPIRY_DATE=#{dcouponExpiryDate,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="fcouponValue != null  ">
+                FCOUPON_VALUE=#{fcouponValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="fuseLimitAmount != null  ">
+                FUSE_LIMIT_AMOUNT=#{fuseLimitAmount,jdbcType=NUMERIC},
+           	</if>
+			<if test="ibatchNumber != null  ">
+                IBATCH_NUMBER=#{ibatchNumber,jdbcType=NUMERIC},
+           	</if>
+			<if test="icouponCodeUseType != null  ">
+                ICOUPON_CODE_USE_TYPE=#{icouponCodeUseType,jdbcType=NUMERIC},
+           	</if>
+			<if test="icouponType != null  ">
+                ICOUPON_TYPE=#{icouponType,jdbcType=NUMERIC},
+           	</if>
+			<if test="idelFlag != null  ">
+                IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC},
+           	</if>
+			<if test="imemberJoinType != null  ">
+                IMEMBER_JOIN_TYPE=#{imemberJoinType,jdbcType=NUMERIC},
+           	</if>
+			<if test="istatus != null  ">
+                ISTATUS=#{istatus,jdbcType=NUMERIC},
+           	</if>
+			<if test="itype != null  ">
+                ITYPE=#{itype,jdbcType=NUMERIC},
+           	</if>
+			<if test="iversion != null  ">
+                IVERSION=#{iversion,jdbcType=NUMERIC},
+           	</if>
+			<if test="sactivityCode != null and  sactivityCode != ''  ">
+                SACTIVITY_CODE=#{sactivityCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sactivityName != null and  sactivityName != ''  ">
+                SACTIVITY_NAME=#{sactivityName,jdbcType=VARCHAR},
+           	</if>
+			<if test="saddUser != null and  saddUser != ''  ">
+                SADD_USER=#{saddUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOperatorName != null and  sauditOperatorName != ''  ">
+                SAUDIT_OPERATOR_NAME=#{sauditOperatorName,jdbcType=VARCHAR},
+           	</if>
+			<if test="sauditOpinion != null and  sauditOpinion != ''  ">
+                SAUDIT_OPINION=#{sauditOpinion,jdbcType=VARCHAR},
+           	</if>
+			<if test="sbatchCode != null and  sbatchCode != ''  ">
+                SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="sbriefDesc != null and  sbriefDesc != ''  ">
+                SBRIEF_DESC=#{sbriefDesc,jdbcType=VARCHAR},
+           	</if>
+			<if test="scouponInstruction != null and  scouponInstruction != ''  ">
+                SCOUPON_INSTRUCTION=#{scouponInstruction,jdbcType=VARCHAR},
+           	</if>
+			<if test="scouponTypeName != null and  scouponTypeName != ''  ">
+                SCOUPON_TYPE_NAME=#{scouponTypeName,jdbcType=VARCHAR},
+           	</if>
+			<if test="scouponValidityValue != null  ">
+                SCOUPON_VALIDITY_VALUE=#{scouponValidityValue,jdbcType=NUMERIC},
+           	</if>
+			<if test="smerchantCode != null and  smerchantCode != ''  ">
+                SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR},
+           	</if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sremark != null and  sremark != ''  ">
+                SREMARK=#{sremark,jdbcType=VARCHAR},
+           	</if>
+			<if test="ssubmitOperatorId != null and  ssubmitOperatorId != ''  ">
+                SSUBMIT_OPERATOR_ID=#{ssubmitOperatorId,jdbcType=VARCHAR},
+           	</if>
+			<if test="supateUser != null and  supateUser != ''  ">
+                SUPATE_USER=#{supateUser,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitBrand != null and  suseLimitBrand != ''  ">
+                SUSE_LIMIT_BRAND=#{suseLimitBrand,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitCategory != null and  suseLimitCategory != ''  ">
+                SUSE_LIMIT_CATEGORY=#{suseLimitCategory,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitCommodity != null and  suseLimitCommodity != ''  ">
+                SUSE_LIMIT_COMMODITY=#{suseLimitCommodity,jdbcType=VARCHAR},
+           	</if>
+			<if test="suseLimitDevice != null and  suseLimitDevice != ''  ">
+                SUSE_LIMIT_DEVICE=#{suseLimitDevice,jdbcType=VARCHAR},
+           	</if>
+			<if test="taddTime != null  ">
+                TADD_TIME=#{taddTime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tauditDatetime != null  ">
+                TAUDIT_DATETIME=#{tauditDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="texEndtime != null  ">
+                TEX_ENDTIME=#{texEndtime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="texStarttime != null  ">
+                TEX_STARTTIME=#{texStarttime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tsubmitDatetime != null  ">
+                TSUBMIT_DATETIME=#{tsubmitDatetime,jdbcType=TIMESTAMP},
+           	</if>
+			<if test="tupdateTime != null  ">
+                TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.ac.CouponBatch">
+        update AC_COUPON_BATCH
+        set 
+        		DCOUPON_EFFECTIVE_DATE=#{dcouponEffectiveDate,jdbcType=TIMESTAMP}
+        		,DCOUPON_EXPIRY_DATE=#{dcouponExpiryDate,jdbcType=TIMESTAMP}
+        		,FCOUPON_VALUE=#{fcouponValue,jdbcType=NUMERIC}
+        		,FUSE_LIMIT_AMOUNT=#{fuseLimitAmount,jdbcType=NUMERIC}
+        		,IBATCH_NUMBER=#{ibatchNumber,jdbcType=NUMERIC}
+        		,ICOUPON_CODE_USE_TYPE=#{icouponCodeUseType,jdbcType=NUMERIC}
+        		,ICOUPON_TYPE=#{icouponType,jdbcType=NUMERIC}
+        		,IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+        		,IMEMBER_JOIN_TYPE=#{imemberJoinType,jdbcType=NUMERIC}
+        		,ISTATUS=#{istatus,jdbcType=NUMERIC}
+        		,ITYPE=#{itype,jdbcType=NUMERIC}
+        		,IVERSION=#{iversion,jdbcType=NUMERIC}
+        		,SACTIVITY_CODE=#{sactivityCode,jdbcType=VARCHAR}
+        		,SACTIVITY_NAME=#{sactivityName,jdbcType=VARCHAR}
+        		,SADD_USER=#{saddUser,jdbcType=VARCHAR}
+        		,SAUDIT_OPERATOR_NAME=#{sauditOperatorName,jdbcType=VARCHAR}
+        		,SAUDIT_OPINION=#{sauditOpinion,jdbcType=VARCHAR}
+        		,SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR}
+        		,SBRIEF_DESC=#{sbriefDesc,jdbcType=VARCHAR}
+        		,SCOUPON_INSTRUCTION=#{scouponInstruction,jdbcType=VARCHAR}
+        		,SCOUPON_TYPE_NAME=#{scouponTypeName,jdbcType=VARCHAR}
+        		,SCOUPON_VALIDITY_VALUE=#{scouponValidityValue,jdbcType=NUMERIC}
+        		,SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+        		,SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SREMARK=#{sremark,jdbcType=VARCHAR}
+        		,SSUBMIT_OPERATOR_ID=#{ssubmitOperatorId,jdbcType=VARCHAR}
+        		,SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+        		,SUSE_LIMIT_BRAND=#{suseLimitBrand,jdbcType=VARCHAR}
+        		,SUSE_LIMIT_CATEGORY=#{suseLimitCategory,jdbcType=VARCHAR}
+        		,SUSE_LIMIT_COMMODITY=#{suseLimitCommodity,jdbcType=VARCHAR}
+        		,SUSE_LIMIT_DEVICE=#{suseLimitDevice,jdbcType=VARCHAR}
+        		,TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+        		,TAUDIT_DATETIME=#{tauditDatetime,jdbcType=TIMESTAMP}
+        		,TEX_ENDTIME=#{texEndtime,jdbcType=TIMESTAMP}
+        		,TEX_STARTTIME=#{texStarttime,jdbcType=TIMESTAMP}
+        		,TSUBMIT_DATETIME=#{tsubmitDatetime,jdbcType=TIMESTAMP}
+        		,TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+	<!--返回实体类-->
+	<resultMap id="resultEntityDomain" type="com.cloud.cang.mgr.ac.domain.CouponBatchDomain">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="DCOUPON_EFFECTIVE_DATE" property="dcouponEffectiveDate" jdbcType="TIMESTAMP" />
+		<result column="DCOUPON_EXPIRY_DATE" property="dcouponExpiryDate" jdbcType="TIMESTAMP" />
+		<result column="FCOUPON_VALUE" property="fcouponValue" jdbcType="NUMERIC" />
+		<result column="FUSE_LIMIT_AMOUNT" property="fuseLimitAmount" jdbcType="NUMERIC" />
+		<result column="IBATCH_NUMBER" property="ibatchNumber" jdbcType="NUMERIC" />
+		<result column="ICOUPON_CODE_USE_TYPE" property="icouponCodeUseType" jdbcType="NUMERIC" />
+		<result column="ICOUPON_TYPE" property="icouponType" jdbcType="NUMERIC" />
+		<result column="IDEL_FLAG" property="idelFlag" jdbcType="NUMERIC" />
+		<result column="IMEMBER_JOIN_TYPE" property="imemberJoinType" jdbcType="NUMERIC" />
+		<result column="ISTATUS" property="istatus" jdbcType="NUMERIC" />
+		<result column="ITYPE" property="itype" jdbcType="NUMERIC" />
+		<result column="IVERSION" property="iversion" jdbcType="NUMERIC" />
+		<result column="SACTIVITY_CODE" property="sactivityCode" jdbcType="VARCHAR" />
+		<result column="SACTIVITY_NAME" property="sactivityName" jdbcType="VARCHAR" />
+		<result column="SADD_USER" property="saddUser" jdbcType="VARCHAR" />
+		<result column="SAUDIT_OPERATOR_NAME" property="sauditOperatorName" jdbcType="VARCHAR" />
+		<result column="SAUDIT_OPINION" property="sauditOpinion" jdbcType="VARCHAR" />
+		<result column="SBATCH_CODE" property="sbatchCode" jdbcType="VARCHAR" />
+		<result column="SBRIEF_DESC" property="sbriefDesc" jdbcType="VARCHAR" />
+		<result column="SCOUPON_INSTRUCTION" property="scouponInstruction" jdbcType="VARCHAR" />
+		<result column="SCOUPON_TYPE_NAME" property="scouponTypeName" jdbcType="VARCHAR" />
+		<result column="SCOUPON_VALIDITY_VALUE" property="scouponValidityValue" jdbcType="NUMERIC" />
+		<result column="SMERCHANT_CODE" property="smerchantCode" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SREMARK" property="sremark" jdbcType="VARCHAR" />
+		<result column="SSUBMIT_OPERATOR_ID" property="ssubmitOperatorId" jdbcType="VARCHAR" />
+		<result column="SUPATE_USER" property="supateUser" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_BRAND" property="suseLimitBrand" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_CATEGORY" property="suseLimitCategory" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_COMMODITY" property="suseLimitCommodity" jdbcType="VARCHAR" />
+		<result column="SUSE_LIMIT_DEVICE" property="suseLimitDevice" jdbcType="VARCHAR" />
+		<result column="TADD_TIME" property="taddTime" jdbcType="TIMESTAMP" />
+		<result column="TAUDIT_DATETIME" property="tauditDatetime" jdbcType="TIMESTAMP" />
+		<result column="TEX_ENDTIME" property="texEndtime" jdbcType="TIMESTAMP" />
+		<result column="TEX_STARTTIME" property="texStarttime" jdbcType="TIMESTAMP" />
+		<result column="TSUBMIT_DATETIME" property="tsubmitDatetime" jdbcType="TIMESTAMP" />
+		<result column="TUPDATE_TIME" property="tupdateTime" jdbcType="TIMESTAMP" />
+		<result column="MERCHANTNAME" property="merchantName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--模糊查询条件-->
+	<sql id="Entity_Where_Clause_Like">
+		<where>
+			<trim prefix="(" suffix=")" prefixOverrides="and">
+				<if test="smerchantCode != null and  smerchantCode != ''  ">
+					and A.SMERCHANT_CODE LIKE CONCAT('%',#{smerchantCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="sbatchCode != null and  sbatchCode != ''  ">
+					and A.SBATCH_CODE LIKE CONCAT('%',#{sbatchCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="fcouponValueFrom != null ">
+					and A.FCOUPON_VALUE &gt;= #{fcouponValueFrom,jdbcType=NUMERIC}
+				</if>
+				<if test="fcouponValueTo != null ">
+					and A.FCOUPON_VALUE &lt;= #{fcouponValueTo,jdbcType=NUMERIC}
+				</if>
+				<if test="istatus != null  ">
+					and A.ISTATUS=#{istatus,jdbcType=NUMERIC}
+				</if>
+				<if test="itype != null  ">
+					and A.ITYPE=#{itype,jdbcType=NUMERIC}
+				</if>
+				<if test="tauditDatetimeStart != null ">
+					and A.TAUDIT_DATETIME &gt;=#{tauditDatetimeStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="tauditDatetimeEnd != null ">
+					and A.TAUDIT_DATETIME &lt;date_add(#{tauditDatetimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="dcouponEffectiveDateStart != null  ">
+					and A.DCOUPON_EFFECTIVE_DATE >=#{dcouponEffectiveDateStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="dcouponEffectiveDateEnd != null  ">
+					and A.DCOUPON_EFFECTIVE_DATE &lt;date_add(#{dcouponEffectiveDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="dcouponExpiryDateStart != null  ">
+					and A.DCOUPON_EXPIRY_DATE >=#{dcouponExpiryDateStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="dcouponExpiryDateEnd != null  ">
+					and A.DCOUPON_EXPIRY_DATE &lt;date_add(#{dcouponExpiryDateEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="texStarttimeStart != null  ">
+					and A.TEX_ENDTIME >=#{texStarttimeStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="texStarttimeEnd != null  ">
+					and A.TEX_ENDTIME &lt;date_add(#{texStarttimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="texEndtimeStart != null  ">
+					and A.TEX_STARTTIME >=#{texEndtimeStart,jdbcType=TIMESTAMP}
+				</if>
+				<if test="texEndtimeEnd != null  ">
+					and A.TEX_STARTTIME &lt;date_add(#{texEndtimeEnd,jdbcType=TIMESTAMP},INTERVAL 1 day)
+				</if>
+				<if test="icouponCodeUseType != null  ">
+					and A.ICOUPON_CODE_USE_TYPE=#{icouponCodeUseType,jdbcType=NUMERIC}
+				</if>
+				<if test="icouponType != null  ">
+					and A.ICOUPON_TYPE=#{icouponType,jdbcType=NUMERIC}
+				</if>
+				<if test="ibatchNumber != null  ">
+					and A.IBATCH_NUMBER=#{ibatchNumber,jdbcType=NUMERIC}
+				</if>
+				<if test="merchantName != null and  merchantName != ''  ">
+					and B.SNAME LIKE CONCAT('%',#{merchantName},'%')
+				</if>
+				<if test="condition != null and  condition != ''  ">
+					and ${condition}
+				</if>
+			</trim>
+		</where>
+	</sql>
+
+	<!--新增查询优惠券批量下发查询-->
+	<select id="queryDataCoupon" resultMap="resultEntityDomain" parameterType="com.cloud.cang.mgr.ac.vo.CouponBatchVo">
+		SELECT
+		B.SNAME AS MERCHANTNAME,
+		A.ID,
+		A.DCOUPON_EFFECTIVE_DATE,
+		A.DCOUPON_EXPIRY_DATE,
+		A.FCOUPON_VALUE,
+		A.FUSE_LIMIT_AMOUNT,
+		A.IBATCH_NUMBER,
+		A.ICOUPON_CODE_USE_TYPE,
+		A.ICOUPON_TYPE,
+		A.IDEL_FLAG,
+		A.IMEMBER_JOIN_TYPE,
+		A.ISTATUS,
+		A.ITYPE,
+		A.IVERSION,
+		A.SACTIVITY_CODE,
+		A.SACTIVITY_NAME,
+		A.SADD_USER,
+		A.SAUDIT_OPERATOR_NAME,
+		A.SAUDIT_OPINION,
+		A.SBATCH_CODE,
+		A.SBRIEF_DESC,
+		A.SCOUPON_INSTRUCTION,
+		A.SCOUPON_TYPE_NAME,
+		A.SCOUPON_VALIDITY_VALUE,
+		A.SMERCHANT_CODE,
+		A.SMERCHANT_ID,
+		A.SREMARK,
+		A.SSUBMIT_OPERATOR_ID,
+		A.SUPATE_USER,
+		A.SUSE_LIMIT_BRAND,
+		A.SUSE_LIMIT_CATEGORY,
+		A.SUSE_LIMIT_COMMODITY,
+		A.SUSE_LIMIT_DEVICE,
+		A.TADD_TIME,
+		A.TAUDIT_DATETIME,
+		A.TEX_ENDTIME,
+		A.TEX_STARTTIME,
+		A.TSUBMIT_DATETIME,
+		A.TUPDATE_TIME
+		FROM AC_COUPON_BATCH A
+		LEFT JOIN SH_MERCHANT_INFO B ON A.SMERCHANT_ID = B.ID
+		<include refid="Entity_Where_Clause_Like" />
+		ORDER BY
+		<if test="orderStr != null and  orderStr != ''  ">
+			${orderStr}
+		</if>
+		FIELD(A.ISTATUS,11,20,21),A.TAUDIT_DATETIME DESC
+	</select>
+
+	<!--修改券下发表发放数量和下发用户表的发放数量-->
+	<update id="updateIbatchNumber"  parameterType="com.cloud.cang.model.ac.CouponBatch">
+		UPDATE AC_COUPON_BATCH T
+		SET T.IBATCH_NUMBER=(SELECT SUM(C.INUMBER) FROM AC_COUPON_USER_SEND C WHERE C.SBATCH_ID=T.ID)
+		WHERE T.ID=#{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectCouponBatchByIdAndMerchantId" resultMap="resultEntity" parameterType="java.util.Map">
+		select
+		<include refid="column_List" />
+		from AC_COUPON_BATCH where smerchant_id=#{merchantId,jdbcType=VARCHAR}
+		and id=#{bid,jdbcType=NUMERIC}
+	</select>
+
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	DCOUPON_EFFECTIVE_DATE=#{dcouponEffectiveDate,jdbcType=TIMESTAMP}
+	DCOUPON_EXPIRY_DATE=#{dcouponExpiryDate,jdbcType=TIMESTAMP}
+	FCOUPON_VALUE=#{fcouponValue,jdbcType=NUMERIC}
+	FUSE_LIMIT_AMOUNT=#{fuseLimitAmount,jdbcType=NUMERIC}
+	IBATCH_NUMBER=#{ibatchNumber,jdbcType=NUMERIC}
+	ICOUPON_CODE_USE_TYPE=#{icouponCodeUseType,jdbcType=NUMERIC}
+	ICOUPON_TYPE=#{icouponType,jdbcType=NUMERIC}
+	IDEL_FLAG=#{idelFlag,jdbcType=NUMERIC}
+	IMEMBER_JOIN_TYPE=#{imemberJoinType,jdbcType=NUMERIC}
+	ISTATUS=#{istatus,jdbcType=NUMERIC}
+	ITYPE=#{itype,jdbcType=NUMERIC}
+	IVERSION=#{iversion,jdbcType=NUMERIC}
+	SACTIVITY_CODE=#{sactivityCode,jdbcType=VARCHAR}
+	SACTIVITY_NAME=#{sactivityName,jdbcType=VARCHAR}
+	SADD_USER=#{saddUser,jdbcType=VARCHAR}
+	SAUDIT_OPERATOR_NAME=#{sauditOperatorName,jdbcType=VARCHAR}
+	SAUDIT_OPINION=#{sauditOpinion,jdbcType=VARCHAR}
+	SBATCH_CODE=#{sbatchCode,jdbcType=VARCHAR}
+	SBRIEF_DESC=#{sbriefDesc,jdbcType=VARCHAR}
+	SCOUPON_INSTRUCTION=#{scouponInstruction,jdbcType=VARCHAR}
+	SCOUPON_TYPE_NAME=#{scouponTypeName,jdbcType=VARCHAR}
+	SCOUPON_VALIDITY_VALUE=#{scouponValidityValue,jdbcType=NUMERIC}
+	SMERCHANT_CODE=#{smerchantCode,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SREMARK=#{sremark,jdbcType=VARCHAR}
+	SSUBMIT_OPERATOR_ID=#{ssubmitOperatorId,jdbcType=VARCHAR}
+	SUPATE_USER=#{supateUser,jdbcType=VARCHAR}
+	SUSE_LIMIT_BRAND=#{suseLimitBrand,jdbcType=VARCHAR}
+	SUSE_LIMIT_CATEGORY=#{suseLimitCategory,jdbcType=VARCHAR}
+	SUSE_LIMIT_COMMODITY=#{suseLimitCommodity,jdbcType=VARCHAR}
+	SUSE_LIMIT_DEVICE=#{suseLimitDevice,jdbcType=VARCHAR}
+	TADD_TIME=#{taddTime,jdbcType=TIMESTAMP}
+	TAUDIT_DATETIME=#{tauditDatetime,jdbcType=TIMESTAMP}
+	TEX_ENDTIME=#{texEndtime,jdbcType=TIMESTAMP}
+	TEX_STARTTIME=#{texStarttime,jdbcType=TIMESTAMP}
+	TSUBMIT_DATETIME=#{tsubmitDatetime,jdbcType=TIMESTAMP}
+	TUPDATE_TIME=#{tupdateTime,jdbcType=TIMESTAMP}
+     -->
+     
+</mapper>

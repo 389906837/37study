@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.xx.dao.MsgTemplateDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.xx.MsgTemplate">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="BIS_DELETE" property="bisDelete" jdbcType="NUMERIC"/>
+        <result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP"/>
+        <result column="DMODIFY_DATE" property="dmodifyDate" jdbcType="TIMESTAMP"/>
+        <result column="IIS_ENABLE" property="iisEnable" jdbcType="NUMERIC"/>
+        <result column="IIS_REALTIME" property="iisRealtime" jdbcType="NUMERIC"/>
+        <result column="IMSG_TYPE" property="imsgType" jdbcType="NUMERIC"/>
+        <result column="ITIMEOUT" property="itimeout" jdbcType="NUMERIC"/>
+        <result column="IUSAGE" property="iusage" jdbcType="NUMERIC"/>
+        <result column="SADD_OPERATOR" property="saddOperator" jdbcType="VARCHAR"/>
+        <result column="SENDTIME" property="sendtime" jdbcType="VARCHAR"/>
+        <result column="SEND_COUNT_LIMIT" property="sendCountLimit" jdbcType="NUMERIC"/>
+        <result column="SEND_USER_COUNT_LIMIT" property="sendUserCountLimit" jdbcType="NUMERIC"/>
+        <result column="SMAIN_ID" property="smainId" jdbcType="VARCHAR"/>
+        <result column="SMODIFY_OPERATOR" property="smodifyOperator" jdbcType="VARCHAR"/>
+        <result column="SSTARTTIME" property="sstarttime" jdbcType="VARCHAR"/>
+        <result column="SSUPPLIER_CODE" property="ssupplierCode" jdbcType="VARCHAR"/>
+        <result column="SSUPPLIER_ID" property="ssupplierId" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_CONTENT" property="stemplateContent" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_NAME" property="stemplateName" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_SOURCE_SYSTEM" property="stemplateSourceSystem" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_TITLE" property="stemplateTitle" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="resultEntity_vo" type="com.cloud.cang.mgr.xx.vo.MsgTemplateVo">
+        <id column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="BIS_DELETE" property="bisDelete" jdbcType="NUMERIC"/>
+        <result column="DADD_DATE" property="daddDate" jdbcType="TIMESTAMP"/>
+        <result column="DMODIFY_DATE" property="dmodifyDate" jdbcType="TIMESTAMP"/>
+        <result column="IIS_ENABLE" property="iisEnable" jdbcType="NUMERIC"/>
+        <result column="IIS_REALTIME" property="iisRealtime" jdbcType="NUMERIC"/>
+        <result column="IMSG_TYPE" property="imsgType" jdbcType="NUMERIC"/>
+        <result column="ITIMEOUT" property="itimeout" jdbcType="NUMERIC"/>
+        <result column="IUSAGE" property="iusage" jdbcType="NUMERIC"/>
+        <result column="SADD_OPERATOR" property="saddOperator" jdbcType="VARCHAR"/>
+        <result column="SENDTIME" property="sendtime" jdbcType="VARCHAR"/>
+        <result column="SEND_COUNT_LIMIT" property="sendCountLimit" jdbcType="NUMERIC"/>
+        <result column="SEND_USER_COUNT_LIMIT" property="sendUserCountLimit" jdbcType="NUMERIC"/>
+        <result column="SMAIN_ID" property="smainId" jdbcType="VARCHAR"/>
+        <result column="SMODIFY_OPERATOR" property="smodifyOperator" jdbcType="VARCHAR"/>
+        <result column="SSTARTTIME" property="sstarttime" jdbcType="VARCHAR"/>
+        <result column="SSUPPLIER_CODE" property="ssupplierCode" jdbcType="VARCHAR"/>
+        <result column="SSUPPLIER_ID" property="ssupplierId" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_CONTENT" property="stemplateContent" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_NAME" property="stemplateName" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_SOURCE_SYSTEM" property="stemplateSourceSystem" jdbcType="VARCHAR"/>
+        <result column="STEMPLATE_TITLE" property="stemplateTitle" jdbcType="VARCHAR"/>
+        <result column="SNAME" property="sname" jdbcType="VARCHAR"/>
+        <result column="SMERCHANT_CODE" property="shCode" jdbcType="VARCHAR"/>
+        <result column="merchantName" property="merchantName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="column_List">
+    	<![CDATA[
+
+        ID,BIS_DELETE,DADD_DATE,DMODIFY_DATE,IIS_ENABLE,IIS_REALTIME,IMSG_TYPE,ITIMEOUT,IUSAGE,SADD_OPERATOR,SENDTIME,SEND_COUNT_LIMIT,SEND_USER_COUNT_LIMIT,SMAIN_ID,SMODIFY_OPERATOR,SSTARTTIME,SSUPPLIER_CODE,SSUPPLIER_ID,STEMPLATE_CONTENT,STEMPLATE_NAME,STEMPLATE_SOURCE_SYSTEM,STEMPLATE_TITLE
+
+        ]]>
+    </sql>
+    <sql id="Entity_Where_Clause">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="bisDelete != null  ">
+                    and BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+                </if>
+                <if test="daddDate != null  ">
+                    and DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="dmodifyDate != null  ">
+                    and DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="iisEnable != null  ">
+                    and IIS_ENABLE=#{iisEnable,jdbcType=NUMERIC}
+                </if>
+                <if test="iisRealtime != null  ">
+                    and IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+                </if>
+                <if test="imsgType != null  ">
+                    and IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+                </if>
+                <if test="itimeout != null  ">
+                    and ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+                </if>
+                <if test="iusage != null  ">
+                    and IUSAGE=#{iusage,jdbcType=NUMERIC}
+                </if>
+                <if test="saddOperator != null and  saddOperator != ''  ">
+                    and SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+                </if>
+                <if test="sendtime != null and  sendtime != ''  ">
+                    and SENDTIME=#{sendtime,jdbcType=VARCHAR}
+                </if>
+                <if test="sendCountLimit != null  ">
+                    and SEND_COUNT_LIMIT=#{sendCountLimit,jdbcType=NUMERIC}
+                </if>
+                <if test="sendUserCountLimit != null  ">
+                    and SEND_USER_COUNT_LIMIT=#{sendUserCountLimit,jdbcType=NUMERIC}
+                </if>
+                <if test="smainId != null and  smainId != ''  ">
+                    and SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+                </if>
+                <if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                    and SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+                </if>
+                <if test="sstarttime != null and  sstarttime != ''  ">
+                    and SSTARTTIME=#{sstarttime,jdbcType=VARCHAR}
+                </if>
+                <if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                    and SSUPPLIER_CODE LIKE CONCAT('%',#{ssupplierCode},'%')
+                </if>
+                <if test="ssupplierId != null and  ssupplierId != ''  ">
+                    and SSUPPLIER_ID=#{ssupplierId,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateContent != null and  stemplateContent != ''  ">
+                    and STEMPLATE_CONTENT=#{stemplateContent,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateName != null and  stemplateName != ''  ">
+                    and STEMPLATE_NAME LIKE CONCAT('%',#{stemplateName},'%')
+                </if>
+                <if test="stemplateSourceSystem != null and  stemplateSourceSystem != ''  ">
+                    and STEMPLATE_SOURCE_SYSTEM=#{stemplateSourceSystem,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateTitle != null and  stemplateTitle != ''  ">
+                    and STEMPLATE_TITLE LIKE CONCAT('%',#{stemplateTitle},'%')
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from XX_MSG_TEMPLATE
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.xx.MsgTemplate">
+        select
+        <include refid="column_List"/>
+        from XX_MSG_TEMPLATE
+        <include refid="Entity_Where_Clause"/>
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List"/>
+        from XX_MSG_TEMPLATE
+        <include refid="Entity_Where_Clause"/>
+        <if test="orderCondition != null and orderCondition != ''">
+            order by ${orderCondition}
+        </if>
+        <if test="queryCondition != null and queryCondition != ''">
+            ${queryCondition}
+        </if>
+    </select>
+
+
+    <select id="selectMsgTemplate" resultType="java.util.HashMap"
+            parameterType="com.cloud.cang.mgr.xx.vo.MsgTemplateVo">
+        <![CDATA[
+    select
+ 	B.SMSG_NAME,
+    C.SNAME,
+    A.STEMPLATE_TITLE,
+    A.STEMPLATE_NAME,A.STEMPLATE_SOURCE_SYSTEM,A.SSUPPLIER_ID,A.SSUPPLIER_CODE,
+    A.SEND_COUNT_LIMIT,A.SEND_USER_COUNT_LIMIT,A.IIS_ENABLE,A.IIS_REALTIME,A.IUSAGE,A.ITIMEOUT,A.SSTARTTIME,
+    A.SENDTIME,A.DADD_DATE as DADD_DATE,A.IMSG_TYPE,A.SMAIN_ID,A.BIS_DELETE,A.SADD_OPERATOR,A.STEMPLATE_CONTENT,
+    A.id,A.DMODIFY_DATE as DMODIFY_DATE,A.SMODIFY_OPERATOR
+    from XX_MSG_TEMPLATE A
+    left join XX_MSG_TEMPLATE_MAIN B on
+    a.smain_id=b.id
+    left join XX_SUPPLIER_INFO C on
+    a.ssupplier_id=C.Id
+    ]]>
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="bisDelete != null  ">
+                    and BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+                </if>
+                <if test="daddDate != null  ">
+                    and DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="dmodifyDate != null  ">
+                    and DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="iisEnable != null  ">
+                    and IIS_ENABLE=#{iisEnable,jdbcType=NUMERIC}
+                </if>
+                <if test="iisRealtime != null  ">
+                    and IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+                </if>
+                <if test="imsgType != null  ">
+                    and IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+                </if>
+                <if test="itimeout != null  ">
+                    and ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+                </if>
+                <if test="iusage != null  ">
+                    and A.IUSAGE=#{iusage,jdbcType=NUMERIC}
+                </if>
+                <if test="saddOperator != null and  saddOperator != ''  ">
+                    and SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+                </if>
+                <if test="sendtime != null and  sendtime != ''  ">
+                    and A.SENDTIME=#{sendtime,jdbcType=VARCHAR}
+                </if>
+                <if test="sendCountLimit != null  ">
+                    and SEND_COUNT_LIMIT=#{sendCountLimit,jdbcType=NUMERIC}
+                </if>
+                <if test="sendUserCountLimit != null  ">
+                    and SEND_USER_COUNT_LIMIT=#{sendUserCountLimit,jdbcType=NUMERIC}
+                </if>
+                <if test="smainId != null and  smainId != ''  ">
+                    and SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+                </if>
+                <if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                    and SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+                </if>
+                <if test="sstarttime != null and  sstarttime != ''  ">
+                    and A.SSTARTTIME=#{sstarttime,jdbcType=VARCHAR}
+                </if>
+                <if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                    and SSUPPLIER_CODE LIKE CONCAT('%',#{ssupplierCode},'%')
+                </if>
+                <if test="ssupplierId != null and  ssupplierId != ''  ">
+                    and SSUPPLIER_ID=#{ssupplierId,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateContent != null and  stemplateContent != ''  ">
+                    and STEMPLATE_CONTENT=#{stemplateContent,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateName != null and  stemplateName != ''  ">
+                    and STEMPLATE_NAME LIKE CONCAT('%',#{stemplateName},'%')
+                </if>
+                <if test="stemplateSourceSystem != null and  stemplateSourceSystem != ''  ">
+                    and STEMPLATE_SOURCE_SYSTEM=#{stemplateSourceSystem,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateTitle != null and  stemplateTitle != ''  ">
+                    and STEMPLATE_TITLE LIKE CONCAT('%',#{stemplateTitle},'%')
+                </if>
+                <if test="toperateStartDate != null ">
+                    and A.DADD_DATE&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="toperateEndDate != null ">
+                    and A.DADD_DATE&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+                <if test="sname != null and  sname != ''   ">
+                    and C.SNAME=#{sname,jdbcType=VARCHAR}
+                </if>
+            </trim>
+        </where>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.DADD_DATE DESC
+    </select>
+
+    <!--查询从表数据-->
+    <select id="selectBySmainId" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from XX_MSG_TEMPLATE
+        where SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+    </select>
+
+    <!--根据供应商ID查询-->
+    <select id="selectBySsupplierId" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List"/>
+        from XX_MSG_TEMPLATE
+        where SSUPPLIER_ID=#{ssupplierId,jdbcType=VARCHAR}
+    </select>
+
+    <!--根据从表ID查询模板页面sql-->
+    <select id="selectByMainId" resultMap="resultEntity_vo" parameterType="java.util.Map">
+        <![CDATA[
+            select
+            B.SMSG_NAME,
+            C.SNAME AS SNAME,
+            B.SMERCHANT_CODE AS SHCODE,
+            D.SNAME AS MERCHANTNAME,
+            A.STEMPLATE_TITLE,
+            A.STEMPLATE_NAME,A.STEMPLATE_SOURCE_SYSTEM,A.SSUPPLIER_ID,A.SSUPPLIER_CODE,
+            A.SEND_COUNT_LIMIT,A.SEND_USER_COUNT_LIMIT,A.IIS_ENABLE,A.IIS_REALTIME,A.IUSAGE,A.ITIMEOUT,A.SSTARTTIME,
+            A.SENDTIME,A.DADD_DATE as DADD_DATE,A.IMSG_TYPE,A.SMAIN_ID,A.BIS_DELETE,A.SADD_OPERATOR,A.STEMPLATE_CONTENT,
+            A.id,A.DMODIFY_DATE as DMODIFY_DATE,A.SMODIFY_OPERATOR
+            from XX_MSG_TEMPLATE A
+            left join XX_MSG_TEMPLATE_MAIN B on
+            A.smain_id=B.id
+            left join XX_SUPPLIER_INFO C on
+            A.ssupplier_id=C.Id
+            LEFT JOIN SH_MERCHANT_INFO D ON B.SMERCHANT_ID = D.ID
+        ]]>
+        <include refid="Entity_Where_Clause_Like"/>
+        ORDER BY
+        <if test="orderStr != null and  orderStr != ''  ">
+            ${orderStr}
+        </if>
+        A.DADD_DATE DESC
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+
+        delete from XX_MSG_TEMPLATE
+        where ID = #{id,jdbcType=VARCHAR}
+
+        ]]>
+    </delete>
+    <delete id="batchDeleteByIds" parameterType="java.lang.String">
+        delete FROM XX_MSG_TEMPLATE where id in
+        <foreach item="idItem" collection="array" open="(" separator="," close=")">
+            #{idItem}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.xx.MsgTemplate">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        <![CDATA[
+        insert into XX_MSG_TEMPLATE (ID,BIS_DELETE,DADD_DATE,DMODIFY_DATE,IIS_ENABLE,IIS_REALTIME,IMSG_TYPE,ITIMEOUT,IUSAGE,SADD_OPERATOR,SENDTIME,SEND_COUNT_LIMIT,SEND_USER_COUNT_LIMIT,SMAIN_ID,SMODIFY_OPERATOR,SSTARTTIME,SSUPPLIER_CODE,SSUPPLIER_ID,STEMPLATE_CONTENT,STEMPLATE_NAME,STEMPLATE_SOURCE_SYSTEM,STEMPLATE_TITLE)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{bisDelete,jdbcType=NUMERIC},#{daddDate,jdbcType=TIMESTAMP},#{dmodifyDate,jdbcType=TIMESTAMP},#{iisEnable,jdbcType=NUMERIC},#{iisRealtime,jdbcType=NUMERIC},#{imsgType,jdbcType=NUMERIC},#{itimeout,jdbcType=NUMERIC},#{iusage,jdbcType=NUMERIC},#{saddOperator,jdbcType=VARCHAR},#{sendtime,jdbcType=VARCHAR},#{sendCountLimit,jdbcType=NUMERIC},#{sendUserCountLimit,jdbcType=NUMERIC},#{smainId,jdbcType=VARCHAR},#{smodifyOperator,jdbcType=VARCHAR},#{sstarttime,jdbcType=VARCHAR},#{ssupplierCode,jdbcType=VARCHAR},#{ssupplierId,jdbcType=VARCHAR},#{stemplateContent,jdbcType=VARCHAR},#{stemplateName,jdbcType=VARCHAR},#{stemplateSourceSystem,jdbcType=VARCHAR},#{stemplateTitle,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.xx.MsgTemplate">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            SELECT REPLACE(UUID(),'-','') FROM DUAL
+        </selectKey>
+        insert into XX_MSG_TEMPLATE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+            <if test="bisDelete">
+                BIS_DELETE,
+            </if>
+            <if test="daddDate">
+                DADD_DATE,
+            </if>
+            <if test="dmodifyDate">
+                DMODIFY_DATE,
+            </if>
+            <if test="iisEnable">
+                IIS_ENABLE,
+            </if>
+            <if test="iisRealtime">
+                IIS_REALTIME,
+            </if>
+            <if test="imsgType">
+                IMSG_TYPE,
+            </if>
+            <if test="itimeout">
+                ITIMEOUT,
+            </if>
+            <if test="iusage">
+                IUSAGE,
+            </if>
+            <if test="saddOperator">
+                SADD_OPERATOR,
+            </if>
+            <if test="sendtime">
+                SENDTIME,
+            </if>
+            <if test="sendCountLimit">
+                SEND_COUNT_LIMIT,
+            </if>
+            <if test="sendUserCountLimit">
+                SEND_USER_COUNT_LIMIT,
+            </if>
+            <if test="smainId">
+                SMAIN_ID,
+            </if>
+            <if test="smodifyOperator">
+                SMODIFY_OPERATOR,
+            </if>
+            <if test="sstarttime">
+                SSTARTTIME,
+            </if>
+            <if test="ssupplierCode">
+                SSUPPLIER_CODE,
+            </if>
+            <if test="ssupplierId">
+                SSUPPLIER_ID,
+            </if>
+            <if test="stemplateContent">
+                STEMPLATE_CONTENT,
+            </if>
+            <if test="stemplateName">
+                STEMPLATE_NAME,
+            </if>
+            <if test="stemplateSourceSystem">
+                STEMPLATE_SOURCE_SYSTEM,
+            </if>
+            <if test="stemplateTitle">
+                STEMPLATE_TITLE,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="bisDelete != null  ">
+                #{bisDelete,jdbcType=NUMERIC},
+            </if>
+            <if test="daddDate != null  ">
+                #{daddDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dmodifyDate != null  ">
+                #{dmodifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="iisEnable != null  ">
+                #{iisEnable,jdbcType=NUMERIC},
+            </if>
+            <if test="iisRealtime != null  ">
+                #{iisRealtime,jdbcType=NUMERIC},
+            </if>
+            <if test="imsgType != null  ">
+                #{imsgType,jdbcType=NUMERIC},
+            </if>
+            <if test="itimeout != null  ">
+                #{itimeout,jdbcType=NUMERIC},
+            </if>
+            <if test="iusage != null  ">
+                #{iusage,jdbcType=NUMERIC},
+            </if>
+            <if test="saddOperator != null and  saddOperator != ''  ">
+                #{saddOperator,jdbcType=VARCHAR},
+            </if>
+            <if test="sendtime != null and  sendtime != ''  ">
+                #{sendtime,jdbcType=VARCHAR},
+            </if>
+            <if test="sendCountLimit != null  ">
+                #{sendCountLimit,jdbcType=NUMERIC},
+            </if>
+            <if test="sendUserCountLimit != null  ">
+                #{sendUserCountLimit,jdbcType=NUMERIC},
+            </if>
+            <if test="smainId != null and  smainId != ''  ">
+                #{smainId,jdbcType=VARCHAR},
+            </if>
+            <if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                #{smodifyOperator,jdbcType=VARCHAR},
+            </if>
+            <if test="sstarttime != null and  sstarttime != ''  ">
+                #{sstarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                #{ssupplierCode,jdbcType=VARCHAR},
+            </if>
+            <if test="ssupplierId != null and  ssupplierId != ''  ">
+                #{ssupplierId,jdbcType=VARCHAR},
+            </if>
+            <if test="stemplateContent != null and  stemplateContent != ''  ">
+                #{stemplateContent,jdbcType=VARCHAR},
+            </if>
+            <if test="stemplateName != null and  stemplateName != ''  ">
+                #{stemplateName,jdbcType=VARCHAR},
+            </if>
+            <if test="stemplateSourceSystem != null and  stemplateSourceSystem != ''  ">
+                #{stemplateSourceSystem,jdbcType=VARCHAR},
+            </if>
+            <if test="stemplateTitle != null and  stemplateTitle != ''  ">
+                #{stemplateTitle,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByIdSelective" parameterType="com.cloud.cang.model.xx.MsgTemplate">
+        update XX_MSG_TEMPLATE
+        <set>
+            <if test="bisDelete != null  ">
+                BIS_DELETE=#{bisDelete,jdbcType=NUMERIC},
+            </if>
+            <if test="daddDate != null  ">
+                DADD_DATE=#{daddDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="dmodifyDate != null  ">
+                DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="iisEnable != null  ">
+                IIS_ENABLE=#{iisEnable,jdbcType=NUMERIC},
+            </if>
+            <if test="iisRealtime != null  ">
+                IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC},
+            </if>
+            <if test="imsgType != null  ">
+                IMSG_TYPE=#{imsgType,jdbcType=NUMERIC},
+            </if>
+            <if test="itimeout != null  ">
+                ITIMEOUT=#{itimeout,jdbcType=NUMERIC},
+            </if>
+            <if test="iusage != null  ">
+                IUSAGE=#{iusage,jdbcType=NUMERIC},
+            </if>
+            <if test="saddOperator != null and  saddOperator != ''  ">
+                SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR},
+            </if>
+            <if test="sendtime != null and  sendtime != ''  ">
+                SENDTIME=#{sendtime,jdbcType=VARCHAR},
+            </if>
+            <if test="sendCountLimit != null  ">
+                SEND_COUNT_LIMIT=#{sendCountLimit,jdbcType=NUMERIC},
+            </if>
+            <if test="sendUserCountLimit != null  ">
+                SEND_USER_COUNT_LIMIT=#{sendUserCountLimit,jdbcType=NUMERIC},
+            </if>
+            <if test="smainId != null and  smainId != ''  ">
+                SMAIN_ID=#{smainId,jdbcType=VARCHAR},
+            </if>
+            <if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR},
+            </if>
+            <if test="sstarttime != null and  sstarttime != ''  ">
+                SSTARTTIME=#{sstarttime,jdbcType=VARCHAR},
+            </if>
+            <if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR},
+            </if>
+            <if test="ssupplierId != null and  ssupplierId != ''  ">
+                SSUPPLIER_ID=#{ssupplierId,jdbcType=VARCHAR},
+            </if>
+            STEMPLATE_CONTENT=#{stemplateContent,jdbcType=VARCHAR},
+            <if test="stemplateName != null and  stemplateName != ''  ">
+                STEMPLATE_NAME=#{stemplateName,jdbcType=VARCHAR},
+            </if>
+            <if test="stemplateSourceSystem != null and  stemplateSourceSystem != ''  ">
+                STEMPLATE_SOURCE_SYSTEM=#{stemplateSourceSystem,jdbcType=VARCHAR},
+            </if>
+            <if test="stemplateTitle != null and  stemplateTitle != ''  ">
+                STEMPLATE_TITLE=#{stemplateTitle,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.xx.MsgTemplate">
+        update XX_MSG_TEMPLATE
+        set 
+        		BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+        		,DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+        		,DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+        		,IIS_ENABLE=#{iisEnable,jdbcType=NUMERIC}
+        		,IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+        		,IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+        		,ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+        		,IUSAGE=#{iusage,jdbcType=NUMERIC}
+        		,SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+        		,SENDTIME=#{sendtime,jdbcType=VARCHAR}
+        		,SEND_COUNT_LIMIT=#{sendCountLimit,jdbcType=NUMERIC}
+        		,SEND_USER_COUNT_LIMIT=#{sendUserCountLimit,jdbcType=NUMERIC}
+        		,SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+        		,SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+        		,SSTARTTIME=#{sstarttime,jdbcType=VARCHAR}
+        		,SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+        		,SSUPPLIER_ID=#{ssupplierId,jdbcType=VARCHAR}
+        		,STEMPLATE_CONTENT=#{stemplateContent,jdbcType=VARCHAR}
+        		,STEMPLATE_NAME=#{stemplateName,jdbcType=VARCHAR}
+        		,STEMPLATE_SOURCE_SYSTEM=#{stemplateSourceSystem,jdbcType=VARCHAR}
+        		,STEMPLATE_TITLE=#{stemplateTitle,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--新增模糊查询-->
+    <sql id="Entity_Where_Clause_Like">
+        <where>
+            <trim prefix="(" suffix=")" prefixOverrides="and">
+                <if test="id != null and  id != ''   ">
+                    and A.ID=#{id,jdbcType=VARCHAR}
+                </if>
+                <if test="bisDelete != null  ">
+                    and A.BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+                </if>
+                <if test="daddDate != null  ">
+                    and A.DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="dmodifyDate != null  ">
+                    and A.DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="iisEnable != null  ">
+                    and A.IIS_ENABLE=#{iisEnable,jdbcType=NUMERIC}
+                </if>
+                <if test="iisRealtime != null  ">
+                    and A.IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+                </if>
+                <if test="imsgType != null  ">
+                    and A.IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+                </if>
+                <if test="itimeout != null  ">
+                    and A.ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+                </if>
+                <if test="iusage != null  ">
+                    and A.IUSAGE=#{iusage,jdbcType=NUMERIC}
+                </if>
+                <if test="saddOperator != null and  saddOperator != ''  ">
+                    and A.SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+                </if>
+                <if test="sendtime != null and  sendtime != ''  ">
+                    and A.SENDTIME=#{sendtime,jdbcType=VARCHAR}
+                </if>
+                <if test="sendCountLimit != null  ">
+                    and A.SEND_COUNT_LIMIT=#{sendCountLimit,jdbcType=NUMERIC}
+                </if>
+                <if test="sendUserCountLimit != null  ">
+                    and A.SEND_USER_COUNT_LIMIT=#{sendUserCountLimit,jdbcType=NUMERIC}
+                </if>
+                <if test="smainId != null and  smainId != ''  ">
+                    and A.SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+                </if>
+                <if test="smodifyOperator != null and  smodifyOperator != ''  ">
+                    and A.SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+                </if>
+                <if test="sstarttime != null and  sstarttime != ''  ">
+                    and A.SSTARTTIME=#{sstarttime,jdbcType=VARCHAR}
+                </if>
+                <if test="ssupplierCode != null and  ssupplierCode != ''  ">
+                    and A.SSUPPLIER_CODE LIKE CONCAT('%',#{ssupplierCode},'%')
+                </if>
+                <if test="ssupplierId != null and  ssupplierId != ''  ">
+                    and A.SSUPPLIER_ID=#{ssupplierId,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateContent != null and  stemplateContent != ''  ">
+                    and A.STEMPLATE_CONTENT=#{stemplateContent,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateName != null and  stemplateName != ''  ">
+                    and A.STEMPLATE_NAME LIKE CONCAT('%',#{stemplateName},'%')
+                </if>
+                <if test="stemplateSourceSystem != null and  stemplateSourceSystem != ''  ">
+                    and A.STEMPLATE_SOURCE_SYSTEM=#{stemplateSourceSystem,jdbcType=VARCHAR}
+                </if>
+                <if test="stemplateTitle != null and  stemplateTitle != ''  ">
+                    and A.STEMPLATE_TITLE LIKE CONCAT('%',#{stemplateTitle},'%')
+                </if>
+                <if test="toperateStartDate != null ">
+                    and A.DADD_DATE&gt;=#{toperateStartDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="toperateEndDate != null ">
+                    and A.DADD_DATE&lt;date_add(#{toperateEndDate,jdbcType=TIMESTAMP},INTERVAL 1 day)
+                </if>
+                <if test="sname != null and  sname != ''   ">
+                    and C.SNAME=#{sname,jdbcType=VARCHAR}
+                </if>
+                <if test="merchantName != null and  merchantName != ''   ">
+                    and D.SNAME LIKE CONCAT('%',#{merchantName},'%')
+                </if>
+                <if test="shCode != null and  shCode != ''   ">
+                    and B.SMERCHANT_CODE LIKE CONCAT('%',#{shCode},'%')
+                </if>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	BIS_DELETE=#{bisDelete,jdbcType=NUMERIC}
+	DADD_DATE=#{daddDate,jdbcType=TIMESTAMP}
+	DMODIFY_DATE=#{dmodifyDate,jdbcType=TIMESTAMP}
+	IIS_ENABLE=#{iisEnable,jdbcType=NUMERIC}
+	IIS_REALTIME=#{iisRealtime,jdbcType=NUMERIC}
+	IMSG_TYPE=#{imsgType,jdbcType=NUMERIC}
+	ITIMEOUT=#{itimeout,jdbcType=NUMERIC}
+	IUSAGE=#{iusage,jdbcType=NUMERIC}
+	SADD_OPERATOR=#{saddOperator,jdbcType=VARCHAR}
+	SENDTIME=#{sendtime,jdbcType=VARCHAR}
+	SEND_COUNT_LIMIT=#{sendCountLimit,jdbcType=NUMERIC}
+	SEND_USER_COUNT_LIMIT=#{sendUserCountLimit,jdbcType=NUMERIC}
+	SMAIN_ID=#{smainId,jdbcType=VARCHAR}
+	SMODIFY_OPERATOR=#{smodifyOperator,jdbcType=VARCHAR}
+	SSTARTTIME=#{sstarttime,jdbcType=VARCHAR}
+	SSUPPLIER_CODE=#{ssupplierCode,jdbcType=VARCHAR}
+	SSUPPLIER_ID=#{ssupplierId,jdbcType=VARCHAR}
+	STEMPLATE_CONTENT=#{stemplateContent,jdbcType=VARCHAR}
+	STEMPLATE_NAME=#{stemplateName,jdbcType=VARCHAR}
+	STEMPLATE_SOURCE_SYSTEM=#{stemplateSourceSystem,jdbcType=VARCHAR}
+	STEMPLATE_TITLE=#{stemplateTitle,jdbcType=VARCHAR}
+     -->
+
+</mapper>

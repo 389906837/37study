@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.sys.dao.MerchantPurviewDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.sys.MerchantPurview">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="SMERCHANT_ID" property="smerchantId" jdbcType="VARCHAR" />
+		<result column="SPURVIEW_ID" property="spurviewId" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,SMERCHANT_ID,SPURVIEW_ID
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+               and  SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+           	</if>
+			<if test="spurviewId != null and  spurviewId != ''  ">
+               and  SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+  
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from SYS_MERCHANT_PURVIEW
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.sys.MerchantPurview">
+        select
+        <include refid="column_List" />
+        from SYS_MERCHANT_PURVIEW
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from SYS_MERCHANT_PURVIEW
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from SYS_MERCHANT_PURVIEW
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM SYS_MERCHANT_PURVIEW where id in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.sys.MerchantPurview">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into SYS_MERCHANT_PURVIEW (ID,SMERCHANT_ID,SPURVIEW_ID)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{smerchantId,jdbcType=VARCHAR},#{spurviewId,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.sys.MerchantPurview">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into SYS_MERCHANT_PURVIEW
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="smerchantId">
+               SMERCHANT_ID,
+           	</if>
+			<if test="spurviewId">
+               SPURVIEW_ID,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                #{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spurviewId != null and  spurviewId != ''  ">
+                #{spurviewId,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.sys.MerchantPurview">
+        update SYS_MERCHANT_PURVIEW
+        <set>
+			<if test="smerchantId != null and  smerchantId != ''  ">
+                SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR},
+           	</if>
+			<if test="spurviewId != null and  spurviewId != ''  ">
+                SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.sys.MerchantPurview">
+        update SYS_MERCHANT_PURVIEW
+        set 
+        		SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+        		,SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!--根据商户ID删除记录-->
+    <delete id="deleteByMerchantId" parameterType="java.lang.String">
+        delete from sys_merchant_purview where smerchant_id = #{merchantId,jdbcType=VARCHAR}
+    </delete>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SMERCHANT_ID=#{smerchantId,jdbcType=VARCHAR}
+	SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR}
+     -->
+     
+</mapper>

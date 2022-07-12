@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.cang.mgr.hy.dao.MbrRolePurDao">
+    <resultMap id="resultEntity" type="com.cloud.cang.model.hy.MbrRolePur">
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="SPURVIEW_ID" property="spurviewId" jdbcType="VARCHAR" />
+		<result column="SROLE_ID" property="sroleId" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="column_List">
+    	<![CDATA[
+        ID,SPURVIEW_ID,SROLE_ID
+        ]]>
+    </sql>
+     <sql id="Entity_Where_Clause">
+        <where>
+          <trim prefix="(" suffix=")" prefixOverrides="and">
+             <if test="id != null and  id != ''   ">
+                and ID=#{id,jdbcType=VARCHAR}
+            </if>
+			<if test="spurviewId != null and  spurviewId != ''  ">
+               and  SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR}
+           	</if>
+			<if test="sroleId != null and  sroleId != ''  ">
+               and  SROLE_ID=#{sroleId,jdbcType=VARCHAR}
+           	</if>
+          </trim>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="resultEntity" parameterType="java.lang.String">
+        select
+        <include refid="column_List" />
+        from HY_MBR_ROLE_PUR
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByEntityWhere" resultMap="resultEntity" parameterType="com.cloud.cang.model.hy.MbrRolePur">
+        select
+        <include refid="column_List" />
+        from HY_MBR_ROLE_PUR
+        <include refid="Entity_Where_Clause" />
+    </select>
+    <select id="selectByMapWhere" resultMap="resultEntity" parameterType="java.util.Map">
+        select
+        <include refid="column_List" />
+        from HY_MBR_ROLE_PUR
+        <include refid="Entity_Where_Clause" />
+        <if test="orderCondition != null and orderCondition != ''" >
+	     order by ${orderCondition}
+	    </if>
+	    <if test="queryCondition != null and queryCondition != ''" >
+	      ${queryCondition}
+	    </if>
+    </select>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.String">
+        <![CDATA[
+        delete from HY_MBR_ROLE_PUR
+        where SROLE_ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    	<![CDATA[
+        delete from HY_MBR_ROLE_PUR
+        where ID = #{id,jdbcType=VARCHAR}
+        ]]>
+    </delete>
+	<delete id="batchDeleteByIds" parameterType="java.lang.String">
+		delete FROM HY_MBR_ROLE_PUR where guid in
+			<foreach item="idItem" collection="array" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+	</delete>
+    <insert id="insert" parameterType="com.cloud.cang.model.hy.MbrRolePur">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL 
+        </selectKey>  
+        <![CDATA[
+        insert into HY_MBR_ROLE_PUR (ID,SPURVIEW_ID,SROLE_ID)
+        values (
+        	#{id,jdbcType=VARCHAR}
+        	,#{spurviewId,jdbcType=VARCHAR},#{sroleId,jdbcType=VARCHAR}
+        	)
+       ]]>
+    </insert>
+    <insert id="insertSelective" parameterType="com.cloud.cang.model.hy.MbrRolePur">
+    	<selectKey keyProperty="id" resultType="String" order="BEFORE">  
+            SELECT REPLACE(UUID(),'-','') FROM DUAL  
+        </selectKey>  
+         insert into HY_MBR_ROLE_PUR
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and  id != ''   ">
+                ID,
+            </if>
+			<if test="spurviewId">
+               SPURVIEW_ID,
+           	</if>
+			<if test="sroleId">
+               SROLE_ID,
+           	</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        	<if test="id != null and  id != ''  ">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="spurviewId != null and  spurviewId != ''  ">
+                #{spurviewId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sroleId != null and  sroleId != ''  ">
+                #{sroleId,jdbcType=VARCHAR},
+           	</if>
+        </trim>
+    </insert>
+   <update id="updateByIdSelective" parameterType="com.cloud.cang.model.hy.MbrRolePur">
+        update HY_MBR_ROLE_PUR
+        <set>
+			<if test="spurviewId != null and  spurviewId != ''  ">
+                SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR},
+           	</if>
+			<if test="sroleId != null and  sroleId != ''  ">
+                SROLE_ID=#{sroleId,jdbcType=VARCHAR},
+           	</if>
+        </set>
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.cloud.cang.model.hy.MbrRolePur">
+        update HY_MBR_ROLE_PUR
+        set 
+        		SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR}
+        		,SROLE_ID=#{sroleId,jdbcType=VARCHAR}
+        where  ID= #{id,jdbcType=VARCHAR}
+    </update>
+    <!-- 
+   	 附加信息，便于自己写sql语句
+    ID= #{id,jdbcType=VARCHAR}
+	SPURVIEW_ID=#{spurviewId,jdbcType=VARCHAR}
+	SROLE_ID=#{sroleId,jdbcType=VARCHAR}
+     -->
+     
+</mapper>
